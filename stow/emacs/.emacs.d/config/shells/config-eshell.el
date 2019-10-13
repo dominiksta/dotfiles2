@@ -183,7 +183,7 @@ buffer to BUFFER-NAME"
     "0" 'eshell-bol
     (kbd "G") 'end-of-buffer
     (kbd "RET") 'eshell-send-input)
-  (evil-define-key 'visual 'eshell-mode-map
+  (evil-define-key 'visual eshell-mode-map
     "gk" (lambda (n) (interactive "p") (eshell-next-prompt -2))
     "gj" 'eshell-next-prompt
     "0" 'eshell-bol))

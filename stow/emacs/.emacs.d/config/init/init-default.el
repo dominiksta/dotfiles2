@@ -48,6 +48,7 @@
 (config-require '(config-language-web-css)      :regexp "\\.scss\\'"      :auto-mode scss-mode)
 (config-require '(config-language-octave) :regexp "\\.m\\'" :auto-mode octave-mode
                 :feature octave)
+(config-require '(config-language-latex)        :feature tex)
 
 (setq auto-mode-alist (append auto-mode-alist '(("\\.target\\'" . conf-mode)
                                                 ("\\.timer\\'" . conf-mode)

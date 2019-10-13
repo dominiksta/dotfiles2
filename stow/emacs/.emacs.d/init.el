@@ -81,7 +81,9 @@ static char *gnus-pointer[] = {
    '(auctex wgrep-ag buffer-move epass pdf-tools org-tree-slide shackle dumb-jump flucui-themes cyberpunk-theme challenger-deep-theme color-theme-sanityinc-tomorrow grandshell-theme highlight-indent-guides yafolding alect-themes dictcc editorconfig ujelly-theme pdfgrep demo-it org-pdfview olivetti avy org-variable-pitch sqlup-mode spacemacs-theme realgud company-jedi yasnippet-snippets markdown-preview-mode lsp-ui restclient sql-indent php-mode ng2-mode json-mode emmet-mode tide cider clojure-mode ahk-mode powershell pcre2el yasnippet-classic-snippets yasnippet helm-flyspell unidecode ag typescript-mode web-mode js2-mode cmake-mode cquery anti-zenburn-theme zenburn-theme hydra fish-completion multi-term elfeed-org elfeed emms-info-mediainfo emms diredfl dired-rainbow dired-k rainbow-mode shell-pop dired-subtree helm-ag helm-rg pyvenv company-lsp lsp-mode lsp hl-todo flycheck helm-projectile projectile evil-magit magit peep-dired dired-du which-key eyebrowse htmlize org-download evil-org org-bullets helm-swoop helm company evil-nerd-commenter evil-surround doom-themes restart-emacs evil-leader evil use-package))
  '(pdf-view-midnight-colors '("#232333" . "#c7c7c7"))
  '(safe-local-variable-values
-   '((projectile-project-run-cmd . "cd C:\\Users\\dstahmer\\git\\recom-enp-deploy\\ && powershell -File deploy.ps1 -SkipAngularBuild")
+   '((projectile-project-run-cmd . "pdflatex -synctex=1 BA_main.tex")
+     (projectile-project-run-cmd . "pdflatex BA_main.tex")
+     (projectile-project-run-cmd . "cd C:\\Users\\dstahmer\\git\\recom-enp-deploy\\ && powershell -File deploy.ps1 -SkipAngularBuild")
      (projectile-project-compilation-cmd . "cd C:\\Users\\dstahmer\\git\\recom-enp-deploy\\ && powershell -File deploy.ps1")
      (projectile-project-compilation-cmd . "cd C:\\Users\\dstahmer\\git\\recom-enp-deploy\\ && powershell -File deploy.ps1 -SkipAngularBuild")
      (projectile-project-compilation-cmd . "cd C:\\Users\\dstahmer\\git\\recom-enp-deploy\\ &&  && powershell -File deploy.ps1 -SkipAngularBuild")

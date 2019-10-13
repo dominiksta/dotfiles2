@@ -16,10 +16,8 @@
 ;; --------------------------------------------------------------------------------
 ;; themes and fonts
 ;; --------------------------------------------------------------------------------
-(setq fp/theme-font-family (if (eq system-type 'windows-nt)
-                               "Dejavu Sans Mono"
-                             "Iosevka")
-      fp/theme-font-family-size "13"
+(setq fp/theme-font-family "Dejavu Sans Mono"
+      fp/theme-font-family-size "11"
       fp/theme-font-family-fallback "Lucida Console"
       fp/theme-font-family-fallback-size "12"
       fp/theme-font-family-variable-pitch "DejaVu Serif"
@@ -55,18 +53,17 @@ fixed-pitch faces."
       fp/theme-dark-theme 'misterioso
       custom-safe-themes t)
 
-(use-package flucui-themes
-  :ensure t
-  :config
-  (setq fp/theme-light-theme 'flucui-light
-        fp/theme-dark-theme 'flucui-dark))
-
-;; (use-package color-theme-sanityinc-tomorrow
+;; (use-package flucui-themes
 ;;   :ensure t
 ;;   :config
-;;   (use-package grandshell-theme :ensure t)
-;;   (setq fp/theme-light-theme 'sanityinc-tomorrow-day
-;;         fp/theme-dark-theme 'grandshell))
+;;   (setq fp/theme-light-theme 'flucui-light
+;;         fp/theme-dark-theme 'flucui-dark))
+
+(use-package color-theme-sanityinc-tomorrow
+  :ensure t
+  :config
+  (setq fp/theme-light-theme 'sanityinc-tomorrow-day
+        fp/theme-dark-theme 'sanityinc-tomorrow-night))
 
 ;; (use-package doom-themes
 ;;   :ensure t
