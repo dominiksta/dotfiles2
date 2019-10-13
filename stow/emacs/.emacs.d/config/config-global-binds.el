@@ -5,14 +5,20 @@
 ;; --------------------------------------------------------------------------------
 ;; window management
 ;; --------------------------------------------------------------------------------
-;; TODO framemove
-
 
 (setq resize-window-amount 3)
 (bind-key* (kbd "M-Z") (lambda () (interactive) (shrink-window-horizontally resize-window-amount)))
 (bind-key* (kbd "M-U") (lambda () (interactive) (shrink-window resize-window-amount)))
 (bind-key* (kbd "M-I") (lambda () (interactive) (enlarge-window resize-window-amount)))
 (bind-key* (kbd "M-O") (lambda () (interactive) (enlarge-window-horizontally resize-window-amount)))
+
+(use-package buffer-move :ensure t
+  :demand t
+  :config
+  (bind-key* (kbd "M-C-z") 'buf-move-left)
+  (bind-key* (kbd "M-C-u") 'buf-move-down)
+  (bind-key* (kbd "M-C-i") 'buf-move-up)
+  (bind-key* (kbd "M-C-o") 'buf-move-right))
 
 (bind-key* "M-v" (lambda () (interactive) (split-window-right) (windmove-right)))
 (bind-key* "M-c" (lambda () (interactive) (split-window-below) (windmove-down)))
@@ -72,8 +78,10 @@
   "ee" 'eval-last-sexp
   "em" 'emacs-lisp-macroexpand
   "eE" 'eval-print-last-sexp
-  "ec" (lambda () (interactive) (byte-recompile-directory (concat user-emacs-directory "config/") 0))
-  "eC" (lambda () (interactive) (byte-recompile-directory (concat user-emacs-directory "config/") 0 t)))
+  "ec" (lambda () (interactive) (byte-recompile-directory
+                            (concat user-emacs-directory "config/") 0))
+  "eC" (lambda () (interactive) (byte-recompile-directory
+                            (concat user-emacs-directory "config/") 0 t)))
 
 ;; --- eyebrowse ---
 (dotimes (i 10)
@@ -270,6 +278,7 @@
 (autoload 'fp/open-directory-with-system-default "config-dired.el")
 (evil-leader/set-key
   "-s" 'shell
+  "-b" (lambda () (interactive) (shell "/bin/bash"))
   "-r" 'shell-command-on-region
   "-c" 'shell-command
   "-a" 'async-shell-command

@@ -16,7 +16,8 @@
                                        "en_US" (shell-command-to-string "hunspell -D")))
                                 "apt install hunspell-en-us" "None")
 
-(when (config-external-check-list '(hunspell-en-us hunspell-de-de hunspell))
+(when (config-external-check-list '(hunspell hunspell-de-de hunspell-en-us))
+
   (setq ispell-program-name "hunspell")
   (setq ispell-dictionary "en_US,de_DE")
   ;; ispell-set-spellchecker-params has to be called ist ein Test

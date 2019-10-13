@@ -1,6 +1,6 @@
 (require-and-log 'config-shell)
 
-(setq eshell-aliases-file "~/sync/emacs/random/eshell-aliases-linux")
+(setq eshell-aliases-file (concat sync-directory "emacs/random/eshell-aliases-linux"))
 (defalias 'vis 'eshell-exec-visual)
 
 ;; --- open these in a terminal emulator ---
@@ -24,6 +24,19 @@
 
 ;; --- colors ---
 (add-hook 'eshell-mode-hook 'fp/shell-add-colors)
+
+;; --------------------------------------------------------------------------------
+;; programmatically start eshell
+;; --------------------------------------------------------------------------------
+
+(defun run-in-eshell (command &optional buffer-name)
+  "Get a new eshell-buffer and run COMMAND in it. Rename that
+buffer to BUFFER-NAME"
+  (with-current-buffer (eshell 9485)
+    (eshell-return-to-prompt)
+    (insert command)
+    (eshell-send-input)
+    (if buffer-name (rename-buffer buffer-name))))
 
 ;; --------------------------------------------------------------------------------
 ;; prompt

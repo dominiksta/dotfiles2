@@ -79,7 +79,14 @@ recursively from the current directory using `pdfgrep'."
 
 (use-package helm-ag :defer t :ensure t)
 (use-package ag :defer t :ensure t
-  :config (evil-define-key 'motion ag-mode-map "q" 'quit-window))
+  :config
+  (setq ag-arguments '("--smart-case" "--stats" "--hidden"))
+  (use-package wgrep-ag :ensure t)
+  (evil-define-key 'normal ag-mode-map
+    "e" 'wgrep-change-to-wgrep-mode
+    "k" 'evil-previous-line)
+  (evil-set-initial-state 'ag-mode 'normal))
+
 (setq projectile-use-git-grep t)
 (cond
  (config-ag-available (evil-leader/set-key

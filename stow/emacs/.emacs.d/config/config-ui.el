@@ -16,7 +16,9 @@
 ;; --------------------------------------------------------------------------------
 ;; themes and fonts
 ;; --------------------------------------------------------------------------------
-(setq fp/theme-font-family "Iosevka"
+(setq fp/theme-font-family (if (eq system-type 'windows-nt)
+                               "Dejavu Sans Mono"
+                             "Iosevka")
       fp/theme-font-family-size "13"
       fp/theme-font-family-fallback "Lucida Console"
       fp/theme-font-family-fallback-size "12"
@@ -50,7 +52,8 @@ fixed-pitch faces."
 (fp/theme-font-setup)
 
 (setq fp/theme-light-theme 'tsdh-light
-      fp/theme-dark-theme 'misterioso)
+      fp/theme-dark-theme 'misterioso
+      custom-safe-themes t)
 
 (use-package flucui-themes
   :ensure t
@@ -107,6 +110,13 @@ fixed-pitch faces."
 ;;   :ensure t
 ;;   :config (setq fp/theme-light-theme 'leuven
 ;;                 fp/theme-dark-theme 'zenburn))
+
+;; (use-package solarized-theme
+;;   :ensure t
+;;   :config (setq fp/theme-light-theme 'solarized-light
+;;                 fp/theme-dark-theme 'solarized-dark
+;;                 solarized-use-variable-pitch nil
+;;                 solarized-scale-org-headlines nil))
 
 ;; load a theme and disable all others
 (defun load-reset-theme ()

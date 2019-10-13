@@ -41,7 +41,8 @@
   (evil-define-key 'normal global-map
     "gl" 'evil-avy-goto-line
     "g-" 'evil-avy-goto-char-2
-    "ö" 'evil-avy-goto-char-2))
+    "ö" 'evil-avy-goto-char-2
+    "Ö" 'evil-avy-goto-char))
 (setq evil-insert-state-modes nil)
 
 ;; --- visual lines ---
@@ -75,12 +76,32 @@
 (define-key evil-visual-state-map (kbd "*") 'fp/evil-search-region)
 
 ;; --- whitespace ---
+(require 'whitespace)
+(setq whitespace-style '(face))
+
+(defun fp/toggle-show-too-long-lines ()
+  (interactive)
+  (if (member 'lines-tail whitespace-style)
+      (progn (setq-local whitespace-style (delq 'lines-tail whitespace-style))
+             (message "not highlighting long lines"))
+    (progn (setq-local whitespace-style (append whitespace-style '(lines-tail)))
+           (message "highlighting long lines")))
+  (setq-local whitespace-line-column fill-column)
+  ;; yes you need to do this
+  (whitespace-mode 0) (whitespace-mode 1)
+  (font-lock-mode 0) (font-lock-mode 1))
+
+(defun fp/toggle-show-trailing-whitespace ()
+  (interactive)
+  (setq show-trailing-whitespace (if (eq show-trailing-whitespace t) nil t))
+  (redraw-display))
+
 (evil-leader/set-key
   "uw" 'whitespace-mode
   "ud" 'delete-trailing-whitespace
-  "ul" 'fp/remove-dos-eol
-  "ut" (lambda () (interactive)
-         (setq show-trailing-whitespace (if (eq show-trailing-whitespace t) nil t)) (redraw-display)))
+  "ut" 'fp/toggle-show-trailing-whitespace
+  "ul" 'fp/toggle-show-too-long-lines)
+
 
 (setq-default fill-column 80)
 

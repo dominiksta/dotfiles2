@@ -79,6 +79,13 @@
               ("C-SPC" . company-abort)))
 
 ;; --------------------------------------------------------------------------------
+;; dumb-jump - jump to definition
+;; --------------------------------------------------------------------------------
+(use-package dumb-jump :ensure t
+  :init (dumb-jump-mode 1)
+  :config (setq dumb-jump-selector 'helm))
+
+;; --------------------------------------------------------------------------------
 ;; debugging
 ;; --------------------------------------------------------------------------------
 
@@ -137,10 +144,11 @@
 
   ;; --- bindings ---
   (evil-set-initial-state 'compilation-mode 'normal)
-  (evil-define-key 'motion compilation-mode-map
+  (evil-define-key 'normal compilation-mode-map
     "gj" 'compilation-next-error
     "gk" 'compilation-previous-error
     "a" 'compilation-display-error
+    "f" 'next-error-follow-minor-mode
     "n" 'next-error
     "p" 'previous-error
     "q" 'delete-window
@@ -157,11 +165,14 @@
 ;; --------------------------------------------------------------------------------
 (use-package projectile
   :ensure t
+  :init (projectile-mode 1)
   :config
   ;; dont display anything in modeline, since this can slow down tramp
   (setq projectile-dynamic-mode-line nil
         projectile-mode-line-prefix " proj"
-        projectile-mode-line " proj")
+        projectile-mode-line " proj"
+        ;; on windows it's native which is way to slow for me
+        projectile-indexing-method 'alien)
   (use-package helm-projectile
     :ensure t
     :after helm projectile
@@ -196,6 +207,7 @@
     (require 'lsp-ui-flycheck)
     (setq lsp-ui-doc-include-signature t
           lsp-ui-doc-enable nil
+          lsp-enable-symbol-highlighting nil
           lsp-ui-peek-enable nil
           lsp-ui-flycheck-enable t
           lsp-prefer-flymake nil

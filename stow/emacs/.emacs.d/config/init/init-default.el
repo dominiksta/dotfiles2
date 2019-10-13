@@ -33,13 +33,13 @@
 (config-require '(config-language-ahk)          :regexp "\\.ahk\\'"       :auto-mode ahk-mode)
 (config-require '(config-language-markdown)     :regexp "\\.md\\'"        :auto-mode markdown-mode)
 (config-require '(config-language-shell-script) :regexp "\\.sh\\'"        :auto-mode sh-mode)
+(config-require '(config-language-powershell)   :regexp "\\.ps1\\'"       :auto-mode powershell-mode)
 (config-require '(config-language-web-js)       :regexp "\\.jsm?\\'"      :auto-mode js2-mode)
 (config-require '(config-language-web-json)     :regexp "\\.json?\\'"     :auto-mode json-mode)
-(config-require '(config-language-web-html)     :regexp "\\.html?\\'"     :auto-mode mhtml-mode)
-(config-require '(config-language-web-html)     :regexp "\\.component.html?\\'"
-                :auto-mode ng2-html-mode)
+(config-require '(config-language-web-html)     :regexp "\\.html?\\'"     :auto-mode web-mode)
+(config-require '(config-language-xml)          :regexp "\\.xml?\\'"      :auto-mode sgml-mode)
 (config-require '(config-language-web-php
-                  config-language-sql)          :regexp "\\.php\\'"       :auto-mode web-mode)
+                  config-language-sql)          :regexp "\\.php\\'"       :auto-mode php-mode)
 (config-require '(config-language-web-php
                   config-language-sql)          :regexp "\\.sql\\'"       :auto-mode sql-mode)
 (config-require '(config-web-rest)              :regexp "\\.http\\'"      :auto-mode restclient-mode)
@@ -48,6 +48,10 @@
 (config-require '(config-language-web-css)      :regexp "\\.scss\\'"      :auto-mode scss-mode)
 (config-require '(config-language-octave) :regexp "\\.m\\'" :auto-mode octave-mode
                 :feature octave)
+
+(setq auto-mode-alist (append auto-mode-alist '(("\\.target\\'" . conf-mode)
+                                                ("\\.timer\\'" . conf-mode)
+                                                ("\\.service\\'" . conf-mode))))
 
 
 ;; --------------------------------------------------------------------------------

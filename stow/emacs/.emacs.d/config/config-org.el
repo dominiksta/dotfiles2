@@ -34,7 +34,7 @@
           (js . t)))
 
   (setq org-plantuml-jar-path
-        (expand-file-name "~/sync/emacs/bin/plantuml.jar"))
+        (expand-file-name (concat sync-directory "emacs/bin/plantuml.jar")))
   ;; bindings
   (define-key org-src-mode-map (kbd "C-c C-c") 'org-edit-src-exit)
 
@@ -109,6 +109,8 @@
    '(org-mode-line-clock ((((background light)) (:foreground "dark blue"))
                           (t (:foreground "medium spring green"))))))
 
+(setq org-clock-mode-line-total 'today)
+
 ;; --- latex ---
 (config-add-external-dependency 'latex 'config-org "org latex snippets"
                                 (lambda () (executable-find "latex"))
@@ -179,7 +181,10 @@
 ;; agenda and todos
 ;; --------------------------------------------------------------------------------
 ;; --- todo states ---
-(setq org-todo-keywords '((sequence "TODO(t)" "WAIT(w)" "TASK(a)" "NEXT(n)" "|" "DONE(d)" "FAIL(f)"))
+(setq org-todo-keywords '((sequence "TODO(t)" "WAIT(w)"
+                                    "TASK(a)" "NEXT(n)"
+                                    "ASK(?)"
+                                    "|" "DONE(d)" "FAIL(f)"))
       org-log-done t
       org-log-into-drawer t)
 
@@ -235,7 +240,7 @@
 
 
 ;; --- archiving ---
-(setq org-archive-location "~/sync/general/org/archive.org::datetree/")
+(setq org-archive-location (concat sync-directory "general/org/archive.org::datetree/"))
 
 ;; --- download ---
 (use-package org-download

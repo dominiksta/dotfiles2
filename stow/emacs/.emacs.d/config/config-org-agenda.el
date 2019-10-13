@@ -5,8 +5,9 @@
 ;; --- files ---
 (setq org-agenda-files (list (concat sync-directory "general/org/meinleben/privat.org")
                              (concat sync-directory "general/org/meinleben/studium.org")
+                             (concat sync-directory "general/org/meinleben/arbeit.org")
                              (concat sync-directory "general/org/meinleben/capture.org"))
-      org-icalendar-combined-agenda-file "~/sync/org/ics/combine.ics")
+      org-icalendar-combined-agenda-file (concat sync-directory "org/ics/combine.ics"))
 
 
 (setq org-modules '(org-info org-habit))
@@ -35,7 +36,9 @@
   "p"         'org-agenda-set-property
   ":"         'org-agenda-set-tags
   "."         'org-agenda-goto-today
-  "c" 'org-agenda-clockreport-mode
+  "C" 'org-agenda-clockreport-mode
+  "c" 'org-agenda-log-mode
+  "i" 'org-agenda-show-clocking-issues
   [mouse-2] 'org-agenda-goto-mouse)
 
 
@@ -58,12 +61,12 @@
         ("s" "Stundenplan"
          ((agenda ""))
          ((org-agenda-skip-function '(org-agenda-skip-entry-if 'regexp ":DAILY:"))
-          (org-agenda-files '("~/sync/general/org/meinleben/stundenplan.org"))))
+          (org-agenda-files '("~/Dropbox/general/org/meinleben/stundenplan.org"))))
 
         ("b" "All"
          ((agenda "") (alltodo ""))
          ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("DONE" "FAIL" "TASK")))
-          (org-agenda-files (append org-agenda-files '("~/sync/general/org/meinleben/stundenplan.org")))))))
+          (org-agenda-files (append org-agenda-files '("~/Dropbox/general/org/meinleben/stundenplan.org")))))))
 
 ;; --------------------------------------------------------------------------------
 ;; timetable

@@ -1,6 +1,6 @@
 (require 'battery)
 
-(setq sync-directory (expand-file-name "~/sync/")
+(setq sync-directory (expand-file-name "~/Dropbox/")
       download-directory (expand-file-name "~/Downloads")
       video-directory (expand-file-name "~/Video")
       picture-directory (expand-file-name "~/bilder")
@@ -8,7 +8,7 @@
       delete-by-moving-to-trash t
       bookmark-default-file (concat sync-directory "emacs/random/bookmarks"))
 
-(when (file-exists-p "~/sync/emacs/lisp/")
+(when (file-exists-p (concat sync-directory "emacs/lisp/"))
   (let ((default-directory (concat sync-directory "emacs/lisp/")))
     (normal-top-level-add-subdirs-to-load-path)))
 
