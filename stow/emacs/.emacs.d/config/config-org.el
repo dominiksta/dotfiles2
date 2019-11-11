@@ -7,7 +7,7 @@
 ;; --------------------------------------------------------------------------------
 
 ;; allow execution of code without confirmation in certain directories
-(setq org-confirm-babel-evaluate-directories '("sync/studium-arbeit/studium")
+(setq org-confirm-babel-evaluate-directories (list sync-directory)
       org-confirm-babel-evaluate
       (lambda (lang body) (not (seq-filter
                            'identity

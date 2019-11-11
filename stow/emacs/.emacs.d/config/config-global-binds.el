@@ -123,11 +123,15 @@
 ;; --- spell-checking ---
 (evil-define-key 'normal global-map
   "zd" 'ispell-toggle-dictionary
-  "zg" 'flyspell-correct-word
-  "zG" 'ispell-buffer
+  "zg" 'helm-flyspell-correct
   "zn" 'evil-next-flyspell-error
-  "zp" 'evil-prev-flyspell-error
-  "zB" 'fp/toggle-flyspell-check-buffer)
+  "zp" 'evil-prev-flyspell-error)
+
+(evil-leader/set-key
+    "add" 'dictcc
+    "adp" 'dictcc-at-point
+    "adb" 'ispell-buffer
+    "adf" 'fp/toggle-flyspell-check-buffer)
 
 (autoload-list '(ispell-toggle-dictionary
                  flyspell-correct-word

@@ -80,7 +80,6 @@ recursively from the current directory using `pdfgrep'."
 (use-package helm-ag :defer t :ensure t)
 (use-package ag :defer t :ensure t
   :config
-  (setq ag-arguments '("--smart-case" "--stats" "--hidden"))
   (use-package wgrep-ag :ensure t)
   (evil-define-key 'normal ag-mode-map
     "e" 'wgrep-change-to-wgrep-mode

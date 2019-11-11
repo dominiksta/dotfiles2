@@ -4,50 +4,53 @@
 ;; ----------------------------------------------------------------------
 ;; making connections
 ;; ----------------------------------------------------------------------
-(defvar fp/sql-connection-alist nil
-  "Equivalent to `sql-connection-alist', but sql-password is a
+(require 'epass nil t)
+
+(when (featurep 'epass)
+  (defvar fp/sql-connection-alist nil
+    "Equivalent to `sql-connection-alist', but sql-password is a
   file-path to a password-file. Used in `fp/sql-connect'")
 
-(let ((sql-connections-file (concat sync-directory "emacs/random/sql-connections.el")))
-  (when (file-exists-p sql-connections-file)
-    (load sql-connections-file)))
+  (let ((sql-connections-file (concat sync-directory "emacs/random/sql-connections.el")))
+    (when (file-exists-p sql-connections-file)
+      (load sql-connections-file)))
 
-(defun fp/sql-connect ()
-  (interactive)
-  "Interactively prompts for a connection as defined in
+  (defun fp/sql-connect ()
+    (interactive)
+    "Interactively prompts for a connection as defined in
 `fp/sql-connection-alist' and starts a connection with
 `sql-connect'. It works by temporarily setting
 `sql-connection-alist' with sql-password set in plain texts and
 calling (setq sql-connection-alist nil) afterwards."
-  (let* ((connection-name
-          (intern
-           (completing-read "name: " (mapcar (lambda (con) (car con))
-                                             fp/sql-connection-alist))))
-         (connection-without-password
-          (cdr (assoc connection-name fp/sql-connection-alist)))
-         (password-location
-          (cdr (assoc 'sql-password connection-without-password)))
-         ;; copy the the connection so it can be restored later
-         (connection-with-password (copy-tree connection-without-password)))
-    ;; put password in `connection-with-password'
-    (if (cdr (assoc 'sql-password-plain connection-without-password))
-        (setcar (cdr (assoc 'sql-password connection-with-password))
-                (cadr (assoc 'sql-password connection-without-password)))
-      (when (assoc 'sql-password connection-without-password)
-        (setcar (cdr (assoc 'sql-password connection-with-password))
-                (epass-from-file
-                 (cadr (assoc 'sql-password connection-without-password))))))
+    (let* ((connection-name
+            (intern
+             (completing-read "name: " (mapcar (lambda (con) (car con))
+                                               fp/sql-connection-alist))))
+           (connection-without-password
+            (cdr (assoc connection-name fp/sql-connection-alist)))
+           (password-location
+            (cdr (assoc 'sql-password connection-without-password)))
+           ;; copy the the connection so it can be restored later
+           (connection-with-password (copy-tree connection-without-password)))
+      ;; put password in `connection-with-password'
+      (if (cdr (assoc 'sql-password-plain connection-without-password))
+          (setcar (cdr (assoc 'sql-password connection-with-password))
+                  (cadr (assoc 'sql-password connection-without-password)))
+        (when (assoc 'sql-password connection-without-password)
+          (setcar (cdr (assoc 'sql-password connection-with-password))
+                  (epass-from-file
+                   (cadr (assoc 'sql-password connection-without-password))))))
 
 
 
-    ;; `sql-product' and `sql-connection-alist' have to be set for
-    ;; `sql-connect' to work
-    (setq sql-product (cdr (assoc 'sql-product connection-with-password))
-          sql-connection-alist (list (cons connection-name
-                                           connection-with-password)))
-    (print sql-connection-alist)
-    (sql-connect connection-name)
-    (setq sql-connection-alist nil)))
+      ;; `sql-product' and `sql-connection-alist' have to be set for
+      ;; `sql-connect' to work
+      (setq sql-product (cdr (assoc 'sql-product connection-with-password))
+            sql-connection-alist (list (cons connection-name
+                                             connection-with-password)))
+      (print sql-connection-alist)
+      (sql-connect connection-name)
+      (setq sql-connection-alist nil))))
 
 ;; ----------------------------------------------------------------------
 ;; indentation and pretty-printing
@@ -57,7 +60,7 @@ calling (setq sql-connection-alist nil) afterwards."
 (config-add-external-dependency
  'sqlparse 'config-language-sql "sql indentation"
  (lambda () (string=
-        (shell-command-to-string "python -c 'import sqlparse'") ""))
+             (shell-command-to-string "python -c 'import sqlparse'") ""))
  "pip2 install sqlparse" "pip2 install sqlparse")
 
 (defun sqlparse-pretty-print-region (beg end)

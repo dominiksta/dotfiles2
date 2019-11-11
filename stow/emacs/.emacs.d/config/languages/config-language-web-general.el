@@ -55,11 +55,15 @@
 (use-package web-mode
   :ensure t
   :config
-  (setq web-mode-code-indent-offset 4)
+  (setq web-mode-code-indent-offset 4
+        web-mode-enable-auto-pairing nil
+        web-mode-enable-auto-quoting nil)
   (evil-leader/set-key-for-mode 'web-mode
     "ed" 'fp/refresh-browser
     "mf" 'web-mode-fold-or-unfold)
   (evil-define-key 'normal web-mode-map "gt" 'web-mode-tag-match))
 
+
+(use-package apache-mode :ensure t :defer t)
 
 (provide 'config-language-web-general)

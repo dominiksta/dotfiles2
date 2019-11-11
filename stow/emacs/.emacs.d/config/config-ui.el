@@ -3,7 +3,7 @@
 (scroll-bar-mode 0)
 (tool-bar-mode 0)
 (toggle-frame-maximized)
-(blink-cursor-mode -1)
+;; (blink-cursor-mode -1)
 (tooltip-mode 0)
 
 (setq ring-bell-function
@@ -16,8 +16,10 @@
 ;; --------------------------------------------------------------------------------
 ;; themes and fonts
 ;; --------------------------------------------------------------------------------
-(setq fp/theme-font-family "Dejavu Sans Mono"
-      fp/theme-font-family-size "11"
+(setq fp/theme-font-family (if (eq system-type 'windows-nt)
+                               "Dejavu Sans Mono"
+                             "Iosevka")
+      fp/theme-font-family-size "13"
       fp/theme-font-family-fallback "Lucida Console"
       fp/theme-font-family-fallback-size "12"
       fp/theme-font-family-variable-pitch "DejaVu Serif"
@@ -62,6 +64,7 @@ fixed-pitch faces."
 (use-package color-theme-sanityinc-tomorrow
   :ensure t
   :config
+  (use-package grandshell-theme :ensure t)
   (setq fp/theme-light-theme 'sanityinc-tomorrow-day
         fp/theme-dark-theme 'sanityinc-tomorrow-night))
 

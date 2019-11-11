@@ -2,28 +2,43 @@
 ;; hunspell backend for multiple dictionaries
 ;; ----------------------------------------------------------------------
 
-(config-add-external-dependency 'hunspell 'config-natural-language "spellchecking base"
+(setenv "LANG" "de_DE_frami")
+
+(config-add-external-dependency 'hunspell 'config-natural-language
+                                "spellchecking base"
                                 (lambda () (executable-find "hunspell"))
-                                "apt install hunspell" "None")
+                                "apt install hunspell"
+                                "cinst -y hunspell.portable --version=1.3.2.300"
+                                ;; the newer versions on windows do not
+                                ;; correctly report installed dictionaries
+                                )
 
-(config-add-external-dependency 'hunspell-de-de 'config-natural-language "spellchecking base"
+(config-add-external-dependency 'hunspell-de-de 'config-natural-language
+                                "spellchecking base"
                                 (lambda () (string-match-p
-                                       "de_DE" (shell-command-to-string "hunspell -D")))
-                                "apt install hunspell-de-de" "None")
+                                       "de_DE_frami" (shell-command-to-string
+                                                      "hunspell -D")))
+                                "apt install hunspell-de-de"
+                                "None" ;; install from libreoffice extensions
+                                )
 
-(config-add-external-dependency 'hunspell-en-us 'config-natural-language "spellchecking base"
+(config-add-external-dependency 'hunspell-en-us 'config-natural-language
+                                "spellchecking base"
                                 (lambda () (string-match-p
-                                       "en_US" (shell-command-to-string "hunspell -D")))
-                                "apt install hunspell-en-us" "None")
+                                       "en_US" (shell-command-to-string
+                                                "hunspell -D")))
+                                "apt install hunspell-en-us"
+                                "None" ;; install from libreoffice extensions
+                                )
 
 (when (config-external-check-list '(hunspell hunspell-de-de hunspell-en-us))
 
   (setq ispell-program-name "hunspell")
-  (setq ispell-dictionary "en_US,de_DE")
-  ;; ispell-set-spellchecker-params has to be called ist ein Test
-  ;; before ispell-hunspell-add-multi-dic will work
+  (setq ispell-dictionary "en_US,de_DE_frami")
+  ;; ispell-set-spellchecker-params has to be called before
+  ;; ispell-hunspell-add-multi-dic will work
   (ispell-set-spellchecker-params)
-  (ispell-hunspell-add-multi-dic "en_US,de_DE")
+  (ispell-hunspell-add-multi-dic "en_US,de_DE_frami")
 
 
   ;; ----------------------------------------------------------------------
@@ -56,10 +71,7 @@
 (use-package dictcc :ensure t
   :defer t
   :init
-  (setq dictcc-completion-backend 'helm)
-  (evil-leader/set-key
-    "add" 'dictcc
-    "adp" 'dictcc-at-point))
+  (setq dictcc-completion-backend 'helm))
 
 (provide 'config-language-natural)
 

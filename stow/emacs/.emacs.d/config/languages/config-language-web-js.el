@@ -12,13 +12,19 @@
   (defun fp/tide-mode-hook ()
     (setq-local flycheck-check-syntax-automatically
                 '(save idle-change new-line mode-enabled))
+
+    (defun fp/tide-jump-to-definition ()
+      (interactive)
+      (evil-set-jump)
+      (tide-jump-to-definition))
+
     (company-mode 1)
     (flycheck-mode 1)
     (setq-local company-tooltip-align-annotations t))
   (add-hook 'tide-mode-hook 'fp/tide-mode-hook)
 
   (evil-define-key 'normal tide-mode-map
-    "gd" 'tide-jump-to-definition))
+    "gd" 'fp/tide-jump-to-definition))
 
 (use-package js2-mode
   :ensure t

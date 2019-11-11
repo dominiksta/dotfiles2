@@ -42,11 +42,9 @@
 ;; ----------------------------------------------------------------------
 
 (use-package shackle :ensure t
-  :init (shackle-mode 1)
   :config
   (setq shackle-rules '((realgud-mode :same t)
-                        (gud-mode :same t)
-                        (compilation-mode :ignore t))))
+                        (gud-mode :same t))))
 
 
 (provide 'config-window-management)

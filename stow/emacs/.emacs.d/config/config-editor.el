@@ -6,7 +6,9 @@
   :ensure t
   :demand t
   :config
-  (evil-mode 1))
+  (evil-mode 1)
+  (setq evil-insert-state-message nil
+        evil-insert-state-modes nil))
 
 (use-package evil-leader
   :ensure t
@@ -43,7 +45,6 @@
     "g-" 'evil-avy-goto-char-2
     "ö" 'evil-avy-goto-char-2
     "Ö" 'evil-avy-goto-char))
-(setq evil-insert-state-modes nil)
 
 ;; --- visual lines ---
 (dolist (state (list 'normal 'motion))
@@ -101,6 +102,25 @@
   "ud" 'delete-trailing-whitespace
   "ut" 'fp/toggle-show-trailing-whitespace
   "ul" 'fp/toggle-show-too-long-lines)
+
+;; --- strings ---
+(defun fp/string-new-line ()
+  (interactive)
+  (insert "\" + \"")
+  (backward-char 2)
+  (newline)
+  (indent-for-tab-command))
+
+(defun fp/string-new-line-auto ()
+  (interactive)
+  (move-to-column (- fill-column 3)) ;; the insert above is 3 characters
+  (evil-find-char-backward 1 (string-to-char " "))
+  (insert "\" + \"")
+  (backward-char 2)
+  (newline)
+  (indent-for-tab-command))
+
+(global-set-key (kbd "C-<down>") 'fp/string-new-line-auto)
 
 
 (setq-default fill-column 80)

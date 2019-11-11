@@ -61,12 +61,12 @@
         ("s" "Stundenplan"
          ((agenda ""))
          ((org-agenda-skip-function '(org-agenda-skip-entry-if 'regexp ":DAILY:"))
-          (org-agenda-files '("~/Dropbox/general/org/meinleben/stundenplan.org"))))
+          (org-agenda-files '("~/sync/general/org/meinleben/stundenplan.org"))))
 
         ("b" "All"
          ((agenda "") (alltodo ""))
          ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("DONE" "FAIL" "TASK")))
-          (org-agenda-files (append org-agenda-files '("~/Dropbox/general/org/meinleben/stundenplan.org")))))))
+          (org-agenda-files (append org-agenda-files '("~/sync/general/org/meinleben/stundenplan.org")))))))
 
 ;; --------------------------------------------------------------------------------
 ;; timetable

@@ -13,7 +13,7 @@
 (use-package emmet-mode
   :ensure t
   :init
-  (add-hook 'sgml-mode-hook 'emmet-mode)
+  (add-hook 'web-mode-hook 'emmet-mode)
   :config
   (evil-define-key 'insert emmet-mode-keymap (kbd "C-,") 'emmet-expand-yas))
 

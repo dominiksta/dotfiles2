@@ -1,6 +1,6 @@
 (require 'battery)
 
-(setq sync-directory (expand-file-name "~/Dropbox/")
+(setq sync-directory (expand-file-name "~/sync/")
       download-directory (expand-file-name "~/Downloads")
       video-directory (expand-file-name "~/Video")
       picture-directory (expand-file-name "~/bilder")

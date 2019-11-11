@@ -207,13 +207,14 @@
     (require 'lsp-ui-flycheck)
     (setq lsp-ui-doc-include-signature t
           lsp-ui-doc-enable nil
-          lsp-enable-symbol-highlighting nil
+          lsp-enable-symbol-highlighting t
           lsp-ui-peek-enable nil
           lsp-ui-flycheck-enable t
           lsp-prefer-flymake nil
           lsp-ui-imenu-enable t
           lsp-ui-sideline-enable nil
-          lsp-eldoc-render-all nil)))
+          lsp-eldoc-render-all nil)
+    (set-face-background 'lsp-ui-doc-background nil)))
 
 
 ;; --------------------------------------------------------------------------------
@@ -224,12 +225,5 @@
   :config
   (setq reb-re-syntax 'pcre)
   (setq reb-auto-match-limit 500))
-
-
-;; --------------------------------------------------------------------------------
-;; auto-mode-alist
-;; --------------------------------------------------------------------------------
-(add-to-list 'auto-mode-alist '("\\.props\\'" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.ino\\'" . (lambda () (c++-mode) (flycheck-mode 0))))
 
 (provide 'config-programming-general)

@@ -36,8 +36,7 @@
 (config-require '(config-language-powershell)   :regexp "\\.ps1\\'"       :auto-mode powershell-mode)
 (config-require '(config-language-web-js)       :regexp "\\.jsm?\\'"      :auto-mode js2-mode)
 (config-require '(config-language-web-json)     :regexp "\\.json?\\'"     :auto-mode json-mode)
-(config-require '(config-language-web-html)     :regexp "\\.html?\\'"     :auto-mode web-mode)
-(config-require '(config-language-xml)          :regexp "\\.xml?\\'"      :auto-mode sgml-mode)
+(config-require '(config-language-web-html)     :regexp '("html?" "xml")  :auto-mode web-mode)
 (config-require '(config-language-web-php
                   config-language-sql)          :regexp "\\.php\\'"       :auto-mode php-mode)
 (config-require '(config-language-web-php
