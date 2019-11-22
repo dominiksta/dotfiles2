@@ -1,4 +1,6 @@
 (require-and-log 'config-shell)
+(require 'eshell)
+(require 'em-prompt)
 
 (setq eshell-aliases-file (concat sync-directory "emacs/random/eshell-aliases-linux"))
 (defalias 'vis 'eshell-exec-visual)
@@ -45,29 +47,16 @@ buffer to BUFFER-NAME"
       eshell-prompt-function
       (lambda ()
         (concat
-         (propertize "┌─[" 'face `(:inherit eshell-prompt))
-         (propertize (user-login-name) 'face `(:inherit warning))
-         (propertize "@" 'face `(:inherit eshell-prompt))
-         (propertize (system-name) 'face `(:inherit font-lock-function-name-face))
-         (propertize "]──[" 'face `(:inherit eshell-prompt))
-         (propertize (format-time-string "%H:%M" (current-time)) 'face `(:inherit warning))
-         (propertize "]──[" 'face `(:inherit eshell-prompt))
-         (propertize (fp/eshell-prompt-pwd) 'face `(:inherit font-lock-keyword-face))
-         (propertize "]\n" 'face `(:inherit eshell-prompt))
-         (propertize "└─>" 'face `(:inherit eshell-prompt))
-         (propertize (if (= (user-uid) 0) " # " " $ ") 'face `(:inherit eshell-prompt)))))
+         (propertize (let* ((dir (split-string default-directory "/"))
+                            (len (length dir)))
+                       (nth (- len 2) dir))
+                     'face `(:inherit eshell-prompt))
+         (propertize " -> " 'face `(:inherit eshell-prompt))))
+      eshell-prompt-regexp "^.* -> ")
 
-(defun fp/eshell-prompt-pwd ()
-  (let* ((path default-directory)
-         (bigger (- (length path) 50)))
-    (if (> bigger 0)
-        (concat ".../"
-                (mapconcat
-                 'identity
-                 (cdr (split-string (substring path bigger) "/"))
-                 "/"))
-      path)))
-
+;; Eshells prompt should have the same color as other shell-prompts
+(set-face-attribute 'eshell-prompt nil
+                    :foreground (face-attribute 'minibuffer-prompt :foreground))
 
 (setq eshell-highlight-prompt nil) ; this is apparently required
 (defun spacemacs//protect-eshell-prompt ()
