@@ -50,7 +50,12 @@
 (dolist (state (list 'normal 'motion))
   (evil-define-key state visual-line-mode-map
     "j" 'evil-next-visual-line
-    "k" 'evil-previous-visual-line))
+    "k" 'evil-previous-visual-line
+    "$" 'evil-end-of-visual-line
+    "0" 'evil-beginning-of-visual-line))
+
+(add-hook 'visual-line-mode-hook
+          (lambda () (interactive) (evil-emacs-state) (evil-normal-state)))
 
 (dolist (state (list 'normal 'motion))
   (evil-define-key state global-map
