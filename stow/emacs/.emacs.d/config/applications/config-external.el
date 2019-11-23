@@ -11,9 +11,9 @@
                                   (lambda () (executable-find "redshift"))
                                   "apt install redshift" "None")
 
-  (config-add-external-dependency 'dropbox 'config-external "synchronisation"
-                                  (lambda () (executable-find "dropbox"))
-                                  "installscript" "None")
+  (config-add-external-dependency 'seafile 'config-external "synchronisation"
+                                  (lambda () (executable-find "seafile-applet"))
+                                  "apt install seafile-gui" "None")
 
   (config-add-external-dependency 'thinkpad-scripts 'config-external "rotating the screen"
                                   (lambda () (executable-find "thinkpad-rotate"))

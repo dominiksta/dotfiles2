@@ -17,6 +17,7 @@
    ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
  '(auth-source-save-behavior nil)
  '(beacon-color "#c82829")
+ '(blink-cursor-mode nil)
  '(company-quickhelp-color-background "#4F4F4F")
  '(company-quickhelp-color-foreground "#DCDCCC")
  '(diary-entry-marker 'font-lock-variable-name-face)
@@ -75,13 +76,16 @@ static char *gnus-pointer[] = {
  '(jdee-db-requested-breakpoint-face-colors (cons "#10151C" "#8BD49C"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#10151C" "#384551"))
  '(objed-cursor-color "#D95468")
- '(org-agenda-files
-   '("/home/user/Dropbox/general/org/meinleben/arbeit.org" "/home/user/Dropbox/general/org/meinleben/capture.org"))
  '(package-selected-packages
-   '(auctex wgrep-ag buffer-move epass pdf-tools org-tree-slide shackle dumb-jump flucui-themes cyberpunk-theme challenger-deep-theme color-theme-sanityinc-tomorrow grandshell-theme highlight-indent-guides yafolding alect-themes dictcc editorconfig ujelly-theme pdfgrep demo-it org-pdfview olivetti avy org-variable-pitch sqlup-mode spacemacs-theme realgud company-jedi yasnippet-snippets markdown-preview-mode lsp-ui restclient sql-indent php-mode ng2-mode json-mode emmet-mode tide cider clojure-mode ahk-mode powershell pcre2el yasnippet-classic-snippets yasnippet helm-flyspell unidecode ag typescript-mode web-mode js2-mode cmake-mode cquery anti-zenburn-theme zenburn-theme hydra fish-completion multi-term elfeed-org elfeed emms-info-mediainfo emms diredfl dired-rainbow dired-k rainbow-mode shell-pop dired-subtree helm-ag helm-rg pyvenv company-lsp lsp-mode lsp hl-todo flycheck helm-projectile projectile evil-magit magit peep-dired dired-du which-key eyebrowse htmlize org-download evil-org org-bullets helm-swoop helm company evil-nerd-commenter evil-surround doom-themes restart-emacs evil-leader evil use-package))
+   '(bibtex-helm apache-mode bash-completion auctex wgrep-ag buffer-move epass pdf-tools org-tree-slide shackle dumb-jump flucui-themes cyberpunk-theme challenger-deep-theme color-theme-sanityinc-tomorrow grandshell-theme highlight-indent-guides yafolding alect-themes dictcc editorconfig ujelly-theme pdfgrep demo-it org-pdfview olivetti avy org-variable-pitch sqlup-mode spacemacs-theme realgud company-jedi yasnippet-snippets markdown-preview-mode lsp-ui restclient sql-indent php-mode ng2-mode json-mode emmet-mode tide cider clojure-mode ahk-mode powershell pcre2el yasnippet-classic-snippets yasnippet helm-flyspell unidecode ag typescript-mode web-mode js2-mode cmake-mode cquery anti-zenburn-theme zenburn-theme hydra fish-completion multi-term elfeed-org elfeed emms-info-mediainfo emms diredfl dired-rainbow dired-k rainbow-mode shell-pop dired-subtree helm-ag helm-rg pyvenv company-lsp lsp-mode lsp hl-todo flycheck helm-projectile projectile evil-magit magit peep-dired dired-du which-key eyebrowse htmlize org-download evil-org org-bullets helm-swoop helm company evil-nerd-commenter evil-surround doom-themes restart-emacs evil-leader evil use-package))
  '(pdf-view-midnight-colors '("#232333" . "#c7c7c7"))
  '(safe-local-variable-values
-   '((projectile-project-run-cmd . "pdflatex -synctex=1 BA_main.tex")
+   '((TeX-master . main\.tex)
+     (eval progn
+           (org-babel-goto-named-src-block "startup")
+           (org-babel-execute-src-block)
+           (outline-hide-sublevels 1))
+     (projectile-project-run-cmd . "pdflatex -synctex=1 BA_main.tex")
      (projectile-project-run-cmd . "pdflatex BA_main.tex")
      (projectile-project-run-cmd . "cd C:\\Users\\dstahmer\\git\\recom-enp-deploy\\ && powershell -File deploy.ps1 -SkipAngularBuild")
      (projectile-project-compilation-cmd . "cd C:\\Users\\dstahmer\\git\\recom-enp-deploy\\ && powershell -File deploy.ps1")
@@ -146,7 +150,7 @@ static char *gnus-pointer[] = {
                 user-init-file (expand-file-name (concat confdir "/init.el")))
         (setq config-directory "~/.emacs.d/config")))
 
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 ;; load personal config
 (add-to-list 'load-path (concat config-directory "/init/"))

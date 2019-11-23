@@ -251,6 +251,7 @@
 (evil-set-initial-state 'archive-mode 'normal)
 
 (evil-define-key 'normal archive-mode-map
+  "h" 'dired-jump
   "j" 'archive-next-line
   "k" 'archive-previous-line
   "l" 'archive-extract
