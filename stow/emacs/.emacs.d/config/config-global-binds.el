@@ -282,7 +282,8 @@
 (autoload 'fp/open-directory-with-system-default "config-dired.el")
 (evil-leader/set-key
   "-s" 'shell
-  "-b" (lambda () (interactive) (shell "/bin/bash"))
+  "-b" 'fp/new-bash-here-xterm
+  "-B" 'fp/new-bash-here
   "-r" 'shell-command-on-region
   "-c" 'shell-command
   "-a" 'async-shell-command

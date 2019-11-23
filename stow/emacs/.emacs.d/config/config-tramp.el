@@ -1,3 +1,5 @@
+(require-and-log 'config-shell)
+
 (if (eq system-type 'windows-nt)
     (progn
       (config-add-external-dependency 'plink 'config-tramp "tramp"

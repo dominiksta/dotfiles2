@@ -2,7 +2,7 @@
                                 (lambda () (executable-find "gpg"))
                                 "sudo apt install gpg" "cinst -y gpg4win-vanilla")
 
-(epass-set-store-location (concat sync-directory "general/.password-store/"))
+(epass-set-store-location (concat sync-directory "general/password-store/"))
 
 ;; So apparently this is a bug where the change only applies when you set this
 ;; through custom-set-variables. Also on windows it just does not work with the

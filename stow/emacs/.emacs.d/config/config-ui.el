@@ -3,7 +3,7 @@
 (scroll-bar-mode 0)
 (tool-bar-mode 0)
 (toggle-frame-maximized)
-;; (blink-cursor-mode -1)
+(blink-cursor-mode -1)
 (tooltip-mode 0)
 
 (setq ring-bell-function

@@ -57,7 +57,10 @@
   :config
   (setq web-mode-code-indent-offset 4
         web-mode-enable-auto-pairing nil
-        web-mode-enable-auto-quoting nil)
+        web-mode-enable-auto-quoting nil
+        web-mode-enable-current-element-highlight t)
+  (set-face-attribute 'web-mode-current-element-highlight-face nil
+                      :foreground nil :background nil :inherit 'highlight)
   (evil-leader/set-key-for-mode 'web-mode
     "ed" 'fp/refresh-browser
     "mf" 'web-mode-fold-or-unfold)

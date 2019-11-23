@@ -70,7 +70,8 @@
 (config-require '(config-org)     :feature calendar)
 (config-require '(config-elfeed)  :feature elfeed)
 (config-require '(config-tramp)   :feature tramp)
-(config-require '(config-epass)   :feature epass)
+(config-require '(config-epass)   :feature epass) (require 'epass nil t)
+
 
 ;; ispell gets loaded with evil no matter what
 (config-require '(config-language-natural) :feature ispell)
