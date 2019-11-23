@@ -16,10 +16,8 @@
 ;; --------------------------------------------------------------------------------
 ;; themes and fonts
 ;; --------------------------------------------------------------------------------
-(setq fp/theme-font-family (if (eq system-type 'windows-nt)
-                               "Dejavu Sans Mono"
-                             "Iosevka")
-      fp/theme-font-family-size "13"
+(setq fp/theme-font-family "Dejavu Sans Mono"
+      fp/theme-font-family-size "11"
       fp/theme-font-family-fallback "Lucida Console"
       fp/theme-font-family-fallback-size "12"
       fp/theme-font-family-variable-pitch "DejaVu Serif"
@@ -46,7 +44,8 @@ fixed-pitch faces."
                         :height 1.0
                         :weight 'normal)
     (set-face-attribute 'fixed-pitch nil
-                        :font (concat fp/theme-font-family " " fp/theme-font-family-size)
+                        :height 1.0
+                        :font fp/theme-font-family
                         :weight 'normal)))
 
 (fp/theme-font-setup)
@@ -217,7 +216,7 @@ fixed-pitch faces."
   :ensure t
   :defer t
   :config
-  (setq-default olivetti-body-width 93)
+  (setq-default olivetti-body-width 103)
   (evil-define-key 'normal olivetti-mode-map
     "j" 'evil-next-visual-line
     "k" 'evil-previous-visual-line)
