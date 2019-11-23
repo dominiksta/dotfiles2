@@ -16,6 +16,18 @@
   :ensure t
   :config
   (helm-mode 1)
+
+  (setq helm-completing-read-handlers-alist
+        '((tmm-menubar . nil)
+          (find-file . nil)
+          (execute-extended-command . nil)
+          (dired-do-rename . nil)
+          (dired-do-copy . nil)
+          (dired-do-symlink . nil)
+          (dired-do-relsymlink . nil)
+          (dired-do-hardlink . nil)
+          (dired-create-directory . nil)))
+
   (setq helm-split-window-inside-p nil)
 
   ;; --------------------------------------------------------------------------------
