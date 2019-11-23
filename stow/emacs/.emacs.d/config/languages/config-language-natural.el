@@ -2,7 +2,9 @@
 ;; hunspell backend for multiple dictionaries
 ;; ----------------------------------------------------------------------
 
-(setenv "LANG" "de_DE_frami")
+(setq fp/hunspell-de-dict (if (eq system-type 'windows-nt)
+                              "de_DE_frami" "de_DE"))
+(setenv "LANG" fp/hunspell-de-dict)
 
 (config-add-external-dependency 'hunspell 'config-natural-language
                                 "spellchecking base"
@@ -16,8 +18,8 @@
 (config-add-external-dependency 'hunspell-de-de 'config-natural-language
                                 "spellchecking base"
                                 (lambda () (string-match-p
-                                       "de_DE_frami" (shell-command-to-string
-                                                      "hunspell -D")))
+                                       fp/hunspell-de-dict (shell-command-to-string
+                                                            "hunspell -D")))
                                 "apt install hunspell-de-de"
                                 "None" ;; install from libreoffice extensions
                                 )
@@ -34,11 +36,11 @@
 (when (config-external-check-list '(hunspell hunspell-de-de hunspell-en-us))
 
   (setq ispell-program-name "hunspell")
-  (setq ispell-dictionary "en_US,de_DE_frami")
+  (setq ispell-dictionary (concat "en_US," fp/hunspell-de-dict))
   ;; ispell-set-spellchecker-params has to be called before
   ;; ispell-hunspell-add-multi-dic will work
   (ispell-set-spellchecker-params)
-  (ispell-hunspell-add-multi-dic "en_US,de_DE_frami")
+  (ispell-hunspell-add-multi-dic (concat "en_US," fp/hunspell-de-dict))
 
 
   ;; ----------------------------------------------------------------------
