@@ -60,22 +60,45 @@
 ;; --------------------------------------------------------------------------------
 ;; appearance
 ;; --------------------------------------------------------------------------------
-;; --- variable pitch ---
-(defun fp/org-variable-pitch ()
-  (interactive)
-  (variable-pitch-mode 1)
+
+(define-minor-mode fp/org-variable-pitch-mode
+  "Enables variable pitch fonts in org-mode for a lot of elements, but keeps
+some faces fixed-with (for tables, source code, etc.)"
+  nil
+  " ovp"
+  nil
   (fp/theme-font-setup)
-  (mapcar
-   (lambda (face)
-     (set-face-attribute face nil
-                         :family (face-attribute 'fixed-pitch :family)
-                         :weight (face-attribute 'default :weight)))
-   '(org-code org-link org-block org-table org-block-begin-line
-              org-indent org-block-end-line org-meta-line org-document-info-keyword))
-  (mapcar
-   (lambda (face)
-     (set-face-attribute face nil :family fp/theme-font-family-variable-pitch))
-   '(org-quote)))
+  (let ((extra-fixed-pitch '(org-code
+                             org-link
+                             org-block org-table
+                             org-block-begin-line
+                             org-indent
+                             org-block-end-line
+                             org-meta-line
+                             org-document-info-keyword
+                             org-special-keyword
+                             org-verbatim
+                             org-checkbox
+                             font-lock-comment-face
+                             org-date))
+        (extra-variable-pitch '(org-quote)))
+    (if (bound-and-true-p fp/org-variable-pitch-mode)
+        (progn
+          ;; variable pitch mode sets
+          (variable-pitch-mode 1)
+          (mapcar
+           (lambda (face)
+             (set-face-attribute face nil
+                                 :family (face-attribute 'fixed-pitch :family)
+                                 :weight (face-attribute 'default :weight)))
+           extra-fixed-pitch)
+          (mapcar
+           (lambda (face)
+             (set-face-attribute face nil :family
+                                 fp/theme-font-family-variable-pitch))
+           extra-variable-pitch))
+      (progn
+        (variable-pitch-mode 0)))))
 
 ;; --- fontify bullet-points ---
 (font-lock-add-keywords
