@@ -185,6 +185,7 @@
   ;; --------------------------------------------------------------------------------
   (evil-leader/set-key-for-mode 'emms-playlist-mode "fs" 'emms-playlist-save)
   (evil-leader/set-key-for-mode 'dired-mode "me" 'emms-add-dired)
+  (evil-define-key 'normal dired-mode-map "e" 'emms-add-dired)
 
   ;; --- mouse bindings ---
   (define-key emms-browser-mode-map [mouse-3]

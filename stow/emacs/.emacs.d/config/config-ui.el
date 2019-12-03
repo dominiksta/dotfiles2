@@ -16,9 +16,7 @@
 ;; --------------------------------------------------------------------------------
 ;; themes and fonts
 ;; --------------------------------------------------------------------------------
-(setq fp/theme-font-family (if (eq system-type 'windows-nt)
-                               "Dejavu Sans Mono"
-                             "Iosevka")
+(setq fp/theme-font-family "Dejavu Sans Mono"
       fp/theme-font-family-size "13"
       fp/theme-font-family-fallback "Lucida Console"
       fp/theme-font-family-fallback-size "12"
@@ -67,6 +65,14 @@ fixed-pitch faces."
   (use-package grandshell-theme :ensure t)
   (setq fp/theme-light-theme 'sanityinc-tomorrow-day
         fp/theme-dark-theme 'sanityinc-tomorrow-night))
+
+(use-package modus-operandi-theme :ensure t
+  :config
+  (setq fp/theme-light-theme 'modus-operandi))
+
+(use-package modus-vivendi-theme :ensure t
+  :config
+  (setq fp/theme-dark-theme 'modus-vivendi))
 
 ;; (use-package doom-themes
 ;;   :ensure t
