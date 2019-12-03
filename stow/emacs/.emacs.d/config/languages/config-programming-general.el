@@ -175,8 +175,7 @@
         projectile-indexing-method 'alien)
   (use-package helm-projectile
     :ensure t
-    :after helm projectile
-    :config (helm-projectile-on)))
+    :after helm projectile))
 
 
 ;; --------------------------------------------------------------------------------

@@ -116,7 +116,7 @@ bringtoforegroundbytitle(title, except){
         return
 }
 
-!+w::bringtoforegroundbyexe("firefox.exe", "firefox")
+!+w::bringtoforegroundbyexe("waterfox.exe", "waterfox")
 !Space::bringtoforegroundbytitle("fp@emacs", "C:\Users\fp\Desktop\emacs\emacs.lnk")
 ; !^t::backgroundelisp("(fp/terminal-here nil)")
 ; !F1::foregroundelisp("(fp/external/start-program)")
@@ -134,7 +134,14 @@ bringtoforegroundbytitle(title, except){
 ; Window Management
 ;------------------------------------------------------------
 
-;Maximize/Restore
+; Minimize
+!+m::
+{
+        WinMinimize,A
+	return
+}
+
+; Maximize/Restore
 !+f::
 {
 	WinGet,max,MinMax,A
@@ -145,7 +152,7 @@ bringtoforegroundbytitle(title, except){
 	return
 }
 
-;Close
+; Close
 !+q::
 {
 	WinGetTitle, Title, A

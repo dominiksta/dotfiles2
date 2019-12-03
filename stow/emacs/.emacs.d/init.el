@@ -20,6 +20,8 @@
  '(blink-cursor-mode nil)
  '(company-quickhelp-color-background "#4F4F4F")
  '(company-quickhelp-color-foreground "#DCDCCC")
+ '(custom-safe-themes
+   '("7356632cebc6a11a87bc5fcffaa49bae528026a78637acd03cae57c091afd9b9" default))
  '(diary-entry-marker 'font-lock-variable-name-face)
  '(dired-async-mode nil)
  '(emms-mode-line-icon-image-cache
@@ -75,9 +77,12 @@ static char *gnus-pointer[] = {
  '(jdee-db-active-breakpoint-face-colors (cons "#10151C" "#5EC4FF"))
  '(jdee-db-requested-breakpoint-face-colors (cons "#10151C" "#8BD49C"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#10151C" "#384551"))
+ '(nrepl-message-colors
+   '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
  '(objed-cursor-color "#D95468")
+ '(org-agenda-files nil)
  '(package-selected-packages
-   '(bibtex-helm apache-mode bash-completion auctex wgrep-ag buffer-move epass pdf-tools org-tree-slide shackle dumb-jump flucui-themes cyberpunk-theme challenger-deep-theme color-theme-sanityinc-tomorrow grandshell-theme highlight-indent-guides yafolding alect-themes dictcc editorconfig ujelly-theme pdfgrep demo-it org-pdfview olivetti avy org-variable-pitch sqlup-mode spacemacs-theme realgud company-jedi yasnippet-snippets markdown-preview-mode lsp-ui restclient sql-indent php-mode ng2-mode json-mode emmet-mode tide cider clojure-mode ahk-mode powershell pcre2el yasnippet-classic-snippets yasnippet helm-flyspell unidecode ag typescript-mode web-mode js2-mode cmake-mode cquery anti-zenburn-theme zenburn-theme hydra fish-completion multi-term elfeed-org elfeed emms-info-mediainfo emms diredfl dired-rainbow dired-k rainbow-mode shell-pop dired-subtree helm-ag helm-rg pyvenv company-lsp lsp-mode lsp hl-todo flycheck helm-projectile projectile evil-magit magit peep-dired dired-du which-key eyebrowse htmlize org-download evil-org org-bullets helm-swoop helm company evil-nerd-commenter evil-surround doom-themes restart-emacs evil-leader evil use-package))
+   '(modus-vivendi-theme modus-operandi-theme shell-here orgit auctex wgrep-ag buffer-move epass pdf-tools org-tree-slide shackle dumb-jump flucui-themes cyberpunk-theme challenger-deep-theme color-theme-sanityinc-tomorrow grandshell-theme highlight-indent-guides yafolding alect-themes dictcc editorconfig ujelly-theme pdfgrep demo-it org-pdfview olivetti avy org-variable-pitch sqlup-mode spacemacs-theme realgud company-jedi yasnippet-snippets markdown-preview-mode lsp-ui restclient sql-indent php-mode ng2-mode json-mode emmet-mode tide cider clojure-mode ahk-mode powershell pcre2el yasnippet-classic-snippets yasnippet helm-flyspell unidecode ag typescript-mode web-mode js2-mode cmake-mode cquery anti-zenburn-theme zenburn-theme hydra fish-completion multi-term elfeed-org elfeed emms-info-mediainfo emms diredfl dired-rainbow dired-k rainbow-mode shell-pop dired-subtree helm-ag helm-rg pyvenv company-lsp lsp-mode lsp hl-todo flycheck helm-projectile projectile evil-magit magit peep-dired dired-du which-key eyebrowse htmlize org-download evil-org org-bullets helm-swoop helm company evil-nerd-commenter evil-surround doom-themes restart-emacs evil-leader evil use-package))
  '(pdf-view-midnight-colors '("#232333" . "#c7c7c7"))
  '(safe-local-variable-values
    '((TeX-master . main\.tex)
@@ -85,6 +90,18 @@ static char *gnus-pointer[] = {
            (org-babel-goto-named-src-block "startup")
            (org-babel-execute-src-block)
            (outline-hide-sublevels 1))
+     (ag-arguments "--smart-case" "--stats" "--hidden")
+     (ag-arguments list "--smart-case" "--stats" "--hidden")
+     (ag-arguments quote
+                   ("--smart-case" "--stats" "--hidden"))
+     (helm-ag-command-option . "--hidden")
+     (TeX-open-quote . "\\textquote{")
+     (TeX-command-extra-options . "-shell-escape")
+     (TeX-close-quote . "}")
+     (TeX-master . "../main.tex")
+     (TeX-master . "main.tex")
+     (projectile-project-run-cmd . "cd C:\\Users\\dstahmer\\git\\enp-browser\\deployment-scripts\\ && powershell -File deploy.ps1 -SkipAngularBuild")
+     (projectile-project-compilation-cmd . "cd C:\\Users\\dstahmer\\git\\enp-browser\\deployment-scripts\\ && sh push-and-build.sh")
      (projectile-project-run-cmd . "pdflatex -synctex=1 BA_main.tex")
      (projectile-project-run-cmd . "pdflatex BA_main.tex")
      (projectile-project-run-cmd . "cd C:\\Users\\dstahmer\\git\\recom-enp-deploy\\ && powershell -File deploy.ps1 -SkipAngularBuild")
@@ -139,6 +156,7 @@ static char *gnus-pointer[] = {
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-ellipsis ((t nil)))
  '(org-mode-line-clock ((t (:foreground "#232333" :background "#d4d4d4")))))
 
 

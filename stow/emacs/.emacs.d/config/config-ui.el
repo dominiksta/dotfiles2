@@ -67,6 +67,14 @@ fixed-pitch faces."
   (setq fp/theme-light-theme 'sanityinc-tomorrow-day
         fp/theme-dark-theme 'sanityinc-tomorrow-night))
 
+(use-package modus-operandi-theme :ensure t
+  :config
+  (setq fp/theme-light-theme 'modus-operandi))
+
+(use-package modus-vivendi-theme :ensure t
+  :config
+  (setq fp/theme-dark-theme 'modus-vivendi))
+
 ;; (use-package doom-themes
 ;;   :ensure t
 ;;   :config

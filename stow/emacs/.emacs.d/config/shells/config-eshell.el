@@ -51,8 +51,8 @@ buffer to BUFFER-NAME"
                             (len (length dir)))
                        (nth (- len 2) dir))
                      'face `(:inherit eshell-prompt))
-         (propertize " -> " 'face `(:inherit eshell-prompt))))
-      eshell-prompt-regexp "^.* -> ")
+         (propertize " => " 'face `(:inherit eshell-prompt))))
+      eshell-prompt-regexp "^.* => ")
 
 ;; Eshells prompt should have the same color as other shell-prompts
 (set-face-attribute 'eshell-prompt nil

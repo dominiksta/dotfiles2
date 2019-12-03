@@ -219,7 +219,7 @@ some faces fixed-with (for tables, source code, etc.)"
   (use-package htmlize :ensure t)
   (setq org-export-default-language "de")
 
-  (setq org-style-css "~/git/dotfiles/emacs/org-style/org-style-new.css")
+  (setq org-style-css "~/git/dotfiles/other/org-style.css")
 
   (defun my-org-inline-css-hook (exporter)
     "Insert custom inline css"
