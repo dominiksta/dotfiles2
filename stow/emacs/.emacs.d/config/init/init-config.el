@@ -209,13 +209,13 @@ is called"
   "Spawns a new emacs with minimal configuration. Same as passing `-minimal' as a command line argument."
   (interactive)
   (start-process-shell-command "minimal-emacs" "*minimal-emacs*"
-                               (concat (car command-line-args) " -minimal "
+                               (concat "\"" (car command-line-args) "\"" " -minimal "
                                        config-directory "/init/init-default.el")))
 
 (defun start-default-emacs ()
   "Spawns a new emacs with minimal configuration. Same as passing `-minimal' as a command line argument."
   (interactive)
   (start-process-shell-command "default-emacs" "*default-emacs*"
-                               (concat (car command-line-args) " -q")))
+                               (concat "\"" (car command-line-args) "\"" " -q")))
 
 (provide 'init-config)
