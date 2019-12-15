@@ -127,10 +127,10 @@ some faces fixed-with (for tables, source code, etc.)"
     (propertize (concat " " (car (split-string (substring-no-properties (funcall oldfun)))))
                 'face 'org-mode-line-clock))
   (advice-add 'org-clock-get-clock-string :around 'fp/org-clock-format-clock-string)
-
-  (custom-set-faces
-   '(org-mode-line-clock ((((background light)) (:foreground "dark blue"))
-                          (t (:foreground "medium spring green"))))))
+  (set-face-attribute 'org-mode-line-clock nil
+                      :foreground nil
+                      :background nil
+                      :inherit 'font-lock-variable-name-face))
 
 (setq org-clock-mode-line-total 'today)
 
