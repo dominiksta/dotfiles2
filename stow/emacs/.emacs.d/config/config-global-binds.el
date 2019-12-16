@@ -266,7 +266,7 @@
 ;; programming
 ;; --------------------------------------------------------------------------------
 (evil-leader/set-key
-  "pi" 'projectile-discover-projects-in-directory
+  "pI" 'projectile-discover-projects-in-directory
   "pf" 'helm-projectile-find-file
   "pe" 'projectile-run-eshell
   "pR" 'projectile-run-project

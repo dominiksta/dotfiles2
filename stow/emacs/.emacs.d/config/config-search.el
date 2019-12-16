@@ -1,5 +1,11 @@
 (require-and-log 'config-helm-minibuffer)
 
+;; --------------------------------------------------------------------------------
+;; options
+;; --------------------------------------------------------------------------------
+;; recenter even if the line was already visible
+(setq next-error-recenter '(4))
+
 ;; TODO start using autoload properly for this and others
 
 ;; --------------------------------------------------------------------------------
@@ -70,7 +76,7 @@ recursively from the current directory using `pdfgrep'."
   "sD" 'fp/pdfgrep-todos)
 
 ;; --------------------------------------------------------------------------------
-;; bindings TODO use config-add-external
+;; bindings
 ;; --------------------------------------------------------------------------------
 (evil-leader/set-key "si" 'fp/search-ddg)
 
