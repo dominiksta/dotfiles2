@@ -82,7 +82,7 @@ static char *gnus-pointer[] = {
  '(objed-cursor-color "#D95468")
  '(org-agenda-files nil)
  '(package-selected-packages
-   '(imenu-anywhere orgmine elmine modus-vivendi-theme modus-operandi-theme shell-here orgit auctex wgrep-ag buffer-move epass pdf-tools org-tree-slide shackle dumb-jump flucui-themes cyberpunk-theme challenger-deep-theme color-theme-sanityinc-tomorrow grandshell-theme highlight-indent-guides yafolding alect-themes dictcc editorconfig ujelly-theme pdfgrep demo-it org-pdfview olivetti avy org-variable-pitch sqlup-mode spacemacs-theme realgud company-jedi yasnippet-snippets markdown-preview-mode lsp-ui restclient sql-indent php-mode ng2-mode json-mode emmet-mode tide cider clojure-mode ahk-mode powershell pcre2el yasnippet-classic-snippets yasnippet helm-flyspell unidecode ag typescript-mode web-mode js2-mode cmake-mode cquery anti-zenburn-theme zenburn-theme hydra fish-completion multi-term elfeed-org elfeed emms-info-mediainfo emms diredfl dired-rainbow dired-k rainbow-mode shell-pop dired-subtree helm-ag helm-rg pyvenv company-lsp lsp-mode lsp hl-todo flycheck helm-projectile projectile evil-magit magit peep-dired dired-du which-key eyebrowse htmlize org-download evil-org org-bullets helm-swoop helm company evil-nerd-commenter evil-surround doom-themes restart-emacs evil-leader evil use-package))
+   '(imenu-anywhere mini-modeline bash-completion modus-vivendi-theme modus-operandi-theme shell-here auctex wgrep-ag buffer-move epass pdf-tools org-tree-slide shackle dumb-jump flucui-themes cyberpunk-theme challenger-deep-theme color-theme-sanityinc-tomorrow grandshell-theme highlight-indent-guides yafolding alect-themes dictcc editorconfig ujelly-theme pdfgrep demo-it org-pdfview olivetti avy org-variable-pitch sqlup-mode spacemacs-theme realgud company-jedi yasnippet-snippets markdown-preview-mode lsp-ui restclient sql-indent php-mode ng2-mode json-mode emmet-mode tide cider clojure-mode ahk-mode powershell pcre2el yasnippet-classic-snippets yasnippet helm-flyspell unidecode ag typescript-mode web-mode js2-mode cmake-mode cquery anti-zenburn-theme zenburn-theme hydra fish-completion multi-term elfeed-org elfeed emms-info-mediainfo emms diredfl dired-rainbow dired-k rainbow-mode shell-pop dired-subtree helm-ag helm-rg pyvenv company-lsp lsp-mode lsp hl-todo flycheck helm-projectile projectile evil-magit magit peep-dired dired-du which-key eyebrowse htmlize org-download evil-org org-bullets helm-swoop helm company evil-nerd-commenter evil-surround doom-themes restart-emacs evil-leader evil use-package))
  '(pdf-view-midnight-colors '("#232333" . "#c7c7c7"))
  '(safe-local-variable-values
    '((TeX-master . main\.tex)
@@ -151,13 +151,6 @@ static char *gnus-pointer[] = {
      (360 . "#8bc34a")))
  '(vc-annotate-very-old-color nil)
  '(window-divider-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-ellipsis ((t nil)))
- '(org-mode-line-clock ((t (:foreground "#232333" :background "#d4d4d4")))))
 
 
 ;; this line is for running emacs from usb
