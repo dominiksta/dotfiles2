@@ -84,7 +84,8 @@
 
 
 ;; --- mouse ---
-(setq mouse-1-click-follows-link nil)
+(setq mouse-1-click-follows-link 450
+      org-mouse-1-follows-link mouse-1-click-follows-link)
 
 (defun fp/point-to-mouse (event)
   "Move the point to the clicked position"

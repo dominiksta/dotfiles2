@@ -38,8 +38,7 @@
   "."         'org-agenda-goto-today
   "C" 'org-agenda-clockreport-mode
   "c" 'org-agenda-log-mode
-  "i" 'org-agenda-show-clocking-issues
-  [mouse-2] 'org-agenda-goto-mouse)
+  "i" 'org-agenda-show-clocking-issues)
 
 
 ;; --------------------------------------------------------------------------------

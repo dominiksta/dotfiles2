@@ -53,6 +53,9 @@
   "hi" 'helm-imenu
   "hI" 'helm-imenu-in-all-buffers)
 
+(use-package imenu-anywhere :ensure t :init
+  (evil-leader/set-key "pi" 'helm-imenu-anywhere))
+
 (use-package editorconfig :ensure t :demand t
   :config (editorconfig-mode 1))
 
