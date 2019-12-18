@@ -9,8 +9,8 @@
 ;; --------------------------------------------------------------------------------
 (defun config--emacs-lisp-pretty-symbols ()
   (mapc (lambda (pair) (push pair prettify-symbols-alist))
-        '(("and" . #x2227)
-          ("or"  . #x2228)))
+        '(("and" . ?∧)
+          ("or"  . ?∨)))
   (prettify-symbols-mode 1))
 
 (add-hook 'emacs-lisp-mode-hook 'config--emacs-lisp-pretty-symbols)
