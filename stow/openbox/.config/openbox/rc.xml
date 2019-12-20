@@ -24,45 +24,45 @@
     <!-- for popups (Mouse|Active|int) -->
   </placement>
   <theme>
-    <name>Mikachu</name>
+    <name>Nightmare</name>
     <titleLayout>NLIMC</titleLayout>
     <!-- N: window icon, L: title, I: minimize, M: maximize
 	     C: close, S: shade (roll up/down), D: omnipresent -->
     <keepBorder>no</keepBorder>
-    <animateIconify>no</animateIconify>
+    <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
-      <name>Dejavu Sans Mono</name>
-      <size>8</size>
+      <name>Terminus</name>
+      <size>11</size>
       <weight>Normal</weight>
       <slant>Normal</slant>
     </font>
     <font place="InactiveWindow">
-      <name>Dejavu Sans Mono</name>
-      <size>8</size>
+      <name>Terminus</name>
+      <size>11</size>
       <weight>Normal</weight>
       <slant>Normal</slant>
     </font>
     <font place="MenuHeader">
-      <name>Dejavu Sans Mono</name>
-      <size>8</size>
+      <name>Terminus</name>
+      <size>11</size>
       <weight>normal</weight>
       <slant>normal</slant>
     </font>
     <font place="MenuItem">
-      <name>Dejavu Sans Mono</name>
-      <size>8</size>
+      <name>Terminus</name>
+      <size>11</size>
       <weight>normal</weight>
       <slant>normal</slant>
     </font>
     <font place="ActiveOnScreenDisplay">
-      <name>Dejavu Sans Mono</name>
-      <size>8</size>
+      <name>Terminus</name>
+      <size>11</size>
       <weight>normal</weight>
       <slant>normal</slant>
     </font>
     <font place="InactiveOnScreenDisplay">
-      <name>Dejavu Sans Mono</name>
-      <size>8</size>
+      <name>Terminus</name>
+      <size>11</size>
       <weight>normal</weight>
       <slant>normal</slant>
     </font>
@@ -128,9 +128,14 @@
     <!-- reload config -->
     <keybind key="A-S-r">
       <action name="Execute">
-        <command>~/git/dotfiles/scripts/keys/caps.sh</command>
+        <command>killall -SIGUSR1 tint2</command>
       </action>
       <action name="Reconfigure"/>
+    </keybind>
+    <keybind key="A-S-k">
+        <action name="Execute">
+            <command>~/git/dotfiles/scripts/keys/caps.sh</command>
+        </action>
     </keybind>
     <!-- virtual desktops -->
     <keybind key="W-S-1">
@@ -214,6 +219,11 @@
         <command> ~/git/dotfiles/scripts/wm/run-or-raise.sh Emacs emacs </command>
       </action>
     </keybind>
+    <keybind key="A-comma">
+      <action name="Execute">
+        <command> ~/git/dotfiles/scripts/wm/run-or-raise.sh xfce4-terminal xfce4-terminal </command>
+      </action>
+    </keybind>
     <keybind key="W-w">
       <action name="Execute">
         <command> ~/git/dotfiles/other/intuos.sh first </command>
@@ -224,14 +234,17 @@
         <command> ~/git/dotfiles/other/intuos.sh second </command>
       </action>
     </keybind>
-    <keybind key="W-Y">
+    <keybind key="W-A">
       <action name="Execute">
-        <command>dmenu_run</command>
+        <command>dmenu_run -l 10</command>
       </action>
     </keybind>
     <!-- window bindings -->
     <keybind key="A-S-f">
       <action name="ToggleMaximize"/>
+    </keybind>
+    <keybind key="A-S-m">
+      <action name="Iconify"/>
     </keybind>
     <keybind key="A-S-q">
       <action name="Close"/>
@@ -245,11 +258,6 @@
     <keybind key="W-S-Left">
       <action name="MoveResizeTo">
         <monitor>1</monitor>
-      </action>
-    </keybind>
-    <keybind key="W-l">
-      <action name="Execute">
-        <command>xscreensaver-command -lock</command>
       </action>
     </keybind>
     <keybind key="W-S-Right">
@@ -280,7 +288,7 @@
         <command>emacsclient --eval "(with-current-buffer (window-buffer (selected-window)) (org-download-screenshot))"</command>
       </action>
     </keybind>
-    <keybind key="A-f12">
+    <keybind key="A-F12">
       <action name="Execute">
         <command>scrot -s</command>
       </action>
@@ -721,11 +729,11 @@
     <application class="*">
       <decor>yes</decor>
     </application>
-    <application class="Firefox">
-      <decor>no</decor>
-    </application>
-    <application class="Emacs">
-      <decor>no</decor>
-    </application>
+    <!-- <application class="Firefox"> -->
+    <!-- <decor>no</decor> -->
+    <!-- </application> -->
+    <!-- <application class="Emacs"> -->
+    <!-- <decor>no</decor> -->
+    <!-- </application> -->
   </applications>
 </openbox_config>
