@@ -24,60 +24,59 @@
     <!-- for popups (Mouse|Active|int) -->
   </placement>
   <theme>
-    <name>Nightmare</name>
+    <name>mikachu_custom</name>
     <titleLayout>NLIMC</titleLayout>
     <!-- N: window icon, L: title, I: minimize, M: maximize
 	     C: close, S: shade (roll up/down), D: omnipresent -->
     <keepBorder>no</keepBorder>
     <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
-      <name>Terminus</name>
-      <size>11</size>
+      <name>Dejavu Sans Mono</name>
+      <size>9</size>
       <weight>Normal</weight>
       <slant>Normal</slant>
     </font>
     <font place="InactiveWindow">
-      <name>Terminus</name>
-      <size>11</size>
+      <name>Dejavu Sans Mono</name>
+      <size>9</size>
       <weight>Normal</weight>
       <slant>Normal</slant>
     </font>
     <font place="MenuHeader">
-      <name>Terminus</name>
-      <size>11</size>
+      <name>Dejavu Sans Mono</name>
+      <size>9</size>
       <weight>normal</weight>
       <slant>normal</slant>
     </font>
     <font place="MenuItem">
-      <name>Terminus</name>
-      <size>11</size>
+      <name>Dejavu Sans Mono</name>
+      <size>9</size>
       <weight>normal</weight>
       <slant>normal</slant>
     </font>
     <font place="ActiveOnScreenDisplay">
-      <name>Terminus</name>
-      <size>11</size>
+      <name>Dejavu Sans Mono</name>
+      <size>9</size>
       <weight>normal</weight>
       <slant>normal</slant>
     </font>
     <font place="InactiveOnScreenDisplay">
-      <name>Terminus</name>
-      <size>11</size>
+      <name>Dejavu Sans Mono</name>
+      <size>9</size>
       <weight>normal</weight>
       <slant>normal</slant>
     </font>
   </theme>
   <desktops>
-    <number>5</number>
+    <number>4</number>
     <firstdesk>1</firstdesk>
     <names>
-      <name>1</name>
-      <name>2</name>
-      <name>3</name>
-      <name>4</name>
-      <name>5</name>
+      <name>I</name>
+      <name>II</name>
+      <name>III</name>
+      <name>IV</name>
     </names>
-    <popupTime>200</popupTime>
+    <popupTime>0</popupTime>
     <!-- for how long to show the desktop-popup -->
   </desktops>
   <resize>
@@ -133,9 +132,9 @@
       <action name="Reconfigure"/>
     </keybind>
     <keybind key="A-S-k">
-        <action name="Execute">
-            <command>~/git/dotfiles/scripts/keys/caps.sh</command>
-        </action>
+      <action name="Execute">
+        <command>~/git/dotfiles/scripts/keys/caps.sh</command>
+      </action>
     </keybind>
     <!-- virtual desktops -->
     <keybind key="W-S-1">
@@ -191,17 +190,7 @@
     </keybind>
     <keybind key="W-e">
       <action name="Execute">
-        <command>pcmanfm-qt</command>
-      </action>
-    </keybind>
-    <keybind key="C-4">
-      <action name="Execute">
-        <command> ~/git/dotfiles/scripts/wm/run-or-raise.sh Xfce4-Terminal xfce4-terminal </command>
-      </action>
-    </keybind>
-    <keybind key="C-5">
-      <action name="Execute">
-        <command> ~/git/dotfiles/scripts/wm/run-or-raise.sh claws-mail claws-mail </command>
+        <command>caja</command>
       </action>
     </keybind>
     <keybind key="C-6">
@@ -252,17 +241,17 @@
     <keybind key="W-down">
       <action name="Iconify"/>
     </keybind>
-    <keybind key="A-S-d">
+    <keybind key="W-d">
       <action name="ToggleDecorations"/>
     </keybind>
     <keybind key="W-S-Left">
       <action name="MoveResizeTo">
-        <monitor>1</monitor>
+        <monitor>2</monitor>
       </action>
     </keybind>
     <keybind key="W-S-Right">
       <action name="MoveResizeTo">
-        <monitor>2</monitor>
+        <monitor>1</monitor>
       </action>
     </keybind>
     <!-- basic tiling -->
@@ -546,32 +535,12 @@
       </mousebind>
     </context>
     <context name="Desktop">
-      <mousebind button="Up" action="Click">
-        <action name="GoToDesktop">
-          <to>previous</to>
-        </action>
-      </mousebind>
-      <mousebind button="Down" action="Click">
-        <action name="GoToDesktop">
-          <to>next</to>
-        </action>
-      </mousebind>
       <mousebind button="A-Up" action="Click">
         <action name="GoToDesktop">
           <to>previous</to>
         </action>
       </mousebind>
       <mousebind button="A-Down" action="Click">
-        <action name="GoToDesktop">
-          <to>next</to>
-        </action>
-      </mousebind>
-      <mousebind button="C-A-Up" action="Click">
-        <action name="GoToDesktop">
-          <to>previous</to>
-        </action>
-      </mousebind>
-      <mousebind button="C-A-Down" action="Click">
         <action name="GoToDesktop">
           <to>next</to>
         </action>
@@ -661,7 +630,7 @@
             # order that they appear in this list
 
 
-            # each rule element can be left out or set to 'default' to specify to not 
+            # each rule element can be left out or set to 'default' to specify to not
             # change that attribute of the window
 
             <decor>yes</decor>
@@ -737,3 +706,8 @@
     <!-- </application> -->
   </applications>
 </openbox_config>
+<!--
+     Local Variables:
+     web-mode-markup-indent-offset: 2
+     End:
+     End: -->
