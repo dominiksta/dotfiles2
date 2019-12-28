@@ -60,20 +60,26 @@ fixed-pitch faces."
 ;;   (setq fp/theme-light-theme 'flucui-light
 ;;         fp/theme-dark-theme 'flucui-dark))
 
-(use-package color-theme-sanityinc-tomorrow
+(use-package kaolin-themes
   :ensure t
   :config
-  (use-package grandshell-theme :ensure t)
-  (setq fp/theme-light-theme 'sanityinc-tomorrow-day
-        fp/theme-dark-theme 'sanityinc-tomorrow-night))
+  (setq fp/theme-light-theme 'kaolin-dark
+        fp/theme-dark-theme 'kaolin-light))
 
-(use-package modus-operandi-theme :ensure t
-  :config
-  (setq fp/theme-light-theme 'modus-operandi))
+;; (use-package color-theme-sanityinc-tomorrow
+;;   :ensure t
+;;   :config
+;;   (use-package grandshell-theme :ensure t)
+;;   (setq fp/theme-light-theme 'sanityinc-tomorrow-day
+;;         fp/theme-dark-theme 'sanityinc-tomorrow-night))
 
-(use-package modus-vivendi-theme :ensure t
-  :config
-  (setq fp/theme-dark-theme 'modus-vivendi))
+;; (use-package modus-operandi-theme :ensure t
+;;   :config
+;;   (setq fp/theme-light-theme 'modus-operandi))
+
+;; (use-package modus-vivendi-theme :ensure t
+;;   :config
+;;   (setq fp/theme-dark-theme 'modus-vivendi))
 
 ;; (use-package doom-themes
 ;;   :ensure t
