@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=Autostart
+Exec=sh /home/f1p/git/dotfiles/stow/openbox/.config/openbox/autostart
+Type=Application

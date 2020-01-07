@@ -1,0 +1,5 @@
+nitrogen --restore &
+tint2 &
+nm-applet &
+seafile-applet &
+/home/f1p/git/dotfiles/scripts/keys/caps.sh &

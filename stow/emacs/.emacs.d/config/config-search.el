@@ -46,7 +46,7 @@
 ;; --------------------------------------------------------------------------------
 (use-package pdfgrep :ensure t
   :config
-  (config-add-external-dependency 'pdfgrep 'config-pdf-tools "grep through pdfs"
+  (config-add-external-dependency 'pdfgrep 'config-search "grep through pdfs"
                                   (lambda () (executable-find "pdfgrep"))
                                   "apt-get install -y pdfgrep" "None")
 

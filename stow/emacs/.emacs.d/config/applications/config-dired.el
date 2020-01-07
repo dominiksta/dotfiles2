@@ -193,26 +193,28 @@
   "mi" 'image-dired-no-window-config
   "mI" 'image-dired-my-window-config)
 (evil-define-key 'normal dired-mode-map
-  (kbd "j") 'dired-next-line
-  (kbd "k") 'dired-previous-line
-  (kbd "l") 'dired-find-alternate-file
-  (kbd "h") 'dired-find-alternate-up
-  (kbd "n") 'evil-search-next
-  (kbd "N") 'evil-search-previous
+  "j" 'dired-next-line
+  "k" 'dired-previous-line
+  "l" 'dired-find-alternate-file
+  "h" 'dired-find-alternate-up
+  "n" 'evil-search-next
+  "N" 'evil-search-previous
 
-  (kbd "E") 'dired-ediff-marked
-  (kbd "c") 'dired-do-copy
-  (kbd "v") 'dired-do-rename
+  "E" 'dired-ediff-marked
+  "c" 'dired-do-copy
+  "C" (lambda () (interactive) (let ((dired-dwim-target t)) (dired-do-copy)))
+  "v" 'dired-do-rename
+  "V" (lambda () (interactive) (let ((dired-dwim-target t)) (dired-do-rename)))
 
-  (kbd "W") 'fp/dired-copy-path-at-point
+  "W" 'fp/dired-copy-path-at-point
 
-  (kbd "r") (lambda () (interactive)
+  "r" (lambda () (interactive)
               (if (bound-and-true-p dired-du-mode) (dired-du-mode 0)) (revert-buffer))
-  (kbd "q")   'kill-this-buffer
-  (kbd "g g") 'fp/dired-end-of-buffer
-  (kbd "G")   'fp/dired-beginning-of-buffer
+  "q"   'kill-this-buffer
+  "gg" 'fp/dired-end-of-buffer
+  "G"   'fp/dired-beginning-of-buffer
 
-  (kbd "q") (lambda () (interactive) (kill-buffer (current-buffer)))
+  "q" (lambda () (interactive) (kill-buffer (current-buffer)))
   "0" 'evil-beginning-of-line-or-digit-argument
   "$" 'evil-end-of-line)
 

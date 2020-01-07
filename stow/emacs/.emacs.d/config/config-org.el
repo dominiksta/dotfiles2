@@ -70,7 +70,7 @@
    'default
    (list :family  fp/org-font-family :height fp/org-font-size :weight 'normal)))
 
-(add-hook 'org-mode-hook 'fp/org-font-apply)
+;; (add-hook 'org-mode-hook 'fp/org-font-apply)
 
 
 (define-minor-mode fp/org-variable-pitch-mode
