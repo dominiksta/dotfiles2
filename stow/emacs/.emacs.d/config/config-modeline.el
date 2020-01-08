@@ -44,6 +44,7 @@
 
 (use-package mini-modeline :ensure t
   :config
+  (defun mini-modeline--set-buffer-background () nil)
   (setq mode-line-position ""
         mini-modeline-r-format
         '(((:eval (propertize "%b" 'face 'mode-line-buffer-id))

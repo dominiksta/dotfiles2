@@ -8,27 +8,34 @@
 	    <action name="Execute"> <execute>firefox</execute> </action>
 	</item>
 	<item label="term">
-	    <action name="Execute"> <execute>lxterminal</execute> </action>
+	    <action name="Execute"> <execute>xfce4-terminal</execute> </action>
 	</item>
 
 	<separator/>
-	<menu id="40" label="box">
+	<menu id="40" label="sys">
 	    <item label="obconf">
 		<action name="Execute">
 		    <execute>obconf</execute>
 		</action>
 	    </item>
-	    <item label="obmenu">
+	    <item label="tint2conf">
 		<action name="Execute">
-		    <execute>obmenu</execute>
+		    <execute>tint2conf</execute>
 		</action>
 	    </item>
-	    <item label="Reconfigure">
+	    <item label="settings">
+		<action name="Execute">
+		    <execute>xfce4-settings-manager</execute>
+		</action>
+	    </item>
+	    <item label="reconf">
 		<action name="Reconfigure"/>
 	    </item>
 	    <separator/>
-	    <item label="Exit">
-		<action name="Exit"/>
+	    <item label="exit">
+		<action name="Execute">
+		    <execute>xfce4-session-logout</execute>
+		</action>
 	    </item>
 	</menu>
     </menu>

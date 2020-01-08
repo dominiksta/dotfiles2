@@ -8,8 +8,6 @@
   :commands elfeed elfeed-load-db-and-open
   :config
 
-  (setq elfeed-db-directory (concat sync-directory "emacs/elfeed-db"))
-
   (use-package elfeed-org :ensure t :config
     (elfeed-org)
     (setq rmh-elfeed-org-files (list (concat sync-directory "emacs/random/myfeed.org"))))

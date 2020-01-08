@@ -61,6 +61,18 @@
 ;; appearance
 ;; --------------------------------------------------------------------------------
 
+;; --- different font for org mode ---
+(setq fp/org-font-family "Dejavu Sans Mono"
+      fp/org-font-size 110)
+
+(defun fp/org-font-apply ()
+  (face-remap-add-relative
+   'default
+   (list :family  fp/org-font-family :height fp/org-font-size :weight 'normal)))
+
+;; (add-hook 'org-mode-hook 'fp/org-font-apply)
+
+
 (define-minor-mode fp/org-variable-pitch-mode
   "Enables variable pitch fonts in org-mode for a lot of elements, but keeps
 some faces fixed-with (for tables, source code, etc.)"

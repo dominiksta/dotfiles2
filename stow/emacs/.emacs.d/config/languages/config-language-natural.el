@@ -4,7 +4,7 @@
 
 (setq fp/hunspell-de-dict (if (eq system-type 'windows-nt)
                               "de_DE_frami" "de_DE"))
-(setenv "LANG" fp/hunspell-de-dict)
+;; (setenv "LANG" fp/hunspell-de-dict)
 
 (config-add-external-dependency 'hunspell 'config-natural-language
                                 "spellchecking base"
