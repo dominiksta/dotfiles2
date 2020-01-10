@@ -202,9 +202,11 @@
 
   "E" 'dired-ediff-marked
   "c" 'dired-do-copy
-  "C" (lambda () (interactive) (let ((dired-dwim-target t)) (dired-do-copy)))
+  "bc" (lambda () (interactive) (let ((dired-dwim-target t)) (dired-do-copy)))
   "v" 'dired-do-rename
-  "V" (lambda () (interactive) (let ((dired-dwim-target t)) (dired-do-rename)))
+  "bv" (lambda () (interactive) (let ((dired-dwim-target t)) (dired-do-rename)))
+  "S" 'dired-do-symlink
+  "bS" (lambda () (interactive) (let ((dired-dwim-target t)) (dired-do-symlink)))
 
   "W" 'fp/dired-copy-path-at-point
 
