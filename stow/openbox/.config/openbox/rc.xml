@@ -121,7 +121,7 @@
     <!-- turn off screen -->
     <keybind key="W-C-Down">
       <action name="Execute">
-        <command>~/git/dotfiles/scripts/wm/blackscreen.sh</command>
+        <command>~/git/dotfiles/scripts/sys/blackscreen.sh</command>
       </action>
     </keybind>
     <!-- reload config -->
