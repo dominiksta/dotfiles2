@@ -14,13 +14,15 @@ sudo apt install -y \
 	python python-pip \
 	elpa-pdf-tools-server \
 	xfonts-terminus \
-	xkbset xcape libpoppler-dev libmagickwand-dev
+	xkbset xcape libpoppler-dev libmagickwand-dev \
+        libjansson-dev
 
 
 # download emacs
 cd ~ && mkdir -p git && cd git
 git clone https://github.com/emacs-mirror/emacs
 cd emacs
+git checkout emacs-27
 # wget https://mirror.clarkson.edu/gnu/emacs/emacs-26.1.tar.xz
 # tar xvf emacs-26.1.tar.xz && cd emacs-26.1
 
