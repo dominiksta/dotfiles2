@@ -1,29 +1,26 @@
 #!/bin/bash
 set -e
 
-apt install -y ttf-dejavu
+apt-get install -y ttf-dejavu
 
 # shell autocompletion
-apt install -y fish
+apt-get install -y fish
 
 # pdf
-apt install -y elpa-pdf-tools-server
+apt-get install -y elpa-pdf-tools-server
 
 # music
-apt install -y mediainfo mpv socat
+apt-get install -y mediainfo mpv socat
 pip3 install youtube-dl
 
 # spellchecking
-apt install -y aspell-de
+apt-get install -y aspell-de
 
 # searching
-apt install -y silversearcher-ag
+apt-get install -y silversearcher-ag
 
 # timetable
-apt install -y gawk
-
-# my eyyyes
-apt install -y redshift
+apt-get install -y gawk
 
 # latex in org-mode
-apt install -y texlive-latex-* dvipng
+apt-get install -y texlive-latex-* dvipng
