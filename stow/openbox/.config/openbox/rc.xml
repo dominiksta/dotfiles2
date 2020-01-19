@@ -185,32 +185,32 @@
     </keybind>
     <keybind key="C-A-t">
       <action name="Execute">
-        <command>xfce4-terminal</command>
+        <command>lxterminal</command>
       </action>
     </keybind>
     <keybind key="W-e">
       <action name="Execute">
-        <command>caja</command>
+        <command>pcmanfm-qt</command>
       </action>
     </keybind>
     <keybind key="C-6">
       <action name="Execute">
-        <command> ~/git/dotfiles/scripts/wm/run-or-raise.sh Xournal xournal </command>
+        <command> run-or-raise.sh Xournal xournal </command>
       </action>
     </keybind>
     <keybind key="A-S-w">
       <action name="Execute">
-        <command> ~/git/dotfiles/scripts/wm/run-or-raise.sh Firefox firefox </command>
+        <command> run-or-raise.sh Firefox firefox </command>
       </action>
     </keybind>
     <keybind key="A-space">
       <action name="Execute">
-        <command> ~/git/dotfiles/scripts/wm/run-or-raise.sh Emacs emacs </command>
+        <command> run-or-raise.sh Emacs emacs </command>
       </action>
     </keybind>
     <keybind key="A-comma">
       <action name="Execute">
-        <command> ~/git/dotfiles/scripts/wm/run-or-raise.sh xfce4-terminal xfce4-terminal </command>
+        <command> run-or-raise.sh lxterminal lxterminal </command>
       </action>
     </keybind>
     <keybind key="W-w">
@@ -226,6 +226,22 @@
     <keybind key="W-A">
       <action name="Execute">
         <command>dmenu_run -l 10</command>
+      </action>
+    </keybind>
+    <!-- monitors -->
+    <keybind key="W-F12">
+      <action name="Execute">
+        <command> monitor-bed.sh </command>
+      </action>
+    </keybind>
+    <keybind key="W-F11">
+      <action name="Execute">
+        <command> monitor-all.sh </command>
+      </action>
+    </keybind>
+    <keybind key="W-F10">
+      <action name="Execute">
+        <command> monitor-desk.sh </command>
       </action>
     </keybind>
     <!-- window bindings -->
@@ -246,12 +262,12 @@
     </keybind>
     <keybind key="W-S-Left">
       <action name="MoveResizeTo">
-        <monitor>2</monitor>
+        <monitor>1</monitor>
       </action>
     </keybind>
     <keybind key="W-S-Right">
       <action name="MoveResizeTo">
-        <monitor>1</monitor>
+        <monitor>2</monitor>
       </action>
     </keybind>
     <!-- basic tiling -->
@@ -272,7 +288,7 @@
       <action name="MoveToEdgeEast"/>
     </keybind>
     <!-- Screenshot -->
-    <keybind key="W-F11">
+    <keybind key="A-F11">
       <action name="Execute">
         <command>emacsclient --eval "(with-current-buffer (window-buffer (selected-window)) (org-download-screenshot))"</command>
       </action>
