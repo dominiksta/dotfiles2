@@ -2,6 +2,12 @@
                                 (lambda () (executable-find "gpg"))
                                 "sudo apt install gpg" "cinst -y gpg4win-vanilla")
 
+;; auth-source-pass is thankfully a pre elisp implementation, same as
+;; epass. Therefore, it can be used on windows the same as
+;; linux. ~/.password-store needs to symlink
+(require 'auth-source-pass)
+(auth-source-pass-enable)
+
 (epass-set-store-location (concat sync-directory "general/password-store/"))
 
 ;; So apparently this is a bug where the change only applies when you set this

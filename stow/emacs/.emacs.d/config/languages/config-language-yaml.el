@@ -2,7 +2,7 @@
 
 (config-add-external-dependency 'yamllint 'config-language-yaml "flycheck"
                                 (lambda () (executable-find "yamllint"))
-                                "pip install yamllint"
+                                "sudo pip install yamllint"
                                 "pip install yamllint")
 
 (use-package yaml-mode :ensure t :config

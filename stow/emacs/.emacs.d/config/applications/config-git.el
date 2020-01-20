@@ -9,6 +9,10 @@
   (define-key magit-status-mode-map (kbd "M-2") nil)
   (define-key magit-status-mode-map (kbd "M-3") nil)
   (define-key magit-status-mode-map (kbd "M-4") nil)
+
+  (add-hook 'magit-process-find-password-functions
+            'magit-process-password-auth-source)
+
   (use-package evil-magit
     :ensure t
     :config
