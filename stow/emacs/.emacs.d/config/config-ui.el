@@ -5,6 +5,7 @@
 (toggle-frame-maximized)
 (blink-cursor-mode -1)
 (tooltip-mode 0)
+(window-divider-mode 1)
 
 (setq ring-bell-function
       (lambda () (let ((orig-fg (face-foreground 'mode-line)))
@@ -60,11 +61,11 @@ fixed-pitch faces."
 ;;   (setq fp/theme-light-theme 'flucui-light
 ;;         fp/theme-dark-theme 'flucui-dark))
 
-(use-package kaolin-themes
-  :ensure t
-  :config
-  (setq fp/theme-light-theme 'kaolin-dark
-        fp/theme-dark-theme 'kaolin-light))
+;; (use-package kaolin-themes
+;;   :ensure t
+;;   :config
+;;   (setq fp/theme-light-theme 'kaolin-light
+;;         fp/theme-dark-theme 'kaolin-dark))
 
 ;; (use-package color-theme-sanityinc-tomorrow
 ;;   :ensure t
@@ -73,13 +74,13 @@ fixed-pitch faces."
 ;;   (setq fp/theme-light-theme 'sanityinc-tomorrow-day
 ;;         fp/theme-dark-theme 'sanityinc-tomorrow-night))
 
-;; (use-package modus-operandi-theme :ensure t
-;;   :config
-;;   (setq fp/theme-light-theme 'modus-operandi))
+(use-package modus-operandi-theme :ensure t
+  :config
+  (setq fp/theme-light-theme 'modus-operandi))
 
-;; (use-package modus-vivendi-theme :ensure t
-;;   :config
-;;   (setq fp/theme-dark-theme 'modus-vivendi))
+(use-package modus-vivendi-theme :ensure t
+  :config
+  (setq fp/theme-dark-theme 'modus-vivendi))
 
 ;; (use-package doom-themes
 ;;   :ensure t
