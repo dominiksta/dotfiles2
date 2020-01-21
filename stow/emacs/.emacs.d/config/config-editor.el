@@ -233,6 +233,9 @@
 ;; coding systems
 ;; --------------------------------------------------------------------------------
 
+;; Set the default to unix line endings.
+(setq-default buffer-file-coding-system 'utf-8-unix)
+
 (setq fp/coding-system-current (car coding-system-list))
 (setq fp/coding-system-current-number 0)
 
