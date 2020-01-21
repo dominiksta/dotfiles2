@@ -158,14 +158,17 @@
     (add-hook 'emms-player-time-set-functions 'emms-playing-time-set)
 
     (setq-local header-line-format
-                '(:eval (concat "[ "
-                                (format "%02d" (/ emms-playing-time 60)) ":"
-                                (format "%02d" (mod emms-playing-time 60))" ] "
-                                (let ((artist (cdr (assoc 'info-artist
-                                                          (emms-playlist-current-selected-track)))))
-                                  (when artist (concat artist " - ")))
-                                (cdr (assoc 'info-title
-                                            (emms-playlist-current-selected-track)))))))
+                '(:eval (concat
+                         (when (not (eq emms-info-functions nil)) "I ")
+                         "[ "
+                         (format "%02d" (/ emms-playing-time 60)) ":"
+                         (format "%02d" (mod emms-playing-time 60))" ] "
+                         (let ((artist
+                                (cdr (assoc 'info-artist
+                                            (emms-playlist-current-selected-track)))))
+                           (when artist (concat artist " - ")))
+                         (cdr (assoc 'info-title
+                                     (emms-playlist-current-selected-track)))))))
 
   (add-hook 'emms-playlist-mode-hook 'fp/emms-playlist-mode-hook)
 
@@ -186,6 +189,17 @@
   (evil-leader/set-key-for-mode 'emms-playlist-mode "fs" 'emms-playlist-save)
   (evil-leader/set-key-for-mode 'dired-mode "me" 'emms-add-dired)
   (evil-define-key 'normal dired-mode-map "e" 'emms-add-dired)
+  (evil-define-key 'normal emms-playlist-mode-map "I" 'fp/emms-toggle-info)
+
+  (defun fp/emms-toggle-info ()
+    (interactive)
+    (if (eq emms-info-functions nil)
+        (progn
+          (setq emms-info-functions '(emms-info-mediainfo))
+          (message "Info enabled"))
+      (progn (setq emms-info-functions nil)
+             (message "Info disabled")))
+    (force-mode-line-update))
 
   ;; --- mouse bindings ---
   (define-key emms-browser-mode-map [mouse-3]

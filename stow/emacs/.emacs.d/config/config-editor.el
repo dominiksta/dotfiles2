@@ -130,6 +130,8 @@
 
 (setq-default fill-column 80)
 
+(use-package aggressive-fill-paragraph :ensure t)
+
 ;; --- kill ring ---
 (setq save-interprogram-paste-before-kill t
       yank-pop-change-selection nil)
@@ -147,9 +149,9 @@
 ;; key translations and remappings
 ;; --------------------------------------------------------------------------------
 
-(evil-define-key 'insert global-map
-  (kbd "C-q") 'backward-delete-char
-  (kbd "<left>") 'backward-delete-char)
+;; (evil-define-key 'insert global-map
+;;   (kbd "C-q") 'backward-delete-char
+;;   (kbd "<left>") 'backward-delete-char)
 
 (define-key key-translation-map (kbd "C-M-7") (kbd "{"))
 (define-key key-translation-map (kbd "C-M-8") (kbd "["))
@@ -232,6 +234,9 @@
 ;; --------------------------------------------------------------------------------
 ;; coding systems
 ;; --------------------------------------------------------------------------------
+
+;; Set the default to unix line endings.
+(setq-default buffer-file-coding-system 'utf-8-unix)
 
 (setq fp/coding-system-current (car coding-system-list))
 (setq fp/coding-system-current-number 0)

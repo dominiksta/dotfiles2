@@ -96,6 +96,7 @@ recursively from the current directory using `pdfgrep'."
   :config
   (use-package wgrep-ag :ensure t)
   (evil-define-key 'normal ag-mode-map
+    "q" 'quit-window
     "e" 'wgrep-change-to-wgrep-mode
     "k" 'evil-previous-line)
   (evil-set-initial-state 'ag-mode 'normal))

@@ -48,7 +48,9 @@
 (config-require '(config-language-octave) :regexp "\\.m\\'" :auto-mode octave-mode
                 :feature octave)
 (config-require '(config-language-latex)        :feature tex)
-(config-require '(config-language-docker)       :regexp "Dockerfile\\'"    :auto-mode dockerfile-mode)
+(config-require '(config-language-docker)
+                :regexp "Dockerfile\\(?:\\..*\\)?\\'"
+                :auto-mode dockerfile-mode)
 
 (setq auto-mode-alist (append auto-mode-alist '(("\\.target\\'" . conf-mode)
                                                 ("\\.timer\\'" . conf-mode)
