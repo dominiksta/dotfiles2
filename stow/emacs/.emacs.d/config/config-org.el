@@ -42,18 +42,18 @@
   (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))
 
 ;; snippets
-(add-to-list 'org-structure-template-alist
-             '("el" "#+BEGIN_SRC emacs-lisp :results output none\n?\n#+END_SRC"))
-(add-to-list
- 'org-structure-template-alist
- (list "of" (concat "#+BEGIN_SRC octave "
-                    ":results file :exports both :session \"*octave-org-session*\""
-                    "\n?\n#+END_SRC")))
-(add-to-list
- 'org-structure-template-alist
- (list "o" (concat "#+BEGIN_SRC octave "
-                   ":results output :exports both :session \"*octave-org-session*\""
-                   "\n?\n#+END_SRC")))
+;; (add-to-list 'org-structure-template-alist
+;;              '("el" "#+BEGIN_SRC emacs-lisp :results output none\n?\n#+END_SRC"))
+;; (add-to-list
+;;  'org-structure-template-alist
+;;  (list "of" (concat "#+BEGIN_SRC octave "
+;;                     ":results file :exports both :session \"*octave-org-session*\""
+;;                     "\n?\n#+END_SRC")))
+;; (add-to-list
+;;  'org-structure-template-alist
+;;  (list "o" (concat "#+BEGIN_SRC octave "
+;;                    ":results output :exports both :session \"*octave-org-session*\""
+;;                    "\n?\n#+END_SRC")))
 
 ;; redisplay images after code-block evaluation
 (add-hook 'org-babel-after-execute-hook 'org-redisplay-inline-images)
