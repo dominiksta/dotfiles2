@@ -1,3 +1,3 @@
 #!/bin/bash
 
-apt-get install -y dmenu tint2 redshift compton
+apt-get install -y stow dmenu tint2 redshift compton seafile-gui xdotool wmctrl
