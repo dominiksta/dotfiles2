@@ -83,7 +83,7 @@ Protesilaos Stavrou's config."
 
   (setq telephone-line-evil-use-short-tag t
         telephone-line-lhs
-        '((evil telephone-line-evil-tag-segment)
+        '((nil telephone-line-evil-tag-segment)
           (accent fp/telephone-line-vcs-segment
                   telephone-line-process-segment)
           (nil telephone-line-buffer-segment))

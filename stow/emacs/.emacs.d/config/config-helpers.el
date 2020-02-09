@@ -13,8 +13,8 @@
     (normal-top-level-add-subdirs-to-load-path)))
 
 
-(setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "firefox")
+(setq browse-url-browser-function 'browse-url-default-browser
+      browse-url-generic-program "waterfox")
 
 ;; (setq-default buffer-file-coding-system 'utf-8-unix)
 (set-language-environment "UTF-8")
