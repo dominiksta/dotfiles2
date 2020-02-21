@@ -5,7 +5,6 @@
 (toggle-frame-maximized)
 (blink-cursor-mode -1)
 (tooltip-mode 0)
-(window-divider-mode 1)
 
 (setq ring-bell-function
       (lambda () (let ((orig-fg (face-foreground 'mode-line)))
@@ -219,6 +218,30 @@ fixed-pitch faces."
             (set-face-attribute 'fringe nil :background nil)))
 
 (fp/theme-init)
+
+;; --------------------------------------------------------------------------------
+;; image display
+;; --------------------------------------------------------------------------------
+
+(defface image-background
+  '((((background  dark)) :background "#DDDDDD")
+    (((background light)) :background nil))
+  "The background of any inline images."
+  :group 'basic-faces)
+
+(defun create-image-with-background-color (args)
+  "Specify background color of Org-mode inline image through modify `ARGS'."
+  (let* ((file (car args))
+         (type (cadr args))
+         (data-p (caddr args))
+         (props (cdddr args)))
+    ;; get this return result style from `create-image'
+    (append (list file type data-p)
+            (list :background (face-background 'default))
+            props)))
+
+(advice-add 'create-image :filter-args
+            #'create-image-with-background-color)
 
 ;; --------------------------------------------------------------------------------
 ;; other
