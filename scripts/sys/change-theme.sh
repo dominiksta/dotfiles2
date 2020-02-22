@@ -13,8 +13,8 @@ desktop_environment="cinnamon"
 # - position 3: emacs-Theme (M-x load-theme)
 declare -A themesets
 themesets=(
-    ["light1"]="Greybird;mate;modus-operandi"
-    ["dark1"]="Adwaita-dark;mate;modus-vivendi"
+    ["light1"]="Greybird;mate;modus-operandi;xubuntu-light"
+    ["dark1"]="Adwaita-dark;mate;modus-vivendi;dark-pastel"
 )
 
 # Switch to a themeset specified in global `themesets`. Calls all the
@@ -25,9 +25,11 @@ _switch_theme() {
     gtk_theme="${THEMES[0]}"
     gtk_icon_theme="${THEMES[1]}"
     emacs_theme="${THEMES[2]}"
+    terminal_theme="${THEMES[3]}"
 
     _switch_theme_gtk "$gtk_theme" "$gtk_icon_theme"
     _switch_theme_emacs "$emacs_theme"
+    _switch_theme_terminal "$terminal_theme"
 }
 
 _switch_theme_gtk() {
@@ -80,9 +82,23 @@ _switch_theme_emacs() {
     fi
 }
 
+# Switch themes of running terminals using escape sequences.
+_switch_theme_terminal() {
+    theme_dir="$HOME/.local/share/terminal_colors"
+    ln -sf "$theme_dir/$1.conf" "$theme_dir/active.conf"
+
+    echo "switching to terminal theme: $1"
+    change-theme-terminal.sh $1
+}
+
 _sed() {
     sed --follow-symlinks -i "$@"
 }
 
 chosen_theme=$(echo "${!themesets[@]}" | sed 's/ /\n/g' | dmenu -l 10)
+if [ "$chosen_theme" = "" ]; then
+    echo "no theme chosen, exiting";
+    exit 0
+fi
+
 _switch_theme $chosen_theme

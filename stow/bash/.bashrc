@@ -62,6 +62,9 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     PS1="\[\e[34m\]\W\[\e[m\]\[\e[35m\] =>\[\e[m\] "
+    if [ $(which change-theme-terminal.sh) ]; then
+        change-theme-terminal.sh
+    fi
 else
     PS1='\W => '
 fi
