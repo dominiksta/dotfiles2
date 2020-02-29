@@ -13,8 +13,8 @@ desktop_environment="cinnamon"
 # - position 3: emacs-Theme (M-x load-theme)
 declare -A themesets
 themesets=(
-    ["light1"]="Greybird;mate;modus-operandi;xubuntu-light"
-    ["dark1"]="Adwaita-dark;mate;modus-vivendi;dark-pastel"
+    ["light1"]="Greybird;mate;modus-operandi;xterm-light"
+    ["dark1"]="Adwaita-dark;mate;modus-vivendi;xterm-dark"
 )
 
 # Switch to a themeset specified in global `themesets`. Calls all the
