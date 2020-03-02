@@ -155,7 +155,8 @@ some faces fixed-with (for tables, source code, etc.)"
 
 (use-package org-ref :ensure t :config
   (evil-leader/set-key-for-mode 'org-mode
-    "mc" 'org-ref-helm-insert-cite-link)
+    "mc" 'org-ref-helm-insert-cite-link
+    "mr" 'org-ref-helm-insert-ref-link)
   (setq bibtex-dialect 'biblatex))
 
 (with-eval-after-load "ox"
@@ -178,18 +179,25 @@ some faces fixed-with (for tables, source code, etc.)"
                  ("\\paragraph*{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph*{%s}" . "\\subparagraph*{%s}")))
 
-  ;; Includes the `listings` package in `org-latex-default-packages-alist' and
-  ;; sets up some other stuff for listings. We need this for syntax highlighting
+  ;; Includes the `minted` package in `org-latex-default-packages-alist' and
+  ;; sets up some other stuff for minted. We need this for syntax highlighting
   ;; in code.
-  (setq org-latex-listings t)
+  (config-add-external-dependency
+   'minted 'config-org "syntax highlighting in latex export"
+   (lambda () (executable-find "pygmentize"))
+   "pip install pygmentize" "pip install pygmentize")
+  (setq org-latex-listings 'minted)
+  (add-to-list 'org-latex-packages-alist '("" "minted"))
 
   ;; Sets up the build-pipeline. We call pdflatex multiple times here to prevent
-  ;; weirdness like toc not being generated. This is a normal latex problem.
+  ;; weirdness like toc not being generated. This is a normal latex problem. The
+  ;; '-shell-escape' is necessary for latex to call out to external processes
+  ;; such as pygmentize from minted.
   (setq org-latex-pdf-process
-        '("pdflatex -interaction nonstopmode -output-directory %o %f"
+        '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
           "bibtex %b"
-          "pdflatex -interaction nonstopmode -output-directory %o %f"
-          "pdflatex -interaction nonstopmode -output-directory %o %f")))
+          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")))
 
 ;; ----------------------------------- previews -----------------------------------
 
