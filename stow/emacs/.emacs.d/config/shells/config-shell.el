@@ -1,37 +1,17 @@
 (require-and-log 'config-language-shell-script)
+(require-and-log 'config-shell-switch)
 ;; --------------------------------------------------------------------------------
 ;; M-x shell, comint and stuff for all shells
 ;; --------------------------------------------------------------------------------
+
+;; leave prompt highlighting to the shell
+(custom-set-faces '(comint-highlight-prompt ((t nil))))
+
 ;; window setup
 (push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
 
 (add-hook 'shell-mode-hook 'goto-address-mode)
 (add-hook 'shell-mode-hook 'compilation-shell-minor-mode)
-
-(defun fp/new-bash-here (&optional arg)
-  (interactive "P")
-  (let ((explicit-shell-file-name "/bin/bash")
-        (buf (cond ((numberp arg)
-		    (get-buffer-create (format "%s<%d>"
-					       "*bash*"
-					       arg)))
-		   (t
-		    (get-buffer-create "*bash*")))))
-    (pop-to-buffer-same-window buf)
-    (unless (derived-mode-p 'shell-mode)
-      (shell buf))
-    buf))
-
-(defun fp/new-bash-here-xterm (&optional arg)
-  "Calls fp/new-bash-here with TERM=xterm-256color added to the
-environment. This may or may not be a good idea, since some
-default bashrc files set the PS1 to something that emacs cannot
-display if TERM contains xterm. But it does allow colors for many
-programs such as ls."
-  (interactive "P")
-  (let ((process-environment
-         (cons "TERM=xterm-256color" process-environment)))
-    (fp/new-bash-here arg)))
 
 ;; --- bindings ---
 (define-key shell-mode-map (kbd "C-l") 'comint-clear-buffer)
