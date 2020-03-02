@@ -307,6 +307,7 @@
 (global-set-key (kbd "M-RET") 'fp/eshell-here)
 (global-set-key (kbd "<C-s-return>") 'multi-term)
 
+(global-set-key (kbd "<C-return>") 'ss/dispatch-bash)
 ;; --------------------------------------------------------------------------------
 ;; finishing
 ;; --------------------------------------------------------------------------------

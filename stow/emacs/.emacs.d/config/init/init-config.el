@@ -1,15 +1,16 @@
 ;; --------------------------------------------------------------------------------
-;; disable garbage-collection during startup
+;; let emacs handle more system resources
 ;; --------------------------------------------------------------------------------
-(setq gc-cons-threshold 64000000)
-(add-hook 'after-init-hook #'(lambda () (setq gc-cons-threshold 800000)))
+(setq gc-cons-threshold 100000000)           ; garbage collection
+(setq read-process-output-max (* 1024 1024)) ; reading from processes
 
 ;; --------------------------------------------------------------------------------
 ;; set up package-management and use-package
 ;; --------------------------------------------------------------------------------
 (require 'package)
 (setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
 (unless (package-installed-p 'use-package) (package-refresh-contents) (package-install 'use-package))
