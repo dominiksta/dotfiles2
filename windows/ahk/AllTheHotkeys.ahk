@@ -116,7 +116,7 @@ bringtoforegroundbytitle(title, except){
         return
 }
 
-!+w::bringtoforegroundbyexe("firefox.exe", "firefox")
+!+w::bringtoforegroundbyexe("waterfox.exe", "waterfox")
 !Space::bringtoforegroundbytitle("fp@emacs", "C:\Users\fp\Desktop\emacs\emacs.lnk")
 !,::bringtoforegroundbytitle("Cmder", "cmder")
 ; !^t::backgroundelisp("(fp/terminal-here nil)")
