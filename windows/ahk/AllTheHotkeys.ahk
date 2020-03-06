@@ -122,7 +122,7 @@ bringtoforegroundbytitle(title, except){
         return
 }
 
-!+w::bringtoforegroundbyexe("waterfox.exe", "waterfox")
+!+w::bringtoforegroundbyclass("MozillaWindowClass", "waterfox")
 !Space::bringtoforegroundbyclass("Emacs", "runemacs.exe")
 !,::bringtoforegroundbytitle("Cmder", "cmder")
 ; !^t::backgroundelisp("(fp/terminal-here nil)")
