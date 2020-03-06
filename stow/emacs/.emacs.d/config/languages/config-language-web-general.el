@@ -58,7 +58,8 @@
   (setq web-mode-code-indent-offset 4
         web-mode-enable-auto-pairing nil
         web-mode-enable-auto-quoting nil
-        web-mode-enable-current-element-highlight t)
+        web-mode-enable-current-element-highlight t
+        web-mode-smart-quotes '("&bdquo;" . "&ldquo;"))
   (set-face-attribute 'web-mode-current-element-highlight-face nil
                       :foreground nil :background nil :inherit 'highlight)
   (evil-leader/set-key-for-mode 'web-mode
