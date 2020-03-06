@@ -44,28 +44,35 @@ case "$TERM" in
     xterm-color|*-256color|eterm-color) color_prompt=yes;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-force_color_prompt=yes
+# I use a function to set the PS1, since I want to show the current exit code if
+# it is non-zero. Therefore, we need to store the current exit code and use it
+# later on, which makes a function a lot more convenient to use than simply
+# setting a variable.
+PROMPT_COMMAND=_prompt_command
+_prompt_command() {
+    local EXIT="$?"
+    PS1=""
 
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
+    local RCol='\[\e[0m\]'
+    local Red='\[\e[0;31m\]'
+    local Pur='\[\e[0;35m\]'
+    local Cya='\[\e[36m\]'
+    # local Gre='\[\e[0;32m\]'
+    # local BYel='\[\e[1;33m\]'
+    # local BBlu='\[\e[1;34m\]'
+
+    if [ $EXIT != 0 ]; then
+        if [ "$color_prompt" = yes ]; then
+            PS1+="${Red}${EXIT} ${RCol}"
+        else
+            PS1+="${EXIT} "
+        fi
     fi
-fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1="\[\e[34m\]\W\[\e[m\]\[\e[35m\] =>\[\e[m\] "
-else
-    PS1='\W => '
-fi
-unset color_prompt force_color_prompt
+    PS1+="${Cya}\W${Pur} % ${RCol}"
+}
+
+# unset color_prompt force_color_prompt
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'

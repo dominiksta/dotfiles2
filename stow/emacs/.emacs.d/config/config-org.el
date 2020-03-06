@@ -16,7 +16,8 @@
 
 (with-eval-after-load "ob"
   (setq org-src-fontify-natively t
-        org-src-window-setup 'current-window)
+        org-src-window-setup 'current-window
+        org-edit-src-content-indentation 0)
   (require 'ob-python)
   (require 'ob-ditaa)
   (require 'ob-shell)
@@ -146,7 +147,60 @@ some faces fixed-with (for tables, source code, etc.)"
 
 (setq org-clock-mode-line-total 'today)
 
-;; --- latex ---
+;; ----------------------------------------------------------------------
+;; latex
+;; ----------------------------------------------------------------------
+
+;; ---------------------------------- exporting ----------------------------------
+
+(use-package org-ref :ensure t :config
+  (evil-leader/set-key-for-mode 'org-mode
+    "mc" 'org-ref-helm-insert-cite-link
+    "mr" 'org-ref-helm-insert-ref-link)
+  (setq bibtex-dialect 'biblatex))
+
+(with-eval-after-load "ox"
+  ;; include the ability to ignore headlines while still including their body
+  ;; with an :ignore: tag
+  (use-package org-plus-contrib :ensure t :defer t)
+  (require 'ox-extra)
+  (ox-extras-activate '(ignore-headlines))
+
+  ;; Add komascript's scrreprt to the available classes with my preffered
+  ;; settings. With this, you can use "#+LATEX_CLASS: scrreprt" in your
+  ;; org-file.
+  (add-to-list 'org-latex-classes
+               '("scrreprt"
+                 "\\documentclass[11pt, DIV=13, parskip=half, headings]{scrreprt}"
+                 ("\\chapter{%s}" . "\\chapter*{%s}")
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection*{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph*{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph*{%s}" . "\\subparagraph*{%s}")))
+
+  ;; Includes the `minted` package in `org-latex-default-packages-alist' and
+  ;; sets up some other stuff for minted. We need this for syntax highlighting
+  ;; in code.
+  (config-add-external-dependency
+   'minted 'config-org "syntax highlighting in latex export"
+   (lambda () (executable-find "pygmentize"))
+   "pip install pygmentize" "pip install pygmentize")
+  (setq org-latex-listings 'minted)
+  (add-to-list 'org-latex-packages-alist '("" "minted"))
+
+  ;; Sets up the build-pipeline. We call pdflatex multiple times here to prevent
+  ;; weirdness like toc not being generated. This is a normal latex problem. The
+  ;; '-shell-escape' is necessary for latex to call out to external processes
+  ;; such as pygmentize from minted.
+  (setq org-latex-pdf-process
+        '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "bibtex %b"
+          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")))
+
+;; ----------------------------------- previews -----------------------------------
+
 (config-add-external-dependency 'latex 'config-org "org latex snippets"
                                 (lambda () (executable-find "latex"))
                                 "sudo apt-get install -y texlive-latex-*" "choco install miktex")

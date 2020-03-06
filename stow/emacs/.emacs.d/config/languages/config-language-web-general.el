@@ -55,13 +55,16 @@
 (use-package web-mode
   :ensure t
   :config
+  (use-package auto-rename-tag :ensure t :demand t :init
+    (add-hook 'web-mode-hook 'auto-rename-tag-mode))
   (setq web-mode-code-indent-offset 4
         web-mode-enable-auto-pairing nil
         web-mode-enable-auto-quoting nil
         web-mode-enable-current-element-highlight t
         web-mode-smart-quotes '("&bdquo;" . "&ldquo;"))
-  (set-face-attribute 'web-mode-current-element-highlight-face nil
-                      :foreground nil :background nil :inherit 'highlight)
+  (custom-set-faces
+   '(web-mode-current-element-highlight-face ((t (:inherit highlight))))
+   '(web-mode-html-tag-face ((t nil))))
   (evil-leader/set-key-for-mode 'web-mode
     "ed" 'fp/refresh-browser
     "mf" 'web-mode-fold-or-unfold)

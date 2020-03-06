@@ -1,7 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Move the current window to the next monitor.
 #
+# Only works on a horizontal monitor setup.
 # Also works only on one X screen (which is the most common case).
 #
 # Props to
@@ -12,53 +13,34 @@
 # the first command does not respect panel/decoration offsets and the second
 # will sometimes give a "-0-0" geometry. This is why we resort to "xwininfo".
 
-screen_width=$(xdpyinfo | awk -F" |x" '/dimensions:/ { print $7 }')
-screen_height=$(xdpyinfo | awk -F" |x" '/dimensions:/ { print $8 }')
-window_id=$(xdotool getactivewindow)
-
-case $1 in
-    -l )
-        display_width=$((screen_width / 3 * 2)) ;;
-    -r )
-        display_width=$((screen_width / 3)) ;;
-esac
+screen_width=`xdpyinfo | awk '/dimensions:/ { print $2; exit }' | cut -d"x" -f1`
+display_width=`xdotool getdisplaygeometry | cut -d" " -f1`
+window_id=`xdotool getactivewindow`
 
 # Remember if it was maximized.
-window_state=$(xprop -id $window_id _NET_WM_STATE | awk '{ print $3 }')
+window_state=`xprop -id $window_id _NET_WM_STATE | awk '{ print $3 }'`
 
 # Un-maximize current window so that we can move it
 wmctrl -ir $window_id -b remove,maximized_vert,maximized_horz
 
 # Read window position
-x=$(xwininfo -id $window_id | awk '/Absolute upper-left X:/ { print $4 }')
-y=$(xwininfo -id $window_id | awk '/Absolute upper-left Y:/ { print $4 }')
+x=`xwininfo -id $window_id | awk '/Absolute upper-left X:/ { print $4 }'`
+y=`xwininfo -id $window_id | awk '/Absolute upper-left Y:/ { print $4 }'`
 
-# Subtract any offsets caused by window decorations and panels
-x_offset=$(xwininfo -id $window_id | awk '/Relative upper-left X:/ { print $4 }')
-y_offset=$(xwininfo -id $window_id | awk '/Relative upper-left Y:/ { print $4 }')
-x=$((x - x_offset))
-y=$((y - y_offset))
-
-# Fix Chromium app view issue of small un-maximized size
-width=$(xdotool getwindowgeometry $window_id | awk -F" |x" '/Geometry:/ { print $4 }')
-if [ "$width" -lt "150" ]; then
-  display_width=$((display_width + 150))
-fi
+# Subtract any offsets caused by panels or window decorations
+x_offset=`xwininfo -id $window_id | awk '/Relative upper-left X:/ { print $4 }'`
+y_offset=`xwininfo -id $window_id | awk '/Relative upper-left Y:/ { print $4 }'`
+x=`expr $x - $x_offset`
+y=`expr $y - $y_offset`
 
 # Compute new X position
-new_x=$((x + display_width))
-# Compute new Y position
-new_y=$((y + screen_height))
+new_x=`expr $x + $display_width`
 
 # If we would move off the right-most monitor, we set it to the left one.
 # We also respect the window's width here: moving a window off more than half its width won't happen.
-if [ $((new_x + width / 2)) -gt $screen_width ]; then
-  new_x=$((new_x - screen_width))
-fi
-
-height=$(xdotool getwindowgeometry $window_id | awk -F" |x" '/Geometry:/ { print $5 }')
-if [ $((new_y + height / 2)) -gt $screen_height ]; then
-  new_y=$((new_y - screen_height))
+width=`xdotool getwindowgeometry $window_id | awk '/Geometry:/ { print $2 }'|cut -d"x" -f1`
+if [ `expr $new_x + $width / 2` -gt $screen_width ]; then
+  new_x=`expr $new_x - $screen_width`
 fi
 
 # Don't move off the left side.
@@ -66,15 +48,10 @@ if [ $new_x -lt 0 ]; then
   new_x=0
 fi
 
-# Don't move off the bottom
-if [ $new_y -lt 0 ]; then
-  new_y=0
-fi
-
 # Move the window
-xdotool windowmove $window_id $new_x $new_y
+xdotool windowmove $window_id $new_x $y
 
-# Maintain if window was maximized or not
+# Maximize window again, if it was before
 if [ "${window_state}" = "_NET_WM_STATE_MAXIMIZED_HORZ," ]; then
-    wmctrl -ir $window_id -b add,maximized_vert,maximized_horz
+  wmctrl -ir $window_id -b add,maximized_vert,maximized_horz
 fi
