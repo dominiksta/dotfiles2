@@ -87,6 +87,15 @@ backgroundelisp(expr){
     Run, emacsclient.exe -e "%expr%",,Hide
 }
 
+bringtoforegroundbyclass(class, except){
+        query = ahk_class %class%
+        if WinExist(query)
+                WinActivate  ; Uses the last found window.
+        else
+                Run %except%
+        return
+}
+
 bringtoforegroundbyexe(exe, except){
         SetTitleMatchMode, 2 ; approximate match
         IfWinExist, - ahk_exe %exe%
@@ -114,7 +123,7 @@ bringtoforegroundbytitle(title, except){
 }
 
 !+w::bringtoforegroundbyexe("waterfox.exe", "waterfox")
-!Space::bringtoforegroundbytitle("fp@emacs", "C:\Users\fp\Desktop\emacs\emacs.lnk")
+!Space::bringtoforegroundbyclass("Emacs", "runemacs.exe")
 !,::bringtoforegroundbytitle("Cmder", "cmder")
 ; !^t::backgroundelisp("(fp/terminal-here nil)")
 ; !F1::foregroundelisp("(fp/external/start-program)")
