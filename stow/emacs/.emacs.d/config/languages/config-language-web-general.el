@@ -60,7 +60,8 @@
   (setq web-mode-code-indent-offset 4
         web-mode-enable-auto-pairing nil
         web-mode-enable-auto-quoting nil
-        web-mode-enable-current-element-highlight t)
+        web-mode-enable-current-element-highlight t
+        web-mode-smart-quotes '("&bdquo;" . "&ldquo;"))
   (custom-set-faces
    '(web-mode-current-element-highlight-face ((t (:inherit highlight))))
    '(web-mode-html-tag-face ((t nil))))

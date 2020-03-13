@@ -81,6 +81,21 @@ Protesilaos Stavrou's config."
                (t
                 (telephone-line-raw "")))))))
 
+  (telephone-line-defsegment fp/telephone-line-eyebrowse-segment ()
+    "Show the current eyebrowse window config if eyebrowse is
+available."
+    (if (featurep 'eyebrowse)
+        (concat "[" (number-to-string
+                     (eyebrowse--get 'current-slot))
+                "] ") ""))
+
+  (set-face-attribute
+   'telephone-line-evil-normal nil
+   :foreground nil :background nil :inherit 'mode-line)
+  (set-face-attribute
+   'telephone-line-evil-insert nil
+   :foreground nil :background nil :inherit 'mode-line)
+
   (setq telephone-line-evil-use-short-tag t
         telephone-line-lhs
         '((nil telephone-line-evil-tag-segment)
@@ -89,8 +104,15 @@ Protesilaos Stavrou's config."
           (nil telephone-line-buffer-segment))
         telephone-line-rhs
         '((nil telephone-line-flycheck-segment)
-          (accent telephone-line-airline-position-segment)
-          (nil telephone-line-misc-info-segment))))
+          (accent fp/telephone-line-eyebrowse-segment
+                  telephone-line-airline-position-segment)
+          (nil telephone-line-misc-info-segment))
+        telephone-line-primary-left-separator telephone-line-nil
+        telephone-line-primary-right-separator telephone-line-nil
+        telephone-line-secondary-left-separator telephone-line-nil
+        telephone-line-secondary-right-separator telephone-line-nil
+        ))
+
 
 (telephone-line-mode 1)
 

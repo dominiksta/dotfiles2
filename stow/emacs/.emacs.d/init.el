@@ -3,7 +3,7 @@
 
 ;; Set all changes made by customize to be saved to this file.
 (setq custom-file "~/.emacs.d/custom.el")
-(load "~/.emacs.d/custom.el")
+(when (file-exists-p custom-file) (load custom-file))
 
 ;; this line is for running emacs from usb
 ;; CONFIG_DIRECTORY should be set to something like 'dotfiles/emacs'

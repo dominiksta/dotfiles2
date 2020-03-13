@@ -131,8 +131,8 @@ some faces fixed-with (for tables, source code, etc.)"
       org-fontify-done-headline nil
       org-fontify-quote-and-verse-blocks t
       org-hide-emphasis-markers t
-      org-tags-column -75
-      org-ellipsis " »")
+      ;; org-ellipsis " »"
+      org-tags-column -75)
 
 ;; --- modeline ---
 (with-eval-after-load "org-clock"

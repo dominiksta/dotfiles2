@@ -13,7 +13,7 @@
     (normal-top-level-add-subdirs-to-load-path)))
 
 
-(setq browse-url-browser-function 'browse-url-default-browser
+(setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "waterfox")
 
 ;; (setq-default buffer-file-coding-system 'utf-8-unix)
@@ -101,6 +101,5 @@
 (setq fp/mouse-forward (if (eq system-type 'windows-nt) [mouse-5] [mouse-9])
       fp/double-mouse-forward (if (eq system-type 'windows-nt) [(double-mouse-5)] [(double-mouse-9)])
       fp/triple-mouse-forward (if (eq system-type 'windows-nt) [(triple-mouse-5)] [(triple-mouse-9)]))
-
 
 (provide 'config-helpers)
