@@ -3,8 +3,9 @@
 # Relevant to use the appropriate settings daemon. Supported values are:
 # - "cinnamon"
 # - "gnome"
+# - "xfce"
 # As a fallback, xsettingsd is used
-desktop_environment="cinnamon"
+desktop_environment="xfce"
 
 # An associative array of identifiers to sets of themes. Themes are sperated
 # by `;` and describe a type of theme based on their position:
@@ -13,8 +14,8 @@ desktop_environment="cinnamon"
 # - position 3: emacs-Theme (M-x load-theme)
 declare -A themesets
 themesets=(
-    ["light1"]="Greybird;mate;modus-operandi;xterm-light"
-    ["dark1"]="Adwaita-dark;mate;modus-vivendi;xterm-dark"
+    ["light1"]="Greybird;Pocillo;modus-operandi;xterm-light"
+    ["dark1"]="Adwaita-dark;Pocillo;modus-vivendi;xterm-dark"
 )
 
 # Switch to a themeset specified in global `themesets`. Calls all the
@@ -45,6 +46,12 @@ _switch_theme_gtk() {
             echo "switching to gtk theme: $1 (with gnome-settings-daemon)"
             gsettings set org.gnome.desktop.interface gtk-theme $1
             gsettings set org.gnome.desktop.interface icon-theme $2
+            ;;
+
+        xfce)
+            echo "switching to gtk theme: $1 (with xfsettingsd/xfconf-query)"
+            xfconf-query -c xsettings -p /Net/ThemeName -s $1
+            xfconf-query -c xsettings -p /Net/IconThemeName -s $2
             ;;
 
         *)

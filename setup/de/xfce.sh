@@ -12,3 +12,6 @@ sudo apt-get install -y lightdm openbox \
 # my 144 Hz panel gets vsync'ed to 60 Hz when i have my secondary 60 Hz monitor
 # connected.
 xfconf-query -c xfwm4 -p /general/vblank_mode -s xpresent
+
+# Disable desktop icons
+xfconf-query -c xfce4-desktop -v --create -p /desktop-icons/style -t int -s 0

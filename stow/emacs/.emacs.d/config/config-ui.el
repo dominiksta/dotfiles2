@@ -48,7 +48,7 @@ fixed-pitch faces."
                         :font fp/theme-font-family
                         :weight 'normal)))
 
-(fp/theme-font-setup)
+(if window-system (fp/theme-font-setup))
 
 (setq fp/theme-light-theme 'tsdh-light
       fp/theme-dark-theme 'misterioso

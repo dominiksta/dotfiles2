@@ -325,7 +325,7 @@ some faces fixed-with (for tables, source code, etc.)"
 ;; manually set applications platform independent
 ;; these have to be set in org-file-apps to a value before
 (setcdr (assoc "\\.png\\'" org-file-apps) (if (eq system-type 'windows-nt)
-                                              "mspaint.exe %s" "pinta %s"))
+                                              "mspaint.exe %s" "kolourpaint %s"))
 
 
 ;; --- archiving ---
@@ -350,10 +350,11 @@ some faces fixed-with (for tables, source code, etc.)"
                                              "None" "cinst -y irfanview")
              (setq org-download-screenshot-method "i_view64 /capture=4 /convert=\"%s\""
                    org-download-backend "wget \"%s\" -O \"%s\""))
-    (progn (config-add-external-dependency 'scrot 'config-org "org-download"
-                                           (lambda () (executable-find "scrot"))
-                                           "sudo apt-get install -y scrot" "None")
-           (setq org-download-screenshot-method "scrot -s %s"))))
+    (progn (config-add-external-dependency
+            'xfce4-screenshooter 'config-org "org-download"
+            (lambda () (executable-find "xfce4-screenshooter"))
+            "sudo apt-get install -y xfce4-screenshooter" "None")
+           (setq org-download-screenshot-method "xfce4-screenshooter -r -s %s"))))
 
 ;; --------------------------------------------------------------------------------
 ;; capture
