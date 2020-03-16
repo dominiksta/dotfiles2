@@ -1,1 +1,16 @@
 stow/themes/.local/share/terminal_colors/active.conf
+
+stow/xfce4/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-settings-manager.xml
+stow/xfce4/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-settings-editor.xml
+stow/xfce4/.config/xfce4/xfconf/xfce-perchannel-xml/displays.xml
+stow/xfce4/.config/xfce4/xfconf/xfce-perchannel-xml/parole.xml
+stow/xfce4/.config/xfce4/xfconf/xfce-perchannel-xml/pointers.xml
+stow/xfce4/.config/xfce4/xfconf/xfce-perchannel-xml/ristretto.xml
+stow/xfce4/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+stow/xfce4/.config/xfce4/xfconf/xfce-perchannel-xml/keyboards.xml
+stow/xfce4/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-appfinder.xml
+stow/xfce4/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+stow/xfce4/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
+stow/xfce4/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-screensaver.xml
+stow/xfce4/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+stow/xfce4/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
