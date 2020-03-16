@@ -69,17 +69,18 @@
       <property name="&lt;Primary&gt;&lt;Alt&gt;l" type="string" value="xflock4"/>
       <property name="XF86Display" type="string" value="xfce4-display-settings --minimal"/>
       <property name="XF86Mail" type="string" value="exo-open --launch MailReader"/>
-      <property name="&lt;Shift&gt;Print" type="string" value="xfce4-screenshooter -r"/>
       <property name="&lt;Super&gt;p" type="string" value="xfce4-display-settings --minimal"/>
       <property name="XF86WWW" type="string" value="exo-open --launch WebBrowser"/>
       <property name="override" type="bool" value="true"/>
       <property name="&lt;Super&gt;a" type="string" value="dmenu_run -l 10"/>
       <property name="&lt;Shift&gt;&lt;Alt&gt;w" type="string" value="run-or-raise.sh waterfox waterfox"/>
       <property name="&lt;Alt&gt;space" type="string" value="run-or-raise.sh emacs emacs"/>
-      <property name="&lt;Alt&gt;comma" type="string" value="run-or-raise.sh xfce4-terminal xfce4-terminal"/>
       <property name="&lt;Super&gt;e" type="string" value="thunar"/>
       <property name="&lt;Shift&gt;&lt;Super&gt;Right" type="string" value="move-to-next-monitor.sh"/>
       <property name="&lt;Shift&gt;&lt;Super&gt;Left" type="string" value="move-to-next-monitor.sh"/>
+      <property name="&lt;Alt&gt;comma" type="string" value="run-or-raise.sh urxvt &quot;urxvt -e tmux&quot;"/>
+      <property name="&lt;Shift&gt;&lt;Super&gt;t" type="string" value="change-theme.sh"/>
+      <property name="&lt;Shift&gt;Print" type="string" value="xfce4-screenshooter -r"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">

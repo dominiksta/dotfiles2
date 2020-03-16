@@ -14,7 +14,7 @@ desktop_environment="xfce"
 # - position 3: emacs-Theme (M-x load-theme)
 declare -A themesets
 themesets=(
-    ["light1"]="Greybird;Pocillo;modus-operandi;xterm-light"
+    ["light1"]="Greybird;Pocillo;modus-operandi;xubuntu-light"
     ["dark1"]="Adwaita-dark;Pocillo;modus-vivendi;xterm-dark"
 )
 
