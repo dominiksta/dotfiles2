@@ -78,9 +78,9 @@
       <property name="&lt;Super&gt;e" type="string" value="thunar"/>
       <property name="&lt;Shift&gt;&lt;Super&gt;Right" type="string" value="move-to-next-monitor.sh"/>
       <property name="&lt;Shift&gt;&lt;Super&gt;Left" type="string" value="move-to-next-monitor.sh"/>
-      <property name="&lt;Alt&gt;comma" type="string" value="run-or-raise.sh urxvt &quot;urxvt -e tmux&quot;"/>
       <property name="&lt;Shift&gt;&lt;Super&gt;t" type="string" value="change-theme.sh"/>
       <property name="&lt;Shift&gt;Print" type="string" value="xfce4-screenshooter -r"/>
+      <property name="&lt;Alt&gt;comma" type="string" value="run-or-raise.sh tabbed-urxvt tabbed-urxvt.sh"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">
