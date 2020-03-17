@@ -2,4 +2,5 @@
 
 apt-get install -y xbacklight
 
-cp -f 02-backlight.sh /etc/X11/xorg.conf.d/
+mkdir -p /etc/X11/xorg.conf.d
+cp -f 02-backlight.conf /etc/X11/xorg.conf.d/
