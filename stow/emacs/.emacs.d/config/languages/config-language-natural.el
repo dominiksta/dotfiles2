@@ -35,8 +35,12 @@
 
 (when (config-external-check-list '(hunspell hunspell-de-de hunspell-en-us))
 
-  (setq ispell-program-name "hunspell")
-  (setq ispell-dictionary (concat "en_US," fp/hunspell-de-dict))
+
+  ;; Sets ispell up to ignore html markup.
+  (setq-default ispell-skip-html t)
+
+  (setq ispell-program-name "hunspell"
+        ispell-dictionary (concat "en_US," fp/hunspell-de-dict))
   ;; ispell-set-spellchecker-params has to be called before
   ;; ispell-hunspell-add-multi-dic will work
   (ispell-set-spellchecker-params)
@@ -53,8 +57,8 @@
         (flyspell-mode 0)
       (progn
         (if (derived-mode-p 'prog-mode)
-            (flyspell-prog-mode)
-          (flyspell-mode))
+            (flyspell-prog-mode 1))
+        (flyspell-mode 1)
         (flyspell-buffer))))
 
   (use-package helm-flyspell

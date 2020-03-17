@@ -37,20 +37,17 @@ return
 	Run, nircmd.exe setdefaultsounddevice Realtek 2
 return
 
+!+Down::Send  {Volume_Down}
+!+Up::Send    {Volume_Up}
+!+Right::Send {Media_Next}
+!+Left::Send  {Media_Prev}
+!+Space::Send {Media_Play_Pause}
+!+Enter::Send {Volume_Mute}
 
 ;------------------------------------------------------------
 ; Words
 ;------------------------------------------------------------
 +!^F9::Send https://akk.li/pics/anne/jpg
-
-;------------------------------------------------------------
-; Media Keys
-;------------------------------------------------------------
-
-; ^!Left::Send   {Media_Prev}
-; ^!Down::Send   {Media_Play_Pause}
-; ^!Right::Send  {Media_Next}
-; +^!Down::Send  {Volume_Mute}
 
 ;------------------------------------------------------------
 ; Other Shortcuts
@@ -90,6 +87,15 @@ backgroundelisp(expr){
     Run, emacsclient.exe -e "%expr%",,Hide
 }
 
+bringtoforegroundbyclass(class, except){
+        query = ahk_class %class%
+        if WinExist(query)
+                WinActivate  ; Uses the last found window.
+        else
+                Run %except%
+        return
+}
+
 bringtoforegroundbyexe(exe, except){
         SetTitleMatchMode, 2 ; approximate match
         IfWinExist, - ahk_exe %exe%
@@ -116,8 +122,8 @@ bringtoforegroundbytitle(title, except){
         return
 }
 
-!+w::bringtoforegroundbyexe("waterfox.exe", "waterfox")
-!Space::bringtoforegroundbytitle("fp@emacs", "C:\Users\fp\Desktop\emacs\emacs.lnk")
+!+w::bringtoforegroundbyclass("MozillaWindowClass", "waterfox")
+!Space::bringtoforegroundbyclass("Emacs", "runemacs.exe")
 !,::bringtoforegroundbytitle("Cmder", "cmder")
 ; !^t::backgroundelisp("(fp/terminal-here nil)")
 ; !F1::foregroundelisp("(fp/external/start-program)")

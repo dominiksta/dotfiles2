@@ -1,6 +1,7 @@
 # -*- mode: shell-script; -*-
 alias em='emacsclient -n --alternate-editor=emacs'
 alias emn='emacsclient -nw --alternate-editor=emacs'
+alias t='tmux'
 alias o='xdg-open'
 
 alias gd='gdbtui -q'
