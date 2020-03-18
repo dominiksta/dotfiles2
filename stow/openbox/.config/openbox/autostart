@@ -1,5 +1,6 @@
 urxvtd -q -o -f
+intuos.sh first &
+caps.sh &
 nitrogen --restore &
 nm-applet &
-/home/f1p/git/dotfiles/scripts/keys/caps.sh &
 redshift &
