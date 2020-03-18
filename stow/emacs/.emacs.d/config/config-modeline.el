@@ -81,6 +81,18 @@ Protesilaos Stavrou's config."
                (t
                 (telephone-line-raw "")))))))
 
+  (telephone-line-defsegment fp/telephone-line-airline-position-segment ()
+    "Position segment imitating vim-airline's
+appearance. Optional args set padding on lines/columns."
+    (let* ((l (number-to-string 4))
+           (c (number-to-string 3)))
+      (if (eq major-mode 'pdf-view-mode)
+          (telephone-line-raw mode-line-position t)
+        `((-3 "%p")
+          ,(concat " %" l "l" ":%" c
+                   (if (bound-and-true-p
+                        column-number-indicator-zero-based) "c" "C"))))))
+
   (telephone-line-defsegment fp/telephone-line-eyebrowse-segment ()
     "Show the current eyebrowse window config if eyebrowse is
 available."
@@ -105,7 +117,7 @@ available."
         telephone-line-rhs
         '((nil telephone-line-flycheck-segment)
           (accent fp/telephone-line-eyebrowse-segment
-                  telephone-line-airline-position-segment)
+                  fp/telephone-line-airline-position-segment)
           (nil telephone-line-misc-info-segment))
         telephone-line-primary-left-separator telephone-line-nil
         telephone-line-primary-right-separator telephone-line-nil
