@@ -50,7 +50,7 @@
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
       <property name="enable-mpris" type="bool" value="true"/>
       <property name="mixer-command" type="string" value="pavucontrol"/>
-      <property name="mpris-players" type="string" value="audacious;chromium.instance13898;chromium.instance15936;chromium.instance4527;parole;spotify;vlc"/>
+      <property name="mpris-players" type="string" value="audacious;parole;spotify;vlc"/>
       <property name="show-notifications" type="bool" value="true"/>
     </property>
     <property name="plugin-11" type="string" value="separator">
@@ -66,6 +66,8 @@
     </property>
     <property name="plugin-5" type="string" value="systray">
       <property name="names-ordered" type="array">
+        <value type="string" value="thunar"/>
+        <value type="string" value="simplescreenrecorder"/>
         <value type="string" value="mumble"/>
         <value type="string" value="openfortigui"/>
         <value type="string" value="vlc"/>
@@ -80,11 +82,13 @@
         <value type="string" value="networkmanager applet"/>
         <value type="string" value="nextcloud"/>
         <value type="string" value="network"/>
+        <value type="string" value="keepassxc"/>
       </property>
       <property name="show-frame" type="bool" value="false"/>
       <property name="names-hidden" type="array">
+        <value type="string" value="blueman-applet"/>
       </property>
-      <property name="size-max" type="uint" value="22"/>
+      <property name="size-max" type="uint" value="20"/>
       <property name="square-icons" type="bool" value="true"/>
     </property>
   </property>

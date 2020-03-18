@@ -60,7 +60,6 @@
       </property>
       <property name="XF86Explorer" type="string" value="exo-open --launch FileManager"/>
       <property name="&lt;Super&gt;m" type="string" value="exo-open --launch MailReader"/>
-      <property name="&lt;Primary&gt;Escape" type="string" value="xfce4-popup-whiskermenu"/>
       <property name="XF86Calculator" type="string" value="mate-calc"/>
       <property name="&lt;Super&gt;t" type="string" value="exo-open --launch TerminalEmulator"/>
       <property name="XF86HomePage" type="string" value="exo-open --launch WebBrowser"/>
@@ -81,6 +80,7 @@
       <property name="&lt;Shift&gt;&lt;Super&gt;t" type="string" value="change-theme.sh"/>
       <property name="&lt;Shift&gt;Print" type="string" value="xfce4-screenshooter -r"/>
       <property name="&lt;Alt&gt;comma" type="string" value="run-or-raise.sh tabbed-urxvt tabbed-urxvt.sh"/>
+      <property name="&lt;Super&gt;less" type="string" value="xfce4-popup-whiskermenu"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">
