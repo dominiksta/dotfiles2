@@ -2,6 +2,7 @@
 
 pushd .
 
+mkdir -p ~/.config/autostart/
 mkdir -p ~/.emacs.d/
 mkdir -p ~/bin/
 

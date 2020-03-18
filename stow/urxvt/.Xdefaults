@@ -2,19 +2,18 @@
 ! General
 ! ----------------------------------------------------------------------
 
-*background: #000000
-*foreground: #FFFFFF
+#include ".local/share/terminal_colors/active_urxvt.conf"
 
 ! ----------------------------------------------------------------------
 ! URxvt
 ! ----------------------------------------------------------------------
 
 ! Use symbola as a fallback font for emojis
-URxvt.font                   : xft:DejaVu Sans Mono:size=10, xft:Symbola:size=10
-! By default, the characters are spaced too wide in urxvt
-URxvt.letterSpace            : -1
+URxvt.font                   : xft:Iosevka Term:pixelsize=15
+! By default, the characters are spaced too wide for some fonts
+! URxvt.letterSpace            : -1
 
-URxvt.perl-ext-common        : default,resize-font
+URxvt.perl-ext-common        : default,resize-font,config-reload
 URxvt.scrollBar              : false
 URxvt.internalBorder         : 0
 URxvt.geometry               : 150x40

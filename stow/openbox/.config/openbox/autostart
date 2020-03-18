@@ -1,3 +1,4 @@
+urxvtd -q -o -f
 nitrogen --restore &
 nm-applet &
 /home/f1p/git/dotfiles/scripts/keys/caps.sh &

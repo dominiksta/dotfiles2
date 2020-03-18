@@ -18,5 +18,4 @@ fi
 wmctrl -i -a $(<$XID_FILE)
 
 # Start urxvt in the instance of tabbed identified by the xid.
-urxvt -tn xterm-256color -embed $(<$XID_FILE) $*
-
+urxvtc -tn xterm-256color -embed $(<$XID_FILE) $*
