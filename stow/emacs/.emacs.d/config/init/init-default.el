@@ -73,7 +73,8 @@
 (config-require '(config-org)     :feature calendar)
 (config-require '(config-elfeed)  :feature elfeed)
 (config-require '(config-tramp)   :feature tramp)
-(config-require '(config-epass)   :feature epass) (require 'epass nil t)
+;; (config-require '(config-epass)   :feature epass) (require 'epass nil t)
+(config-require '(config-keepassxc-cli)   :feature keepassxc-cli) (require 'keepassxc-cli)
 
 
 ;; ispell gets loaded with evil no matter what

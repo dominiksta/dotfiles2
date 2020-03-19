@@ -6,6 +6,11 @@
 (blink-cursor-mode -1)
 (tooltip-mode 0)
 
+;; Do not send size hints to the window manager. The default value makes it
+;; impossible to properly tile emacs.
+(setq frame-resize-pixelwise t)
+
+;; A visual bell
 (setq ring-bell-function
       (lambda () (let ((orig-fg (face-foreground 'mode-line)))
               (set-face-foreground 'mode-line "#F2804F")
@@ -16,8 +21,8 @@
 ;; --------------------------------------------------------------------------------
 ;; themes and fonts
 ;; --------------------------------------------------------------------------------
-(setq fp/theme-font-family "Dejavu Sans Mono"
-      fp/theme-font-family-size "11"
+(setq fp/theme-font-family "Iosevka Term"
+      fp/theme-font-family-size "12"
       fp/theme-font-family-fallback "Lucida Console"
       fp/theme-font-family-fallback-size "12"
       fp/theme-font-family-variable-pitch "DejaVu Serif"
@@ -48,7 +53,7 @@ fixed-pitch faces."
                         :font fp/theme-font-family
                         :weight 'normal)))
 
-(fp/theme-font-setup)
+(if window-system (fp/theme-font-setup))
 
 (setq fp/theme-light-theme 'tsdh-light
       fp/theme-dark-theme 'misterioso
@@ -247,7 +252,7 @@ fixed-pitch faces."
 ;; other
 ;; --------------------------------------------------------------------------------
 
-(setq frame-title-format "fp@emacs")
+(setq frame-title-format "f1p@emacs")
 (use-package rainbow-mode :ensure t :defer t)
 
 (use-package olivetti

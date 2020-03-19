@@ -70,6 +70,16 @@ _prompt_command() {
     fi
 
     PS1+="${Cya}\W${Pur} % ${RCol}"
+
+    # If this is an xterm set the title to user@host:dir
+    case "$TERM" in
+        xterm*|rxvt*)
+            echo -ne "\033]0;${HOSTNAME}::${PWD/*\//}\007"
+            PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}::${PWD/*\//}\007"'
+            ;;
+        *)
+            ;;
+    esac
 }
 
 # unset color_prompt force_color_prompt
