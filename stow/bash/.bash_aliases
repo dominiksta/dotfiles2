@@ -34,3 +34,26 @@ if [ $TERM == 'emacs' ]; then
     alias fgrep='fgrep --color=always'
     alias egrep='egrep --color=always'
 fi
+
+
+function screenshare-virtual-webcam {
+    sudo rmmod v4l2loopback
+    sudo modprobe v4l2loopback video_nr=7 'card_label=myFakeCam' 'exclusive_caps=1'
+
+    ffmpeg -f x11grab -r 20 -s 1920x1080 \
+           -i :0.0+0,0 -vcodec rawvideo \
+           -pix_fmt yuv420p -threads 0 \
+           -f v4l2 /dev/video7
+}
+
+# apt-get install -y vlc-plugin-access-extra
+function screenshare-virtual-window {
+    vlc --no-video-deco \
+        --no-embedded-video \
+        --screen-fps=20 \
+        --screen-top=0 \
+        --screen-left=0  \
+        --screen-width=1920 \
+        --screen-height=1080 \
+        screen://
+}
