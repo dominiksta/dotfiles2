@@ -5,13 +5,13 @@
 # tabbed perl extension for urxvt. Further instances of urxvt will be spawned in
 # the same instance of tabbed.
 
-XID_FILE=/tmp/tabbed-urxvt.xid
+XID_FILE=/tmp/tabbed-urxvtc.xid
 
 # If there is no file containing the xid AND there is no running instance of
 # tabbed matching that xid, only then start a new instance of tabbed and write
 # to xid file.
 if [ ! -f $XID_FILE ] || ! wmctrl -l | grep $(cat $XID_FILE | cut -c 3-) ; then
-    tabbed -n tabbed-urxvt -d > $XID_FILE
+    tabbed -n tabbed-urxvtc -d > $XID_FILE
 fi
 
 # Raise the tabbed window
