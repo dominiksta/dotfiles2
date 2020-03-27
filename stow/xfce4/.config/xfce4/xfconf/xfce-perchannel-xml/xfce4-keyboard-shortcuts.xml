@@ -46,7 +46,6 @@
         <property name="startup-notify" type="bool" value="true"/>
       </property>
       <property name="&lt;Primary&gt;&lt;Alt&gt;Delete" type="string" value="xflock4"/>
-      <property name="&lt;Super&gt;f" type="string" value="exo-open --launch FileManager"/>
       <property name="&lt;Alt&gt;F1" type="string" value="xfce4-popup-applicationsmenu"/>
       <property name="&lt;Super&gt;w" type="string" value="exo-open --launch WebBrowser"/>
       <property name="&lt;Super&gt;l" type="string" value="xflock4"/>
@@ -73,14 +72,14 @@
       <property name="override" type="bool" value="true"/>
       <property name="&lt;Super&gt;a" type="string" value="dmenu_run -l 10"/>
       <property name="&lt;Shift&gt;&lt;Alt&gt;w" type="string" value="run-or-raise.sh waterfox waterfox"/>
-      <property name="&lt;Alt&gt;space" type="string" value="run-or-raise.sh emacs emacs"/>
-      <property name="&lt;Super&gt;e" type="string" value="thunar"/>
       <property name="&lt;Shift&gt;&lt;Super&gt;Right" type="string" value="move-to-next-monitor.sh"/>
       <property name="&lt;Shift&gt;&lt;Super&gt;Left" type="string" value="move-to-next-monitor.sh"/>
       <property name="&lt;Shift&gt;&lt;Super&gt;t" type="string" value="change-theme.sh"/>
       <property name="&lt;Shift&gt;Print" type="string" value="xfce4-screenshooter -r"/>
-      <property name="&lt;Alt&gt;comma" type="string" value="run-or-raise.sh tabbed-urxvt tabbed-urxvt.sh"/>
       <property name="&lt;Super&gt;less" type="string" value="xfce4-popup-whiskermenu"/>
+      <property name="&lt;Alt&gt;comma" type="string" value="run-or-raise.sh tabbed-urxvtc tabbed-urxvtc.sh"/>
+      <property name="&lt;Super&gt;e" type="string" value="exo-open --launch FileManager"/>
+      <property name="&lt;Alt&gt;space" type="string" value="run-or-raise.sh emacs em"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">
