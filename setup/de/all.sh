@@ -1,7 +1,16 @@
 #!/bin/bash
 
-apt-get install -y stow rxvt-unicode dmenu tint2 \
-        redshift compton seafile-gui \
-        xdotool wmctrl xclip 
+# --- terminal ---
+apt-get install -y rxvt-unicode \
+        libcommon-sense-perl \
+        liblinux-fd-perl \
+        libanyevent-perl \
+        tmux
+
+# --- other ---
+apt-get install -y stow dmenu \
+        redshift xdotool wmctrl xclip \
+        xkbset xcape \
+	ttf-dejavu
 
 git config --global user.email "f1rstperson@gmx.net"
