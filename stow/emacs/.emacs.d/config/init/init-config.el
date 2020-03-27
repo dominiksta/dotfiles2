@@ -83,9 +83,9 @@ EXTs elements as its extension."
                                  (,auto-mode))))
                (add-to-list
                 'auto-mode-alist
-                '(,regexp . (lambda () (dolist (config-unit ,config-units)
-                                    (config--try-require config-unit nil))
-                              (,auto-mode))))))
+                (cons ,regexp  '(lambda () (dolist (config-unit ,config-units)
+                                        (config--try-require config-unit nil))
+                                  (,auto-mode))))))
          (error "regexp specified but auto-mode not set")))))
 
 (defmacro require-and-log (fet)
