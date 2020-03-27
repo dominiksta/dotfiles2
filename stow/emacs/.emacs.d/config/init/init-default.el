@@ -28,6 +28,7 @@
 (config-require '(config-language-cc)           :regexp '("[ch]pp" "ino") :auto-mode c++-mode)
 (config-require '(config-language-cc)           :regexp "\\.pro\\'"       :auto-mode makefile-mode)
 (config-require '(config-language-cc)           :regexp "\\.[ch]\\'"      :auto-mode c-mode)
+(config-require '(config-language-go)           :regexp "\\.go\\'"        :auto-mode go-mode)
 (config-require '(config-language-java)         :regexp "\\.java\\'"      :auto-mode java-mode)
 (config-require '(config-language-clojure)      :regexp "\\.clj\\'"       :auto-mode clojure-mode)
 (config-require '(config-language-ahk)          :regexp "\\.ahk\\'"       :auto-mode ahk-mode)
