@@ -9,9 +9,11 @@
 ! ----------------------------------------------------------------------
 
 ! Use symbola as a fallback font for emojis
-URxvt.font                   : xft:Iosevka Term:pixelsize=15
+URxvt.font                   : xft:DejaVu Sans Mono:size=10
 ! By default, the characters are spaced too wide for some fonts
-! URxvt.letterSpace            : -1
+URxvt.letterSpace            : -1
+
+URxvt.termName               : xterm-256color
 
 URxvt.perl-ext-common        : default,resize-font,config-reload
 URxvt.scrollBar              : false

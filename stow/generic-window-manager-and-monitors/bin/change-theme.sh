@@ -12,10 +12,11 @@ desktop_environment="xfce"
 # - position 1: gtk-Theme (ls /usr/share/themes/)
 # - position 3: gtk-icon-theme (ls /usr/share/icons/)
 # - position 3: emacs-Theme (M-x load-theme)
+# - position 4: terminal theme (ls ~/.local/share/terminal_colors/ or _emacs)
 declare -A themesets
 themesets=(
-    ["light1"]="Greybird;Pocillo;modus-operandi;_emacs"
-    ["dark1"]="Adwaita-dark;Pocillo;modus-vivendi;_emacs"
+    ["light1"]="Greybird;Pocillo;tsdh-light;xubuntu-light"
+    ["dark1"]="Pocillo-dark-slim;Pocillo;wombat;_emacs"
 )
 
 # Switch to a themeset specified in global `themesets`. Calls all the

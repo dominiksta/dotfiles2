@@ -138,7 +138,7 @@ some faces fixed-with (for tables, source code, etc.)"
       org-fontify-done-headline nil
       org-fontify-quote-and-verse-blocks t
       org-hide-emphasis-markers t
-      ;; org-ellipsis " »"
+      org-ellipsis nil
       org-tags-column -75)
 
 ;; --- modeline ---
@@ -235,9 +235,7 @@ some faces fixed-with (for tables, source code, etc.)"
 (use-package org-bullets
   :ensure t
   :after org
-  :init (add-hook 'org-mode-hook 'org-bullets-mode)
-  :config
-  (setq org-bullets-bullet-list '("●" "○" "¬")))
+  :init (add-hook 'org-mode-hook 'org-bullets-mode))
 
 ;; --------------------------------------------------------------------------------
 ;; bindings

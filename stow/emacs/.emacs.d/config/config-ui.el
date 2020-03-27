@@ -21,8 +21,8 @@
 ;; --------------------------------------------------------------------------------
 ;; themes and fonts
 ;; --------------------------------------------------------------------------------
-(setq fp/theme-font-family "Iosevka Term"
-      fp/theme-font-family-size "12"
+(setq fp/theme-font-family "DejaVu Sans Mono"
+      fp/theme-font-family-size "11"
       fp/theme-font-family-fallback "Lucida Console"
       fp/theme-font-family-fallback-size "12"
       fp/theme-font-family-variable-pitch "DejaVu Serif"
@@ -56,7 +56,7 @@ fixed-pitch faces."
 (if window-system (fp/theme-font-setup))
 
 (setq fp/theme-light-theme 'tsdh-light
-      fp/theme-dark-theme 'misterioso
+      fp/theme-dark-theme 'wombat
       custom-safe-themes t)
 
 ;; (use-package flucui-themes
@@ -78,13 +78,13 @@ fixed-pitch faces."
 ;;   (setq fp/theme-light-theme 'sanityinc-tomorrow-day
 ;;         fp/theme-dark-theme 'sanityinc-tomorrow-night))
 
-(use-package modus-operandi-theme :ensure t
-  :config
-  (setq fp/theme-light-theme 'modus-operandi))
+;; (use-package modus-operandi-theme :ensure t
+;;   :config
+;;   (setq fp/theme-light-theme 'modus-operandi))
 
-(use-package modus-vivendi-theme :ensure t
-  :config
-  (setq fp/theme-dark-theme 'modus-vivendi))
+;; (use-package modus-vivendi-theme :ensure t
+;;   :config
+;;   (setq fp/theme-dark-theme 'modus-vivendi))
 
 ;; (use-package doom-themes
 ;;   :ensure t
