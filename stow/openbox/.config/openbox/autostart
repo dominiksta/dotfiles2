@@ -2,6 +2,5 @@ urxvtd -q -o -f &
 plank &
 intuos.sh first &
 caps.sh &
-nitrogen --restore &
-nm-applet &
 redshift &
+claws-mail &

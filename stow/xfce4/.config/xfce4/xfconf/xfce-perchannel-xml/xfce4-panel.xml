@@ -9,13 +9,18 @@
       <property name="position-locked" type="bool" value="true"/>
       <property name="plugin-ids" type="array">
         <value type="int" value="12"/>
+        <value type="int" value="8"/>
+        <value type="int" value="11"/>
+        <value type="int" value="4"/>
+        <value type="int" value="7"/>
         <value type="int" value="6"/>
         <value type="int" value="9"/>
         <value type="int" value="10"/>
+        <value type="int" value="1"/>
         <value type="int" value="2"/>
       </property>
       <property name="background-style" type="uint" value="1"/>
-      <property name="size" type="uint" value="22"/>
+      <property name="size" type="uint" value="23"/>
       <property name="length-adjust" type="bool" value="true"/>
       <property name="span-monitors" type="bool" value="false"/>
       <property name="mode" type="uint" value="0"/>
@@ -42,23 +47,35 @@
       <property name="mpris-players" type="string" value="audacious;chromium.instance15665;chromium.instance21218;chromium.instance22429;chromium.instance23615;chromium.instance25246;parole;spotify;vlc"/>
       <property name="show-notifications" type="bool" value="true"/>
     </property>
-    <property name="plugin-12" type="string" value="clock">
-      <property name="digital-format" type="string" value="%d %b, %H:%M"/>
-      <property name="mode" type="uint" value="2"/>
-      <property name="show-seconds" type="bool" value="false"/>
-      <property name="show-military" type="bool" value="true"/>
-      <property name="show-meridiem" type="bool" value="false"/>
+    <property name="plugin-7" type="string" value="weather"/>
+    <property name="plugin-8" type="string" value="genmon"/>
+    <property name="plugin-11" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
     </property>
-    <property name="plugin-2" type="string" value="statusnotifier">
-      <property name="known-items" type="array">
-        <value type="string" value="Nextcloud"/>
-        <value type="string" value="nm-applet"/>
+    <property name="plugin-12" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-4" type="string" value="whiskermenu"/>
+    <property name="plugin-2" type="string" value="systray">
+      <property name="names-ordered" type="array">
+        <value type="string" value="mumble"/>
+        <value type="string" value="update-notifier"/>
+        <value type="string" value="networkmanager applet"/>
+        <value type="string" value="cadence"/>
+        <value type="string" value="network"/>
+        <value type="string" value="blueman-applet"/>
+        <value type="string" value="claws-mail"/>
+        <value type="string" value="nextcloud"/>
+        <value type="string" value="keepassxc"/>
       </property>
-      <property name="hidden-items" type="array">
-      </property>
-      <property name="icon-size" type="int" value="15"/>
+      <property name="show-frame" type="bool" value="false"/>
+      <property name="size-max" type="uint" value="16"/>
       <property name="square-icons" type="bool" value="true"/>
+      <property name="names-hidden" type="array">
+        <value type="string" value="blueman-applet"/>
+      </property>
     </property>
+    <property name="plugin-1" type="string" value="mailwatch"/>
   </property>
   <property name="configver" type="int" value="2"/>
 </channel>
