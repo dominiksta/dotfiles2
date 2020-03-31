@@ -55,18 +55,6 @@
 ;; summary buffer
 ;; ----------------------------------------------------------------------
 
-(setq gnus-auto-select-first nil)
-(setq gnus-summary-goto-unread nil)
-;; (setq gnus-thread-sort-functions
-;;       '((not gnus-thread-sort-by-date)
-;;         (not gnus-thread-sort-by-number)))
-;; (setq gnus-subthread-sort-functions
-;;       'gnus-thread-sort-by-date)
-;; (setq gnus-thread-hide-subtree nil)
-;; (setq gnus-thread-ignore-subject nil)
-
-(setq gnus-summary-mode-line-format "%p [current: %A, unread: %Z]")
-
 ;; --- formatting of entries ---
 (setq gnus-user-date-format-alist
       '(((gnus-seconds-today) . "Today, %H:%M")
@@ -102,16 +90,21 @@ i mostly cache everything."
 (setq gnus-replied-mark 32
       gnus-forwarded-mark 32)
 
-(setq gnus-sum-thread-tree-false-root "─┬➤ ")
-(setq gnus-sum-thread-tree-indent " ")
-(setq gnus-sum-thread-tree-leaf-with-other "├─➤ ")
-(setq gnus-sum-thread-tree-root "")
-(setq gnus-sum-thread-tree-single-leaf "└─➤ ")
-(setq gnus-sum-thread-tree-vertical "│")
+(setq gnus-sum-thread-tree-false-root "─┬➤ "
+      gnus-sum-thread-tree-indent " "
+      gnus-sum-thread-tree-leaf-with-other "├─➤ "
+      gnus-sum-thread-tree-root ""
+      gnus-sum-thread-tree-single-leaf "└─➤ "
+      gnus-sum-thread-tree-vertical "│")
 
-(add-hook 'gnus-summary-mode-hook 'hl-line-mode)
-
+;; --- starting position ---
+(setq gnus-summary-goto-unread nil)
 (add-hook 'gnus-summary-prepared-hook (lambda () (end-of-buffer) (previous-line)))
+
+;; --- other ---
+(setq gnus-auto-select-first nil)
+(setq gnus-summary-mode-line-format "%p [current: %A, unread: %Z]")
+(add-hook 'gnus-summary-mode-hook 'hl-line-mode)
 
 ;; ----------------------------------------------------------------------
 ;; message buffer
