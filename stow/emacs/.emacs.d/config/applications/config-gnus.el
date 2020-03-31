@@ -75,7 +75,7 @@
 
 (setq gnus-summary-line-format
       (concat
-       "%U%R%z"            ; read, replied to, score
+       "%R%U%uR%z"         ; cached, read, `gnus-user-format-function-R' , score
        "%-16,16"           ; next column
        "&user-date;"       ; date in the format of `gnus-user-date-format-alist'
        "  "                ; next column
@@ -85,6 +85,22 @@
        "%S"                ; subject
        "\n"                ; end
        ))
+
+(defun gnus-user-format-function-R (header)
+  "I display forwarded and replied to myself instead of using %R
+because the default %R prints the \"cached\" mark with a higher
+precedence than forwarded or replied to, which i don't like since
+i mostly cache everything."
+  (let* ((id (gnus-id-to-article (mail-header-id header)))
+         (replied (memq id gnus-newsgroup-replied))
+         (forwarded (memq id gnus-newsgroup-forwarded)))
+    (cond (replied "A")
+          (forwarded "F")
+          (t " "))))
+
+;; 32 the char for a space
+(setq gnus-replied-mark 32
+      gnus-forwarded-mark 32)
 
 (setq gnus-sum-thread-tree-false-root "─┬➤ ")
 (setq gnus-sum-thread-tree-indent " ")
