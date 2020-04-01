@@ -307,10 +307,7 @@
 
 (define-key comint-mode-map (kbd "C-l") 'comint-clear-buffer)
 
-(global-set-key (kbd "M-RET") 'fp/eshell-here)
-(global-set-key (kbd "<C-s-return>") 'multi-term)
-
-(global-set-key (kbd "<C-return>") 'ss/dispatch-bash)
+(bind-key* (kbd "C-#") 'ss/dispatch-bash)
 ;; --------------------------------------------------------------------------------
 ;; finishing
 ;; --------------------------------------------------------------------------------
