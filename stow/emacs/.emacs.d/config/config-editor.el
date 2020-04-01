@@ -276,3 +276,11 @@
     ("q" nil "quit" :color blue)))
 
 (provide 'config-editor)
+
+;; --------------------------------------------------------------------------------
+;; edit from browser
+;; --------------------------------------------------------------------------------
+
+;; Install "Edit with Emacs" from AMO and run M-x edit-server-start
+(use-package edit-server :ensure t :defer t :config
+  (setq edit-server-default-major-mode 'markdown-mode))
