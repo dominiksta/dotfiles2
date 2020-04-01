@@ -13,7 +13,8 @@
 ;; general behaviour
 ;; ----------------------------------------------------------------------
 
-(setq gnus-gcc-mark-as-read t
+(setq gnus-directory "~/.emacs.d/News"
+      gnus-gcc-mark-as-read t
       gnus-asynchronous t
       gnus-agent t)
 
@@ -29,11 +30,12 @@
 ;; ----------------------------------------------------------------------
 
 ;; Enable caching (reading offline). Use `gnus-summary-tick-article-forward' in
-;; a summary buffer to save specific articles. You can set
-;; `gnus-cacheable-groups' to a regexp to limit what groups can be cached.
-(setq gnus-use-cache t
-      gnus-cache-enter-articles '(read unread ticked dormant)
-      gnus-cache-remove-articles nil)
+;; a summary buffer to save specific articles.
+(setq gnus-use-cache t)
+
+;; Add all opened articles to the agent cache
+(add-hook 'gnus-select-article-hook 'gnus-agent-fetch-selected-article)
+
 
 ;; ----------------------------------------------------------------------
 ;; group buffer
