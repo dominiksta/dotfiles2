@@ -19,11 +19,6 @@
 (setq show-paren-delay 0) (show-paren-mode 1)
 (add-hook 'prog-mode-hook 'electric-pair-mode)
 
-;; --- highlight git changes ---
-(use-package git-gutter-fringe :ensure t :demand t :config
-  (require 'git-gutter-fringe)
-  (global-git-gutter-mode 1))
-
 ;; --- todos ---
 (use-package hl-todo
   :ensure t
