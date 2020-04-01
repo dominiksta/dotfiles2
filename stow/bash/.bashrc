@@ -1,43 +1,26 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# ----------------------------------------------------------------------
+# general environment variables and settings
+# ----------------------------------------------------------------------
 
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-    *) return;;
-esac
+export EDITOR=em
+export GOPATH=$HOME/git/go
+export GO111MODULE=on
+export PATH="$PATH:$GOPATH/bin"
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# cd
-shopt -s autocd
-shopt -s cdspell
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+# --- history ---
 HISTSIZE=1000
 HISTFILESIZE=2000
+HISTCONTROL=ignoreboth # don't put duplicate lines or lines starting with space
+                       # in the history.
+shopt -s histappend # append to the history file, don't overwrite it
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+# --- cd ---
+shopt -s autocd # cd when directory name is typed
+shopt -s cdspell # autocorrect some small spelling errors for cd
 
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
+# ----------------------------------------------------------------------
+# prompt and window title
+# ----------------------------------------------------------------------
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -84,17 +67,18 @@ _prompt_command() {
 
 # unset color_prompt force_color_prompt
 
-# colored GCC warnings and errors
+# ----------------------------------------------------------------------
+# ubuntu defaults
+# ----------------------------------------------------------------------
+
+# uncomment for colored gcc warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# Alias definitions.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+[ -f ~/.bash_aliases ] && . ~/.bash_aliases # aliases
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
+# enable programmable completion features (you don't need to enable this, if
+# it's already enabled in /etc/bash.bashrc and /etc/profile sources
+# /etc/bash.bashrc).
 if ! shopt -oq posix; then
     if [ -f /usr/share/bash-completion/bash_completion ]; then
         . /usr/share/bash-completion/bash_completion
@@ -103,5 +87,24 @@ if ! shopt -oq posix; then
     fi
 fi
 
-export EDITOR='emacsclient'
-export SUDO_ASKPASS="/home/$USER/git/dotfiles/other/sudo_askpass.sh"
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+    *) return;;
+esac
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
