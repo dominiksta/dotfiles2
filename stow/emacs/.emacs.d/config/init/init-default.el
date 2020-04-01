@@ -76,6 +76,8 @@
 (config-require '(config-tramp)   :feature tramp)
 ;; (config-require '(config-epass)   :feature epass) (require 'epass nil t)
 (config-require '(config-keepassxc-cli)   :feature keepassxc-cli) (require 'keepassxc-cli)
+
+(setq gnus-directory "~/.emacs.d/News") ;; needs to be set before gnus is loaded
 (config-require '(config-gnus) :feature gnus)
 
 
