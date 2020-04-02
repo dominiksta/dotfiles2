@@ -51,6 +51,20 @@
 ;; automatically to it's cache, you use this incantation:
 (add-hook 'gnus-select-article-hook 'gnus-agent-fetch-selected-article)
 
+
+;; ----------------------------------------------------------------------
+;; archiving
+;; ----------------------------------------------------------------------
+
+;; Gnus archives messages in several ways: First, it automatically archives
+;; every e-mail you sent into `gnus-message-archive-group'. Second, it will
+;; archive archive everything marked as "expired" to `nnmail-expiry-target'.
+(setq
+ gnus-message-archive-group (format-time-string "nnfolder+archive:sent.%Y-%m")
+ nnmail-expiry-wait         90 ;; wait for 90 days before expiring articles
+ ;; TODO nnmail-expiry-target (lambda (groupname) )
+ )
+
 ;; ----------------------------------------------------------------------
 ;; group buffer
 ;; ----------------------------------------------------------------------
@@ -84,7 +98,7 @@
 ;; --- formatting of entries ---
 (setq gnus-summary-line-format
       (concat
-       "%R%U%uR%z"         ; cached, read, `gnus-user-format-function-R' , score
+       "%R%U%z"            ; cached, read, score
        "%-16,16"           ; next column
        "&user-date;"       ; date in the format of `gnus-user-date-format-alist'
        "  "                ; next column
@@ -144,6 +158,8 @@
 ;; sending mail
 ;; ----------------------------------------------------------------------
 
+;; This determines how gnus formats the original message with
+;; `gnus-summary-reply-with-original' and friends.
 (setq message-cite-style
       '((message-cite-function 'message-cite-original)
         (message-citation-line-function 'message-insert-formatted-citation-line)
@@ -153,13 +169,25 @@
         (message-yank-empty-prefix ">")
         (message-citation-line-format "On %D %R %p, %N wrote:")))
 
+;; The simplest (imo) way to do message templating is to just compose something
+;; in message mode, save that as a file and then as a bookmark. So i just invent
+;; the ".message" extension to open up in message mode for this purpose.
 (add-to-list 'auto-mode-alist (cons "\\.message\\'" 'message-mode))
 
-
 ;; ----------------------------------------------------------------------
+;; viewing mail
+;; ----------------------------------------------------------------------
+
+;; Colors in rendered html look ugly and can be distracting; So i turn them
+;; off. If you want to see the content as it was intended, use
+;; `gnus-article-browse-html-article' to open it in your default browser.
+(setq shr-use-colors nil)
+
+;; ======================================================================
 ;; evil binds
-;; ----------------------------------------------------------------------
+;; ======================================================================
 
+;; These binds are often not a direct translation of the originals.
 
 ;; ----------------------------------------------------------------------
 ;; summary
@@ -169,7 +197,8 @@
   ;; session
   "q" 'gnus-summary-exit
   "Q" 'gnus-summary-exit-no-update
-  "r" 'gnus-summary-rescan-group
+  "r" 'gnus-summary-insert-new-articles
+  "R" 'gnus-summary-rescan-group
 
   ;; writing mail
   (kbd "M-r") 'gnus-summary-reply
@@ -192,6 +221,14 @@
 
   "o" 'gnus-summary-put-mark-as-read-next
   "O" 'gnus-summary-put-mark-as-unread-next
+  "e" 'gnus-summary-put-mark-as-expirable
+  (kbd "<delete>") 'gnus-summary-delete-article
+
+  "p" nil
+  "ph" 'gnus-article-browse-html-article
+  "ps" 'gnus-article-save-part
+  "pv" 'gnus-article-view-part
+  "pe" 'gnus-article-view-part-externally
 
   "b" 'gnus-summary-move-article
 
@@ -216,6 +253,9 @@
   "ss" 'gnus-summary-sort-by-subject
   "st" 'gnus-summary-sort-by-recipient)
 
+(evil-define-key 'visual gnus-summary-mode-map
+  "b" 'gnus-summary-move-article)
+
 ;; ----------------------------------------------------------------------
 ;; article
 ;; ----------------------------------------------------------------------
@@ -223,6 +263,13 @@
 (evil-define-key 'normal gnus-article-mode-map
   (kbd "M-r") 'gnus-summary-reply
   (kbd "M-R") 'gnus-summary-reply-with-original
+
+  "p" nil
+  "ph" 'gnus-article-browse-html-article
+  "ps" 'gnus-article-save-part
+  "pv" 'gnus-article-view-part
+  "pe" 'gnus-article-view-part-externally
+
   "q" 'evil-window-delete)
 
 ;; ----------------------------------------------------------------------
@@ -238,11 +285,15 @@
   "r" 'gnus-group-get-new-news
   "R" (lambda () (interactive) (gnus-group-get-new-news '(4)))
 
+  "S" 'gnus-group-list-all-groups
+  "s" 'gnus-group-list-groups
+
   "T" 'gnus-group-topic-map
 
   "gs" 'gnus-group-enter-server-mode
 
-  (kbd "RET") 'gnus-group-select-group
+  "o" 'gnus-group-select-group
+  (kbd "RET") (lambda () (interactive) (gnus-group-select-group 100))
 
   "M-m" 'gnus-group-mail)
 
@@ -263,8 +314,7 @@
   "r"         'gnus-server-regenerate-server
   "x"         'gnus-server-kill-server
   "s"         'gnus-server-scan-server
-  "p"         'gnus-server-yank-server
-  )
+  "p"         'gnus-server-yank-server)
 
 ;; ----------------------------------------------------------------------
 ;; browse servers
