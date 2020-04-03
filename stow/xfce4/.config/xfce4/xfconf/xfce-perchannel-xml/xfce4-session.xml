@@ -7,7 +7,7 @@
     <property name="SaveOnExit" type="bool" value="false"/>
     <property name="SessionName" type="string" value="Default"/>
     <property name="AutoSave" type="bool" value="false"/>
-    <property name="PromptOnLogout" type="bool" value="false"/>
+    <property name="PromptOnLogout" type="bool" value="true"/>
   </property>
   <property name="sessions" type="empty">
     <property name="Failsafe" type="empty">
