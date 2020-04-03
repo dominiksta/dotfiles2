@@ -3,4 +3,5 @@ plank &
 intuos.sh first &
 caps.sh &
 redshift &
-claws-mail &
+tint2 -c ~/.config/tint2/bottom.conf &
+tint2 &
