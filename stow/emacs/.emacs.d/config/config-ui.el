@@ -71,6 +71,12 @@ fixed-pitch faces."
 ;;   (setq fp/theme-light-theme 'kaolin-light
 ;;         fp/theme-dark-theme 'kaolin-dark))
 
+(use-package gruvbox-theme
+  :ensure t
+  :config
+  (setq fp/theme-light-theme 'gruvbox-light-hard
+        fp/theme-dark-theme 'gruvbox-dark-hard))
+
 ;; (use-package color-theme-sanityinc-tomorrow
 ;;   :ensure t
 ;;   :config
