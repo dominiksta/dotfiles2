@@ -1,5 +1,4 @@
 urxvtd -q -o -f &
-plank &
 intuos.sh first &
 caps.sh &
 redshift &

@@ -45,7 +45,6 @@
       <property name="&lt;Alt&gt;F3" type="string" value="xfce4-appfinder">
         <property name="startup-notify" type="bool" value="true"/>
       </property>
-      <property name="&lt;Primary&gt;&lt;Alt&gt;Delete" type="string" value="xflock4"/>
       <property name="&lt;Alt&gt;F1" type="string" value="xfce4-popup-applicationsmenu"/>
       <property name="&lt;Super&gt;w" type="string" value="exo-open --launch WebBrowser"/>
       <property name="&lt;Super&gt;l" type="string" value="xflock4"/>
@@ -80,6 +79,9 @@
       <property name="&lt;Alt&gt;comma" type="string" value="run-or-raise.sh tabbed-urxvtc tabbed-urxvtc.sh"/>
       <property name="&lt;Super&gt;e" type="string" value="exo-open --launch FileManager"/>
       <property name="&lt;Alt&gt;space" type="string" value="run-or-raise.sh emacs em"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Delete" type="string" value="xfce4-session-logout"/>
+      <property name="&lt;Shift&gt;&lt;Alt&gt;Up" type="string" value="audiocontrol.sh up 5"/>
+      <property name="&lt;Shift&gt;&lt;Alt&gt;Down" type="string" value="audiocontrol.sh down 5"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">
