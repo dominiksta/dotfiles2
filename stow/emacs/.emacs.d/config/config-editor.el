@@ -97,6 +97,9 @@
   (whitespace-mode 0) (whitespace-mode 1)
   (font-lock-mode 0) (font-lock-mode 1))
 
+;; Don't add a newline on the end of files on saving
+(setq mode-require-final-newline nil)
+
 (defun fp/toggle-show-trailing-whitespace ()
   (interactive)
   (setq show-trailing-whitespace (if (eq show-trailing-whitespace t) nil t))
