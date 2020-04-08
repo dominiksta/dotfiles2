@@ -161,7 +161,7 @@ systray_sort = ascending
 systray_icon_size = 16
 systray_icon_asb = 80 0 10
 systray_monitor = 1
-systray_name_filter = 
+systray_name_filter = ^blueman-applet$
 
 #-------------------------------------
 # Launcher
@@ -220,7 +220,7 @@ ac_disconnected_cmd =
 #-------------------------------------
 # Executor 1
 execp = new
-execp_command = echo -n "V:"; amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }'
+execp_command = echo -n "V:"; amixer sget Master | grep --color=never 'Right:' | awk -F'[][]' '{ print $2 }'
 execp_interval = 0
 execp_has_icon = 0
 execp_cache_icon = 1
