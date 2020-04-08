@@ -212,7 +212,7 @@
   "aoco" 'org-clock-out
   "aocd" 'org-clock-display
   "aocr" 'org-clock-remove-overlays
-  "aocj" 'org-clock-jump-to-current-clock)
+  "aocj" 'org-clock-goto)
 
 ;; --- calendar ---
 (evil-leader/set-key "aC" 'calendar)
