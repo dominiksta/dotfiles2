@@ -133,7 +133,7 @@
 
 (setq-default fill-column 80)
 
-(use-package aggressive-fill-paragraph :ensure t)
+(add-hook 'text-mode-hook 'auto-fill-mode)
 
 ;; --- kill ring ---
 (setq save-interprogram-paste-before-kill t
