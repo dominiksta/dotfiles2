@@ -7,7 +7,7 @@ if pidof emacs; then
         emacsclient -e "(raise-frame)"
 	emacsclient -n $@
     else
-	emacsclient -n -c $@
+	emacsclient -n $@
     fi
 else
     # If there is no emacs daemon running, start the daemon and create a new
