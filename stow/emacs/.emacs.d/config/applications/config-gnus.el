@@ -58,12 +58,45 @@
 
 ;; Gnus archives messages in several ways: First, it automatically archives
 ;; every e-mail you sent into `gnus-message-archive-group'. Second, it will
-;; archive archive everything marked as "expired" to `nnmail-expiry-target'.
-(setq
- gnus-message-archive-group (format-time-string "nnfolder+archive:sent.%Y-%m")
- nnmail-expiry-wait         90 ;; wait for 90 days before expiring articles
- ;; TODO nnmail-expiry-target (lambda (groupname) )
- )
+;; archive everything marked as "expired" to `nnmail-expiry-target' if it is
+;; older than `nnmail-expiry-wait' days. In order to have every mail you read
+;; marked as "expired" by default, I set (auto-expire . t) for the relevant
+;; accounts in `gnus-parameters'.
+
+;; I use nnmaildir as a backend for archiving. This is because I keep that
+;; maildir on my nextcloud instance as a "backup" solution. In order to not get
+;; sync-conflicts between computers though, it helps to have every mail as a
+;; separate file. If you are concerned about inode usage (which you probably
+;; aren't, check with \"df -h\"), you may want to the default nnfolder
+;; instead. Additionally, you will need to create the folder to the maildir
+;; yourself and add an entry like this to your `gnus-secondary-select-methods':
+;;
+;; (nnmaildir "archive"
+;;            (directory "~/docs/Mail/archive")
+;;            (get-new-mail nil))
+
+(setq gnus-message-archive-group (format-time-string "nnmaildir+archive:unsorted.sent.%Y")
+
+      ;; wait for N days before expiring articles
+      nnmail-expiry-wait         365
+
+      ;; This is just a (imo) sensible default. I change this variable on a
+      ;; per-account basis using `gnus-parameters'.
+      nnmail-expiry-target (lambda (groupname) (concat "nnmaildir+archive:unsorted.expired."
+                                                  (fp/expiry-mail-date))))
+
+(defun fp/expiry-mail-date ()
+  "If run in buffer containing valid email-headers, this will
+return the year in the date header of that mail as a string. If
+that fails, it will return the current year. Useful to use for a
+`nnmail-expiry-target'"
+  (condition-case nil
+      (save-excursion
+        (goto-char (point-min))
+        (format-time-string "%Y" (mail-header-parse-date
+                                  (mail-header 'date (mail-header-extract)))))
+    (error (format-time-string "%Y" (current-time)))))
+
 
 ;; ----------------------------------------------------------------------
 ;; group buffer
