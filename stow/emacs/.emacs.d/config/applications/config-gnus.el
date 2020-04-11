@@ -118,11 +118,11 @@
 (setq gnus-replied-mark 32
       gnus-forwarded-mark 32)
 
-(setq gnus-sum-thread-tree-false-root "─┬➤ "
+(setq gnus-sum-thread-tree-false-root "─┬> "
       gnus-sum-thread-tree-indent " "
-      gnus-sum-thread-tree-leaf-with-other "├─➤ "
+      gnus-sum-thread-tree-leaf-with-other "├─> "
       gnus-sum-thread-tree-root ""
-      gnus-sum-thread-tree-single-leaf "└─➤ "
+      gnus-sum-thread-tree-single-leaf "└─> "
       gnus-sum-thread-tree-vertical "│")
 
 ;; --- starting position ---
@@ -193,7 +193,7 @@
 ;; summary
 ;; ----------------------------------------------------------------------
 (evil-set-initial-state 'gnus-summary-mode 'normal)
-(evil-define-key 'normal gnus-summary-mode-map
+(evil-define-key '(visual normal) gnus-summary-mode-map
   ;; session
   "q" 'gnus-summary-exit
   "Q" 'gnus-summary-exit-no-update
@@ -253,14 +253,11 @@
   "ss" 'gnus-summary-sort-by-subject
   "st" 'gnus-summary-sort-by-recipient)
 
-(evil-define-key 'visual gnus-summary-mode-map
-  "b" 'gnus-summary-move-article)
-
 ;; ----------------------------------------------------------------------
 ;; article
 ;; ----------------------------------------------------------------------
 (evil-set-initial-state 'gnus-article-mode 'normal)
-(evil-define-key 'normal gnus-article-mode-map
+(evil-define-key '(visual normal) gnus-article-mode-map
   (kbd "M-r") 'gnus-summary-reply
   (kbd "M-R") 'gnus-summary-reply-with-original
 
@@ -276,7 +273,7 @@
 ;; group
 ;; ----------------------------------------------------------------------
 (evil-set-initial-state 'gnus-group-mode 'normal)
-(evil-define-key 'normal gnus-group-mode-map
+(evil-define-key '(visual normal) gnus-group-mode-map
   "q" (lambda () (interactive) (gnus-save-newsrc-file) (quit-window))
 
   "x" 'gnus-group-kill-group
@@ -285,8 +282,10 @@
   "r" 'gnus-group-get-new-news
   "R" (lambda () (interactive) (gnus-group-get-new-news '(4)))
 
-  "S" 'gnus-group-list-all-groups
-  "s" 'gnus-group-list-groups
+  "s" 'gnus-group-make-nnir-group
+
+  "I" 'gnus-group-list-all-groups
+  "i" 'gnus-group-list-groups
 
   "T" 'gnus-group-topic-map
 
@@ -301,7 +300,7 @@
 ;; server
 ;; ----------------------------------------------------------------------
 (evil-set-initial-state 'gnus-server-mode 'normal)
-(evil-define-key 'normal gnus-server-mode-map
+(evil-define-key '(visual normal) gnus-server-mode-map
   "q"         'gnus-server-exit
   (kbd "RET") 'gnus-server-read-server
 
@@ -320,7 +319,7 @@
 ;; browse servers
 ;; ----------------------------------------------------------------------
 (evil-set-initial-state 'gnus-browse-mode 'normal)
-(evil-define-key 'normal gnus-browse-mode-map
+(evil-define-key '(visual normal) gnus-browse-mode-map
   "q"         'gnus-browse-exit
   "u"         'gnus-browse-unsubscribe-current-group
   (kbd "RET") 'gnus-browse-read-group)
