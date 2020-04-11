@@ -166,6 +166,7 @@ that fails, it will return the current year. Useful to use for a
 (setq gnus-auto-select-first nil)
 (setq gnus-summary-mode-line-format "%p [current: %A, unread: %Z]")
 (add-hook 'gnus-summary-mode-hook 'hl-line-mode)
+(add-hook 'gnus-summary-prepared-hook 'gnus-summary-sort-by-date)
 
 ;; ----------------------------------------------------------------------
 ;; message buffer
@@ -215,6 +216,7 @@ that fails, it will return the current year. Useful to use for a
 ;; off. If you want to see the content as it was intended, use
 ;; `gnus-article-browse-html-article' to open it in your default browser.
 (setq shr-use-colors nil)
+
 
 ;; ======================================================================
 ;; evil binds
@@ -323,6 +325,8 @@ that fails, it will return the current year. Useful to use for a
   "T" 'gnus-group-topic-map
 
   "gs" 'gnus-group-enter-server-mode
+  "gj" 'gnus-topic-goto-next-topic
+  "gk" 'gnus-topic-goto-previous-topic
 
   "o" 'gnus-group-select-group
   (kbd "RET") (lambda () (interactive) (gnus-group-select-group 100))
