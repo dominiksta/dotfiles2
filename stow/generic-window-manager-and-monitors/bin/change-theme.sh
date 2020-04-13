@@ -16,7 +16,7 @@ desktop_environment="xfce"
 declare -A themesets
 themesets=(
     ["light1"]="Greybird;Tango;tango;_emacs;BlueMenta"
-    ["dark1"]="Blackbird;Tango;modus-vivendi;_emacs;CBlack"
+    ["dark1"]="Blackbird;Tango;zenburn;_emacs;f1p"
 )
 
 # Switch to a themeset specified in global `themesets`. Calls all the
@@ -38,15 +38,12 @@ _switch_theme() {
 }
 
 _switch_theme_wm() {
-    case $desktop_environment in
-        xfce)
+    if pidof xfwm4; then
             echo "switching to xfwm theme: $1 (with xfsettingsd/xfconf-query)"
             xfconf-query -c xfwm4 -p /general/theme -s $1
-            ;;
-        *)
+    else
             echo "skipping setting wm theme, unsupported"
-            ;;
-    esac
+    fi
 }
 
 _switch_theme_gtk() {

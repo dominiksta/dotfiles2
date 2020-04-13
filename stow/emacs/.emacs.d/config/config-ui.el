@@ -21,6 +21,7 @@
 ;; --------------------------------------------------------------------------------
 ;; themes and fonts
 ;; --------------------------------------------------------------------------------
+
 (setq fp/theme-font-family "DejaVu Sans Mono"
       fp/theme-font-family-size "11"
       fp/theme-font-family-fallback "Lucida Console"
@@ -71,11 +72,17 @@ fixed-pitch faces."
 ;;   (setq fp/theme-light-theme 'kaolin-light
 ;;         fp/theme-dark-theme 'kaolin-dark))
 
-(use-package gruvbox-theme
-  :ensure t
-  :config
-  (setq fp/theme-light-theme 'gruvbox-light-hard
-        fp/theme-dark-theme 'gruvbox-dark-hard))
+;; (use-package gruvbox-theme
+;;   :ensure t
+;;   :config
+;;   (setq fp/theme-light-theme 'gruvbox-light-hard
+;;         fp/theme-dark-theme 'gruvbox-dark-hard))
+
+;; (use-package tangotango-theme
+;;   :ensure t
+;;   :config
+;;   (setq fp/theme-light-theme 'tango
+;;         fp/theme-dark-theme 'tangotango))
 
 ;; (use-package color-theme-sanityinc-tomorrow
 ;;   :ensure t
@@ -130,10 +137,10 @@ fixed-pitch faces."
 ;;   :config (setq fp/theme-light-theme 'material-light
 ;;                 fp/theme-dark-theme 'material))
 
-;; (use-package zenburn-theme
-;;   :ensure t
-;;   :config (setq fp/theme-light-theme 'leuven
-;;                 fp/theme-dark-theme 'zenburn))
+(use-package zenburn-theme
+  :ensure t
+  :config (setq fp/theme-light-theme 'tango
+                fp/theme-dark-theme 'zenburn))
 
 ;; (use-package solarized-theme
 ;;   :ensure t
