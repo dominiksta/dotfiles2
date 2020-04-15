@@ -40,5 +40,9 @@
     <property name="screensaver" type="empty">
       <property name="type" type="empty"/>
     </property>
+    <property name="ssh-agent" type="empty">
+      <property name="enabled" type="bool" value="false"/>
+      <property name="type" type="string" value="gpg-agent"/>
+    </property>
   </property>
 </channel>
