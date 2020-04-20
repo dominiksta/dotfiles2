@@ -15,8 +15,8 @@ desktop_environment="xfce"
 # - position 4: terminal theme (ls ~/.local/share/terminal_colors/ or _emacs)
 declare -A themesets
 themesets=(
-    ["light1"]="Greybird;Tango;tango;_emacs;BlueMenta"
-    ["dark1"]="Blackbird;Tango;zenburn;_emacs;f1p"
+    ["light"]="Greybird;Adwaita;tango;_emacs;f1p-light"
+    ["dark"]="Adwaita-dark;Adwaita;zenburn;_emacs;f1p"
 )
 
 # Switch to a themeset specified in global `themesets`. Calls all the
