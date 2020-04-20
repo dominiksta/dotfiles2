@@ -85,7 +85,7 @@ border_color_pressed = #000000 0
 
 #-------------------------------------
 # Panel
-panel_items = PCEES
+panel_items = PECEES
 panel_size = 100% 25
 panel_margin = 0 0
 panel_padding = 2 0 2
@@ -220,6 +220,29 @@ ac_disconnected_cmd =
 #-------------------------------------
 # Executor 1
 execp = new
+execp_command = xfce4-notifyd-do-not-disturb.sh
+execp_interval = 20
+execp_has_icon = 0
+execp_cache_icon = 0
+execp_continuous = 0
+execp_markup = 1
+execp_tooltip = Do Not Disturb
+execp_lclick_command = xfce4-notifyd-do-not-disturb.sh toggle
+execp_rclick_command = xfce4-notifyd-config
+execp_mclick_command = 
+execp_uwheel_command = 
+execp_dwheel_command = 
+execp_font = DejaVu Sans Mono 8
+execp_font_color = #ffffff 100
+execp_padding = 5 0
+execp_background_id = 6
+execp_centered = 0
+execp_icon_w = 0
+execp_icon_h = 0
+
+#-------------------------------------
+# Executor 2
+execp = new
 execp_command = echo -n "V:"; amixer sget Master | grep --color=never 'Right:' | awk -F'[][]' '{ print $2 }'
 execp_interval = 0
 execp_has_icon = 0
@@ -240,7 +263,7 @@ execp_icon_w = 0
 execp_icon_h = 0
 
 #-------------------------------------
-# Executor 2
+# Executor 3
 execp = new
 execp_command = battery.sh
 execp_interval = 0
