@@ -1,4 +1,5 @@
 (require 'gnus-group)
+(require 'ol-gnus) ;; required for `org-store-link`
 
 ;; ----------------------------------------------------------------------
 ;; accounts
@@ -266,6 +267,7 @@ that fails, it will return the current year. Useful to use for a
   "pe" 'gnus-article-view-part-externally
 
   "b" 'gnus-summary-move-article
+  "c" 'gnus-summary-copy-article
 
   "zt" 'gnus-summary-toggle-header
 
@@ -323,6 +325,8 @@ that fails, it will return the current year. Useful to use for a
   "i" 'gnus-group-list-groups
 
   "T" 'gnus-group-topic-map
+
+  "c" 'gnus-topic-catchup-articles
 
   "gs" 'gnus-group-enter-server-mode
   "gj" 'gnus-topic-goto-next-topic
