@@ -410,7 +410,7 @@ some faces fixed-with (for tables, source code, etc.)"
 (appt-activate t)
 
 (setq appt-message-warning-time 30) ; Show notification 30 minutes before event
-(setq appt-display-interval 5)      ; Show notification every 5 minutes
+(setq appt-display-interval 10)     ; Show notification every 5 minutes
 (setq appt-display-mode-line t)     ; Show notification in mode-line
 
 (defun fp/org-agenda-to-appt ()
