@@ -70,13 +70,13 @@ border_color_hover = #000000 100
 background_color_pressed = #ffffaa 100
 border_color_pressed = #000000 100
 
-# Background 6: Battery, Clock, Executor
-rounded = 1
+# Background 6: Battery, Button, Clock, Executor
+rounded = 3
 border_width = 2
 border_sides = TBLR
 border_content_tint_weight = 0
 background_content_tint_weight = 0
-background_color = #000000 0
+background_color = #000000 27
 border_color = #000000 0
 background_color_hover = #000000 35
 border_color_hover = #000000 0
@@ -85,7 +85,7 @@ border_color_pressed = #000000 0
 
 #-------------------------------------
 # Panel
-panel_items = CEES
+panel_items = PCEES
 panel_size = 100% 25
 panel_margin = 0 0
 panel_padding = 2 0 2
@@ -159,7 +159,7 @@ systray_padding = 4 0 7
 systray_background_id = 0
 systray_sort = ascending
 systray_icon_size = 16
-systray_icon_asb = 80 0 10
+systray_icon_asb = 100 0 0
 systray_monitor = 1
 systray_name_filter = ^blueman-applet$
 
@@ -181,9 +181,9 @@ launcher_item_app = google-chrome.desktop
 
 #-------------------------------------
 # Clock
-time1_format = %a %D %H:%M
+time1_format = %a %y-%m-%d %H:%M
 time2_format = 
-time1_font = DejaVu Sans Mono 9
+time1_font = DejaVu Sans 8
 time1_timezone = 
 time2_timezone = 
 clock_font_color = #ffffff 100
@@ -231,7 +231,7 @@ execp_rclick_command = pavucontrol
 execp_mclick_command = 
 execp_uwheel_command = amixer set Master 5%+
 execp_dwheel_command = amixer set Master 5%-
-execp_font = DejaVu Sans Mono 9
+execp_font = DejaVu Sans 8
 execp_font_color = #ffffff 100
 execp_padding = 4 0
 execp_background_id = 6
@@ -253,13 +253,30 @@ execp_rclick_command =
 execp_mclick_command = 
 execp_uwheel_command = 
 execp_dwheel_command = 
-execp_font = DejaVu Sans Mono 9
+execp_font = DejaVu Sans 8
 execp_font_color = #ffffff 100
 execp_padding = 4 0
 execp_background_id = 6
 execp_centered = 0
 execp_icon_w = 0
 execp_icon_h = 0
+
+#-------------------------------------
+# Button 1
+button = new
+button_text = ↓↓
+button_tooltip = Show Desktop
+button_lclick_command = toggle-desktop.sh
+button_rclick_command = 
+button_mclick_command = 
+button_uwheel_command = 
+button_dwheel_command = 
+button_font = DejaVu Sans Ultra-Light 8
+button_font_color = #ffffff 100
+button_padding = 0 0
+button_background_id = 6
+button_centered = 0
+button_max_icon_size = 0
 
 #-------------------------------------
 # Tooltip
