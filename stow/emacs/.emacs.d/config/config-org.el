@@ -62,12 +62,17 @@
 ;; appearance
 ;; --------------------------------------------------------------------------------
 
-;; --- fix for emacs27's new :extend keyword and org babel
 
 (custom-set-faces
+ ;; fix for emacs27's new :extend keyword and org babel
  '(org-block ((t (:extend t))))
  '(org-block-begin-line ((t (:extend t))))
- '(org-block-end-line ((t (:extend t)))))
+ '(org-block-end-line ((t (:extend t))))
+
+ ;; heading sizes
+ '(org-level-1 ((t (:overline t :height 1.3))))
+ '(org-level-2 ((t (:overline t :height 1.0))))
+ )
 
 ;; --- different font for org mode ---
 (setq fp/org-font-family "Dejavu Sans Mono"
