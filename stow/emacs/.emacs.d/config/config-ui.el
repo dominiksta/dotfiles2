@@ -27,7 +27,6 @@
       fp/theme-font-family-fallback "Lucida Console"
       fp/theme-font-family-fallback-size "12"
       fp/theme-font-family-variable-pitch "DejaVu Serif"
-      fp/theme-font-family-variable-pitch-size 120
       ;; these are used to set `fp/theme-font-family' in `fp/theme-switch'
       fp/theme-light-font-bold nil)
 
@@ -42,16 +41,14 @@ fixed-pitch faces."
   (when (not (font-exists-p fp/theme-font-family))
     (setq fp/theme-font-family fp/theme-font-family-fallback))
   (when (font-exists-p fp/theme-font-family)
-    (set-face-attribute 'default nil :font
-                        (concat fp/theme-font-family
-                                " " fp/theme-font-family-size))
+    (set-face-attribute 'default nil :font (concat fp/theme-font-family " "
+                                                   fp/theme-font-family-size))
+    (set-fontset-font "fontset-default"
+                      'unicode-bmp
+                      (font-spec :family fp/theme-font-family))
     (set-face-attribute 'variable-pitch nil
                         :family fp/theme-font-family-variable-pitch
-                        :height 1.0
-                        :weight 'normal)
-    (set-face-attribute 'fixed-pitch nil
-                        :height 1.0
-                        :font fp/theme-font-family
+                        :height 1.2
                         :weight 'normal)))
 
 (if window-system (fp/theme-font-setup))
