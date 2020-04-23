@@ -218,6 +218,27 @@ that fails, it will return the current year. Useful to use for a
 ;; `gnus-article-browse-html-article' to open it in your default browser.
 (setq shr-use-colors nil)
 
+;; ----------------------------------------------------------------------
+;; searching
+;; ----------------------------------------------------------------------
+
+;; TODO set up search for local maildirs
+;; (setq nnir-method-default-engines
+;;       '((nnimap . imap)
+;;         (nndraft . find-grep)
+;;         (nnfolder . find-grep)
+;;         (nnmaildir . find-grep)))
+
+;; ----------------------------------------------------------------------
+;; contacts
+;; ----------------------------------------------------------------------
+
+;; You have multiple options to handle insertion of contacts when composing
+;; mail. One of them is `eudc' - which is a unified interface to bbdb and
+;; ldap. If your workplace/uni/whatever does not have a public ldap server
+;; though (like my workplace/uni) then this is not of much use to you. Instead,
+;; the package `vdirel' can be combined with the external program 'vdirsyncer'
+;; to synchronize with a carddav server. TODO
 
 ;; ======================================================================
 ;; evil binds

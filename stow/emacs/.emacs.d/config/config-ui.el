@@ -134,10 +134,12 @@ fixed-pitch faces."
 ;;   :config (setq fp/theme-light-theme 'material-light
 ;;                 fp/theme-dark-theme 'material))
 
-(use-package zenburn-theme
-  :ensure t
-  :config (setq fp/theme-light-theme 'tango
-                fp/theme-dark-theme 'zenburn))
+(use-package zenburn-theme :ensure t :demand t :config
+  ;; (use-package doneburn-theme :ensure t :demand t :config
+
+  ;;   )
+  (setq fp/theme-light-theme 'tango
+        fp/theme-dark-theme 'zenburn))
 
 ;; (use-package solarized-theme
 ;;   :ensure t
