@@ -428,12 +428,13 @@ some faces fixed-with (for tables, source code, etc.)"
 ;; Display appointments as a dbus-message
 (setq appt-disp-window-function 'fp/appt-display)
 
-(defun fp/appt-display (min-to-app new-time msg)
+(defun fp/appt-display (min-to-app new-time appt-msg)
+  "See `appt-disp-window'"
   (let ((min-to-app (format "%s minutes left" min-to-app)))
     (if (executable-find "espeak")
         (start-process-shell-command
          "" nil (format "espeak -a 200 \"%s\"" min-to-app)))
-    (generic-notification-notify min-to-app msg)))
+    (generic-notification-notify min-to-app appt-msg t)))
 
 ;; ================================================================================
 (provide 'config-org)
