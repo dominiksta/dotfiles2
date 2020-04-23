@@ -1,7 +1,7 @@
 [Desktop Entry]
-Name=tabbed-urxvtc
+Name=urxvtc-tabbed
 GenericName=Tabbed rxvt Terminal
-Exec=tabbed-urxvtc.sh
+Exec=urxvtc-tabbed.sh
 Terminal=false
 Icon=utilities-terminal
 Categories=System;TerminalEmulator;

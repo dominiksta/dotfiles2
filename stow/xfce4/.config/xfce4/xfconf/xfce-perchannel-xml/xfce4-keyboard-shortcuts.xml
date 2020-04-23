@@ -76,12 +76,12 @@
       <property name="&lt;Shift&gt;&lt;Super&gt;t" type="string" value="change-theme.sh"/>
       <property name="&lt;Shift&gt;Print" type="string" value="xfce4-screenshooter -r"/>
       <property name="&lt;Super&gt;less" type="string" value="xfce4-popup-whiskermenu"/>
-      <property name="&lt;Alt&gt;comma" type="string" value="run-or-raise.sh tabbed-urxvtc tabbed-urxvtc.sh"/>
       <property name="&lt;Super&gt;e" type="string" value="exo-open --launch FileManager"/>
       <property name="&lt;Alt&gt;space" type="string" value="run-or-raise.sh emacs em"/>
       <property name="&lt;Primary&gt;&lt;Alt&gt;Delete" type="string" value="xfce4-session-logout"/>
       <property name="&lt;Shift&gt;&lt;Alt&gt;Up" type="string" value="audiocontrol.sh up 5"/>
       <property name="&lt;Shift&gt;&lt;Alt&gt;Down" type="string" value="audiocontrol.sh down 5"/>
+      <property name="&lt;Alt&gt;comma" type="string" value="run-or-raise.sh urxvt urxvtc"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">
