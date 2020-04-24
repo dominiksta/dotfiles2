@@ -2,6 +2,7 @@
 
 alias emn='emacsclient -nw --alternate-editor=emacs'
 alias t='tmux'
+alias tm='tmux new-session -s main || tmux attach -t main'
 alias o='xdg-open'
 
 alias gd='gdbtui -q'

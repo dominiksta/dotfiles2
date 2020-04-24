@@ -8,7 +8,8 @@ apt-get install -y rxvt-unicode \
         tmux
 
 # --- other ---
-apt-get install -y stow dmenu \
+apt-get install -y stow \
+        dmenu gsimplecal \
         redshift xdotool wmctrl xclip \
         xkbset xcape \
 	ttf-dejavu

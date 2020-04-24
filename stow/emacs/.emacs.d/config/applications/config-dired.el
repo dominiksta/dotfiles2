@@ -13,7 +13,7 @@
 
 (setq ls-lisp-emulation t
       ls-lisp-dirs-first t
-      dired-listing-switches "-alh")
+      dired-listing-switches "-a -l -h --group-directories-first")
 
 (defun fp/dired-beginning-of-buffer ()
   (interactive) (evil-goto-line) (dired-previous-line 1))
@@ -149,7 +149,7 @@
 (define-key dired-mode-map (kbd "(") 'fp/dired-toggle-hide-details-globally)
 (add-hook 'dired-after-readin-hook 'dired-hide-details-mode)
 
-;; --- hiding the dot ---
+;; --- hiding the dot and others ---
 (setq dired-omit-files "^\\.$\\|desktop.ini\\|^NTUSER.DAT\\|ntuser.ini")
 (setq dired-omit-extensions nil)
 (setq dired-omit-verbose nil)
@@ -211,7 +211,7 @@
   "W" 'fp/dired-copy-path-at-point
 
   "r" (lambda () (interactive)
-              (if (bound-and-true-p dired-du-mode) (dired-du-mode 0)) (revert-buffer))
+        (if (bound-and-true-p dired-du-mode) (dired-du-mode 0)) (revert-buffer))
   "q"   'kill-this-buffer
   "gg" 'fp/dired-end-of-buffer
   "G"   'fp/dired-beginning-of-buffer

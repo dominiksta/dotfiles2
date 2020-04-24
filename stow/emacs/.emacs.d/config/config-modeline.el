@@ -36,8 +36,6 @@
       (setq-default mode-line-format nil)
       (set-local-variable-in-all-buffers mode-line-format nil))))
 
-(when (fp/running-on-laptop-p) (require-and-log 'config-battery) (battery-unicode-mode 1))
-
 ;; (setq display-time-load-average-threshold 0.8
 ;;       display-time-format " %H:%M")
 ;; (display-time-mode 1)

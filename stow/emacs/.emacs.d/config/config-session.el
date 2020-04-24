@@ -1,8 +1,7 @@
 
 ;; --- startup ---
-(setq initial-buffer-choice t
-      inhibit-startup-echo-area-message "fp"
-      inhibit-startup-screen t
+(setq inhibit-startup-screen t
+      initial-buffer-choice nil
       initial-scratch-message nil
       initial-major-mode 'org-mode)
 

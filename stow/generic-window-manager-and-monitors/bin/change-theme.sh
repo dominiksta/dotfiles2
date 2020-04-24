@@ -15,8 +15,8 @@ desktop_environment="xfce"
 # - position 4: terminal theme (ls ~/.local/share/terminal_colors/ or _emacs)
 declare -A themesets
 themesets=(
-    ["light1"]="Greybird;Tango;gruvbox-light-hard;_emacs"
-    ["dark1"]="Blackbird;Tango;gruvbox-dark-hard;_emacs"
+    ["light"]="Materia-light-compact;Adwaita;tango;_emacs;Materia-light"
+    ["dark"]="Materia-dark-compact;Adwaita;zenburn;_emacs;Materia"
 )
 
 # Switch to a themeset specified in global `themesets`. Calls all the
@@ -28,11 +28,22 @@ _switch_theme() {
     gtk_icon_theme="${THEMES[1]}"
     emacs_theme="${THEMES[2]}"
     terminal_theme="${THEMES[3]}"
+    wm_theme="${THEMES[4]}"
 
     _switch_theme_gtk "$gtk_theme" "$gtk_icon_theme"
     _switch_theme_emacs "$emacs_theme"
     # _switch_theme_terminal "$terminal_theme"
     _switch_theme_urxvtd "$terminal_theme"
+    _switch_theme_wm "$wm_theme"
+}
+
+_switch_theme_wm() {
+    if pidof xfwm4; then
+            echo "switching to xfwm theme: $1 (with xfsettingsd/xfconf-query)"
+            xfconf-query -c xfwm4 -p /general/theme -s $1
+    else
+            echo "skipping setting wm theme, unsupported"
+    fi
 }
 
 _switch_theme_gtk() {

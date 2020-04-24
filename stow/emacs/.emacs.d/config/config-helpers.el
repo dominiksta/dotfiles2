@@ -72,17 +72,18 @@
 ;; --- system notifications ---
 (require 'notifications)
 (defvar temp-notification nil "current notification")
-(defun generic-notification-notify (title body)
+(defun generic-notification-notify (title body &optional no-sound)
   (message "SYSTEM NOTIFICATION: %s || %s" title body)
   (if (eq system-type 'windows-nt)
       (progn
         (setq temp-notification (w32-notification-notify :tip "test" :body body :title title))
         (run-with-timer 5 nil (lambda () (w32-notification-close temp-notification))))
     (notifications-notify :title title :body body))
-  ;; play a sound asynchronously or (when possible) read the notification with tts
-  (if (executable-find "espeak")
-      (start-process-shell-command "" nil (format "espeak -a 200 \"%s\"" (concat title "." body)))
-    (start-process-shell-command "" nil (concat "mpv " sync-directory "/emacs/random/notify.wav"))))
+  ;; play a sound asynchronously
+  (let ((sound-file (concat sync-directory "emacs/random/notify.wav")))
+    (when (and (file-exists-p sound-file) (not no-sound))
+      (start-process-shell-command
+       "" nil (concat "mpv " sync-directory "/emacs/random/notify.wav")))))
 
 
 ;; --- mouse ---

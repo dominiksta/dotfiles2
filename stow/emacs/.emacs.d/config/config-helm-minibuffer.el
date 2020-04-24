@@ -104,7 +104,16 @@
     (evil-leader/set-key
       "ss"  'helm-swoop
       "so"  'helm-multi-swoop-org)
-    (define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop)))
+    (define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop))
+
+  ;; --------------------------------------------------------------------------------
+  ;; appearance
+  ;; --------------------------------------------------------------------------------
+
+  (custom-set-faces
+   '(helm-source-header ((t (:foreground nil :background nil
+                                         :family nil :height 1.3
+                                         :inherit font-lock-keyword-face))))))
 
 
 (provide 'config-helm-minibuffer)

@@ -1,18 +1,18 @@
 #!/bin/bash
 
+# Script to transparently run either emacs or emacsclient without blocking the
+# current terminal session.
+
 if pidof emacs; then
-    # If there is a daemon running, check if there is a frame open already. If
-    # so, open $1 in that frame, else open $1 in a new frame.
-    if [ $(emacsclient -e "(length (frame-list))") -ge 2 ]; then
+    # If emacs is running, check if there is a frame open already. If
+    # so, "open" $@ in that frame, else "open" $@ in a new frame.
+    if [ $(emacsclient -e "(length (frame-list))") -ge 1 ]; then
         emacsclient -e "(raise-frame)"
 	emacsclient -n $@
     else
-	emacsclient -n -c $@
+	emacsclient -c -n $@
     fi
 else
-    # If there is no emacs daemon running, start the daemon and create a new
-    # frame
-    notify-send --icon=emacs --urgency=low "Starting emacs daemon..."
-    emacs --daemon || notify-send "Starting emacs daemon failed"
-    emacsclient -c -n $@
+    # If emacs is not running, start it in the background
+    emacs $@ 2>/dev/null & disown $! || notify-send "Starting emacs failed"
 fi

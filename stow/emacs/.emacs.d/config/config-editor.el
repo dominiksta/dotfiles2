@@ -97,6 +97,9 @@
   (whitespace-mode 0) (whitespace-mode 1)
   (font-lock-mode 0) (font-lock-mode 1))
 
+;; Don't add a newline on the end of files on saving
+(setq mode-require-final-newline nil)
+
 (defun fp/toggle-show-trailing-whitespace ()
   (interactive)
   (setq show-trailing-whitespace (if (eq show-trailing-whitespace t) nil t))
@@ -130,7 +133,7 @@
 
 (setq-default fill-column 80)
 
-(use-package aggressive-fill-paragraph :ensure t)
+(add-hook 'text-mode-hook 'auto-fill-mode)
 
 ;; --- kill ring ---
 (setq save-interprogram-paste-before-kill t
@@ -283,4 +286,5 @@
 
 ;; Install "Edit with Emacs" from AMO and run M-x edit-server-start
 (use-package edit-server :ensure t :defer t :config
-  (setq edit-server-default-major-mode 'markdown-mode))
+  (setq edit-server-default-major-mode 'markdown-mode
+        edit-server-new-frame nil))

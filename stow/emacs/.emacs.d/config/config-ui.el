@@ -21,12 +21,12 @@
 ;; --------------------------------------------------------------------------------
 ;; themes and fonts
 ;; --------------------------------------------------------------------------------
+
 (setq fp/theme-font-family "DejaVu Sans Mono"
       fp/theme-font-family-size "11"
       fp/theme-font-family-fallback "Lucida Console"
       fp/theme-font-family-fallback-size "12"
       fp/theme-font-family-variable-pitch "DejaVu Serif"
-      fp/theme-font-family-variable-pitch-size 120
       ;; these are used to set `fp/theme-font-family' in `fp/theme-switch'
       fp/theme-light-font-bold nil)
 
@@ -41,16 +41,14 @@ fixed-pitch faces."
   (when (not (font-exists-p fp/theme-font-family))
     (setq fp/theme-font-family fp/theme-font-family-fallback))
   (when (font-exists-p fp/theme-font-family)
-    (set-face-attribute 'default nil :font
-                        (concat fp/theme-font-family
-                                " " fp/theme-font-family-size))
+    (set-face-attribute 'default nil :font (concat fp/theme-font-family " "
+                                                   fp/theme-font-family-size))
+    (set-fontset-font "fontset-default"
+                      'unicode-bmp
+                      (font-spec :family fp/theme-font-family))
     (set-face-attribute 'variable-pitch nil
                         :family fp/theme-font-family-variable-pitch
-                        :height 1.0
-                        :weight 'normal)
-    (set-face-attribute 'fixed-pitch nil
-                        :height 1.0
-                        :font fp/theme-font-family
+                        :height 1.2
                         :weight 'normal)))
 
 (if window-system (fp/theme-font-setup))
@@ -71,11 +69,17 @@ fixed-pitch faces."
 ;;   (setq fp/theme-light-theme 'kaolin-light
 ;;         fp/theme-dark-theme 'kaolin-dark))
 
-(use-package gruvbox-theme
-  :ensure t
-  :config
-  (setq fp/theme-light-theme 'gruvbox-light-hard
-        fp/theme-dark-theme 'gruvbox-dark-hard))
+;; (use-package gruvbox-theme
+;;   :ensure t
+;;   :config
+;;   (setq fp/theme-light-theme 'gruvbox-light-hard
+;;         fp/theme-dark-theme 'gruvbox-dark-hard))
+
+;; (use-package tangotango-theme
+;;   :ensure t
+;;   :config
+;;   (setq fp/theme-light-theme 'tango
+;;         fp/theme-dark-theme 'tangotango))
 
 ;; (use-package color-theme-sanityinc-tomorrow
 ;;   :ensure t
@@ -130,10 +134,12 @@ fixed-pitch faces."
 ;;   :config (setq fp/theme-light-theme 'material-light
 ;;                 fp/theme-dark-theme 'material))
 
-;; (use-package zenburn-theme
-;;   :ensure t
-;;   :config (setq fp/theme-light-theme 'leuven
-;;                 fp/theme-dark-theme 'zenburn))
+(use-package zenburn-theme :ensure t :demand t :config
+  ;; (use-package doneburn-theme :ensure t :demand t :config
+
+  ;;   )
+  (setq fp/theme-light-theme 'tango
+        fp/theme-dark-theme 'zenburn))
 
 ;; (use-package solarized-theme
 ;;   :ensure t

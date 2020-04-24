@@ -3,9 +3,6 @@
 # ----------------------------------------------------------------------
 
 export EDITOR=em
-export GOPATH=$HOME/git/go
-export GO111MODULE=on
-export PATH="$PATH:$GOPATH/bin"
 
 # --- history ---
 HISTSIZE=1000

@@ -62,12 +62,17 @@
 ;; appearance
 ;; --------------------------------------------------------------------------------
 
-;; --- fix for emacs27's new :extend keyword and org babel
 
 (custom-set-faces
+ ;; fix for emacs27's new :extend keyword and org babel
  '(org-block ((t (:extend t))))
  '(org-block-begin-line ((t (:extend t))))
- '(org-block-end-line ((t (:extend t)))))
+ '(org-block-end-line ((t (:extend t))))
+
+ ;; heading sizes
+ '(org-level-1 ((t (:overline t :height 1.3))))
+ '(org-level-2 ((t (:overline t :height 1.0))))
+ )
 
 ;; --- different font for org mode ---
 (setq fp/org-font-family "Dejavu Sans Mono"
@@ -405,7 +410,7 @@ some faces fixed-with (for tables, source code, etc.)"
 (appt-activate t)
 
 (setq appt-message-warning-time 30) ; Show notification 30 minutes before event
-(setq appt-display-interval 5)      ; Show notification every 5 minutes
+(setq appt-display-interval 10)     ; Show notification every 5 minutes
 (setq appt-display-mode-line t)     ; Show notification in mode-line
 
 (defun fp/org-agenda-to-appt ()
@@ -423,12 +428,13 @@ some faces fixed-with (for tables, source code, etc.)"
 ;; Display appointments as a dbus-message
 (setq appt-disp-window-function 'fp/appt-display)
 
-(defun fp/appt-display (min-to-app new-time msg)
+(defun fp/appt-display (min-to-app new-time appt-msg)
+  "See `appt-disp-window'"
   (let ((min-to-app (format "%s minutes left" min-to-app)))
     (if (executable-find "espeak")
         (start-process-shell-command
          "" nil (format "espeak -a 200 \"%s\"" min-to-app)))
-    (generic-notification-notify min-to-app msg)))
+    (generic-notification-notify min-to-app appt-msg t)))
 
 ;; ================================================================================
 (provide 'config-org)
