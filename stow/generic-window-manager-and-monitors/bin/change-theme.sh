@@ -33,7 +33,7 @@ _switch_theme() {
     _switch_theme_gtk "$gtk_theme" "$gtk_icon_theme"
     _switch_theme_emacs "$emacs_theme"
     # _switch_theme_terminal "$terminal_theme"
-    _switch_theme_urxvtd "$terminal_theme"
+    _switch_theme_xrdb "$terminal_theme"
     _switch_theme_wm "$wm_theme"
 }
 
@@ -150,11 +150,11 @@ _switch_theme_terminal() {
     change-theme-terminal.sh
 }
 
-# Switch themes of all urxvtc instances of the running urxvtd
-_switch_theme_urxvtd() {
-    echo "switching to terminal theme (rxvt): $1"
+# Switch xrdb colors
+_switch_theme_xrdb() {
+    echo "switching to terminal theme (xrdb): $1"
     _set_theme_terminal $1
-    change-theme-urxvt.sh
+    change-theme-xrdb.sh
 }
 
 _sed() {

@@ -1,11 +1,7 @@
 #!/bin/bash
 
 # --- terminal ---
-apt-get install -y rxvt-unicode \
-        libcommon-sense-perl \
-        liblinux-fd-perl \
-        libanyevent-perl \
-        tmux
+apt-get install -y tmux
 
 # --- other ---
 apt-get install -y stow \

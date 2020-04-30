@@ -1,6 +1,5 @@
-urxvtd -q -o -f &
 intuos.sh first &
 caps.sh &
 redshift &
-plank &
+(sleep 5 && plank) &
 tint2 &

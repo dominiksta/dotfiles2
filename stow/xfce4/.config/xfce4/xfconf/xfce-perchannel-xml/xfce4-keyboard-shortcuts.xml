@@ -81,7 +81,8 @@
       <property name="&lt;Primary&gt;&lt;Alt&gt;Delete" type="string" value="xfce4-session-logout"/>
       <property name="&lt;Shift&gt;&lt;Alt&gt;Up" type="string" value="audiocontrol.sh up 5"/>
       <property name="&lt;Shift&gt;&lt;Alt&gt;Down" type="string" value="audiocontrol.sh down 5"/>
-      <property name="&lt;Alt&gt;comma" type="string" value="run-or-raise.sh urxvt urxvtc"/>
+      <property name="&lt;Alt&gt;comma" type="string" value="run-or-raise.sh xterm xterm"/>
+      <property name="&lt;Shift&gt;&lt;Alt&gt;e" type="string" value="run-or-raise.sh thunar thunar"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">

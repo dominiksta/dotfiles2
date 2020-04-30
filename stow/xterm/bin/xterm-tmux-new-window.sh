@@ -8,4 +8,4 @@ else
     tmux new-window -c "$PWD"
 fi 
 
-wmctrl -x -a urxvt || urxvtc -e tmux attach -t $TMUX_SESSION_NAME
+wmctrl -x -a xterm || xterm -e tmux attach -t $TMUX_SESSION_NAME
