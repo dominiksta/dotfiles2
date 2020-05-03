@@ -32,8 +32,8 @@ _switch_theme() {
 
     _switch_theme_gtk "$gtk_theme" "$gtk_icon_theme"
     _switch_theme_emacs "$emacs_theme"
-    # _switch_theme_terminal "$terminal_theme"
     _switch_theme_xrdb "$terminal_theme"
+    _switch_theme_tmux_main "$terminal_theme"
     _switch_theme_wm "$wm_theme"
 }
 
@@ -106,7 +106,7 @@ _switch_theme_emacs() {
 # Writes the theme file in $1 to ~/.local/share/terminal_colors/active.conf. If
 # $1 is '_emacs', it will get the terminal colors from the current emacs theme
 # instead.
-_set_theme_terminal() {
+_generate_theme_terminal() {
     if [ $1 == "_emacs" ]; then
         if pidof emacs; then
             cat << EOF > ~/.local/share/terminal_colors/active.conf
@@ -143,17 +143,17 @@ EOF
 }
 
 
-# Switch themes of running terminals using escape sequences.
-_switch_theme_terminal() {
-    echo "switching to terminal theme: $1"
-    _set_theme_terminal $1
+# Switch xrdb colors
+_switch_theme_tmux_main() {
+    echo "switching to terminal theme (main tmux session): $1"
+    _generate_theme_terminal $1
     change-theme-terminal.sh
 }
 
 # Switch xrdb colors
 _switch_theme_xrdb() {
     echo "switching to terminal theme (xrdb): $1"
-    _set_theme_terminal $1
+    _generate_theme_terminal $1
     change-theme-xrdb.sh
 }
 

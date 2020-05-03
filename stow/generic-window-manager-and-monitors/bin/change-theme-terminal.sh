@@ -32,7 +32,13 @@ ansi_sequences+="\\033]10;$(_hex_from_color_file foreground)\\007"
 ansi_sequences+="\\033]11;$(_hex_from_color_file background)\\007"
 ansi_sequences+="\\033]17;$(_hex_from_color_file cursor)\\007"
 
-# Apply ANSI sequences to running terminals.
-for term in /dev/pts/[0-9]*; do
-    printf "%b" "$ansi_sequences" > "$term" &
-done
+# This would apply the ansi sequences to ALL running terminals. I don't want
+# that, since i run a lot of shells inside of emacs and those don't play nice
+# with these escape sequences.
+# for term in /dev/pts/[0-9]*; do
+#     printf "%b" "$ansi_sequences" > "$term" &
+# done
+
+# Instead, i apply the colors to whatever terminal currently is running my main
+# tmux instance:
+printf "%b" "$ansi_sequences" > /tmp/tmux_main_tty
