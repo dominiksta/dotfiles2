@@ -73,7 +73,7 @@
 ;; yourself and add an entry like this to your `gnus-secondary-select-methods':
 ;;
 ;; (nnmaildir "archive"
-;;            (directory "~/docs/Mail/archive")
+;;            (directory "~/Documents/Mail/archive")
 ;;            (get-new-mail nil))
 
 (setq gnus-message-archive-group (format-time-string "nnmaildir+archive:unsorted.sent.%Y")
@@ -217,6 +217,7 @@ that fails, it will return the current year. Useful to use for a
 ;; off. If you want to see the content as it was intended, use
 ;; `gnus-article-browse-html-article' to open it in your default browser.
 (setq shr-use-colors nil)
+(add-hook 'gnus-article-mode-hook 'visual-line-mode)
 
 ;; ----------------------------------------------------------------------
 ;; searching
