@@ -1,4 +1,5 @@
 xsettingsd &
+pcmanfm -d &
 feh --bg-fill $HOME/Pictures/papes/current.jpg &
 xrdb $HOME/.Xdefaults &
 compton &
