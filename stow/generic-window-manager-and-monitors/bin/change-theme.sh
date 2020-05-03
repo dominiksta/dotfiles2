@@ -5,7 +5,7 @@
 # - "gnome"
 # - "xfce"
 # As a fallback, xsettingsd is used
-desktop_environment="xfce"
+desktop_environment=""
 
 # An associative array of identifiers to sets of themes. Themes are sperated
 # by `;` and describe a type of theme based on their position:

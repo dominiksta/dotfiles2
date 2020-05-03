@@ -1,5 +1,9 @@
+xsettingsd &
+feh --bg-fill $HOME/Pictures/papes/current.jpg &
+xrdb $HOME/.Xdefaults &
+compton &
+redshift &
 intuos.sh first &
 caps.sh &
-redshift &
 (sleep 5 && plank) &
 tint2 &

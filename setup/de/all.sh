@@ -5,7 +5,7 @@ apt-get install -y tmux
 
 # --- other ---
 apt-get install -y stow \
-        dmenu gsimplecal \
+        dmenu gsimplecal tint2 plank \
         redshift xdotool wmctrl xclip \
         xkbset xcape \
 	ttf-dejavu
