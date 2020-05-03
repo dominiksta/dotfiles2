@@ -11,7 +11,7 @@ sudo apt update
 sudo apt build-dep -y emacs
 sudo apt install -y \
 	build-essential autoconf texinfo git \
-	python python-pip \
+	python3 python3-pip \
 	elpa-pdf-tools-server \
 	xfonts-terminus \
 	xkbset xcape libpoppler-dev libmagickwand-dev \

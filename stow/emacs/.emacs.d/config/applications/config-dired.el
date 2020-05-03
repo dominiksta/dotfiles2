@@ -126,7 +126,7 @@
 (defun fp/dired-open-directory-with-system-default ()
   (interactive)
   (if (eq system-type 'windows-nt) (shell-command "start .")
-    (start-process-shell-command "pcmanfm-qt" nil "pcmanfm-qt .")))
+    (start-process-shell-command "pcmanfm" nil "pcmanfm .")))
 
 ;; --------------------------------------------------------------------------------
 ;; appearance
