@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# "system" daemons
+xsettingsd &
+compton &
+pcmanfm -d &
+redshift &
+
+# settings
+feh --bg-fill --randomize $HOME/Pictures/papes/current
+xrdb $HOME/.Xdefaults
+
+# bindings
+intuos.sh first &
+caps.sh &
+
+# panels - we need to wait for the compositor with these
+(sleep 2 && tint2) &
+(sleep 5 && plank) &
