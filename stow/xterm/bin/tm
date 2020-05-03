@@ -1,0 +1,4 @@
+#!/bin/sh
+
+ln -sf $(tty) /tmp/tmux_main_tty
+tmux new-session -s main || tmux attach -t main
