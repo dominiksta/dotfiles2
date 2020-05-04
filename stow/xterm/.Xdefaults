@@ -7,7 +7,7 @@
 ! ----------------------------------------------------------------------
 ! xterm
 ! ----------------------------------------------------------------------
-XTerm.vt100.faceName        : xft:DejaVu Sans Mono:size=10
+XTerm.vt100.faceName        : xft:Iosevka Fixed:size=11
 XTerm.vt100.geometry        : 170x40
 
 XTerm.vt100.metaSendsEscape : true
@@ -20,3 +20,5 @@ XTerm.vt100.translations    : #override \n\
 XTerm.vt100.pointerShape    : xterm
 
 XTerm.vt100.SaveLines       : 10000
+
+Xft.dpi: 96

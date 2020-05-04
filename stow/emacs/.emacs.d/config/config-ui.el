@@ -22,9 +22,9 @@
 ;; themes and fonts
 ;; --------------------------------------------------------------------------------
 
-(setq fp/theme-font-family "DejaVu Sans Mono"
-      fp/theme-font-family-size "11"
-      fp/theme-font-family-fallback "Lucida Console"
+(setq fp/theme-font-family "Iosevka Fixed"
+      fp/theme-font-family-size "12"
+      fp/theme-font-family-fallback "Dejavu Sans Mono"
       fp/theme-font-family-fallback-size "12"
       fp/theme-font-family-variable-pitch "DejaVu Serif"
       ;; these are used to set `fp/theme-font-family' in `fp/theme-switch'
