@@ -1,0 +1,23 @@
+alt + comma
+    run-or-raise.sh xterm "xterm -e tmux"
+
+alt + space
+    run-or-raise.sh emacs emacs
+
+alt + shift + w
+    run-or-raise.sh waterfox waterfox
+
+alt + shift + e
+    run-or-raise.sh pcmanfm pcmanfm
+
+super + a
+    dmenu_run -l 10
+
+ctrl + alt + BackSpace
+    killall xfwm4
+
+super + shift + t
+    change-theme.sh
+
+super + e
+    pcmanfm $HOME

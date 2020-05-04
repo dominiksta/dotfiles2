@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# "system" daemons
+# daemons
 xsettingsd &
-compton &
+# compton &
 pcmanfm -d &
 redshift &
 
@@ -13,7 +13,11 @@ xrdb $HOME/.Xdefaults
 # bindings
 intuos.sh first &
 caps.sh &
+sxhkd &
 
 # panels - we need to wait for the compositor with these
 (sleep 2 && tint2) &
 (sleep 5 && plank) &
+
+# tray applications - need to start after the panels
+(sleep 5 && (nextcloud & nm-applet)) &
