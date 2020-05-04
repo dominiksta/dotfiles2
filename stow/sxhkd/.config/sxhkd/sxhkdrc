@@ -1,3 +1,5 @@
+# -*- mode: conf-unix; -*-
+
 alt + comma
     run-or-raise.sh xterm "xterm -e tmux"
 
@@ -21,3 +23,6 @@ super + shift + t
 
 super + e
     pcmanfm $HOME
+
+super + shift + {Left, Right}
+    move-to-next-monitor.sh
