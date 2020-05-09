@@ -99,6 +99,11 @@ available."
                      (eyebrowse--get 'current-slot))
                 "] ") ""))
 
+  (telephone-line-defsegment fp/telephone-line-dired-rsync-segment ()
+    "Show the current status of dired-rsync if available."
+    (propertize (or (and (featurep 'dired-rsync) dired-rsync-modeline-status) "")
+                'face 'warning))
+
   (set-face-attribute
    'telephone-line-evil-normal nil
    :foreground nil :background nil :inherit 'mode-line)
@@ -116,7 +121,8 @@ available."
         '((nil telephone-line-flycheck-segment)
           (accent fp/telephone-line-eyebrowse-segment
                   fp/telephone-line-airline-position-segment)
-          (nil telephone-line-misc-info-segment))
+          (nil telephone-line-misc-info-segment
+               fp/telephone-line-dired-rsync-segment))
         telephone-line-primary-left-separator telephone-line-nil
         telephone-line-primary-right-separator telephone-line-nil
         telephone-line-secondary-left-separator telephone-line-nil

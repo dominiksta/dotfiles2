@@ -26,7 +26,8 @@
           (dired-do-symlink . nil)
           (dired-do-relsymlink . nil)
           (dired-do-hardlink . nil)
-          (dired-create-directory . nil)))
+          (dired-create-directory . nil)
+          (dired-rsync . nil)))
 
   (setq helm-split-window-inside-p nil)
 
