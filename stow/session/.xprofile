@@ -16,7 +16,7 @@ caps.sh &
 sxhkd &
 
 # panels - we need to wait for the compositor with these
-(sleep 2 && tint2 && tint2 -c ~/.config/tint2/bottom.conf) &
+(sleep 2 && tint2 & tint2 -c ~/.config/tint2/bottom.conf) &
 
 # tray applications - need to start after the panels
 (sleep 5 && (nextcloud & nm-applet)) &
