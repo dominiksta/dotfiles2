@@ -16,7 +16,13 @@ super + a
     dmenu_run -l 10
 
 ctrl + alt + BackSpace
-    killall xfwm4
+    dmenu-y-or-n-p.sh "Logout?" && killall xfwm4
+
+ctrl + alt + BackSpace
+    dmenu-y-or-n-p.sh "Logout?" && killall xfwm4
+
+ctrl + alt + shift + BackSpace
+    dmenu-y-or-n-p.sh "Shutdown?" && shutdown now
 
 super + shift + t
     change-theme.sh
