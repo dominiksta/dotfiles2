@@ -177,11 +177,22 @@
 ;; async
 ;; --------------------------------------------------------------------------------
 (defun dired-async-system-notify (format-string &rest args)
-  (generic-notification-notify "Async File Operation" (apply 'format format-string (cdr args))))
+  (generic-notification-notify "Async File Operation" (apply 'format format-string (cdr args)) t))
 (setq dired-async-message-function 'dired-async-system-notify)
 
 (define-key dired-mode-map (kbd "A") 'dired-async-mode)
 
+;; --------------------------------------------------------------------------------
+;; rsync - this might just make me get rid of async
+;; --------------------------------------------------------------------------------
+;; For this package to work fully as intended, an ssh-agent (such as the
+;; gpg-agent that i use) and an ssh config is necessary specifying what user to
+;; log in to on the remote machine.
+(use-package dired-rsync :ensure t :config
+  (evil-define-key 'normal dired-mode-map
+    "R" 'dired-rsync
+    "bR" (lambda () (interactive) (let ((dired-dwim-target t))
+                                    (call-interactively 'dired-rsync)))))
 
 ;; --------------------------------------------------------------------------------
 ;; bindings
