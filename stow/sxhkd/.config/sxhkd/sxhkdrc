@@ -1,7 +1,7 @@
 # -*- mode: conf-unix; -*-
 
 alt + comma
-    run-or-raise.sh xterm "xterm -e tmux"
+    run-or-raise.sh xterm "xterm -title xterm -e tm"
 
 alt + space
     run-or-raise.sh emacs emacs
