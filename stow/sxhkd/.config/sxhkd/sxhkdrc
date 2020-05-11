@@ -12,6 +12,9 @@ alt + shift + w
 alt + shift + e
     run-or-raise.sh pcmanfm pcmanfm
 
+super + shift + a
+    j4-dmenu-desktop --dmenu="dmenu -i -l 10"
+
 super + a
     dmenu_run -l 10
 
