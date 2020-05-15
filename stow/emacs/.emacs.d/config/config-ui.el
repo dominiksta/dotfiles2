@@ -49,6 +49,9 @@ fixed-pitch faces."
     (set-face-attribute 'variable-pitch nil
                         :family fp/theme-font-family-variable-pitch
                         :height 1.2
+                        :weight 'normal)
+    (set-face-attribute 'fixed-pitch nil
+                        :family fp/theme-font-family
                         :weight 'normal)))
 
 (if window-system (fp/theme-font-setup))
