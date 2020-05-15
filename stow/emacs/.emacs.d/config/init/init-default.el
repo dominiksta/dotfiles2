@@ -25,6 +25,7 @@
 (config-require '(config-language-python) :feature python)
 (config-require '(config-language-python) :feature pyvenv)
 
+(config-require '(config-language-nasm)         :regexp "\\.n?asm\\'"     :auto-mode nasm-mode)
 (config-require '(config-language-cc)           :regexp '("[ch]pp" "ino") :auto-mode c++-mode)
 (config-require '(config-language-cc)           :regexp "\\.pro\\'"       :auto-mode makefile-mode)
 (config-require '(config-language-cc)           :regexp "\\.[ch]\\'"      :auto-mode c-mode)
