@@ -35,3 +35,10 @@ super + e
 
 super + shift + {Left, Right}
     move-to-next-monitor.sh
+
+# The '@' is for listening to key release
+@Print
+    screenshot.sh
+
+shift + @Print
+    screenshot.sh selection clipboard
