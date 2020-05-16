@@ -163,6 +163,11 @@ that fails, it will return the current year. Useful to use for a
 (setq gnus-summary-goto-unread nil)
 (add-hook 'gnus-summary-prepared-hook (lambda () (end-of-buffer) (previous-line)))
 
+;; --- viewing threads/referring articles ---
+(setq gnus-refer-thread-use-nnir t) ; search in all groups
+;; NOTE: I configure `gnus-refer-article-method' in `gnus-group-parameters' to
+;; be something like '(current (nnir "nnimap:<the_group>")).
+
 ;; --- other ---
 (setq gnus-auto-select-first nil)
 (setq gnus-summary-mode-line-format "%p [current: %A, unread: %Z]")
@@ -296,6 +301,7 @@ that fails, it will return the current year. Useful to use for a
   ;; threads
   "tt" 'gnus-summary-toggle-threads
   "tf" 'gnus-summary-refer-thread
+  "tp" 'gnus-summary-refer-parent-article
 
   ;; sorting
   "sa" 'gnus-summary-sort-by-author
