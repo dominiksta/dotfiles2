@@ -6,11 +6,49 @@
 (setq org-agenda-files (list (concat sync-directory "general/org/meinleben/privat.org")
                              (concat sync-directory "general/org/meinleben/studium.org")
                              (concat sync-directory "general/org/meinleben/arbeit.org")
-                             (concat sync-directory "general/org/meinleben/capture.org"))
+                             (concat sync-directory "general/org/meinleben/capture.org")
+                             (concat sync-directory "general/org/meinleben/webcal.org"))
       org-icalendar-combined-agenda-file (concat sync-directory "org/ics/combine.ics"))
 
 
 (setq org-modules '(org-info org-habit))
+
+;; --------------------------------------------------------------------------------
+;; custom commands
+;; --------------------------------------------------------------------------------
+(setq org-agenda-custom-commands
+      '(("a" "All"
+         ((agenda "") (alltodo ""))
+         ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("DONE" "FAIL" "TASK")))))
+
+        ("A" "Only Appointments"
+         ((agenda ""))
+         ((org-agenda-skip-function '(org-agenda-skip-if t '(regexp ":habit:")))))
+
+        ("t" "All entries of type TODO"
+         ((alltodo ""))
+         ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("DONE" "FAIL")))))
+
+        ("s" "stundenplan"
+         ((agenda ""))
+         ((org-agenda-files '("~/sync/general/org/meinleben/stundenplan.org"))))))
+
+;; --------------------------------------------------------------------------------
+;; webcal
+;; --------------------------------------------------------------------------------
+(config-add-external-dependency 'gawk 'config-org-agenda "convert ics to org"
+                                (lambda () (executable-find "gawk"))
+                                "apt-get install -y gawk" "cyg-get awk")
+
+(when (config-external-check-list '(gawk))
+  (defun fp/webcal-to-org ()
+    (interactive)
+    (with-current-buffer (get-buffer-create "*webcal-to-org*")
+      (cd (concat sync-directory "general/org/scripts")) (erase-buffer)
+      (start-process-shell-command "webcal-to-org" "*webcal-to-org*"
+                                   (concat "sh " default-directory "allwebcal.sh"))))
+  (run-with-timer (* 20 60) (* 60 60) 'fp/webcal-to-org))
+
 ;; --------------------------------------------------------------------------------
 ;; bindings
 ;; --------------------------------------------------------------------------------
@@ -39,62 +77,6 @@
   "C" 'org-agenda-clockreport-mode
   "c" 'org-agenda-log-mode
   "i" 'org-agenda-show-clocking-issues)
-
-
-;; --------------------------------------------------------------------------------
-;; custom commands
-;; --------------------------------------------------------------------------------
-(setq org-agenda-custom-commands
-      '(("a" "Agenda for current Week"
-         ((agenda ""))
-         ((org-agenda-skip-function '(org-agenda-skip-entry-if 'regexp ":DAILY:"))))
-
-        ("t" "All TODO and NEXT entries"
-         ((alltodo ""))
-         ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("DONE" "FAIL" "TASK")))))
-
-        ("n" "Agenda and all TODOs"
-         ((agenda "") (todo "TODO"))
-         ((org-agenda-skip-function '(org-agenda-skip-entry-if 'regexp ":DAILY:"))))
-
-        ("s" "Stundenplan"
-         ((agenda ""))
-         ((org-agenda-skip-function '(org-agenda-skip-entry-if 'regexp ":DAILY:"))
-          (org-agenda-files '("~/sync/general/org/meinleben/stundenplan.org"))))
-
-        ("b" "All"
-         ((agenda "") (alltodo ""))
-         ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("DONE" "FAIL" "TASK")))
-          (org-agenda-files (append org-agenda-files '("~/sync/general/org/meinleben/stundenplan.org")))))))
-
-;; --------------------------------------------------------------------------------
-;; timetable
-;; --------------------------------------------------------------------------------
-(config-add-external-dependency 'wget 'config-org-agenda "download timetable"
-                                (lambda () (executable-find "wget"))
-                                "apt install wget" "cyg-get wget")
-
-(config-add-external-dependency 'sh 'config-org-agenda "timetable script"
-                                (lambda () (executable-find "sh")) "default" "cygwin or something")
-
-(config-add-external-dependency 'gawk 'config-org-agenda "convert timetable ics to org"
-                                (lambda () (executable-find "gawk"))
-                                "apt install gawk" "cyg-get awk")
-
-(config-add-external-dependency 'python 'config-org-agenda
-                                "insert 'scheduled' into timetable for orgzly"
-                                (lambda () (executable-find "python"))
-                                "apt install python" "cyg-get python3")
-
-(when (config-external-check-list '(wget sh gawk python))
-  (defun fp/get-timetable ()
-    (interactive)
-    (with-current-buffer (get-buffer-create "*timetable*")
-      (cd (concat sync-directory "general/org/mystundenplan")) (erase-buffer)
-      (start-process-shell-command "timetable" "*timetable*"
-                                   (concat "sh " default-directory "getmystundenplan.sh"))))
-  (run-with-timer (* 20 60) (* 60 60) 'fp/get-timetable))
-
 
 
 (provide 'config-org-agenda)

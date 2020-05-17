@@ -26,7 +26,8 @@
           (dired-do-symlink . nil)
           (dired-do-relsymlink . nil)
           (dired-do-hardlink . nil)
-          (dired-create-directory . nil)))
+          (dired-create-directory . nil)
+          (dired-rsync . nil)))
 
   (setq helm-split-window-inside-p nil)
 
@@ -104,7 +105,16 @@
     (evil-leader/set-key
       "ss"  'helm-swoop
       "so"  'helm-multi-swoop-org)
-    (define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop)))
+    (define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop))
+
+  ;; --------------------------------------------------------------------------------
+  ;; appearance
+  ;; --------------------------------------------------------------------------------
+
+  (custom-set-faces
+   '(helm-source-header ((t (:foreground nil :background nil
+                                         :family nil :height 1.3
+                                         :inherit font-lock-keyword-face))))))
 
 
 (provide 'config-helm-minibuffer)

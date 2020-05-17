@@ -10,9 +10,10 @@
 [ -f "$HOME/.config/pc_specific_profile.sh" ] && source $HOME/.config/pc_specific_profile.sh
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
+[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+
+# set PATH so it includes /snap/bin if it exists
+[ -d "/snap/bin" ] && PATH="/snap/bin:$PATH"
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then

@@ -38,7 +38,7 @@
   (if (eq system-type 'windows-nt)
       (if arg (start-process-shell-command "external-terminal" nil "nircmd elevate cmd")
         (start-process-shell-command "external-terminal" nil "start cmd"))
-    (start-process-shell-command "external-terminal" nil "x-terminal-emulator")))
+    (start-process-shell-command "external-terminal" nil "xterm-tmux-new-window.sh")))
 
 ;; Note: send passwords with M-x `send-invisible'
 

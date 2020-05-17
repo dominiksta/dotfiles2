@@ -5,7 +5,7 @@
 # - "gnome"
 # - "xfce"
 # As a fallback, xsettingsd is used
-desktop_environment="xfce"
+desktop_environment=""
 
 # An associative array of identifiers to sets of themes. Themes are sperated
 # by `;` and describe a type of theme based on their position:
@@ -15,8 +15,8 @@ desktop_environment="xfce"
 # - position 4: terminal theme (ls ~/.local/share/terminal_colors/ or _emacs)
 declare -A themesets
 themesets=(
-    ["light1"]="Greybird;Tango;tango;_emacs;BlueMenta"
-    ["dark1"]="Blackbird;Tango;zenburn;_emacs;f1p"
+    ["light"]="Materia-light-compact;Adwaita;tango;_emacs;Materia-light"
+    ["dark"]="Materia-dark-compact;Adwaita;zenburn;_emacs;Materia"
 )
 
 # Switch to a themeset specified in global `themesets`. Calls all the
@@ -32,8 +32,8 @@ _switch_theme() {
 
     _switch_theme_gtk "$gtk_theme" "$gtk_icon_theme"
     _switch_theme_emacs "$emacs_theme"
-    # _switch_theme_terminal "$terminal_theme"
-    _switch_theme_urxvtd "$terminal_theme"
+    _switch_theme_xrdb "$terminal_theme"
+    _switch_theme_tmux_main "$terminal_theme"
     _switch_theme_wm "$wm_theme"
 }
 
@@ -106,7 +106,7 @@ _switch_theme_emacs() {
 # Writes the theme file in $1 to ~/.local/share/terminal_colors/active.conf. If
 # $1 is '_emacs', it will get the terminal colors from the current emacs theme
 # instead.
-_set_theme_terminal() {
+_generate_theme_terminal() {
     if [ $1 == "_emacs" ]; then
         if pidof emacs; then
             cat << EOF > ~/.local/share/terminal_colors/active.conf
@@ -143,18 +143,18 @@ EOF
 }
 
 
-# Switch themes of running terminals using escape sequences.
-_switch_theme_terminal() {
-    echo "switching to terminal theme: $1"
-    _set_theme_terminal $1
+# Switch xrdb colors
+_switch_theme_tmux_main() {
+    echo "switching to terminal theme (main tmux session): $1"
+    _generate_theme_terminal $1
     change-theme-terminal.sh
 }
 
-# Switch themes of all urxvtc instances of the running urxvtd
-_switch_theme_urxvtd() {
-    echo "switching to terminal theme (rxvt): $1"
-    _set_theme_terminal $1
-    change-theme-urxvt.sh
+# Switch xrdb colors
+_switch_theme_xrdb() {
+    echo "switching to terminal theme (xrdb): $1"
+    _generate_theme_terminal $1
+    change-theme-xrdb.sh
 }
 
 _sed() {

@@ -269,13 +269,14 @@
 ;; programming
 ;; --------------------------------------------------------------------------------
 (evil-leader/set-key
+  "pR" 'projectile-run-project
+  "pT" 'projectile-test-project
+  "pC" 'projectile-compile-project
+  "pr" 'recompile
+  "pc" 'compile
   "pI" 'projectile-discover-projects-in-directory
   "pf" 'helm-projectile-find-file
   "pe" 'projectile-run-eshell
-  "pR" 'projectile-run-project
-  "pr" 'recompile
-  "pC" 'compile
-  "pc" 'projectile-compile-project
   "pP" 'helm-projectile-switch-project)
 
 ;; --------------------------------------------------------------------------------

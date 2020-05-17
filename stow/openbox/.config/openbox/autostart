@@ -1,6 +1,0 @@
-urxvtd -q -o -f &
-intuos.sh first &
-caps.sh &
-redshift &
-tint2 -c ~/.config/tint2/bottom.conf &
-tint2 &

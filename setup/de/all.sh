@@ -1,16 +1,13 @@
 #!/bin/bash
 
 # --- terminal ---
-apt-get install -y rxvt-unicode \
-        libcommon-sense-perl \
-        liblinux-fd-perl \
-        libanyevent-perl \
-        tmux
+apt-get install -y tmux
 
 # --- other ---
-apt-get install -y stow dmenu \
+apt-get install -y stow \
+        dmenu j4-dmenu-desktop gsimplecal tint2 plank \
         redshift xdotool wmctrl xclip \
-        xkbset xcape \
+        xkbset xcape sxhkd \
 	ttf-dejavu
 
 git config --global user.email "f1rstperson@gmx.net"

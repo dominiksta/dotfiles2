@@ -2,9 +2,9 @@
 
 
 (defun fp/sh-mode-hook ()
-  (add-hook 'after-save-hook
-            'executable-make-buffer-file-executable-if-script-p
-            nil t)
+  ;; (add-hook 'after-save-hook
+  ;;           'executable-make-buffer-file-executable-if-script-p
+  ;;           nil t)
   (company-mode 1)
   (flycheck-mode 1))
 

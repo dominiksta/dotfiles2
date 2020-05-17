@@ -1,0 +1,44 @@
+# -*- mode: conf-unix; -*-
+
+alt + comma
+    run-or-raise.sh xterm "xterm -title xterm -e tm"
+
+alt + space
+    run-or-raise.sh emacs emacs
+
+alt + shift + w
+    run-or-raise.sh waterfox waterfox
+
+alt + shift + e
+    run-or-raise.sh pcmanfm pcmanfm
+
+super + shift + a
+    j4-dmenu-desktop --dmenu="dmenu -i -l 10"
+
+super + a
+    dmenu_run -l 10
+
+ctrl + alt + BackSpace
+    dmenu-y-or-n-p.sh "Logout?" && killall xfwm4
+
+ctrl + alt + BackSpace
+    dmenu-y-or-n-p.sh "Logout?" && killall xfwm4
+
+ctrl + alt + shift + BackSpace
+    dmenu-y-or-n-p.sh "Shutdown?" && shutdown now
+
+super + shift + t
+    change-theme.sh
+
+super + e
+    pcmanfm $HOME
+
+super + shift + {Left, Right}
+    move-to-next-monitor.sh
+
+# The '@' is for listening to key release
+@Print
+    screenshot.sh
+
+shift + @Print
+    screenshot.sh selection clipboard

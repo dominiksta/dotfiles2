@@ -1,4 +1,5 @@
 (require 'gnus-group)
+(require 'ol-gnus) ;; required for `org-store-link`
 
 ;; ----------------------------------------------------------------------
 ;; accounts
@@ -72,7 +73,7 @@
 ;; yourself and add an entry like this to your `gnus-secondary-select-methods':
 ;;
 ;; (nnmaildir "archive"
-;;            (directory "~/docs/Mail/archive")
+;;            (directory "~/Documents/Mail/archive")
 ;;            (get-new-mail nil))
 
 (setq gnus-message-archive-group (format-time-string "nnmaildir+archive:unsorted.sent.%Y")
@@ -162,6 +163,11 @@ that fails, it will return the current year. Useful to use for a
 (setq gnus-summary-goto-unread nil)
 (add-hook 'gnus-summary-prepared-hook (lambda () (end-of-buffer) (previous-line)))
 
+;; --- viewing threads/referring articles ---
+(setq gnus-refer-thread-use-nnir t) ; search in all groups
+;; NOTE: I configure `gnus-refer-article-method' in `gnus-group-parameters' to
+;; be something like '(current (nnir "nnimap:<the_group>")).
+
 ;; --- other ---
 (setq gnus-auto-select-first nil)
 (setq gnus-summary-mode-line-format "%p [current: %A, unread: %Z]")
@@ -216,7 +222,29 @@ that fails, it will return the current year. Useful to use for a
 ;; off. If you want to see the content as it was intended, use
 ;; `gnus-article-browse-html-article' to open it in your default browser.
 (setq shr-use-colors nil)
+(add-hook 'gnus-article-mode-hook 'visual-line-mode)
 
+;; ----------------------------------------------------------------------
+;; searching
+;; ----------------------------------------------------------------------
+
+;; TODO set up search for local maildirs
+;; (setq nnir-method-default-engines
+;;       '((nnimap . imap)
+;;         (nndraft . find-grep)
+;;         (nnfolder . find-grep)
+;;         (nnmaildir . find-grep)))
+
+;; ----------------------------------------------------------------------
+;; contacts
+;; ----------------------------------------------------------------------
+
+;; You have multiple options to handle insertion of contacts when composing
+;; mail. One of them is `eudc' - which is a unified interface to bbdb and
+;; ldap. If your workplace/uni/whatever does not have a public ldap server
+;; though (like my workplace/uni) then this is not of much use to you. Instead,
+;; the package `vdirel' can be combined with the external program 'vdirsyncer'
+;; to synchronize with a carddav server. TODO
 
 ;; ======================================================================
 ;; evil binds
@@ -266,12 +294,14 @@ that fails, it will return the current year. Useful to use for a
   "pe" 'gnus-article-view-part-externally
 
   "b" 'gnus-summary-move-article
+  "c" 'gnus-summary-copy-article
 
   "zt" 'gnus-summary-toggle-header
 
   ;; threads
   "tt" 'gnus-summary-toggle-threads
   "tf" 'gnus-summary-refer-thread
+  "tp" 'gnus-summary-refer-parent-article
 
   ;; sorting
   "sa" 'gnus-summary-sort-by-author
@@ -323,6 +353,8 @@ that fails, it will return the current year. Useful to use for a
   "i" 'gnus-group-list-groups
 
   "T" 'gnus-group-topic-map
+
+  "c" 'gnus-topic-catchup-articles
 
   "gs" 'gnus-group-enter-server-mode
   "gj" 'gnus-topic-goto-next-topic
