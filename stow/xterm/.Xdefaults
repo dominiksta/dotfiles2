@@ -22,3 +22,5 @@ XTerm.vt100.pointerShape    : xterm
 XTerm.vt100.SaveLines       : 10000
 
 Xft.dpi: 96
+
+Xcursor.theme: Yaru
