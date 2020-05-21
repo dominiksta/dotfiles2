@@ -10,7 +10,6 @@
 (require-and-log 'config-org)
 (require-and-log 'config-org-agenda)
 (require-and-log 'config-random)
-(require-and-log 'config-session)
 (require-and-log 'config-window-management)
 (require-and-log 'config-dired)
 (require-and-log 'config-git)
@@ -96,6 +95,7 @@
 ;; --------------------------------------------------------------------------------
 ;; finishing
 ;; --------------------------------------------------------------------------------
+(require-and-log 'config-session)
 (if (eq system-type 'windows-nt) (require 'config-windows))
 (message (concat "Startup in: " (emacs-init-time)))
 (provide 'init-default)
