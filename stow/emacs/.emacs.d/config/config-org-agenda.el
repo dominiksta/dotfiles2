@@ -1,6 +1,15 @@
-;; --- setup ---
-(setq org-agenda-default-appointment-duration 60
-      org-agenda-window-setup 'current-window)
+;; --- random ---
+(setq org-agenda-default-appointment-duration 60)
+
+;; -- window setup
+(setq org-agenda-window-setup 'current-window)
+
+;; --- Always start org-agenda on eyebrowse workspace 0 ---
+(defun fp/org-agenda-wm-advice (orig-fun &rest args)
+  (eyebrowse-switch-to-window-config-0)
+  (apply orig-fun args))
+
+(advice-add 'org-agenda :around 'fp/org-agenda-wm-advice)
 
 ;; --- files ---
 (setq org-agenda-files (list (concat sync-directory "general/org/meinleben/privat.org")
