@@ -128,6 +128,9 @@ that fails, it will return the current year. Useful to use for a
         gnus-group-sort-by-alphabet
         gnus-group-sort-by-rank))
 
+(setq gnus-summary-next-group-on-exit nil) ; Don't switch to the next group on
+                                           ; summary exit
+
 ;; I prefer gnus to keep running in the background, so i just tell it so save my
 ;; newsrc and hide the buffer instead of exiting.
 (define-key gnus-group-mode-map (kbd "q")
@@ -342,6 +345,9 @@ that fails, it will return the current year. Useful to use for a
   "ps" 'gnus-article-save-part
   "pv" 'gnus-article-view-part
   "pe" 'gnus-article-view-part-externally
+
+  "i" 'gnus-article-show-images
+  "I" 'gnus-article-remove-images
 
   "q" 'evil-window-delete)
 
