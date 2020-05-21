@@ -13,7 +13,10 @@
 
 (setq ls-lisp-emulation t
       ls-lisp-dirs-first t
-      dired-listing-switches "-a -l -h --group-directories-first")
+      dired-listing-switches
+      (if (eq system-type 'windows-nt)
+          "-a -l -h"
+        "-a -l -h --group-directories-first"))
 
 (defun fp/dired-beginning-of-buffer ()
   (interactive) (evil-goto-line) (dired-previous-line 1))
