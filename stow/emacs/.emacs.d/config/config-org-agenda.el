@@ -26,13 +26,13 @@
 ;; custom commands
 ;; --------------------------------------------------------------------------------
 (setq org-agenda-custom-commands
-      '(("a" "All"
-         ((agenda "") (alltodo ""))
+      '(("a" "Default - Today"
+         ((agenda "" ((org-agenda-span 1))) (alltodo ""))
          ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("DONE" "FAIL" "TASK")))))
 
-        ("A" "Only Appointments"
-         ((agenda ""))
-         ((org-agenda-skip-function '(org-agenda-skip-if t '(regexp ":habit:")))))
+        ("w" "Week all"
+         ((agenda "") (alltodo ""))
+         ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("DONE" "FAIL" "TASK")))))
 
         ("t" "All entries of type TODO"
          ((alltodo ""))
