@@ -2,14 +2,44 @@
 ;; workspaces
 ;; ----------------------------------------------------------------------
 
-(use-package eyebrowse
-  :after evil evil-leader
-  :ensure t
-  :commands 'eyebrowse-switch-to-window-config
-  :config
-  (eyebrowse-mode 1)
-  (setq eyebrowse-mode-line-style nil
-        eyebrowse-new-workspace t))
+(use-package eyebrowse :ensure t :demand t)
+(eyebrowse-mode 1)
+
+(setq eyebrowse-mode-line-style nil
+      eyebrowse-new-workspace t)
+
+(setq fp/workspace-defaults
+      '((lambda ()
+          (when (not (member t (mapcar
+                                (lambda (w) (eq (with-current-buffer
+                                               (window-buffer w) major-mode)
+                                           'org-agenda-mode))
+                                (window-list))))
+            (delete-other-windows)
+            (split-window-right) (other-window 1)
+            (find-file (concat sync-directory  "general/org/meinleben/"))
+            (other-window 1)
+            (org-agenda nil "a"))) ; 0
+        (lambda () nil) ; 1
+        (lambda () nil) ; 2
+        (lambda () nil) ; 3
+        (lambda () nil) ; 4
+        (lambda () nil) ; 5
+        (lambda () nil) ; 6
+        (lambda () nil) ; 7
+        (lambda () nil) ; 8
+        (lambda ()
+          (print major-mode)
+          (if (not (string-match "\\`gnus-" (symbol-name major-mode)))
+              (gnus))) ; 9
+        ))
+
+(defun fp/eyebrowse-switch-to-window-config-and-run-defaults (i)
+  (eyebrowse-switch-to-window-config i)
+  (other-window 0) ;; hack - for some reason the selected buffer stays on the
+                   ;; old workspace if this is not called
+  (funcall (nth i fp/workspace-defaults)))
+
 
 (winner-mode 1)
 

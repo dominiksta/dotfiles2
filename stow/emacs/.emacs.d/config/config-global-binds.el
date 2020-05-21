@@ -88,8 +88,14 @@
   (global-set-key (kbd (format "M-%d" i))
                   `(lambda ()
                      (interactive)
-                     (eyebrowse-switch-to-window-config ,i)))
+                     (fp/eyebrowse-switch-to-window-config-and-run-defaults ,i)))
   (evil-leader/set-key (format "%d" i)
+    `(lambda ()
+       (interactive)
+       (fp/eyebrowse-switch-to-window-config-and-run-defaults ,i))))
+
+(dotimes (i 10)
+  (evil-leader/set-key (format "w %d" i)
     `(lambda ()
        (interactive)
        (eyebrowse-switch-to-window-config ,i))))
@@ -128,10 +134,10 @@
   "zp" 'evil-prev-flyspell-error)
 
 (evil-leader/set-key
-    "add" 'dictcc
-    "adp" 'dictcc-at-point
-    "adb" 'ispell-buffer
-    "adf" 'fp/toggle-flyspell-check-buffer)
+  "add" 'dictcc
+  "adp" 'dictcc-at-point
+  "adb" 'ispell-buffer
+  "adf" 'fp/toggle-flyspell-check-buffer)
 
 (autoload-list '(ispell-toggle-dictionary
                  flyspell-correct-word
@@ -219,8 +225,7 @@
 
 ;; --- agenda ---
 (evil-leader/set-key
-  "aa" 'org-agenda
-  "al" 'org-agenda-list)
+  "aa" (lambda () (interactive) (org-agenda nil "a")))
 
 ;; --- calc ---
 (autoload 'fp/calc-eval-region "config-calc")
