@@ -15,8 +15,8 @@ desktop_environment=""
 # - position 4: terminal theme (ls ~/.local/share/terminal_colors/ or _emacs)
 declare -A themesets
 themesets=(
-    ["light"]="Materia-light-compact;Adwaita;tango;_emacs;Materia-light"
-    ["dark"]="Materia-dark-compact;Adwaita;zenburn;_emacs;Materia"
+    ["light"]="Materia-light-compact;Adwaita;modus-operandi;_emacs;Materia-light"
+    ["dark"]="Materia-dark-compact;Adwaita;modus-vivendi;_emacs;Materia"
 )
 
 # Switch to a themeset specified in global `themesets`. Calls all the
