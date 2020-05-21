@@ -4,7 +4,6 @@
 ;; ----------------------------------------------------------------------
 ;; making connections
 ;; ----------------------------------------------------------------------
-(require 'epass nil t)
 
 (when (featurep 'epass)
   (defvar fp/sql-connection-alist nil

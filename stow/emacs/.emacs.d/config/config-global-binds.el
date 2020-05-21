@@ -158,52 +158,11 @@
 ;; --- mail ---
 (evil-leader/set-key "am" 'gnus)
 
-;; --- emms / music ----
-(autoload 'emms "emms-playlist-mode.el")
-
-(defhydra emms-control (:color pink :hint nil)
-  "
-  ^Views^             ^Control^            ^Add^         
-  ^^^^^^^^-----------------------------------------------
-  _m_: playlist view   _+_:   volume up     _f_: find    
-  _b_: browser view    _-_:   volume down   _r_: dirtree 
-  _d_: music dir       _SPC_: play/pause    _y_: youtube 
-  ^ ^                  _c_: toggle cache    _p_: playlist
-"
-  ("m" emms)
-  ("b" emms-browser)
-  ("d" (find-file "~/Music"))
-  ("f" emms-add-find)
-  ("r" emms-add-directory-tree)
-  ("y" emms-add-youtube-url)
-  ("p" emms-add-playlist)
-  ("c" emms-cache-toggle)
-  ("t" emms-player-simple-ipc-mpv-cycle-video)
-  ("+" emms-volume-raise)
-  ("-" emms-volume-lower)
-  ("SPC" emms-pause)
-  ("q" nil "quit" :color blue))
-
-(evil-leader/set-key "," 'emms-control/body)
-
-(global-set-key (kbd "C-S-<up>") 'emms-volume-raise)
-(global-set-key (kbd "C-S-<down>") 'emms-volume-lower)
-(global-set-key (kbd "C-S-<right>") 'emms-next)
-(global-set-key (kbd "C-S-<left>")  'emms-previous)
-(global-set-key (kbd "C-S-SPC")     'emms-pause)
-
-;; --- elfeed ---
-(autoload 'elfeed-load-db-and-open "config-elfeed.el")
-(evil-leader/set-key "aE" 'elfeed-load-db-and-open)
-
 ;; --- magit ----
 (evil-leader/set-key "ag" 'magit-status)
 
 ;; --- sql connections ----
 (evil-leader/set-key "aS" 'fp/sql-connect)
-
-;; --- epass ---
-(evil-leader/set-key "as" 'epass-store-helm)
 
 ;; --- proced ---
 (autoload 'fp/proced-startup "config-proced.el")
