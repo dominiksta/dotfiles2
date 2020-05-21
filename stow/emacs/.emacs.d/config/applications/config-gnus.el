@@ -1,3 +1,5 @@
+(require-and-log 'config-window-management)
+(require 'eyebrowse)
 (require 'gnus-group)
 (require 'ol-gnus) ;; required for `org-store-link`
 
@@ -30,6 +32,15 @@
 ;; Don't save newsrc; I don't care about compatibility with other news readers
 (setq gnus-read-newsrc-file nil
       gnus-save-newsrc-file nil)
+
+;; --- Always start gnus on eyebrowse workspace 9 ---
+(setcdr (assq 'gnus org-link-frame-setup) 'gnus)
+
+(defun fp/gnus-wm-advice (orig-fun &rest args)
+  (eyebrowse-switch-to-window-config-9)
+  (apply orig-fun args))
+
+(advice-add 'gnus :around 'fp/gnus-wm-advice)
 
 ;; ----------------------------------------------------------------------
 ;; caching
