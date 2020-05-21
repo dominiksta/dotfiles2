@@ -70,8 +70,11 @@
  '(org-block-end-line ((t (:extend t))))
 
  ;; heading sizes
- '(org-level-1 ((t (:overline t :height 1.3))))
- '(org-level-2 ((t (:overline t :height 1.0))))
+ '(org-level-1 ((t (:overline nil :height 1.3))))
+ '(org-level-2 ((t (:overline nil :height 1.0))))
+
+ ;; title size
+ '(org-document-title ((t (:height 1.4))))
  )
 
 ;; --- different font for org mode ---
@@ -197,9 +200,18 @@ some faces fixed-with (for tables, source code, etc.)"
   (config-add-external-dependency
    'minted 'config-org "syntax highlighting in latex export"
    (lambda () (executable-find "pygmentize"))
-   "pip install pygmentize" "pip install pygmentize")
+   "sudo pip3 install Pygments" "pip3 install Pygments")
   (setq org-latex-listings 'minted)
   (add-to-list 'org-latex-packages-alist '("" "minted"))
+
+  ;; --- beamer ---
+  (evil-leader/set-key-for-mode 'org-mode "mb" 'org-beamer-select-environment)
+
+  (add-to-list 'org-latex-classes
+               '("beamer_handout" "\\documentclass[handout]{beamer}"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
 
   ;; Sets up the build-pipeline. We call pdflatex multiple times here to prevent
   ;; weirdness like toc not being generated. This is a normal latex problem. The
