@@ -5,6 +5,7 @@
 (toggle-frame-maximized)
 (blink-cursor-mode -1)
 (tooltip-mode 0)
+(setq use-dialog-box nil)
 
 ;; Do not send size hints to the window manager. The default value makes it
 ;; impossible to properly tile emacs.
@@ -48,7 +49,7 @@ fixed-pitch faces."
                       (font-spec :family fp/theme-font-family))
     (set-face-attribute 'variable-pitch nil
                         :family fp/theme-font-family-variable-pitch
-                        :height 1.2
+                        :height 1.0
                         :weight 'normal)
     (set-face-attribute 'fixed-pitch nil
                         :family fp/theme-font-family
@@ -87,17 +88,16 @@ fixed-pitch faces."
 ;; (use-package color-theme-sanityinc-tomorrow
 ;;   :ensure t
 ;;   :config
-;;   (use-package grandshell-theme :ensure t)
 ;;   (setq fp/theme-light-theme 'sanityinc-tomorrow-day
 ;;         fp/theme-dark-theme 'sanityinc-tomorrow-night))
 
-;; (use-package modus-operandi-theme :ensure t
-;;   :config
-;;   (setq fp/theme-light-theme 'modus-operandi))
+(use-package modus-operandi-theme :ensure t
+  :config
+  (setq fp/theme-light-theme 'modus-operandi))
 
-;; (use-package modus-vivendi-theme :ensure t
-;;   :config
-;;   (setq fp/theme-dark-theme 'modus-vivendi))
+(use-package modus-vivendi-theme :ensure t
+  :config
+  (setq fp/theme-dark-theme 'modus-vivendi))
 
 ;; (use-package doom-themes
 ;;   :ensure t
@@ -137,12 +137,12 @@ fixed-pitch faces."
 ;;   :config (setq fp/theme-light-theme 'material-light
 ;;                 fp/theme-dark-theme 'material))
 
-(use-package zenburn-theme :ensure t :demand t :config
-  ;; (use-package doneburn-theme :ensure t :demand t :config
+;; (use-package zenburn-theme :ensure t :demand t :config
+;;   ;; (use-package doneburn-theme :ensure t :demand t :config
 
-  ;;   )
-  (setq fp/theme-light-theme 'tango
-        fp/theme-dark-theme 'zenburn))
+;;   ;;   )
+;;   (setq fp/theme-light-theme 'tango
+;;         fp/theme-dark-theme 'zenburn))
 
 ;; (use-package solarized-theme
 ;;   :ensure t
