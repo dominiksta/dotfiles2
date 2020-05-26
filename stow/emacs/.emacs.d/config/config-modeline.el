@@ -26,58 +26,40 @@
 ;; (setq-default mode-line-format fp/mode-line-format)
 ;; (set-local-variable-in-all-buffers mode-line-format fp/mode-line-format)
 
-(defun fp/toggle-modeline ()
-  (interactive)
-  (if (eq mode-line-format nil)
-      (progn
-        (setq-default mode-line-format fp/mode-line-format)
-        (set-local-variable-in-all-buffers mode-line-format fp/mode-line-format))
-    (progn
-      (setq-default mode-line-format nil)
-      (set-local-variable-in-all-buffers mode-line-format nil))))
+;; (defun fp/toggle-modeline ()
+;;   (interactive)
+;;   (if (eq mode-line-format nil)
+;;       (progn
+;;         (setq-default mode-line-format fp/mode-line-format)
+;;         (set-local-variable-in-all-buffers mode-line-format fp/mode-line-format))
+;;     (progn
+;;       (setq-default mode-line-format nil)
+;;       (set-local-variable-in-all-buffers mode-line-format nil))))
 
 ;; (setq display-time-load-average-threshold 0.8
 ;;       display-time-format " %H:%M")
 ;; (display-time-mode 1)
 
-;; (use-package mini-modeline :ensure t
-;;   :config
-;;   (defun mini-modeline--set-buffer-background () nil)
-;;   (setq mode-line-position ""
-;;         mini-modeline-r-format
-;;         '(((:eval (propertize "%b" 'face 'mode-line-buffer-id))
-;;            " %e%l:%c %*"
-;;            mode-line-position
-;;            evil-mode-line-tag
-;;            global-mode-string)
-;;           (:eval (if (featurep 'eyebrowse)
-;;                      (concat " [" (number-to-string
-;;                                    (eyebrowse--get 'current-slot))
-;;                              "]") " "))))
-
-;;   (mini-modeline-mode 1))
-
-
 (use-package telephone-line :ensure t :demand t :config
-  (telephone-line-defsegment fp/telephone-line-vcs-segment ()
-    "Show current VCS branch and status indicator. Taken from
-Protesilaos Stavrou's config."
-    (when (and vc-mode buffer-file-name)
-      (let* ((backend (vc-backend buffer-file-name))
-             (state (vc-state buffer-file-name backend)))
-        (concat
-         (telephone-line-raw
-          (format "%s" (substring vc-mode (+ (if (eq backend 'Hg) 2 3) 2))))
-         (cond ((memq state '(edited added))
-                (telephone-line-raw " *"))
-               ((eq state 'needs-merge)
-                (telephone-line-raw " ?"))
-               ((eq state 'needs-update)
-                (telephone-line-raw " !"))
-               ((memq state '(removed conflict unregistered))
-                (telephone-line-raw " ×"))
-               (t
-                (telephone-line-raw "")))))))
+;;   (telephone-line-defsegment fp/telephone-line-vcs-segment ()
+;;     "Show current VCS branch and status indicator. Taken from
+;; Protesilaos Stavrou's config."
+;;     (when (and vc-mode buffer-file-name)
+;;       (let* ((backend (vc-backend buffer-file-name))
+;;              (state (vc-state buffer-file-name backend)))
+;;         (concat
+;;          (telephone-line-raw
+;;           (format "%s" (substring vc-mode (+ (if (eq backend 'Hg) 2 3) 2))))
+;;          (cond ((memq state '(edited added))
+;;                 (telephone-line-raw " *"))
+;;                ((eq state 'needs-merge)
+;;                 (telephone-line-raw " ?"))
+;;                ((eq state 'needs-update)
+;;                 (telephone-line-raw " !"))
+;;                ((memq state '(removed conflict unregistered))
+;;                 (telephone-line-raw " ×"))
+;;                (t
+;;                 (telephone-line-raw "")))))))
 
   (telephone-line-defsegment fp/telephone-line-airline-position-segment ()
     "Position segment imitating vim-airline's
@@ -114,13 +96,12 @@ available."
   (setq telephone-line-evil-use-short-tag t
         telephone-line-lhs
         '((nil telephone-line-evil-tag-segment)
-          (accent fp/telephone-line-vcs-segment
-                  telephone-line-process-segment)
-          (nil telephone-line-buffer-segment))
+          (accent telephone-line-process-segment)
+          (nil telephone-line-buffer-segment)
+          (nil fp/telephone-line-airline-position-segment))
         telephone-line-rhs
         '((nil telephone-line-flycheck-segment)
-          (accent fp/telephone-line-eyebrowse-segment
-                  fp/telephone-line-airline-position-segment)
+          (nil fp/telephone-line-eyebrowse-segment)
           (nil telephone-line-misc-info-segment
                fp/telephone-line-dired-rsync-segment))
         telephone-line-primary-left-separator telephone-line-nil
