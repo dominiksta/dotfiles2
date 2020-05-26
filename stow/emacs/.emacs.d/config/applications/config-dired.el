@@ -261,6 +261,35 @@
 (define-key dired-mode-map [(double-mouse-3)] 'fp/dired-mouse-open-with-system-default)
 (define-key dired-mode-map [(triple-mouse-3)] 'fp/dired-mouse-open-with-system-default)
 
+;; --------------------------------------------------------------------------------
+;; kdeconnect
+;; --------------------------------------------------------------------------------
+
+(defvar fp/kdeconnect-active-device "Pixel 3a"
+  "The device used for kdeconnect. Only one is supported. You can
+  find the names with 'kdeconnect-cli -a --names-only'")
+
+(setq fp/kdeconnect-program "kdeconnect-cli")
+
+(defun fp/kdeconnect-base-command ()
+  (format "%s -n \"%s\"" fp/kdeconnect-program fp/kdeconnect-active-device))
+
+(defun fp/kdeconnect-send-files (files)
+  "Send a list of files to `fp/kdeconnect-active-device'."
+  (when (not (listp files)) (error "invalid type"))
+  (message "Sending files %s to %s" files fp/kdeconnect-active-device)
+  (call-process-shell-command
+   (format "%s %s %s" (fp/kdeconnect-base-command) "--share"
+           (mapconcat 'identity files " "))))
+
+(defun fp/kdeconnect-send-files-dired ()
+  (interactive)
+  (let ((files (dired-get-marked-files)))
+    (when (y-or-n-p (format "Send %s to %s?" files fp/kdeconnect-active-device))
+      (fp/kdeconnect-send-files files))))
+
+(evil-leader/set-key-for-mode
+  'dired-mode "mk" 'fp/kdeconnect-send-files-dired)
 
 ;; --------------------------------------------------------------------------------
 ;; archives
