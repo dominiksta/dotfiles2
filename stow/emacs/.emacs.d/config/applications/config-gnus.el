@@ -202,11 +202,37 @@ that fails, it will return the current year. Useful to use for a
 (setq gnus-inhibit-images t)
 
 ;; ----------------------------------------------------------------------
-;; dired interaction
+;; attachments
 ;; ----------------------------------------------------------------------
 
 ;; This mostly just allows you to attach files from dired to a message by
 (turn-on-gnus-dired-mode)
+
+;; --- this is from "https://github.com/redguardtoo/mastering-emacs-in-one-
+;; year-guide/blob/master/gnus-guide-en.org#double-check-content-of-mail-before-
+;; sending-it" ---
+
+(defun fp/message-says-attachment-p ()
+  "Return t if the message suggests there can be an attachment."
+  (string-match "\\(attach\\|anhang\\|pdf\\|file\\|screen ?shot\\)"
+                (buffer-substring-no-properties (point-min) (point-max))))
+
+(defun fp/message-has-attachment-p ()
+  "Return t if an attachment is already attached to the message."
+  (save-excursion
+    (goto-char (point-min))
+    (save-match-data
+      (re-search-forward "<#part" nil t))))
+
+(defun fp/message-pre-send-check-attachment ()
+  "Check attachment before send mail."
+  (when (and (fp/message-says-attachment-p)
+           (not (fp/message-has-attachment-p)))
+    (unless
+        (y-or-n-p "Attachment suggested, but not found. Send anyway?")
+      (error "It seems that an attachment is needed, but none was found. Aborting sending."))))
+
+(add-hook 'message-send-hook 'fp/message-pre-send-check-attachment)
 
 ;; ----------------------------------------------------------------------
 ;; sending mail
@@ -368,6 +394,8 @@ that fails, it will return the current year. Useful to use for a
 
   "I" 'gnus-group-list-all-groups
   "i" 'gnus-group-list-groups
+
+  "L" 'gnus-group-set-current-level
 
   "T" 'gnus-group-topic-map
 
