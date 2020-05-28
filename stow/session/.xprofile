@@ -19,4 +19,4 @@ sxhkd &
 (sleep 2 && tint2 & tint2 -c ~/.config/tint2/bottom.conf) &
 
 # tray applications - need to start after the panels
-(sleep 5 && (nextcloud & nm-applet)) &
+(sleep 5 && (nextcloud & nm-applet & keepassxc)) &

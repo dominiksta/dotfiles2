@@ -1,5 +1,5 @@
 #!/bin/bash
 
-sudo apt-get install openbox \
+sudo apt-get install \
      pcmanfm tumbler ffmpegthumbnailer libpoppler-glib8 \
-     xdm
+     xdm gsimplecal tint2
