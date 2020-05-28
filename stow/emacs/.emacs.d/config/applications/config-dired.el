@@ -201,6 +201,7 @@
 ;; bindings
 ;; --------------------------------------------------------------------------------
 (evil-leader/set-key-for-mode 'dired-mode
+  "ma" 'gnus-dired-attach
   "mo" 'fp/dired-open-with-system-default
   "md" 'fp/dired-open-directory-with-system-default
   "mq" 'dired-toggle-read-only

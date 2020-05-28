@@ -272,6 +272,7 @@
 
 (define-key comint-mode-map (kbd "C-l") 'comint-clear-buffer)
 
+(bind-key* (kbd "C-'") 'ss/dispatch-bash-here)
 (bind-key* (kbd "C-#") 'ss/dispatch-bash)
 ;; --------------------------------------------------------------------------------
 ;; finishing

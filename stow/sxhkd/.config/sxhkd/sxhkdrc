@@ -6,6 +6,9 @@ alt + comma
 alt + space
     run-or-raise.sh emacs emacs
 
+alt + shift + p
+    run-or-raise.sh madsonic madsonic
+
 alt + shift + w
     run-or-raise.sh waterfox waterfox
 
