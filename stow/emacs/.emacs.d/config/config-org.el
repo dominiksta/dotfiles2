@@ -448,6 +448,25 @@ some faces fixed-with (for tables, source code, etc.)"
          "" nil (format "espeak -a 200 \"%s\"" min-to-app)))
     (generic-notification-notify min-to-app appt-msg t)))
 
+;; --------------------------------------------------------------------------------
+;; attachments
+;; --------------------------------------------------------------------------------
+
+(require 'org-attach)
+
+(defun fp/org-attach-insert-link ()
+  "Insert a link to an attachment at point."
+  (interactive)
+  (insert
+   (format "[[attachment:%s]]"
+           (completing-read "Insert link to attachment: "
+                            (org-attach-file-list (org-attach-dir))))))
+
+(evil-leader/set-key-for-mode 'org-mode
+  "mda" 'org-attach
+  "mdi" 'fp/org-attach-insert-link)
+
+
 ;; ================================================================================
 (provide 'config-org)
 ;; ================================================================================
