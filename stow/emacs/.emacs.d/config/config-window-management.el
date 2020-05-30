@@ -29,7 +29,8 @@
         (lambda () nil) ; 7
         (lambda () nil) ; 8
         (lambda ()
-          (if (not (string-match "\\`gnus-" (symbol-name major-mode)))
+          (if (not (or (string-match "\\`gnus-" (symbol-name major-mode))
+                      (eq major-mode 'message-mode)))
               (gnus))) ; 9
         ))
 
