@@ -83,6 +83,8 @@
   "p"         'org-agenda-set-property
   ":"         'org-agenda-set-tags
   "."         'org-agenda-goto-today
+  "I" 'org-agenda-clock-in
+  "O" 'org-agenda-clock-out
   "C" 'org-agenda-clockreport-mode
   "c" 'org-agenda-log-mode
   "i" 'org-agenda-show-clocking-issues)
