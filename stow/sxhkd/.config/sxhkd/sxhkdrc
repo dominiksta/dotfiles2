@@ -45,3 +45,15 @@ super + shift + {Left, Right}
 
 shift + @Print
     screenshot.sh selection clipboard
+
+ctrl + alt + shift + Down
+    audiocontrol.sh down
+
+ctrl + alt + shift + Up
+    audiocontrol.sh up
+
+ctrl + alt + shift + Up
+    audiocontrol.sh up
+
+ctrl + alt + shift + m
+    audiocontrol.sh mute

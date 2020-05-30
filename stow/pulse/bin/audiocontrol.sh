@@ -11,6 +11,8 @@ case $1 in
     down)
         amixer set Master "5%-" > /dev/null
         ;;
+    mute)
+        amixer set Master toggle > /dev/null
 esac
 
 
