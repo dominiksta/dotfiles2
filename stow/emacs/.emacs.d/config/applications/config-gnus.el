@@ -182,6 +182,19 @@ that fails, it will return the current year. Useful to use for a
 ;; NOTE: I configure `gnus-refer-article-method' in `gnus-group-parameters' to
 ;; be something like '(current (nnir "nnimap:<the_group>")).
 
+;; --- open feed2imap url ---
+(defun fp/gnus-open-feed2imap-url ()
+  "Open the URL of a feed2imap article from the summary buffer."
+  (interactive)
+  (save-selected-window
+   (save-excursion
+    (gnus-summary-goto-article (gnus-summary-article-number))
+    (gnus-summary-select-article-buffer)
+    (goto-char (point-max))
+    (search-backward-regexp "^<https://.+>$")
+    (forward-char)
+    (browse-url-at-point))))
+
 ;; --- other ---
 (setq gnus-auto-select-first nil)
 (setq gnus-summary-mode-line-format "%p [current: %A, unread: %Z]")
@@ -314,6 +327,7 @@ that fails, it will return the current year. Useful to use for a
   "K" 'gnus-summary-prev-article
   (kbd "RET") 'gnus-summary-scroll-up
   "ga" 'gnus-summary-goto-article
+  "gx" 'fp/gnus-open-feed2imap-url
   "zz" 'gnus-recenter
 
   ;; marking and executing
