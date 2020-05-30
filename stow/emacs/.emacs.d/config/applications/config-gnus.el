@@ -182,6 +182,11 @@ that fails, it will return the current year. Useful to use for a
 ;; NOTE: I configure `gnus-refer-article-method' in `gnus-group-parameters' to
 ;; be something like '(current (nnir "nnimap:<the_group>")).
 
+;; --- scoring ---
+(defun fp/gnus-score-file (group)
+  (concat "~/sync/emacs/mail/" group ".SCORE"))
+(setq gnus-home-score-file 'fp/gnus-score-file)
+
 ;; --- open feed2imap url ---
 (defun fp/gnus-open-feed2imap-url ()
   "Open the URL of a feed2imap article from the summary buffer."
@@ -329,6 +334,10 @@ that fails, it will return the current year. Useful to use for a
   "ga" 'gnus-summary-goto-article
   "gx" 'fp/gnus-open-feed2imap-url
   "zz" 'gnus-recenter
+
+  "Se" 'gnus-score-edit-current-scores
+  "Sl" 'gnus-summary-lower-score
+  "Si" 'gnus-summary-increase-score
 
   ;; marking and executing
   "m" 'gnus-summary-mark-as-processable
