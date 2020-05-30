@@ -414,6 +414,7 @@ that fails, it will return the current year. Useful to use for a
   "R" (lambda () (interactive) (gnus-group-get-new-news '(4)))
 
   "s" 'gnus-group-make-nnir-group
+  "S" 'gnus-group-save-newsrc
 
   "I" 'gnus-group-list-all-groups
   "i" 'gnus-group-list-groups
@@ -446,6 +447,9 @@ that fails, it will return the current year. Useful to use for a
   "D"         'gnus-server-deny-server
   "L"         'gnus-server-offline-server
   "O"         'gnus-server-open-server
+
+  "Aa"        'gnus-agent-add-server
+  "Ar"        'gnus-agent-remove-server
 
   "r"         'gnus-server-regenerate-server
   "x"         'gnus-server-kill-server
