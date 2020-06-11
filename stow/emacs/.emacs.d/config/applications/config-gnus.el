@@ -129,7 +129,7 @@ that fails, it will return the current year. Useful to use for a
         gnus-group-sort-by-rank))
 
 (setq gnus-summary-next-group-on-exit nil) ; Don't switch to the next group on
-                                           ; summary exit
+                                        ; summary exit
 
 ;; I prefer gnus to keep running in the background, so i just tell it so save my
 ;; newsrc and hide the buffer instead of exiting.
@@ -370,6 +370,7 @@ that fails, it will return the current year. Useful to use for a
   "ps" 'gnus-article-save-part
   "pv" 'gnus-article-view-part
   "pe" 'gnus-article-view-part-externally
+  "pR" 'gnus-summary-show-raw-article
 
   "b" 'gnus-summary-move-article
   "c" 'gnus-summary-copy-article
@@ -404,11 +405,15 @@ that fails, it will return the current year. Useful to use for a
   (kbd "M-r") 'gnus-summary-reply
   (kbd "M-R") 'gnus-summary-reply-with-original
 
+  "K" 'gnus-summary-prev-article
+  "J" 'gnus-summary-next-article
+
   "p" nil
   "ph" 'gnus-article-browse-html-article
   "ps" 'gnus-article-save-part
   "pv" 'gnus-article-view-part
   "pe" 'gnus-article-view-part-externally
+  "pR" 'gnus-summary-show-raw-article
 
   "i" 'gnus-article-show-images
   "I" 'gnus-article-remove-images
@@ -430,6 +435,8 @@ that fails, it will return the current year. Useful to use for a
 
   "s" 'gnus-group-make-nnir-group
   "S" 'gnus-group-save-newsrc
+
+  "f" 'gnus-group-jump-to-group
 
   "I" 'gnus-group-list-all-groups
   "i" 'gnus-group-list-groups
