@@ -2,6 +2,8 @@
 (require-and-log 'config-programming-general)
 (require-and-log 'config-search)
 
+(setq-default c-basic-offset 4)
+
 ;; --- documentation ---
 (defun fp/search-msdn (start end)
   (interactive "r")
