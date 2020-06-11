@@ -192,13 +192,27 @@ that fails, it will return the current year. Useful to use for a
   "Open the URL of a feed2imap article from the summary buffer."
   (interactive)
   (save-selected-window
-   (save-excursion
-    (gnus-summary-goto-article (gnus-summary-article-number))
-    (gnus-summary-select-article-buffer)
-    (goto-char (point-max))
-    (search-backward-regexp "^<https://.+>$")
-    (forward-char)
-    (browse-url-at-point))))
+    (save-excursion
+      (gnus-summary-goto-article (gnus-summary-article-number))
+      (gnus-summary-select-article-buffer)
+      (goto-char (point-max))
+      (search-backward-regexp "^<https://.+>$")
+      (forward-char)
+      (browse-url-at-point))))
+
+(defun fp/gnus-open-feed2imap-url-in-mpv ()
+  "Open the URL of a feed2imap article from the summary buffer."
+  (interactive)
+  (save-selected-window
+    (save-excursion
+      (gnus-summary-goto-article (gnus-summary-article-number))
+      (gnus-summary-select-article-buffer)
+      (goto-char (point-max))
+      (search-backward-regexp "^<https://.+>$")
+      (forward-char)
+      (let ((command (format "mpv %s" (thing-at-point-url-at-point))))
+        (message "starting %s" command)
+        (start-process-shell-command "" nil command)))))
 
 ;; --- other ---
 (setq gnus-auto-select-first nil)
@@ -333,6 +347,7 @@ that fails, it will return the current year. Useful to use for a
   (kbd "RET") 'gnus-summary-scroll-up
   "ga" 'gnus-summary-goto-article
   "gx" 'fp/gnus-open-feed2imap-url
+  "gm" 'fp/gnus-open-feed2imap-url-in-mpv
   "zz" 'gnus-recenter
 
   "Se" 'gnus-score-edit-current-scores
