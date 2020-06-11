@@ -99,13 +99,12 @@
   :init
   (define-key dired-mode-map (kbd "C-x n s") 'dired-subtree-narrow)
   (evil-define-key 'normal dired-mode-map
-    (kbd "TAB") 'dired-subtree-cycle
+    (kbd "TAB") 'dired-subtree-toggle
     (kbd "M-j") 'dired-subtree-next-sibling
     (kbd "M-k") 'dired-subtree-previous-sibling
     "gj" 'dired-subtree-next-sibling
     "gk" 'dired-subtree-previous-sibling
-    (kbd "M-n") 'dired-subtree-down
-    (kbd "M-p") 'dired-subtree-up
+    "gh" 'dired-subtree-up
     "i" 'dired-subtree-insert
     "I" 'dired-subtree-remove))
 
