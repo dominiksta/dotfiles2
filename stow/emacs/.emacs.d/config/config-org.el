@@ -1,4 +1,5 @@
 (require 'org)
+(require-and-log 'config-language-natural)
 (require-and-log 'config-programming-general)
 (require-and-log 'config-org-agenda)
 
@@ -466,6 +467,21 @@ some faces fixed-with (for tables, source code, etc.)"
   "mda" 'org-attach
   "mdi" 'fp/org-attach-insert-link)
 
+;; --------------------------------------------------------------------------------
+;; spelling
+;; --------------------------------------------------------------------------------
+
+(defun fp/ispell-setup-org ()
+  (make-local-variable 'ispell-skip-region-alist)
+  (push '(org-property-drawer-re) ispell-skip-region-alist)
+  (push '(org-link-any-re) ispell-skip-region-alist)
+  (push '("^#\\+ATTR_.+$") ispell-skip-region-alist)
+  (push '("~" "~") ispell-skip-region-alist)
+  (push '("=" "=") ispell-skip-region-alist)
+  (push '("cite:[a-zA-Z_-]+") ispell-skip-region-alist)
+  (push '("^#\\+BEGIN_SRC" . "^#\\+END_SRC") ispell-skip-region-alist))
+
+(add-hook 'org-mode-hook 'fp/ispell-setup-org)
 
 ;; ================================================================================
 (provide 'config-org)

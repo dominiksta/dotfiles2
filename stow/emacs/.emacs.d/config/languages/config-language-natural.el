@@ -18,8 +18,8 @@
 (config-add-external-dependency 'hunspell-de-de 'config-natural-language
                                 "spellchecking base"
                                 (lambda () (string-match-p
-                                       fp/hunspell-de-dict (shell-command-to-string
-                                                            "hunspell -D")))
+                                            fp/hunspell-de-dict (shell-command-to-string
+                                                                 "hunspell -D")))
                                 "apt install hunspell-de-de"
                                 "None" ;; install from libreoffice extensions
                                 )
@@ -27,8 +27,8 @@
 (config-add-external-dependency 'hunspell-en-us 'config-natural-language
                                 "spellchecking base"
                                 (lambda () (string-match-p
-                                       "en_US" (shell-command-to-string
-                                                "hunspell -D")))
+                                            "en_US" (shell-command-to-string
+                                                     "hunspell -D")))
                                 "apt install hunspell-en-us"
                                 "None" ;; install from libreoffice extensions
                                 )
@@ -63,12 +63,7 @@
 
   (use-package helm-flyspell
     :ensure t
-    :config (evil-define-key 'normal global-map "zg" 'helm-flyspell-correct))
-
-  (add-to-list 'ispell-skip-region-alist '(org-property-drawer-re))
-  (add-to-list 'ispell-skip-region-alist '("~" "~"))
-  (add-to-list 'ispell-skip-region-alist '("=" "="))
-  (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_SRC" . "^#\\+END_SRC")))
+    :config (evil-define-key 'normal global-map "zg" 'helm-flyspell-correct)))
 
 ;; ----------------------------------------------------------------------
 ;; translations with dict.cc
