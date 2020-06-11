@@ -24,18 +24,15 @@
   :ensure t
   :config
   (add-hook 'prog-mode-hook 'hl-todo-mode)
-  (add-hook 'text-mode-hook 'hl-todo-mode)
-  (setq hl-todo-keyword-faces (list (cons "TODO"  (face-foreground 'warning))
-                                    (cons "FIXME" (face-foreground 'error))
-                                    (cons "NEXT"  (face-foreground 'error))
-                                    (cons "FAIL"  (face-foreground 'font-lock-builtin-face))
-                                    (cons "DONE"  (face-foreground 'success))
-                                    (cons "NNOW"  (face-foreground 'success))
+  (setq hl-todo-keyword-faces (list (cons "TODO"  (face-foreground 'org-todo))
+                                    (cons "WAIT" (face-foreground 'org-todo))
+                                    (cons "FIXME" (face-foreground 'org-todo))
+                                    (cons "NEXT"  (face-foreground 'org-todo))
+                                    (cons "DONE"  (face-foreground 'org-done))
                                     (cons "HACK"  (face-foreground 'warning))
-                                    (cons "MAYB"  (face-foreground 'warning))
-                                    (cons "ASK"   (face-foreground 'warning)))))
+                                    (cons "MAYB"  (face-foreground 'warning)))))
 
-(setq project-todo-regexp "TODO|FIXME|NEXT|FAIL|DONE|HACK|MAYB|ASK|NNOW")
+(setq project-todo-regexp "TODO|WAIT|FIXME|NEXT|DONE|HACK|MAYB")
 (defun project-todo-search ()
   (interactive)
   (cond
