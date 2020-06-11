@@ -1,4 +1,6 @@
 
+(save-place-mode 1)
+
 ;; --- startup ---
 (setq inhibit-startup-screen t
       initial-buffer-choice nil
