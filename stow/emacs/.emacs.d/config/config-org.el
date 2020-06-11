@@ -71,7 +71,7 @@
  '(org-block-end-line ((t (:extend t))))
 
  ;; heading sizes
- '(org-level-1 ((t (:overline nil :height 1.3))))
+ '(org-level-1 ((t (:overline nil :height 1.0))))
  '(org-level-2 ((t (:overline nil :height 1.0))))
 
  ;; title size
@@ -146,7 +146,7 @@ some faces fixed-with (for tables, source code, etc.)"
 (setq org-fontify-whole-heading-line nil
       org-fontify-done-headline nil
       org-fontify-quote-and-verse-blocks t
-      org-hide-emphasis-markers t
+      org-hide-emphasis-markers nil
       org-ellipsis nil
       org-tags-column -75)
 
@@ -190,7 +190,7 @@ some faces fixed-with (for tables, source code, etc.)"
                  "\\documentclass[11pt, DIV=13, parskip=half, headings]{scrreprt}"
                  ("\\chapter{%s}" . "\\chapter*{%s}")
                  ("\\section{%s}" . "\\section*{%s}")
-                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsection*{%s}" . "\\subsection*{%s}")
                  ("\\subsubsection*{%s}" . "\\subsubsection*{%s}")
                  ("\\paragraph*{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph*{%s}" . "\\subparagraph*{%s}")))
@@ -288,6 +288,7 @@ some faces fixed-with (for tables, source code, etc.)"
 (define-key org-mode-map fp/mouse-back
   (lambda (event) (interactive "e") (fp/point-to-mouse event) (org-ctrl-c-ctrl-c)))
 
+(setq org-imenu-depth 10)
 
 ;; --------------------------------------------------------------------------------
 ;; agenda and todos
