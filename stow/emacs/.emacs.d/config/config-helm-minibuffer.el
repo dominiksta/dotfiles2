@@ -1,4 +1,5 @@
 (require-and-log 'config-editor)
+(require-and-log 'config-window-management)
 
 (defun evil-minibuffer-setup ()
   "Initialize minibuffer for `evil'."
@@ -111,9 +112,15 @@
   ;; appearance
   ;; --------------------------------------------------------------------------------
 
+  (setq helm-display-header-line nil)
+  (setq helm-mode-line-string "")
+
+  (setq helm-display-function 'pop-to-buffer) ; make helm play nice with shackle
+  (push '("\\`\\*helm.*?\\*\\'" :regexp t :align t :size 0.3) shackle-rules)
+
   (custom-set-faces
    '(helm-source-header ((t (:foreground nil :background nil
-                                         :family nil :height 1.3
+                                         :family nil :height 1.0
                                          :inherit font-lock-keyword-face))))))
 
 

@@ -71,10 +71,8 @@
 ;; make some windows play a little nicer
 ;; ----------------------------------------------------------------------
 
-(use-package shackle :ensure t
-  :config
-  (setq shackle-rules '((realgud-mode :same t)
-                        (gud-mode :same t))))
+(use-package shackle :ensure t :demand t
+  :config (shackle-mode 1))
 
 
 (provide 'config-window-management)
