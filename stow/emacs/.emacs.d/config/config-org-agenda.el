@@ -70,16 +70,23 @@
   "k"         'org-agenda-previous-line
   (kbd "g k") 'org-agenda-previous-date-line
   (kbd "M-k") 'org-agenda-previous-date-line
+  "F"         'org-agenda-follow-mode
   "f"         'org-agenda-later
   "b"         'org-agenda-earlier
-  (kbd "RET") 'org-agenda-switch-to
+
+  (kbd "RET") 'org-agenda-goto
+  "o"         'org-agenda-switch-to
+  "s"         'org-agenda-show
+
   "q"         'quit-window
   "r"         'org-agenda-redo
   "a"         'org-agenda
 
+  (kbd "C-s") 'org-agenda-filter
+
   "t"         'org-agenda-todo
-  "s"         'org-agenda-schedule
-  "d"         'org-agenda-deadline
+  "S"         'org-agenda-schedule
+  "D"         'org-agenda-deadline
   "e"         'org-agenda-set-effort
   "p"         'org-agenda-set-property
   ":"         'org-agenda-set-tags
