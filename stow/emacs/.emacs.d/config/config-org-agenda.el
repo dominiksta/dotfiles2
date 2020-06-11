@@ -1,5 +1,8 @@
 ;; --- random ---
 (setq org-agenda-default-appointment-duration 60)
+(setq org-modules '(org-info org-habit))
+(setq org-agenda-start-with-log-mode t)
+
 
 ;; -- window setup
 (setq org-agenda-window-setup 'current-window)
@@ -19,8 +22,6 @@
                              (concat sync-directory "general/org/meinleben/webcal.org"))
       org-icalendar-combined-agenda-file (concat sync-directory "org/ics/combine.ics"))
 
-
-(setq org-modules '(org-info org-habit))
 
 ;; --------------------------------------------------------------------------------
 ;; custom commands
