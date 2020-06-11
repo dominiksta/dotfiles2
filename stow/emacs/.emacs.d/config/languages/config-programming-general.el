@@ -6,7 +6,7 @@
 ;; --------------------------------------------------------------------------------
 ;; --- indentation ---
 (setq-default indent-tabs-mode nil)
-(setq tab-width 2)
+(setq tab-width 4)
 (defun fp/indent-all()
   (interactive)
   (indent-region (point-min) (point-max)))
