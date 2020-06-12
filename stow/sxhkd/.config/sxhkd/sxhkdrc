@@ -24,8 +24,8 @@ super + a
 ctrl + alt + BackSpace
     dmenu-y-or-n-p.sh "Logout?" && killall xfwm4
 
-ctrl + alt + BackSpace
-    dmenu-y-or-n-p.sh "Logout?" && killall xfwm4
+ctrl + alt + l
+    lock-screen.sh
 
 ctrl + alt + shift + BackSpace
     dmenu-y-or-n-p.sh "Shutdown?" && shutdown now
