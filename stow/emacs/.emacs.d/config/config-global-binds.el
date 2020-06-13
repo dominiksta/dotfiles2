@@ -101,6 +101,24 @@
        (eyebrowse-switch-to-window-config ,i))))
 
 ;; --------------------------------------------------------------------------------
+;; searching
+;; --------------------------------------------------------------------------------
+
+(evil-leader/set-key
+  ;; primary silver searcher binds
+  "sr"  'ag
+  "sR"  '(lambda () (interactive) (helm-do-ag default-directory))
+  "sP"  'helm-projectile-ag
+  "sp"  'projectile-ag
+  ;; grep fallbacks
+  "sgr" 'rgrep
+  "sgp" 'projectile-grep
+  "sgP" 'helm-projectile-grep
+  ;; emacs lisp fallbacks
+  "sep" 'projectile-multi-occur
+  "seP" 'helm-multi-swoop-projectile)
+
+;; --------------------------------------------------------------------------------
 ;; other
 ;; --------------------------------------------------------------------------------
 ;; --- olivetti ---
@@ -257,7 +275,7 @@
   "-a" 'async-shell-command
   ;; insert shell-command into current buffer
   "-i" (lambda () (interactive) (let ((current-prefix-arg 4))
-                                  (call-interactively 'shell-command)))
+                             (call-interactively 'shell-command)))
   "-t" 'fp/terminal-here
   "-d" 'fp/open-directory-with-system-default
 

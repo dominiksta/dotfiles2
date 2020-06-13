@@ -1,4 +1,6 @@
 (require-and-log 'config-helm-minibuffer)
+(require 'grep)
+
 
 ;; --------------------------------------------------------------------------------
 ;; options
@@ -28,15 +30,6 @@
 ;; --------------------------------------------------------------------------------
 ;; grep
 ;; --------------------------------------------------------------------------------
-
-(require 'grep)
-(defun fp/rgrep (rstart rend)
-  (interactive "r")
-  (grep (concat "grep -i --color=always -nH -r \""
-                (read-from-minibuffer "grep recursively for: "
-                                      (if (use-region-p)
-                                          (buffer-substring-no-properties rstart rend) (current-word))
-                                      ) "\" .")))
 
 (define-key grep-mode-map "g g" 'beginning-of-buffer)
 (define-key grep-mode-map "r" 'recompile)
@@ -76,21 +69,8 @@ recursively from the current directory using `pdfgrep'."
   "sD" 'fp/pdfgrep-todos)
 
 ;; --------------------------------------------------------------------------------
-;; bindings
+;; silver searcher
 ;; --------------------------------------------------------------------------------
-(evil-leader/set-key "si" 'fp/search-ddg)
-
-(setq config-ag-available (executable-find "ag")
-      config-grep-available (executable-find "grep"))
-
-(config-add-external-dependency 'ag 'config-search "searching"
-                                (lambda () (executable-find "ag"))
-                                "apt install silversearcher-ag" "cinst -y ag")
-
-(config-add-external-dependency 'grep 'config-search "searching"
-                                (lambda () (executable-find "grep"))
-                                "None" "None")
-
 (use-package helm-ag :defer t :ensure t)
 (use-package ag :defer t :ensure t
   :config
@@ -101,31 +81,21 @@ recursively from the current directory using `pdfgrep'."
     "k" 'evil-previous-line)
   (evil-set-initial-state 'ag-mode 'normal))
 
-(setq projectile-use-git-grep t)
-(cond
- ((config-external-check-list '(ag))
-  (evil-leader/set-key
-    "sr" (lambda () (interactive) (helm-do-ag default-directory))
-    "sR"  'helm-ag
-    "sP"  'helm-projectile-ag
-    "sp"  'projectile-ag
-    "sgg" 'grep
-    "sgr" 'rgrep
-    "sgr" 'fp/rgrep
-    "sgR" 'rgrep
-    "sgp" 'helm-projectile-grep))
- ((config-external-check-list '(grep))
-  (evil-leader/set-key
-    "sR" 'rgrep
-    "sr" 'fp/rgrep
-    "sg" 'grep
-    "sp" 'projectile-grep
-    "sP" 'helm-projectile-grep))
- (t (evil-leader/set-key
-      "sR" 'helm-multi-swoop
-      "sr" 'helm-multi-swoop-all
-      "sP" 'helm-multi-swoop-projectile
-      "sp" 'helm-multi-swoop-projectile)))
+;; --------------------------------------------------------------------------------
+;; dependencies
+;; --------------------------------------------------------------------------------
+(evil-leader/set-key "si" 'fp/search-ddg)
+
+(config-add-external-dependency 'ag 'config-search "searching"
+                                (lambda () (executable-find "ag"))
+                                "apt install silversearcher-ag" "cinst -y ag")
+
+(config-add-external-dependency 'grep 'config-search "searching"
+                                (lambda () (executable-find "grep"))
+                                "None" "None")
+
+(setq config-ag-available (config-external-check-list '(ag) "ag")
+      config-grep-available (config-external-check-list '(grep) "grep"))
 
 
 (provide 'config-search)
