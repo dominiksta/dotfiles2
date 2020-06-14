@@ -64,10 +64,6 @@ recursively from the current directory using `pdfgrep'."
                      "\"")))
   (pdfgrep-mode))
 
-(evil-leader/set-key
-  "sd" 'pdfgrep
-  "sD" 'fp/pdfgrep-todos)
-
 ;; --------------------------------------------------------------------------------
 ;; silver searcher
 ;; --------------------------------------------------------------------------------
@@ -94,8 +90,8 @@ recursively from the current directory using `pdfgrep'."
                                 (lambda () (executable-find "grep"))
                                 "None" "None")
 
-(setq config-ag-available (config-external-check-list '(ag) "ag")
-      config-grep-available (config-external-check-list '(grep) "grep"))
+(setq config-ag-available (config-external-check-list '(ag))
+      config-grep-available (config-external-check-list '(grep)))
 
 
 (provide 'config-search)

@@ -105,18 +105,20 @@
 ;; --------------------------------------------------------------------------------
 
 (evil-leader/set-key
-  ;; primary silver searcher binds
   "sr"  'ag
   "sR"  '(lambda () (interactive) (helm-do-ag default-directory))
   "sP"  'helm-projectile-ag
   "sp"  'projectile-ag
-  ;; grep fallbacks
   "sgr" 'rgrep
   "sgp" 'projectile-grep
   "sgP" 'helm-projectile-grep
   ;; emacs lisp fallbacks
   "sep" 'projectile-multi-occur
-  "seP" 'helm-multi-swoop-projectile)
+  "seP" 'helm-multi-swoop-projectile
+  ;; pgdfgrep
+  "sd" 'pdfgrep
+  "sD" 'fp/pdfgrep-todos)
+
 
 ;; --------------------------------------------------------------------------------
 ;; other
