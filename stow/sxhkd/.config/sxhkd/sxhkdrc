@@ -46,11 +46,17 @@ super + shift + {Left, Right}
 shift + @Print
     screenshot.sh selection clipboard
 
-ctrl + alt + shift + Down
+XF86AudioRaiseVolume
+    audiocontrol.sh up
+
+XF86AudioLowerVolume
     audiocontrol.sh down
 
-ctrl + alt + shift + Up
-    audiocontrol.sh up
+XF86AudioMute
+    audiocontrol.sh mute
+
+ctrl + alt + shift + Down
+    audiocontrol.sh down
 
 ctrl + alt + shift + Up
     audiocontrol.sh up
