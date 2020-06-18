@@ -1,7 +1,6 @@
 ;; --- random ---
 (setq org-agenda-default-appointment-duration 60)
 (setq org-modules '(org-info org-habit))
-(setq org-agenda-start-with-log-mode t)
 
 
 ;; -- window setup
@@ -28,16 +27,12 @@
 ;; --------------------------------------------------------------------------------
 (setq org-agenda-custom-commands
       '(("a" "Default - Today"
-         ((agenda "" ((org-agenda-span 1))) (alltodo ""))
-         ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("DONE" "FAIL" "TASK")))))
+         ((agenda "" ((org-agenda-span 1))) (todo "NEXT") (todo "TODO") (todo "WAIT") (todo "TASK"))
+         ((org-agenda-start-with-log-mode t)))
 
         ("w" "Week all"
-         ((agenda "") (alltodo ""))
-         ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("DONE" "FAIL" "TASK")))))
-
-        ("t" "All entries of type TODO"
-         ((alltodo ""))
-         ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("DONE" "FAIL")))))
+         ((agenda ""))
+         ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))))
 
         ("s" "stundenplan"
          ((agenda ""))
