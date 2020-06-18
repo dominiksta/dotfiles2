@@ -5,6 +5,7 @@
 (require-and-log 'config-ui)
 (require-and-log 'config-modeline)
 (require-and-log 'config-editor)
+(require-and-log 'config-search)
 (require-and-log 'config-global-binds)
 (require-and-log 'config-helm-minibuffer)
 (require-and-log 'config-org)
@@ -13,7 +14,6 @@
 (require-and-log 'config-window-management)
 (require-and-log 'config-dired)
 (require-and-log 'config-git)
-(require-and-log 'config-search)
 (require-and-log 'config-programming-general)
 
 

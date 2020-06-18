@@ -197,6 +197,7 @@
   :ensure t
   :config
   (remove-hook 'lsp-eldoc-hook 'lsp-document-highlight)
+  (setq lsp-enable-indentation nil)
   ;; i only use this to make lsp use flycheck instead of flymake
   (use-package lsp-ui
     :ensure t
