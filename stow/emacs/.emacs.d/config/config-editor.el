@@ -198,6 +198,7 @@
 (evil-leader/set-key
   "ho" 'helm-occur
   "rr" 'query-replace-region
+  "rk" 'helm-show-kill-ring
   "rR" 'query-replace
   "re" 'query-replace-regexp-region
   "rE" 'query-replace)

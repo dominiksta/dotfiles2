@@ -62,7 +62,7 @@
 (evil-leader/set-key "bb" 'switch-to-buffer)
 (evil-leader/set-key
   "bi" 'ibuffer
-  "bb" 'switch-to-buffer
+  "bb" (lambda () (interactive) (call-interactively (if (featurep 'helm) 'helm-buffers-list 'switch-to-buffer)))
   "bs" (lambda () (interactive) (switch-to-buffer "*scratch*"))
   "bN" (lambda () (interactive) (find-file (concat sync-directory "general/notes/notes.org")))
   "bn" 'next-buffer
@@ -104,7 +104,10 @@
 ;; searching
 ;; --------------------------------------------------------------------------------
 
+(global-set-key (kbd "C-s") 'helm-swoop-no-prefix)
+
 (evil-leader/set-key
+  "ss"  'helm-swoop
   "sr"  'ag
   "sR"  '(lambda () (interactive) (helm-do-ag default-directory))
   "sP"  'helm-projectile-ag
@@ -119,10 +122,14 @@
   "sd" 'pdfgrep
   "sD" 'fp/pdfgrep-todos)
 
-
 ;; --------------------------------------------------------------------------------
 ;; other
 ;; --------------------------------------------------------------------------------
+
+(evil-leader/set-key
+  "SPC" (lambda () (interactive) (call-interactively (if (featurep 'helm) 'helm-M-x
+                                                  'execute-extended-command))))
+
 ;; --- olivetti ---
 (evil-leader/set-key "Rr" 'olivetti-mode)
 
@@ -137,7 +144,7 @@
 (evil-leader/set-key
   "fa" 'save-some-buffers
   "fs" 'save-buffer
-  "ff" 'find-file
+  "ff" (lambda () (interactive) (call-interactively (if (featurep 'helm) 'helm-find-files 'find-file)))
   "fF" 'find-file-other-window
   "fp" 'project-find-file ;; TODO why is projectile not working?
   "fk" (lambda () (interactive)
@@ -184,11 +191,13 @@
 ;; --- sql connections ----
 (evil-leader/set-key "aS" 'fp/sql-connect)
 
-;; --- proced ---
+;; --- processes ---
 (autoload 'fp/proced-startup "config-proced.el")
 (evil-leader/set-key
   "app" 'fp/proced-startup
-  "apd" 'proced)
+  "apd" 'proced
+  "apt" 'helm-timers
+  "ape" 'helm-list-emacs-process)
 
 ;; --- clocking ---
 (evil-leader/set-key
@@ -248,6 +257,12 @@
   "acl"  'calc-load-everything
   "acm"  'read-kbd-macro
   "ac0'" 'calc-reset)
+
+;; --- colors ---
+(evil-leader/set-key "ahc" 'helm-colors)
+
+;; --- external applications ---
+(evil-leader/set-key  "ahe" 'helm-run-external-command)
 
 ;; --------------------------------------------------------------------------------
 ;; programming

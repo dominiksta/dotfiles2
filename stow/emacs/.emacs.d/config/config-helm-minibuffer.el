@@ -42,17 +42,6 @@
   (define-key helm-map (kbd "M-j") 'helm-next-line)
   (define-key helm-map (kbd "M-k") 'helm-previous-line)
 
-  (evil-leader/set-key
-    "SPC" 'helm-M-x
-    "ff"  'helm-find-files
-    "bb"  'helm-multi-files
-    "ht"  'helm-timers
-    "hp"  'helm-list-emacs-process
-    "hc"  'helm-colors
-    "he"  'helm-run-external-command
-    "hk"  'helm-show-kill-ring
-    "hr"  'helm-resume)
-
   (defun fp/helm-enlarge-window (n)
     (interactive)
     (with-helm-window
@@ -100,13 +89,7 @@
     (defun helm-swoop-no-prefix ()
       (interactive)
       (let ((helm-swoop-pre-input-function 'return-nil))
-        (helm-swoop)))
-
-    (global-set-key (kbd "C-s") 'helm-swoop-no-prefix)
-    (evil-leader/set-key
-      "ss"  'helm-swoop
-      "so"  'helm-multi-swoop-org)
-    (define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop))
+        (helm-swoop))))
 
   ;; --------------------------------------------------------------------------------
   ;; appearance
