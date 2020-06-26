@@ -161,10 +161,14 @@ _sed() {
     sed --follow-symlinks -i "$@"
 }
 
-chosen_theme=$(echo "${!themesets[@]}" | sed 's/ /\n/g' | dmenu -l 10)
-if [ "$chosen_theme" = "" ]; then
-    echo "no theme chosen, exiting";
-    exit 0
+if [ -z "$1" ]; then
+    chosen_theme=$(echo "${!themesets[@]}" | sed 's/ /\n/g' | dmenu -l 10)
+    if [ "$chosen_theme" = "" ]; then
+        echo "no theme chosen, exiting";
+        exit 0
+    fi
+else
+    chosen_theme=$1
 fi
 
 _switch_theme $chosen_theme
