@@ -10,9 +10,13 @@ redshift &
 # --- settings ---
 feh --bg-fill --randomize $HOME/Pictures/papes/current
 xrdb $HOME/.Xdefaults
+
 # Set up XDG_DATA_DIRS for snaps, so that .desktop-files show up in some
 # relevant tools like j4-dmenu-desktop.
 [ -d "/snap/bin" ] && XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/snapd/desktop"
+
+# qt theme
+export QT_STYLE_OVERRIDE=Adwaita
 
 # --- bindings ---
 intuos.sh first &
