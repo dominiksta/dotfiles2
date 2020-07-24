@@ -3,20 +3,17 @@
 filename=/tmp/screenshot-$(date +%F_%H-%M-%S).png
 
 if [ -z $1 ]; then
-    screenshot_command=$(echo -e "selection\ncurrent-window\nall-monitors" | dmenu -i)
+    screenshot_command=$(echo -e "selection\nwindow" | dmenu -i)
 else
     screenshot_command=$1
 fi
 
 case $screenshot_command in
     "selection")
-        scrot --select $filename
+        import $filename
         ;;
-    "current-window")
-        scrot --focused $filename
-        ;;
-    "all-monitors")
-        scrot $filename
+    "window")
+        import -screen $filename
         ;;
     *)
         exit 1
