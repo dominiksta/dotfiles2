@@ -173,12 +173,18 @@ that fails, it will return the current year. Useful to use for a
       gnus-sum-thread-tree-single-leaf "└─> "
       gnus-sum-thread-tree-vertical "│")
 
+;; Disable threads by default (I don't have a lot of long conversations, so it
+;; is more useful to just have a stream of the most recent messages.)
+(setq gnus-show-threads nil)
+
 ;; --- starting position ---
 (setq gnus-summary-goto-unread nil)
 (add-hook 'gnus-summary-prepared-hook (lambda () (end-of-buffer) (previous-line)))
 
 ;; --- viewing threads/referring articles ---
-(setq gnus-refer-thread-use-nnir t) ; search in all groups
+(setq gnus-refer-thread-use-nnir t  ; search in all groups
+      gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references
+      )
 ;; NOTE: I configure `gnus-refer-article-method' in `gnus-group-parameters' to
 ;; be something like '(current (nnir "nnimap:<the_group>")).
 
