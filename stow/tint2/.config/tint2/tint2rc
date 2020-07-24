@@ -152,7 +152,7 @@ task_urgent_background_id = 4
 task_iconified_background_id = 2
 mouse_left = maximize_restore
 mouse_middle = close
-mouse_right = prev_task
+mouse_right = iconify
 mouse_scroll_up = none
 mouse_scroll_down = none
 
