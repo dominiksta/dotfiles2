@@ -23,8 +23,8 @@
 ;; themes and fonts
 ;; --------------------------------------------------------------------------------
 
-(setq fp/theme-font-family "Iosevka Fixed"
-      fp/theme-font-family-size "12"
+(setq fp/theme-font-family "Dejavu Sans Mono"
+      fp/theme-font-family-size "11"
       fp/theme-font-family-fallback "Dejavu Sans Mono"
       fp/theme-font-family-fallback-size "12"
       fp/theme-font-family-variable-pitch "DejaVu Serif"
@@ -229,10 +229,10 @@ fixed-pitch faces."
 
 (add-hook 'after-load-theme-hook
           (lambda ()
-            ;; Terminus is too thin to be used with a light theme imo, so i have to
-            ;; use it in bold. However, i do want to see bold highlighting in some
-            ;; way (for instance in org-mode), so i just give it another color.
-            (set-face-attribute 'bold nil :inherit 'font-lock-string-face)
+            ;; ;; Terminus is too thin to be used with a light theme imo, so i have to
+            ;; ;; use it in bold. However, i do want to see bold highlighting in some
+            ;; ;; way (for instance in org-mode), so i just give it another color.
+            ;; (set-face-attribute 'bold nil :inherit 'font-lock-string-face)
 
             ;; got to hate this thing tbqh famalam
             (set-face-attribute 'fringe nil :background nil)))
