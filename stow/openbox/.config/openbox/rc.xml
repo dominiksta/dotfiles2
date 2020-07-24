@@ -402,14 +402,6 @@
     </context>
     <context name="Titlebar">
       <mousebind button="Left" action="Drag">
-        <action name="If">
-          <query target="default">
-            <maximized>yes</maximized>
-          </query>
-          <then>
-            <action name="Unmaximize"/>
-          </then>
-        </action>
         <action name="Move"/>
       </mousebind>
       <mousebind button="Left" action="DoubleClick">
