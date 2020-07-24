@@ -291,6 +291,8 @@ some faces fixed-with (for tables, source code, etc.)"
 
 (setq org-imenu-depth 10)
 
+(add-hook 'org-mode-hook 'visual-line-mode)
+
 ;; --------------------------------------------------------------------------------
 ;; agenda and todos
 ;; --------------------------------------------------------------------------------
