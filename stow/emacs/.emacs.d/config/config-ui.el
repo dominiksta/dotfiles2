@@ -49,7 +49,7 @@ fixed-pitch faces."
                       (font-spec :family fp/theme-font-family))
     (set-face-attribute 'variable-pitch nil
                         :family fp/theme-font-family-variable-pitch
-                        :height 1.0
+                        :height 1.1
                         :weight 'normal)
     (set-face-attribute 'fixed-pitch nil
                         :family fp/theme-font-family
