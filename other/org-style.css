@@ -241,6 +241,15 @@ span.underline {
     color: #900;
 }
 
+.org-center {
+    text-align: center;
+}
+
+blockquote {
+    font-style: italic;
+
+}
+
 /* Todo List Styles */
 
 .title { text-align: center; }
