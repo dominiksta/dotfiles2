@@ -73,6 +73,7 @@
  ;; heading sizes
  '(org-level-1 ((t (:overline nil :height 1.0))))
  '(org-level-2 ((t (:overline nil :height 1.0))))
+ '(org-level-3 ((t (:overline nil :height 1.0))))
 
  ;; title size
  '(org-document-title ((t (:height 1.4))))
@@ -98,7 +99,16 @@ some faces fixed-with (for tables, source code, etc.)"
   nil
   (fp/theme-font-setup)
   (let ((extra-fixed-pitch '(org-code
+                             org-level-1
+                             org-level-2
+                             org-level-3
+                             org-level-4
+                             org-level-5
+                             org-level-6
+                             org-level-7
+                             org-level-8
                              org-link
+                             org-hide
                              org-block org-table
                              org-block-begin-line
                              org-indent
@@ -119,7 +129,7 @@ some faces fixed-with (for tables, source code, etc.)"
            (lambda (face)
              (set-face-attribute face nil
                                  :family (face-attribute 'fixed-pitch :family)
-                                 :weight (face-attribute 'default :weight)))
+                                 :height (face-attribute 'default :height)))
            extra-fixed-pitch)
           (mapcar
            (lambda (face)
