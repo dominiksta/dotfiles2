@@ -140,6 +140,7 @@ some faces fixed-with (for tables, source code, etc.)"
 
 ;; --- other ---
 (add-hook 'org-mode-hook (lambda () (org-indent-mode 1)))
+(add-hook 'org-mode-hook (lambda () (eldoc-mode 0)))
 (setq org-image-actual-width nil  ; respect ATTR_* attributes
       org-pretty-entities-include-sub-superscripts t)
 
