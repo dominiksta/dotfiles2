@@ -308,6 +308,14 @@ that fails, it will return the current year. Useful to use for a
 ;;         (nnmaildir . find-grep)))
 
 ;; ----------------------------------------------------------------------
+;; encryption
+;; ----------------------------------------------------------------------
+
+;; You can define aliases in your gpg.conf (normally in ~/.gnupg/gpg.conf) with
+;; a line like this:
+;; group newalias@domain.com = emailwithkey@domain.com
+
+;; ----------------------------------------------------------------------
 ;; contacts
 ;; ----------------------------------------------------------------------
 
@@ -317,6 +325,11 @@ that fails, it will return the current year. Useful to use for a
 ;; though (like my workplace/uni) then this is not of much use to you. Instead,
 ;; the package `vdirel' can be combined with the external program 'vdirsyncer'
 ;; to synchronize with a carddav server. TODO
+
+;; ----------------------------------------------------------------------
+;; modeline
+;; ----------------------------------------------------------------------
+;; TODO https://github.com/seagle0128/doom-modeline/blob/15c859dc4b4d6e6b7bafe4bdacf447de6a6253dd/doom-modeline-segments.el#L2213-L2287
 
 ;; ======================================================================
 ;; evil binds
