@@ -481,6 +481,14 @@ some faces fixed-with (for tables, source code, etc.)"
   "mda" 'org-attach
   "mdi" 'fp/org-attach-insert-link)
 
+(use-package org-attach-screenshot :ensure t)
+
+(defun fp/org-attach-screenshot ()
+  (interactive)
+  (org-attach-dir-get-create)
+  (let ((current-prefix-arg '(8)))
+    (call-interactively 'org-attach-screenshot)))
+
 ;; --------------------------------------------------------------------------------
 ;; spelling
 ;; --------------------------------------------------------------------------------
