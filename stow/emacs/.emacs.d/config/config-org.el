@@ -324,7 +324,8 @@ some faces fixed-with (for tables, source code, etc.)"
 ;; --------------------------------------------------------------------------------
 (with-eval-after-load "ox"
   (use-package htmlize :ensure t)
-  (setq org-export-default-language "de")
+  (setq org-export-default-language "de"
+        org-html-validation-link nil)
 
   (setq org-style-css "~/git/dotfiles/other/org-style.css")
 
