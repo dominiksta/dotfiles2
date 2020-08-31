@@ -36,7 +36,8 @@
   ;; I don't use the normal folding commands at all, so i just overwrite them.
   (evil-define-key 'normal global-map
     "za" 'yafolding-toggle-element
-    "zA" 'yafolding-toggle-all))
+    "zA" 'yafolding-hide-all
+    (kbd "z M-a") 'yafolding-show-all))
 
 
 ;; --- avy ---
