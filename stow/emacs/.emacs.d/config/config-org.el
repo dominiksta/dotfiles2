@@ -293,6 +293,10 @@ some faces fixed-with (for tables, source code, etc.)"
   "mt" 'org-todo
   "ma" 'org-archive-subtree-default)
 
+;; I find the other functions of org-meta-return get in my way more often than
+;; not.
+(define-key org-mode-map (kbd "<M-return>") 'org-insert-heading)
+
 (define-key org-mode-map [mouse-3]
   (lambda (event) (interactive "e") (fp/point-to-mouse event) (org-cycle)))
 
@@ -366,7 +370,7 @@ some faces fixed-with (for tables, source code, etc.)"
 
 
 ;; --- archiving ---
-(setq org-archive-location (concat sync-directory "general/org/archive.org::datetree/"))
+(setq org-archive-location (concat sync-directory "general/org/meinleben/archive.org::datetree/"))
 
 ;; --- download ---
 (use-package org-download
