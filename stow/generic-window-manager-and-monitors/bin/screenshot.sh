@@ -21,7 +21,7 @@ case $screenshot_command in
 esac
 
 if [ -z $2 ]; then
-    action_selection=$(echo -e "clipboard\ndired\nfilemanager" | dmenu -i)
+    action_selection=$(echo -e "clipboard\ndired\nfilemanager\nzbar" | dmenu -i)
 else
     action_selection=$2
 fi
@@ -39,6 +39,12 @@ case $action_selection in
         else
             xdg-open $path
         fi
+        ;;
+    zbar)
+        zbarimg $filename | xclip -selection clipboard
+        run-or-raise.sh emacs emacs
+        emacsclient -e '(with-current-buffer (switch-to-buffer "*scratch*") (newline) (goto-char (point-max)) (yank))'
+        emacsclient -e '(switch-to-buffer "*scratch*")'
         ;;
     *)
 esac

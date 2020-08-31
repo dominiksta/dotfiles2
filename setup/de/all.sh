@@ -6,7 +6,7 @@ apt-get install -y tmux
 # --- other ---
 apt-get install -y stow \
         dmenu j4-dmenu-desktop \
-        redshift xdotool wmctrl xclip \
+        redshift xdotool wmctrl xclip zbar-tools \
         xkbset xcape sxhkd \
         keepassxc
 
