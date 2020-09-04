@@ -12,6 +12,9 @@ alt + shift + p
 alt + shift + w
     run-or-raise.sh waterfox waterfox
 
+alt + shift + k
+    run-or-raise.sh keepassxc keepassxc
+
 alt + shift + e
     run-or-raise.sh pcmanfm pcmanfm
 
