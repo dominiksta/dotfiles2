@@ -160,6 +160,8 @@ fixed-pitch faces."
 (setq fp/toggle-large-font-current nil
       fp/toggle-large-font-size 200)
 
+;; --- adjusting font size ---
+
 (defun fp/toggle-large-font ()
   "Intended for presentations. TODO: make this a minor-mode"
   (interactive)
@@ -174,11 +176,11 @@ fixed-pitch faces."
       (setq fp/toggle-large-font-current t))))
 
 (defun fp/theme-adjust-global-font-size (inc)
-  (set-face-attribute 'default nil
-                      :height (+ (face-attribute 'default :height) inc)))
-
-(global-set-key (kbd "C-c C-+") (lambda () (interactive) (fp/theme-adjust-global-font-size 20)))
-(global-set-key (kbd "C-c C--") (lambda () (interactive) (fp/theme-adjust-global-font-size -20)))
+  (if (eq inc 0)
+      (set-face-attribute 'default nil :font (concat fp/theme-font-family " "
+                                                     fp/theme-font-family-size))
+    (set-face-attribute 'default nil
+                        :height (+ (face-attribute 'default :height) inc))))
 
 (defun window-show-cursor (&optional show)
   (interactive)

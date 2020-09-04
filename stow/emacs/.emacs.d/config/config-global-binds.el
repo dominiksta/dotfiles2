@@ -176,7 +176,16 @@
 
 ;; theme
 (evil-leader/set-key "T" 'fp/theme-toggle)
-(global-set-key (kbd "S-<f12>") 'fp/toggle-large-font)
+
+(defhydra fp/font-size-hydra ()
+  "searching"
+  ("+" (lambda () (interactive) (fp/theme-adjust-global-font-size 20)) "increase")
+  ("-" (lambda () (interactive) (fp/theme-adjust-global-font-size -20)) "decrease")
+  ("0" (lambda () (interactive) (fp/theme-adjust-global-font-size 0)) "default")
+  ("t" fp/toggle-large-font "toggle large font")
+  ("q" nil "quit" :color blue))
+
+(global-set-key (kbd "C-c C-+") 'fp/font-size-hydra/body)
 (global-set-key (kbd "<f5>") 'window-show-cursor)
 
 ;; --------------------------------------------------------------------------------
