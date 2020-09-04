@@ -28,8 +28,14 @@
         (lambda () nil) ; 6
         (lambda () nil) ; 7
         (lambda ()
-          (if (not (string-match "\\`elfeed-" (symbol-name major-mode)))
-              (elfeed))) ; 8
+          (when (not (member 0 (mapcar
+                                (lambda (w) (string-match
+                                        "\\`elfeed-"
+                                        (with-current-buffer (window-buffer w)
+                                          (symbol-name major-mode))))
+                                (window-list))))
+            (delete-other-windows)
+            (elfeed))) ; 8
         (lambda ()
           (if (not (or (string-match "\\`gnus-" (symbol-name major-mode))
                       (eq major-mode 'message-mode)))
