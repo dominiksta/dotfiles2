@@ -167,8 +167,9 @@ fixed-pitch faces."
   (interactive)
   (if fp/toggle-large-font-current
       (progn
-        (set-face-attribute 'default (selected-frame)
-                            :height 130)
+        (set-face-attribute 'default nil :font
+                            (concat fp/theme-font-family " "
+                                    fp/theme-font-family-size))
         (setq fp/toggle-large-font-current nil))
     (progn
       (set-face-attribute 'default (selected-frame)
