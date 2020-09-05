@@ -1,10 +1,14 @@
+(require 'shell)
+
 (require-and-log 'config-language-shell-script)
 (require-and-log 'config-shell-switch)
+
 ;; --------------------------------------------------------------------------------
 ;; M-x shell, comint and stuff for all shells
 ;; --------------------------------------------------------------------------------
 
 ;; leave prompt highlighting to the shell
+(set-face-foreground 'comint-highlight-prompt nil)
 (custom-set-faces '(comint-highlight-prompt ((t nil))))
 
 ;; window setup

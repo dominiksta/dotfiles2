@@ -1,4 +1,3 @@
-(require-and-log 'config-shell)
 
 (if (eq system-type 'windows-nt)
     (progn

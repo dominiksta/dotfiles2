@@ -1,5 +1,6 @@
-(require-and-log 'config-programming-general)
+(require 'sh-script)
 
+(require-and-log 'config-programming-general)
 
 (defun fp/sh-mode-hook ()
   ;; (add-hook 'after-save-hook
