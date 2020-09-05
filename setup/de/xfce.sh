@@ -1,9 +1,5 @@
 #!/bin/bash
 
-sudo apt-get install -y xfce4 xfce4-whiskermenu-plugin xfce4-terminal \
-     xfce4-genmon-plugin dmenu
-
-
 # get rid of some xfce components that i do not need
 # sudo apt-get purge -y xiccd
 
