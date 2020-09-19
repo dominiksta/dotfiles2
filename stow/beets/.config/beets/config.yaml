@@ -1,0 +1,7 @@
+directory: ~/Music-beets
+library: ~/sync/Media/beetslibrary.db
+
+paths:
+    default: $albumartist/$album%aunique{}/$track $title
+    singleton: $albumartist/[non-album-tracks]/$title
+    comp: Compilations/$album%aunique{}/$track $title
