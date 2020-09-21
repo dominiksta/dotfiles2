@@ -1,34 +1,60 @@
 #!/bin/sh
 
-# --- daemons ---
-xsettingsd &
-/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
-# compton &
-pcmanfm -d &
-redshift &
+(
+    # --- daemons ---
+    xsettingsd &
+    /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+    # compton &
+    pcmanfm -d &
+    redshift &
 
-# --- settings ---
-feh --bg-fill --randomize $HOME/Pictures/papes/current
-xrdb $HOME/.Xdefaults
+    # - start gpg-agent with `gpg-connect-agent /bye`
+    #   or `gpgconf --launch gpg-agent`
+    # - kill gpg-agent with `gpg-connect-agent killagent /bye`
+    if which gpg-agent > /dev/null; then
+        gpgconf --launch gpg-agent
+        export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
+    fi
 
-# Set up XDG_DATA_DIRS for snaps, so that .desktop-files show up in some
-# relevant tools like j4-dmenu-desktop.
-[ -d "/snap/bin" ] && XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/snapd/desktop"
+    # --- settings ---
+    which feh && \
+        [ -d "$HOME/Pictures/papes/current" ] && \
+        feh --bg-fill --randomize $HOME/Pictures/papes/current
+    xrdb $HOME/.Xdefaults
 
-# qt theme
-export QT_STYLE_OVERRIDE=Adwaita
+    # Set up XDG_DATA_DIRS for snaps, so that .desktop-files show up in some
+    # relevant tools like j4-dmenu-desktop.
+    [ -d "/snap/bin" ] && XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/snapd/desktop"
 
-# --- bindings ---
-intuos.sh first &
-caps.sh &
-sxhkd &
+    # qt theme
+    # export QT_STYLE_OVERRIDE=Adwaita
+    export QT_QPA_PLATFORMTHEME=qt5ct
 
-# --- panels - we need to wait for the compositor with these ---
-(sleep 2 && tint2 & tint2 -c ~/.config/tint2/bottom.conf) &
+    # --- bindings ---
+    intuos.sh first &
+    caps.sh &
+    sxhkd &
 
-# --- tray applications - need to start after the panels ---
-(sleep 5 && (nextcloud & \
-             nm-applet & \
-             keepassxc &  \
-             kdeconnect-indicator \
- )) &
+    # --- panels - we need to wait for the compositor with these ---
+    (sleep 2 && tint2 & tint2 -c ~/.config/tint2/bottom.conf) &
+
+    # --- tray applications - need to start after the panels ---
+    (sleep 5 && (nextcloud & \
+                 nm-applet & \
+                 keepassxc &  \
+                 kdeconnect-indicator \
+     )) &
+
+    # --- other autostart applications ---
+    running-on-laptop-p.sh && (
+        echo "running laptop autostart"
+    ) || (
+        echo "running desktop autostart"
+        autostart-desktop.sh
+    )
+
+
+    # Some display managers (like lightdm) will not start the session properly
+    # if a single process in xprofile puts a single line in stderr. This is not
+    # helpful as often these are simple warnings and are no actual problems.
+) 2>> $HOME/.cache/xprofile-log
