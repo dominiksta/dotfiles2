@@ -7,7 +7,7 @@ alt + space
     run-or-raise.sh emacs emacs
 
 alt + shift + p
-    run-or-raise.sh ampache ampache
+    run-or-raise.sh plexamp plexamp
 
 alt + shift + w
     run-or-raise.sh waterfox waterfox
@@ -66,3 +66,12 @@ ctrl + alt + shift + Up
 
 ctrl + alt + shift + m
     audiocontrol.sh mute
+
+ctrl + alt + shift + space
+    playerctl play-pause
+
+ctrl + alt + shift + L
+    playerctl next
+
+ctrl + alt + shift + H
+    playerctl previous
