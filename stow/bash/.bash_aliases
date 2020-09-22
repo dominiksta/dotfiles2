@@ -17,22 +17,20 @@ alias cl='cd "$@" && ls'
 # enable color support of ls
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='TERM=ansi && ls --color=always'
-    #alias dir='dir --color=always'
-    #alias vdir='vdir --color=always'
+    alias ls='ls --color=auto'
 
-    alias grep='grep --color=always'
-    alias fgrep='fgrep --color=always'
-    alias egrep='egrep --color=always'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
 fi
 
 # enable colors in emacs shell too
 if [ $TERM == 'emacs' ]; then
-    alias ls='ls --color=always'
+    alias ls='ls --color=auto'
 
-    alias grep='grep --color=always'
-    alias fgrep='fgrep --color=always'
-    alias egrep='egrep --color=always'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
 fi
 
 
@@ -56,4 +54,18 @@ function screenshare-virtual-window {
         --screen-width=1920 \
         --screen-height=1080 \
         screen://
+}
+
+function remap-mic {
+    echo "unloading module-remap-source"
+    pactl unload-module module-remap-source
+    echo "loading module-remap-source"
+    pactl load-module module-remap-source \
+          master=alsa_input.usb-Yamaha_Corporation_Steinberg_UR44-00.multichannel-input \
+          source_name=mono_mic \
+          channels=1 \
+          master_channel_map=rear-right \
+          channel_map=mono
+    echo "setting default source to mono_mic"
+    pactl set-default-source mono_mic
 }
