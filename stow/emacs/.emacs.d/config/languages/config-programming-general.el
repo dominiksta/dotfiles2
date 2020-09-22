@@ -21,18 +21,12 @@
 
 ;; --- todos ---
 (use-package hl-todo
+  :demand t
   :ensure t
   :config
-  (add-hook 'prog-mode-hook 'hl-todo-mode)
-  (setq hl-todo-keyword-faces (list (cons "TODO"  (face-foreground 'org-todo))
-                                    (cons "WAIT" (face-foreground 'org-todo))
-                                    (cons "FIXME" (face-foreground 'org-todo))
-                                    (cons "NEXT"  (face-foreground 'org-todo))
-                                    (cons "DONE"  (face-foreground 'org-done))
-                                    (cons "HACK"  (face-foreground 'warning))
-                                    (cons "MAYB"  (face-foreground 'warning)))))
+  (add-hook 'prog-mode-hook 'hl-todo-mode))
 
-(setq project-todo-regexp "TODO|WAIT|FIXME|NEXT|DONE|HACK|MAYB")
+(setq project-todo-regexp "TODO|FIXME|NEXT|DONE|HACK")
 (defun project-todo-search ()
   (interactive)
   (cond
