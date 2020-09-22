@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Name=xfwm session
+Comment=Use this session to run xfwm as standalone
+Exec=xfwm4 --compositor=on
+Icon=
+Type=Application
+DesktopNames=xfwm
