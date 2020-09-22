@@ -156,8 +156,9 @@ fixed-pitch faces."
 ;; load a theme and disable all others
 (defun load-reset-theme ()
   (interactive)
-  (mapc #'disable-theme custom-enabled-themes)
-  (call-interactively 'load-theme))
+  (let ((enabled-themes custom-enabled-themes))
+    (call-interactively 'load-theme)
+    (mapc #'disable-theme enabled-themes)))
 
 (setq fp/toggle-large-font-current nil
       fp/toggle-large-font-size 200)
