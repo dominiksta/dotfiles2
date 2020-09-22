@@ -138,8 +138,8 @@
   ;; --- bindings ---
   (evil-set-initial-state 'compilation-mode 'normal)
   (evil-define-key 'normal compilation-mode-map
-    "gj" 'compilation-next-error
-    "gk" 'compilation-previous-error
+    "gj" 'compilation-next-file
+    "gk" 'compilation-previous-file
     "a" 'compilation-display-error
     "f" 'next-error-follow-minor-mode
     "n" 'next-error
