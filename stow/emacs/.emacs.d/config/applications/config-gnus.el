@@ -285,7 +285,7 @@ that fails, it will return the current year. Useful to use for a
         (message-yank-prefix "> ")
         (message-yank-cited-prefix ">")
         (message-yank-empty-prefix ">")
-        (message-citation-line-format "On %D %R %p, %N wrote:")))
+        (message-citation-line-format "Am %d.%m.%Y, %R Uhr schrieb %N:")))
 
 ;; The simplest (imo) way to do message templating is to just compose something
 ;; in message mode, save that as a file and then as a bookmark. So i just invent
