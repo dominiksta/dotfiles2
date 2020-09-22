@@ -18,10 +18,10 @@ alt + shift + k
 alt + shift + e
     run-or-raise.sh pcmanfm pcmanfm
 
-super + shift + a
-    j4-dmenu-desktop --dmenu="dmenu -i -l 10"
+alt + F1
+    (wmctrl -l | grep "Application Finder") && wmctrl -c "Application Finder" || xfce4-appfinder
 
-super + a
+alt + F2
     dmenu_run -l 10
 
 ctrl + alt + BackSpace
