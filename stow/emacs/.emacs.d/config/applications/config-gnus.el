@@ -430,14 +430,20 @@ that fails, it will return the current year. Useful to use for a
   "p" nil
   "ph" 'gnus-article-browse-html-article
   "ps" 'gnus-article-save-part
-  "pv" 'gnus-article-view-part
-  "pe" 'gnus-article-view-part-externally
+  ;; Copy in this case means to "copy" into a new buffer. This opens pdfs in
+  ;; pdf-tools.
+  "pe" 'gnus-article-view-part
+  "pc" 'gnus-article-copy-part
   "pR" 'gnus-summary-show-raw-article
 
   "i" 'gnus-article-show-images
   "I" 'gnus-article-remove-images
 
   "q" 'evil-window-delete)
+
+(evil-define-key '(visual normal) gnus-mime-button-map
+  "e" 'gnus-article-view-part
+  "c" 'gnus-article-copy-part)
 
 ;; ----------------------------------------------------------------------
 ;; group
