@@ -44,6 +44,7 @@
 (use-package avy :ensure t :config
   (evil-define-key 'normal global-map
     "gl" 'evil-avy-goto-line
+    "gw" 'evil-avy-goto-word-1
     "g-" 'evil-avy-goto-char-2
     "ö" 'evil-avy-goto-char-2
     "Ö" 'evil-avy-goto-char))
