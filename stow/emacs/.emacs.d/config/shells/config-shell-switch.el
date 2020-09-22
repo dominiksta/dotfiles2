@@ -57,7 +57,6 @@ hostname if the shell is not local). Return the created/accessed
 buffer."
   (interactive "P")
   (let* ((explicit-shell-file-name "/bin/bash")
-         (process-environment (cons "TERM=dumb" process-environment))
          (remote-host (file-remote-p default-directory 'host))
          (buffer-name-prefix (format
                               "%s%s"
