@@ -23,8 +23,8 @@
 ;; themes and fonts
 ;; --------------------------------------------------------------------------------
 
-(setq fp/theme-font-family "Dejavu Sans Mono"
-      fp/theme-font-family-size "11"
+(setq fp/theme-font-family "Iosevka Fixed SS12"
+      fp/theme-font-family-size "13"
       fp/theme-font-family-fallback "Dejavu Sans Mono"
       fp/theme-font-family-fallback-size "12"
       fp/theme-font-family-variable-pitch "DejaVu Serif"
