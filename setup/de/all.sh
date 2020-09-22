@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # --- terminal ---
-apt-get install -y tmux
+apt-get install -y xterm tmux
 
 # --- other ---
 apt-get install -y stow \
-        dmenu j4-dmenu-desktop \
+        dmenu xosd-bin playerctl \
         redshift xdotool wmctrl xclip imagemagick zbar-tools \
         xkbset xcape sxhkd \
-        keepassxc
+        keepassxc xournal
 
 # --- cosmetic ---
 apt-get install -y ttf-dejavu yaru-theme-icon
