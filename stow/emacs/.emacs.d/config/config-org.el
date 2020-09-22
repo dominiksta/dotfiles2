@@ -71,9 +71,9 @@
  '(org-block-end-line ((t (:extend t))))
 
  ;; heading sizes
- '(org-level-1 ((t (:overline nil :height 1.0))))
- '(org-level-2 ((t (:overline nil :height 1.0))))
- '(org-level-3 ((t (:overline nil :height 1.0))))
+ '(org-level-1 ((t (:overline t :height 1.2))))
+ '(org-level-2 ((t (:overline t :height 1.0))))
+ '(org-level-3 ((t (:overline t :height 1.0))))
 
  ;; title size
  '(org-document-title ((t (:height 1.4))))
