@@ -53,6 +53,7 @@
         autostart-desktop.sh
     )
 
+    emacs --daemon
 
     # Some display managers (like lightdm) will not start the session properly
     # if a single process in xprofile puts a single line in stderr. This is not

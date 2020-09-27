@@ -31,32 +31,15 @@
       ;; these are used to set `fp/theme-font-family' in `fp/theme-switch'
       fp/theme-light-font-bold nil)
 
-(defun font-exists-p (font) "check if font exists"
-       (if (null (x-list-fonts font)) nil t))
+(setq default-frame-alist
+      (list (cons 'font (concat fp/theme-font-family " " fp/theme-font-family-size))
+            '(vertical-scroll-bars . nil)
+            '(horizontal-scroll-bars . nil)
+            '(fullscreen . maximized)))
+(set-fontset-font "fontset-default" 'unicode-bmp
+                  (font-spec :family fp/theme-font-family))
 
-(defun fp/theme-font-setup ()
-  "Check if `fp/theme-font-family' exists. If not, fall back to
-`fp/theme-font-family-fallback'. If that does not exist either,
-dont do anything. Ohterwise setup default, variable-pitch and
-fixed-pitch faces."
-  (when (not (font-exists-p fp/theme-font-family))
-    (setq fp/theme-font-family fp/theme-font-family-fallback))
-  (when (font-exists-p fp/theme-font-family)
-    (set-face-attribute 'default nil :font (concat fp/theme-font-family " "
-                                                   fp/theme-font-family-size))
-    (set-fontset-font "fontset-default"
-                      'unicode-bmp
-                      (font-spec :family fp/theme-font-family))
-    (set-face-attribute 'variable-pitch nil
-                        :family fp/theme-font-family-variable-pitch
-                        :height 1.1
-                        :weight 'normal)
-    (set-face-attribute 'fixed-pitch nil
-                        :family fp/theme-font-family
-                        :weight 'normal)))
-
-(if window-system (fp/theme-font-setup))
-
+;; --- defaults, to be changed further down ---
 (setq fp/theme-light-theme 'tsdh-light
       fp/theme-dark-theme 'wombat
       custom-safe-themes t)

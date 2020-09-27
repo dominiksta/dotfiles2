@@ -4,7 +4,7 @@ alt + comma
     run-or-raise.sh xterm "xterm -title xterm -e tm"
 
 alt + space
-    run-or-raise.sh emacs emacs
+    run-or-raise.sh emacs em
 
 alt + shift + p
     run-or-raise.sh plexamp plexamp
