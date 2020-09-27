@@ -1,7 +1,19 @@
-directory: ~/Music-beets
+directory: ~/Music
 library: ~/sync/Media/beetslibrary.db
 
 paths:
-    default: $albumartist/$album%aunique{}/$track $title
-    singleton: $albumartist/[non-album-tracks]/$title
-    comp: Compilations/$album%aunique{}/$track $title
+  default: $albumartist/$album%aunique{}/$track $title
+  singleton: $albumartist/[non-album-tracks]/$title
+  comp: Compilations/$album%aunique{}/$track $title
+
+plugins: smartplaylist
+
+smartplaylist:
+    relative_to: ~/Music
+    playlist_dir: ~/sync/Media/Music-Meta/Playlists
+    playlists:
+        - name: all.m3u
+          query: ''
+
+        - name: ebm-and-future-pop.m3u
+          query: ['genre:future', 'genre:ebm']
