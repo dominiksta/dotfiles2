@@ -8,7 +8,7 @@ apt-get install -y stow \
         dmenu xosd-bin playerctl \
         redshift xdotool wmctrl xclip imagemagick zbar-tools \
         xkbset xcape sxhkd \
-        keepassxc xournal
+        keepassxc xournal thunderbird birdtray
 
 # --- cosmetic ---
 apt-get install -y ttf-dejavu yaru-theme-icon

@@ -42,6 +42,7 @@
     (sleep 5 && (nextcloud & \
                  nm-applet & \
                  keepassxc &  \
+                 birdtray & \
                  kdeconnect-indicator \
      )) &
 
