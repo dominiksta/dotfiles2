@@ -28,14 +28,12 @@
         (lambda () nil) ; 6
         (lambda () nil) ; 7
         (lambda ()
-          (when (not (member 0 (mapcar
-                                (lambda (w) (string-match
-                                        "\\`elfeed-"
-                                        (with-current-buffer (window-buffer w)
-                                          (symbol-name major-mode))))
+          (when (not (member t (mapcar
+                                (lambda (w) (eq (with-current-buffer (window-buffer w)
+                                             major-mode)
+                                           'inferior-python-mode))
                                 (window-list))))
-            (delete-other-windows)
-            (elfeed))) ; 8
+            (fp/run-python-calculator))) ; 8
         (lambda ()
           (if (not (or (string-match "\\`gnus-" (symbol-name major-mode))
                       (eq major-mode 'message-mode)))
