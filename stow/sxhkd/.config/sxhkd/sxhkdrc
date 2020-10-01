@@ -46,6 +46,9 @@ super + @F12
 super + shift + @F12
     screenshot.sh selection clipboard
 
+super + shift + {Left, Right}
+    move-to-next-monitor.sh
+
 XF86AudioRaiseVolume
     audiocontrol.sh up
 
