@@ -232,45 +232,8 @@
 ;; --- calc ---
 (autoload 'fp/calc-eval-region "config-calc")
 (evil-leader/set-key
-  ;; For turning Calc on and off:
-  "acc"  'calc
-  "acF"  'full-calc
-  "aco"  'calc-other-window
-  "acb"  'calc-big-or-small
-  "acq"  'quick-calc
-  "ack"  'calc-keypad
-  "ace"  'calc-embedded
-  "acj"  'calc-embedded-select
-  "acw"  'calc-embedded-word
-  "acz"  'calc-user-invocation
-  "acx"  'calc-quit
-  "acE" 'fp/calc-eval-region
-
-  ;; For moving data into and out of Calc:
-  "acg"  'calc-grab-region
-  "acr"  'calc-grab-rectangle
-  "ac:"  'calc-grab-sum-down
-  "ac_"  'calc-grab-sum-across
-  "acy"  'calc-copy-to-buffer
-
-  ;; For use with Embedded mode:
-  "aca"  'calc-embedded-activate
-  "acd"  'calc-embedded-duplicate
-  "acf"  'calc-embedded-new-formula
-  "acn"  'calc-embedded-next
-  "acp"  'calc-embedded-previous
-  "acu"  'calc-embedded-update-formula
-  "ac`"  'calc-embedded-edit
-
-  ;; Documentation:
-  "aci"  'calc-info
-  "act"  'calc-tutorial
-  "acs"  'calc-summary
-
-  ;; Miscellaneous:
-  "acl"  'calc-load-everything
-  "acm"  'read-kbd-macro
-  "ac0'" 'calc-reset)
+  "acc" 'fp/run-python-calculator
+  "ace" 'fp/calc-eval-region)
 
 ;; --- colors ---
 (evil-leader/set-key "ahc" 'helm-colors)
