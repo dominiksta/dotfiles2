@@ -301,6 +301,7 @@ that fails, it will return the current year. Useful to use for a
 ;; `gnus-article-browse-html-article' to open it in your default browser.
 (setq shr-use-colors nil)
 (add-hook 'gnus-article-mode-hook 'visual-line-mode)
+(add-hook 'gnus-article-mode-hook 'olivetti-mode)
 
 ;; ----------------------------------------------------------------------
 ;; searching
