@@ -196,9 +196,6 @@
 ;; --- mail ---
 (evil-leader/set-key "am" 'gnus)
 
-;; --- rss ---
-(evil-leader/set-key "ae" 'elfeed)
-
 ;; --- magit ----
 (evil-leader/set-key "ag" 'magit-status)
 

@@ -71,7 +71,6 @@
 (config-require '(config-calc)    :feature calc)
 (config-require '(config-org)     :feature calendar)
 (config-require '(config-tramp)   :feature tramp)
-(config-require '(config-elfeed)  :feature elfeed)
 (config-require '(config-org-tree-slide) :feature org-tree-slide)
 ;; (config-require '(config-keepassxc-cli)  :feature keepassxc-cli) (require 'keepassxc-cli)
 
