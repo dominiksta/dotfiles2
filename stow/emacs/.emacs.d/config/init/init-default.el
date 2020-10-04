@@ -21,6 +21,7 @@
 ;; programming
 ;; --------------------------------------------------------------------------------
 (config-require '(config-language-elisp)  :feature elisp-mode)
+(autoload 'fp/run-python-calculator "config-language-python.el")
 (config-require '(config-language-python) :feature python)
 (config-require '(config-language-python) :feature pyvenv)
 
