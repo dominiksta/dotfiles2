@@ -180,6 +180,8 @@ some faces fixed-with (for tables, source code, etc.)"
 
 ;; ---------------------------------- exporting ----------------------------------
 
+(use-package ox-gfm :ensure t) ;; github flavoured markdown
+
 (use-package org-ref :ensure t :config
   (evil-leader/set-key-for-mode 'org-mode
     "mc" 'org-ref-helm-insert-cite-link
