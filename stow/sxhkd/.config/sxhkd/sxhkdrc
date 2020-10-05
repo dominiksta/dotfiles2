@@ -52,8 +52,17 @@ XF86AudioRaiseVolume
 XF86AudioLowerVolume
     audiocontrol.sh down
 
+shift + XF86AudioRaiseVolume
+    xbacklight -inc 10
+
+shift + XF86AudioLowerVolume
+    xbacklight -dec 10
+
 XF86AudioMute
     audiocontrol.sh mute
+
+XF86TaskPane
+    flipwithwacom.sh
 
 ctrl + alt + shift + Down
     audiocontrol.sh down
