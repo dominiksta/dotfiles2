@@ -55,8 +55,6 @@
 (use-package web-mode
   :ensure t
   :config
-  (use-package auto-rename-tag :ensure t :demand t :init
-    (add-hook 'web-mode-hook 'auto-rename-tag-mode))
   (setq web-mode-code-indent-offset 4
         web-mode-enable-auto-pairing nil
         web-mode-enable-auto-quoting nil
@@ -68,7 +66,8 @@
   (evil-leader/set-key-for-mode 'web-mode
     "ed" 'fp/refresh-browser
     "mf" 'web-mode-fold-or-unfold)
-  (evil-define-key 'normal web-mode-map "gt" 'web-mode-tag-match))
+  (evil-define-key 'normal web-mode-map "gt" 'web-mode-tag-match)
+  (define-key web-mode-map (kbd "M-R") 'web-mode-element-rename))
 
 
 (use-package apache-mode :ensure t :defer t)

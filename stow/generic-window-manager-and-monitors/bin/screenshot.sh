@@ -3,20 +3,17 @@
 filename=/tmp/screenshot-$(date +%F_%H-%M-%S).png
 
 if [ -z $1 ]; then
-    screenshot_command=$(echo -e "selection\ncurrent-window\nall-monitors" | dmenu -i)
+    screenshot_command=$(echo -e "selection\nwindow" | dmenu -i)
 else
     screenshot_command=$1
 fi
 
 case $screenshot_command in
     "selection")
-        scrot --select $filename
+        import $filename
         ;;
-    "current-window")
-        scrot --focused $filename
-        ;;
-    "all-monitors")
-        scrot $filename
+    "window")
+        import -screen $filename
         ;;
     *)
         exit 1
@@ -24,7 +21,7 @@ case $screenshot_command in
 esac
 
 if [ -z $2 ]; then
-    action_selection=$(echo -e "clipboard\ndired\nfilemanager" | dmenu -i)
+    action_selection=$(echo -e "clipboard\ndired\nfilemanager\nzbar" | dmenu -i)
 else
     action_selection=$2
 fi
@@ -42,6 +39,12 @@ case $action_selection in
         else
             xdg-open $path
         fi
+        ;;
+    zbar)
+        zbarimg $filename | xclip -selection clipboard
+        run-or-raise.sh emacs emacs
+        emacsclient -e '(with-current-buffer (switch-to-buffer "*scratch*") (newline) (goto-char (point-max)) (yank))'
+        emacsclient -e '(switch-to-buffer "*scratch*")'
         ;;
     *)
 esac

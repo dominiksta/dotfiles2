@@ -58,6 +58,24 @@
 
 (add-hook 'python-mode-hook 'config--python-pretty-symbols)
 
+;; --------------------------------------------------------------------------------
+;; calculator
+;; --------------------------------------------------------------------------------
+
+(defun fp/run-python-calculator ()
+  (interactive)
+  (let ((process-environment
+         (cons (concat "PYTHONSTARTUP="
+                       sync-directory "emacs/python-calculator/pythonstartup.py")
+               process-environment))
+        (buf (find-file (concat sync-directory
+                                "emacs/python-calculator/python-calculator-worksheet.py"))))
+    (eyebrowse-switch-to-window-config-8)
+    (delete-other-windows)
+    (switch-to-buffer buf)
+    (with-current-buffer buf
+      (when (not (eq major-mode 'python-mode)) (python-mode))
+      (run-python (python-shell-calculate-command) t))))
 
 ;; --------------------------------------------------------------------------------
 ;; bindings

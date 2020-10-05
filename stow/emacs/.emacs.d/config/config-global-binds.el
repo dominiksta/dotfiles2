@@ -2,6 +2,8 @@
 
 (use-package hydra :ensure t :demand t)
 
+(global-set-key (kbd "C-x C-c") 'save-buffers-kill-emacs)
+
 ;; --------------------------------------------------------------------------------
 ;; window management
 ;; --------------------------------------------------------------------------------
@@ -176,7 +178,16 @@
 
 ;; theme
 (evil-leader/set-key "T" 'fp/theme-toggle)
-(global-set-key (kbd "S-<f12>") 'fp/toggle-large-font)
+
+(defhydra fp/font-size-hydra ()
+  "searching"
+  ("+" (lambda () (interactive) (fp/theme-adjust-global-font-size 20)) "increase")
+  ("-" (lambda () (interactive) (fp/theme-adjust-global-font-size -20)) "decrease")
+  ("0" (lambda () (interactive) (fp/theme-adjust-global-font-size 0)) "default")
+  ("t" fp/toggle-large-font "toggle large font")
+  ("q" nil "quit" :color blue))
+
+(global-set-key (kbd "C-c C-+") 'fp/font-size-hydra/body)
 (global-set-key (kbd "<f5>") 'window-show-cursor)
 
 ;; --------------------------------------------------------------------------------
@@ -218,45 +229,8 @@
 ;; --- calc ---
 (autoload 'fp/calc-eval-region "config-calc")
 (evil-leader/set-key
-  ;; For turning Calc on and off:
-  "acc"  'calc
-  "acF"  'full-calc
-  "aco"  'calc-other-window
-  "acb"  'calc-big-or-small
-  "acq"  'quick-calc
-  "ack"  'calc-keypad
-  "ace"  'calc-embedded
-  "acj"  'calc-embedded-select
-  "acw"  'calc-embedded-word
-  "acz"  'calc-user-invocation
-  "acx"  'calc-quit
-  "acE" 'fp/calc-eval-region
-
-  ;; For moving data into and out of Calc:
-  "acg"  'calc-grab-region
-  "acr"  'calc-grab-rectangle
-  "ac:"  'calc-grab-sum-down
-  "ac_"  'calc-grab-sum-across
-  "acy"  'calc-copy-to-buffer
-
-  ;; For use with Embedded mode:
-  "aca"  'calc-embedded-activate
-  "acd"  'calc-embedded-duplicate
-  "acf"  'calc-embedded-new-formula
-  "acn"  'calc-embedded-next
-  "acp"  'calc-embedded-previous
-  "acu"  'calc-embedded-update-formula
-  "ac`"  'calc-embedded-edit
-
-  ;; Documentation:
-  "aci"  'calc-info
-  "act"  'calc-tutorial
-  "acs"  'calc-summary
-
-  ;; Miscellaneous:
-  "acl"  'calc-load-everything
-  "acm"  'read-kbd-macro
-  "ac0'" 'calc-reset)
+  "acc" 'fp/run-python-calculator
+  "ace" 'fp/calc-eval-region)
 
 ;; --- colors ---
 (evil-leader/set-key "ahc" 'helm-colors)

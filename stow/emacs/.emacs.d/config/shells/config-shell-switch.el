@@ -2,15 +2,14 @@
 
 (defun ss/dispatch-bash-here (&optional arg)
   (interactive "P")
-  (ss/dispatch 'ss/bash-here 'ss/bash-predicate arg))
+  (ss/dispatch 'ss/bash-here 'ss/bash-here-predicate arg))
 
 (defun ss/dispatch-bash (&optional arg)
   (interactive "P")
   (ss/dispatch 'ss/bash 'ss/bash-predicate arg))
 
-(defun ss/dispatch (create-shell-fun shell-buffer-predicate &optional arg)
-  (interactive "P")
-  (let ((open-buffers (seq-filter 'ss/bash-predicate (buffer-list))))
+(defun ss/dispatch (create-shell-fun shell-buffer-predicate arg)
+  (let ((open-buffers (seq-filter shell-buffer-predicate (buffer-list))))
     (cond
      ;; If a prefix arg is given, just pass the arg to create-shell-fun
      ((or (numberp arg) (and (listp arg) (eq (length arg) 1)))
@@ -35,6 +34,13 @@ belong to the list of open bash shells."
   (and (eq (buffer-local-value 'major-mode buf) 'shell-mode)
      (string-match-p "\\*bash\\*" (buffer-name buf))))
 
+(defun ss/bash-here-predicate (buf)
+  "Returns non-nil if the given buffer BUF is considered to
+belong to the list of open bash shells in `default-directory'."
+  (and (eq (buffer-local-value 'major-mode buf) 'shell-mode)
+     (string-match-p "\\*bash\\*" (buffer-name buf))
+     (string= (buffer-local-value 'default-directory buf) default-directory)))
+
 (defun ss/bash-here (&optional arg)
   "Same as `ss/bash', but change the current directory of the
 given shell (through arg) to `default-directory'."
@@ -51,7 +57,6 @@ hostname if the shell is not local). Return the created/accessed
 buffer."
   (interactive "P")
   (let* ((explicit-shell-file-name "/bin/bash")
-         (process-environment (cons "TERM=dumb" process-environment))
          (remote-host (file-remote-p default-directory 'host))
          (buffer-name-prefix (format
                               "%s%s"

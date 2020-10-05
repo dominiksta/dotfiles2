@@ -4,21 +4,24 @@ alt + comma
     run-or-raise.sh xterm "xterm -title xterm -e tm"
 
 alt + space
-    run-or-raise.sh emacs emacs
+    run-or-raise.sh emacs em
 
 alt + shift + p
-    run-or-raise.sh madsonic madsonic
+    run-or-raise.sh plexamp plexamp
 
 alt + shift + w
     run-or-raise.sh waterfox waterfox
 
+alt + shift + k
+    run-or-raise.sh keepassxc keepassxc
+
 alt + shift + e
     run-or-raise.sh pcmanfm pcmanfm
 
-super + shift + a
-    j4-dmenu-desktop --dmenu="dmenu -i -l 10"
+alt + F1
+    (wmctrl -l | grep "Application Finder") && wmctrl -c "Application Finder" || xfce4-appfinder
 
-super + a
+alt + F2
     dmenu_run -l 10
 
 ctrl + alt + BackSpace
@@ -36,15 +39,15 @@ super + shift + t
 super + e
     pcmanfm $HOME
 
-super + shift + {Left, Right}
-    move-to-next-monitor.sh
-
 # The '@' is for listening to key release
-@Print
+super + @F12
     screenshot.sh
 
-shift + @Print
+super + shift + @F12
     screenshot.sh selection clipboard
+
+super + shift + {Left, Right}
+    move-to-next-monitor.sh
 
 XF86AudioRaiseVolume
     audiocontrol.sh up
@@ -72,3 +75,12 @@ ctrl + alt + shift + Up
 
 ctrl + alt + shift + m
     audiocontrol.sh mute
+
+ctrl + alt + shift + space
+    playerctl play-pause
+
+ctrl + alt + shift + L
+    playerctl next
+
+ctrl + alt + shift + H
+    playerctl previous

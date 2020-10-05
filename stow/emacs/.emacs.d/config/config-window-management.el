@@ -27,7 +27,13 @@
         (lambda () nil) ; 5
         (lambda () nil) ; 6
         (lambda () nil) ; 7
-        (lambda () nil) ; 8
+        (lambda ()
+          (when (not (member t (mapcar
+                                (lambda (w) (eq (with-current-buffer (window-buffer w)
+                                             major-mode)
+                                           'inferior-python-mode))
+                                (window-list))))
+            (fp/run-python-calculator))) ; 8
         (lambda ()
           (if (not (or (string-match "\\`gnus-" (symbol-name major-mode))
                       (eq major-mode 'message-mode)))
@@ -37,7 +43,7 @@
 (defun fp/eyebrowse-switch-to-window-config-and-run-defaults (i)
   (eyebrowse-switch-to-window-config i)
   (other-window 0) ;; hack - for some reason the selected buffer stays on the
-                   ;; old workspace if this is not called
+  ;; old workspace if this is not called
   (funcall (nth i fp/workspace-defaults)))
 
 

@@ -21,9 +21,11 @@
 ;; programming
 ;; --------------------------------------------------------------------------------
 (config-require '(config-language-elisp)  :feature elisp-mode)
+(autoload 'fp/run-python-calculator "config-language-python.el")
 (config-require '(config-language-python) :feature python)
 (config-require '(config-language-python) :feature pyvenv)
 
+(config-require '(config-language-lua)          :regexp "\\.lua\\'"       :auto-mode lua-mode)
 (config-require '(config-language-nasm)         :regexp "\\.n?asm\\'"     :auto-mode nasm-mode)
 (config-require '(config-language-cc)           :regexp '("[ch]pp" "ino") :auto-mode c++-mode)
 (config-require '(config-language-cc)           :regexp "\\.pro\\'"       :auto-mode makefile-mode)
@@ -68,10 +70,10 @@
 (config-require '(config-ibuffer) :feature ibuffer)
 (config-require '(config-proced)  :feature proced)
 (config-require '(config-calc)    :feature calc)
-(config-require '(config-org-tree-slide)    :feature org-tree-slide)
 (config-require '(config-org)     :feature calendar)
 (config-require '(config-tramp)   :feature tramp)
-(config-require '(config-keepassxc-cli)   :feature keepassxc-cli) (require 'keepassxc-cli)
+(config-require '(config-org-tree-slide) :feature org-tree-slide)
+;; (config-require '(config-keepassxc-cli)  :feature keepassxc-cli) (require 'keepassxc-cli)
 
 (setq gnus-directory "~/.emacs.d/News") ;; needs to be set before gnus is loaded
 (config-require '(config-gnus) :feature gnus)

@@ -71,8 +71,9 @@
  '(org-block-end-line ((t (:extend t))))
 
  ;; heading sizes
- '(org-level-1 ((t (:overline nil :height 1.0))))
- '(org-level-2 ((t (:overline nil :height 1.0))))
+ '(org-level-1 ((t (:overline t :height 1.2))))
+ '(org-level-2 ((t (:overline t :height 1.0))))
+ '(org-level-3 ((t (:overline t :height 1.0))))
 
  ;; title size
  '(org-document-title ((t (:height 1.4))))
@@ -98,7 +99,16 @@ some faces fixed-with (for tables, source code, etc.)"
   nil
   (fp/theme-font-setup)
   (let ((extra-fixed-pitch '(org-code
+                             org-level-1
+                             org-level-2
+                             org-level-3
+                             org-level-4
+                             org-level-5
+                             org-level-6
+                             org-level-7
+                             org-level-8
                              org-link
+                             org-hide
                              org-block org-table
                              org-block-begin-line
                              org-indent
@@ -119,7 +129,7 @@ some faces fixed-with (for tables, source code, etc.)"
            (lambda (face)
              (set-face-attribute face nil
                                  :family (face-attribute 'fixed-pitch :family)
-                                 :weight (face-attribute 'default :weight)))
+                                 :height (face-attribute 'default :height)))
            extra-fixed-pitch)
           (mapcar
            (lambda (face)
@@ -140,6 +150,7 @@ some faces fixed-with (for tables, source code, etc.)"
 
 ;; --- other ---
 (add-hook 'org-mode-hook (lambda () (org-indent-mode 1)))
+(add-hook 'org-mode-hook (lambda () (eldoc-mode 0)))
 (setq org-image-actual-width nil  ; respect ATTR_* attributes
       org-pretty-entities-include-sub-superscripts t)
 
@@ -168,6 +179,8 @@ some faces fixed-with (for tables, source code, etc.)"
 ;; ----------------------------------------------------------------------
 
 ;; ---------------------------------- exporting ----------------------------------
+
+(use-package ox-gfm :ensure t) ;; github flavoured markdown
 
 (use-package org-ref :ensure t :config
   (evil-leader/set-key-for-mode 'org-mode
@@ -282,6 +295,10 @@ some faces fixed-with (for tables, source code, etc.)"
   "mt" 'org-todo
   "ma" 'org-archive-subtree-default)
 
+;; I find the other functions of org-meta-return get in my way more often than
+;; not.
+(define-key org-mode-map (kbd "<M-return>") 'org-insert-heading)
+
 (define-key org-mode-map [mouse-3]
   (lambda (event) (interactive "e") (fp/point-to-mouse event) (org-cycle)))
 
@@ -289,6 +306,8 @@ some faces fixed-with (for tables, source code, etc.)"
   (lambda (event) (interactive "e") (fp/point-to-mouse event) (org-ctrl-c-ctrl-c)))
 
 (setq org-imenu-depth 10)
+
+(add-hook 'org-mode-hook 'visual-line-mode)
 
 ;; --------------------------------------------------------------------------------
 ;; agenda and todos
@@ -307,7 +326,8 @@ some faces fixed-with (for tables, source code, etc.)"
 ;; --------------------------------------------------------------------------------
 (with-eval-after-load "ox"
   (use-package htmlize :ensure t)
-  (setq org-export-default-language "de")
+  (setq org-export-default-language "de"
+        org-html-validation-link nil)
 
   (setq org-style-css "~/git/dotfiles/other/org-style.css")
 
@@ -353,7 +373,7 @@ some faces fixed-with (for tables, source code, etc.)"
 
 
 ;; --- archiving ---
-(setq org-archive-location (concat sync-directory "general/org/archive.org::datetree/"))
+(setq org-archive-location (concat sync-directory "general/org/meinleben/archive.org::datetree/"))
 
 ;; --- download ---
 (use-package org-download
@@ -467,6 +487,14 @@ some faces fixed-with (for tables, source code, etc.)"
 (evil-leader/set-key-for-mode 'org-mode
   "mda" 'org-attach
   "mdi" 'fp/org-attach-insert-link)
+
+(use-package org-attach-screenshot :ensure t)
+
+(defun fp/org-attach-screenshot ()
+  (interactive)
+  (org-attach-dir-get-create)
+  (let ((current-prefix-arg '(8)))
+    (call-interactively 'org-attach-screenshot)))
 
 ;; --------------------------------------------------------------------------------
 ;; spelling

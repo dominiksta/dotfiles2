@@ -8,7 +8,8 @@
   :config
   (evil-mode 1)
   (setq evil-insert-state-message nil
-        evil-insert-state-modes nil))
+        evil-insert-state-modes nil
+        evil-respect-visual-line-mode t))
 
 (use-package evil-leader
   :ensure t
@@ -35,27 +36,18 @@
   ;; I don't use the normal folding commands at all, so i just overwrite them.
   (evil-define-key 'normal global-map
     "za" 'yafolding-toggle-element
-    "zA" 'yafolding-toggle-all))
+    "zA" 'yafolding-hide-all
+    (kbd "z M-a") 'yafolding-show-all))
 
 
 ;; --- avy ---
 (use-package avy :ensure t :config
   (evil-define-key 'normal global-map
     "gl" 'evil-avy-goto-line
+    "gw" 'evil-avy-goto-word-1
     "g-" 'evil-avy-goto-char-2
     "ö" 'evil-avy-goto-char-2
     "Ö" 'evil-avy-goto-char))
-
-;; --- visual lines ---
-(dolist (state (list 'normal 'motion))
-  (evil-define-key state visual-line-mode-map
-    "j" 'evil-next-visual-line
-    "k" 'evil-previous-visual-line
-    "$" 'evil-end-of-visual-line
-    "0" 'evil-beginning-of-visual-line))
-
-(add-hook 'visual-line-mode-hook
-          (lambda () (interactive) (evil-emacs-state) (evil-normal-state)))
 
 (dolist (state (list 'normal 'motion))
   (evil-define-key state global-map
@@ -133,7 +125,7 @@
 
 (setq-default fill-column 80)
 
-(add-hook 'text-mode-hook 'auto-fill-mode)
+;; (add-hook 'text-mode-hook 'auto-fill-mode)
 (add-hook 'text-mode-hook 'electric-pair-mode)
 
 ;; --- kill ring ---

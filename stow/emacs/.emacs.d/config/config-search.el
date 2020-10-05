@@ -75,6 +75,7 @@ recursively from the current directory using `pdfgrep'."
     "q" 'quit-window
     "e" 'wgrep-change-to-wgrep-mode
     "k" 'evil-previous-line)
+  (setq ag-highlight-search t)
   (evil-set-initial-state 'ag-mode 'normal))
 
 ;; --------------------------------------------------------------------------------

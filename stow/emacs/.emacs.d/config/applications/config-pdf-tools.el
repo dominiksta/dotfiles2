@@ -45,7 +45,9 @@
   ;; --------------------------------------------------------------------------------
   ;; org-mode links
   ;; --------------------------------------------------------------------------------
-  (use-package org-pdfview :ensure t :demand t)
+  ;; Was: org-pdfview. Links can be 'updated' to org-pdftools by changing the
+  ;; link from "pdfview:..." to "pdftools:..."
+  (use-package org-pdftools :ensure t :demand t)
 
   ;; --------------------------------------------------------------------------------
   ;; open text in new window

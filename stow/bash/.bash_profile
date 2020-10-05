@@ -19,11 +19,3 @@
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
-
-# - start gpg-agent with `gpg-connect-agent /bye`
-#   or `gpgconf --launch gpg-agent`
-# - kill gpg-agent with `gpg-connect-agent killagent /bye`
-if which gpg-agent > /dev/null; then
-    gpgconf --launch gpg-agent
-    export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
-fi

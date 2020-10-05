@@ -203,7 +203,6 @@
   "ma" 'gnus-dired-attach
   "mo" 'fp/dired-open-with-system-default
   "md" 'fp/dired-open-directory-with-system-default
-  "mq" 'dired-toggle-read-only
   "mi" 'image-dired-no-window-config
   "mI" 'image-dired-my-window-config)
 (evil-define-key 'normal dired-mode-map
@@ -215,6 +214,7 @@
   "N" 'evil-search-previous
 
   "E" 'dired-ediff-marked
+  "e" 'dired-toggle-read-only
   "c" 'dired-do-copy
   "bc" (lambda () (interactive) (let ((dired-dwim-target t)) (dired-do-copy)))
   "v" 'dired-do-rename

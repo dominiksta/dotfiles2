@@ -173,12 +173,18 @@ that fails, it will return the current year. Useful to use for a
       gnus-sum-thread-tree-single-leaf "└─> "
       gnus-sum-thread-tree-vertical "│")
 
+;; Disable threads by default (I don't have a lot of long conversations, so it
+;; is more useful to just have a stream of the most recent messages.)
+(setq gnus-show-threads nil)
+
 ;; --- starting position ---
 (setq gnus-summary-goto-unread nil)
 (add-hook 'gnus-summary-prepared-hook (lambda () (end-of-buffer) (previous-line)))
 
 ;; --- viewing threads/referring articles ---
-(setq gnus-refer-thread-use-nnir t) ; search in all groups
+(setq gnus-refer-thread-use-nnir t  ; search in all groups
+      gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references
+      )
 ;; NOTE: I configure `gnus-refer-article-method' in `gnus-group-parameters' to
 ;; be something like '(current (nnir "nnimap:<the_group>")).
 
@@ -279,7 +285,7 @@ that fails, it will return the current year. Useful to use for a
         (message-yank-prefix "> ")
         (message-yank-cited-prefix ">")
         (message-yank-empty-prefix ">")
-        (message-citation-line-format "On %D %R %p, %N wrote:")))
+        (message-citation-line-format "Am %d.%m.%Y, %R Uhr schrieb %N:")))
 
 ;; The simplest (imo) way to do message templating is to just compose something
 ;; in message mode, save that as a file and then as a bookmark. So i just invent
@@ -295,6 +301,7 @@ that fails, it will return the current year. Useful to use for a
 ;; `gnus-article-browse-html-article' to open it in your default browser.
 (setq shr-use-colors nil)
 (add-hook 'gnus-article-mode-hook 'visual-line-mode)
+(add-hook 'gnus-article-mode-hook 'olivetti-mode)
 
 ;; ----------------------------------------------------------------------
 ;; searching
@@ -308,6 +315,14 @@ that fails, it will return the current year. Useful to use for a
 ;;         (nnmaildir . find-grep)))
 
 ;; ----------------------------------------------------------------------
+;; encryption
+;; ----------------------------------------------------------------------
+
+;; You can define aliases in your gpg.conf (normally in ~/.gnupg/gpg.conf) with
+;; a line like this:
+;; group newalias@domain.com = emailwithkey@domain.com
+
+;; ----------------------------------------------------------------------
 ;; contacts
 ;; ----------------------------------------------------------------------
 
@@ -317,6 +332,11 @@ that fails, it will return the current year. Useful to use for a
 ;; though (like my workplace/uni) then this is not of much use to you. Instead,
 ;; the package `vdirel' can be combined with the external program 'vdirsyncer'
 ;; to synchronize with a carddav server. TODO
+
+;; ----------------------------------------------------------------------
+;; modeline
+;; ----------------------------------------------------------------------
+;; TODO https://github.com/seagle0128/doom-modeline/blob/15c859dc4b4d6e6b7bafe4bdacf447de6a6253dd/doom-modeline-segments.el#L2213-L2287
 
 ;; ======================================================================
 ;; evil binds
@@ -411,14 +431,20 @@ that fails, it will return the current year. Useful to use for a
   "p" nil
   "ph" 'gnus-article-browse-html-article
   "ps" 'gnus-article-save-part
-  "pv" 'gnus-article-view-part
-  "pe" 'gnus-article-view-part-externally
+  ;; Copy in this case means to "copy" into a new buffer. This opens pdfs in
+  ;; pdf-tools.
+  "pe" 'gnus-article-view-part
+  "pc" 'gnus-article-copy-part
   "pR" 'gnus-summary-show-raw-article
 
   "i" 'gnus-article-show-images
   "I" 'gnus-article-remove-images
 
   "q" 'evil-window-delete)
+
+(evil-define-key '(visual normal) gnus-mime-button-map
+  "e" 'gnus-article-view-part
+  "c" 'gnus-article-copy-part)
 
 ;; ----------------------------------------------------------------------
 ;; group

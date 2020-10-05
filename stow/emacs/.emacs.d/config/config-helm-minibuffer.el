@@ -21,6 +21,7 @@
   (setq helm-completing-read-handlers-alist
         '((tmm-menubar . nil)
           (find-file . nil)
+          (org-set-tags-command . nil)
           (execute-extended-command . nil)
           (dired-do-rename . nil)
           (dired-do-copy . nil)

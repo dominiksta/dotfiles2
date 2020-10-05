@@ -21,28 +21,27 @@
 
 ;; --- todos ---
 (use-package hl-todo
+  :demand t
   :ensure t
   :config
-  (add-hook 'prog-mode-hook 'hl-todo-mode)
-  (setq hl-todo-keyword-faces (list (cons "TODO"  (face-foreground 'org-todo))
-                                    (cons "WAIT" (face-foreground 'org-todo))
-                                    (cons "FIXME" (face-foreground 'org-todo))
-                                    (cons "NEXT"  (face-foreground 'org-todo))
-                                    (cons "DONE"  (face-foreground 'org-done))
-                                    (cons "HACK"  (face-foreground 'warning))
-                                    (cons "MAYB"  (face-foreground 'warning)))))
+  (add-hook 'prog-mode-hook 'hl-todo-mode))
 
-(setq project-todo-regexp "TODO|WAIT|FIXME|NEXT|DONE|HACK|MAYB")
-(defun project-todo-search ()
-  (interactive)
-  (cond
-   (config-ag-available (ag-project-regexp project-todo-regexp))
-   (config-grep-available (let ((default-directory (projectile-project-root)))
-                            (grep (concat "grep --exclude-dir=.git -nHIrE \""
-                                          project-todo-regexp "\" ." ))))
-   (t (message "No program for searching available"))))
+(defun fp/project-search (regexp)
+  (let ((default-directory (projectile-project-root)))
+    (cond
+     (config-ag-available (ag-project-regexp regexp))
+     (config-grep-available (grep (concat "grep --exclude-dir=.git -nHIrE \""
+                                          regexp "\" ." )))
+     (t (message "No program for searching available")))))
 
-(evil-leader/set-key "st" 'project-todo-search)
+(defun fp/project-todo-search-todo () (interactive) (fp/project-search "TODO|FIXME|NEXT"))
+(defun fp/project-todo-search-hack () (interactive) (fp/project-search "HACK"))
+(defun fp/project-todo-search-all  () (interactive) (fp/project-search "TODO|FIXME|NEXT|DONE|HACK"))
+
+(evil-leader/set-key
+  "stt" 'fp/project-todo-search-todo
+  "sta" 'fp/project-todo-search-all
+  "sth" 'fp/project-todo-search-hack)
 
 ;; --- imenu ---
 (evil-leader/set-key
@@ -144,8 +143,8 @@
   ;; --- bindings ---
   (evil-set-initial-state 'compilation-mode 'normal)
   (evil-define-key 'normal compilation-mode-map
-    "gj" 'compilation-next-error
-    "gk" 'compilation-previous-error
+    "gj" 'compilation-next-file
+    "gk" 'compilation-previous-file
     "a" 'compilation-display-error
     "f" 'next-error-follow-minor-mode
     "n" 'next-error

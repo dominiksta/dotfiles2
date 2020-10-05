@@ -23,40 +23,23 @@
 ;; themes and fonts
 ;; --------------------------------------------------------------------------------
 
-(setq fp/theme-font-family "Iosevka Fixed"
-      fp/theme-font-family-size "12"
+(setq fp/theme-font-family "Iosevka Fixed SS12"
+      fp/theme-font-family-size "13"
       fp/theme-font-family-fallback "Dejavu Sans Mono"
       fp/theme-font-family-fallback-size "12"
       fp/theme-font-family-variable-pitch "DejaVu Serif"
       ;; these are used to set `fp/theme-font-family' in `fp/theme-switch'
       fp/theme-light-font-bold nil)
 
-(defun font-exists-p (font) "check if font exists"
-       (if (null (x-list-fonts font)) nil t))
+(setq default-frame-alist
+      (list (cons 'font (concat fp/theme-font-family " " fp/theme-font-family-size))
+            '(vertical-scroll-bars . nil)
+            '(horizontal-scroll-bars . nil)
+            '(fullscreen . maximized)))
+(set-fontset-font "fontset-default" 'unicode-bmp
+                  (font-spec :family fp/theme-font-family))
 
-(defun fp/theme-font-setup ()
-  "Check if `fp/theme-font-family' exists. If not, fall back to
-`fp/theme-font-family-fallback'. If that does not exist either,
-dont do anything. Ohterwise setup default, variable-pitch and
-fixed-pitch faces."
-  (when (not (font-exists-p fp/theme-font-family))
-    (setq fp/theme-font-family fp/theme-font-family-fallback))
-  (when (font-exists-p fp/theme-font-family)
-    (set-face-attribute 'default nil :font (concat fp/theme-font-family " "
-                                                   fp/theme-font-family-size))
-    (set-fontset-font "fontset-default"
-                      'unicode-bmp
-                      (font-spec :family fp/theme-font-family))
-    (set-face-attribute 'variable-pitch nil
-                        :family fp/theme-font-family-variable-pitch
-                        :height 1.0
-                        :weight 'normal)
-    (set-face-attribute 'fixed-pitch nil
-                        :family fp/theme-font-family
-                        :weight 'normal)))
-
-(if window-system (fp/theme-font-setup))
-
+;; --- defaults, to be changed further down ---
 (setq fp/theme-light-theme 'tsdh-light
       fp/theme-dark-theme 'wombat
       custom-safe-themes t)
@@ -91,20 +74,22 @@ fixed-pitch faces."
 ;;   (setq fp/theme-light-theme 'sanityinc-tomorrow-day
 ;;         fp/theme-dark-theme 'sanityinc-tomorrow-night))
 
-(use-package modus-operandi-theme :ensure t
-  :config
-  (setq fp/theme-light-theme 'modus-operandi))
-
-(use-package modus-vivendi-theme :ensure t
-  :config
-  (setq fp/theme-dark-theme 'modus-vivendi))
-
-;; (use-package doom-themes
-;;   :ensure t
+;; (use-package modus-operandi-theme :ensure t
 ;;   :config
-;;   (doom-themes-org-config)
-;;   (setq fp/theme-light-theme 'doom-one-light
-;;         fp/theme-dark-theme 'doom-city-lights))
+;;   (setq fp/theme-light-theme 'modus-operandi))
+
+;; (use-package modus-vivendi-theme :ensure t
+;;   :config
+;;   (setq fp/theme-dark-theme 'modus-vivendi))
+
+(use-package doom-themes
+  :ensure t
+  :config
+  (doom-themes-org-config)
+  (custom-set-faces
+   '(highlight ((t (:underline t :background nil :foreground nil :distant-foreground nil)))))
+  (setq fp/theme-light-theme 'doom-one-light
+        fp/theme-dark-theme 'doom-one))
 
 ;; (use-package "spacemacs-theme"
 ;;   :ensure t
@@ -154,19 +139,23 @@ fixed-pitch faces."
 ;; load a theme and disable all others
 (defun load-reset-theme ()
   (interactive)
-  (mapc #'disable-theme custom-enabled-themes)
-  (call-interactively 'load-theme))
+  (let ((enabled-themes custom-enabled-themes))
+    (call-interactively 'load-theme)
+    (mapc #'disable-theme enabled-themes)))
 
 (setq fp/toggle-large-font-current nil
       fp/toggle-large-font-size 200)
+
+;; --- adjusting font size ---
 
 (defun fp/toggle-large-font ()
   "Intended for presentations. TODO: make this a minor-mode"
   (interactive)
   (if fp/toggle-large-font-current
       (progn
-        (set-face-attribute 'default (selected-frame)
-                            :height 130)
+        (set-face-attribute 'default nil :font
+                            (concat fp/theme-font-family " "
+                                    fp/theme-font-family-size))
         (setq fp/toggle-large-font-current nil))
     (progn
       (set-face-attribute 'default (selected-frame)
@@ -174,11 +163,11 @@ fixed-pitch faces."
       (setq fp/toggle-large-font-current t))))
 
 (defun fp/theme-adjust-global-font-size (inc)
-  (set-face-attribute 'default nil
-                      :height (+ (face-attribute 'default :height) inc)))
-
-(global-set-key (kbd "C-c C-+") (lambda () (interactive) (fp/theme-adjust-global-font-size 20)))
-(global-set-key (kbd "C-c C--") (lambda () (interactive) (fp/theme-adjust-global-font-size -20)))
+  (if (eq inc 0)
+      (set-face-attribute 'default nil :font (concat fp/theme-font-family " "
+                                                     fp/theme-font-family-size))
+    (set-face-attribute 'default nil
+                        :height (+ (face-attribute 'default :height) inc))))
 
 (defun window-show-cursor (&optional show)
   (interactive)
@@ -229,10 +218,10 @@ fixed-pitch faces."
 
 (add-hook 'after-load-theme-hook
           (lambda ()
-            ;; Terminus is too thin to be used with a light theme imo, so i have to
-            ;; use it in bold. However, i do want to see bold highlighting in some
-            ;; way (for instance in org-mode), so i just give it another color.
-            (set-face-attribute 'bold nil :inherit 'font-lock-string-face)
+            ;; ;; Terminus is too thin to be used with a light theme imo, so i have to
+            ;; ;; use it in bold. However, i do want to see bold highlighting in some
+            ;; ;; way (for instance in org-mode), so i just give it another color.
+            ;; (set-face-attribute 'bold nil :inherit 'font-lock-string-face)
 
             ;; got to hate this thing tbqh famalam
             (set-face-attribute 'fringe nil :background nil)))
