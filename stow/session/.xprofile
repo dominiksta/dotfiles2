@@ -8,14 +8,6 @@
     pcmanfm -d &
     redshift &
 
-    # - start gpg-agent with `gpg-connect-agent /bye`
-    #   or `gpgconf --launch gpg-agent`
-    # - kill gpg-agent with `gpg-connect-agent killagent /bye`
-    if which gpg-agent > /dev/null; then
-        gpgconf --launch gpg-agent
-        export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
-    fi
-
     # --- settings ---
     which feh && \
         [ -d "$HOME/Pictures/papes/current" ] && \
@@ -30,31 +22,10 @@
     # export QT_STYLE_OVERRIDE=Adwaita
     export QT_QPA_PLATFORMTHEME=qt5ct
 
-    # --- bindings ---
-    intuos.sh first &
-    caps.sh &
-    sxhkd &
-
     # --- panels - we need to wait for the compositor with these ---
     (sleep 2 && tint2 & tint2 -c ~/.config/tint2/bottom.conf) &
 
-    # --- tray applications - need to start after the panels ---
-    (sleep 5 && (nextcloud & \
-                 nm-applet & \
-                 keepassxc &  \
-                 birdtray & \
-                 kdeconnect-indicator \
-     )) &
-
-    # --- other autostart applications ---
-    running-on-laptop-p.sh && (
-        echo "running laptop autostart"
-    ) || (
-        echo "running desktop autostart"
-        autostart-desktop.sh
-    )
-
-    emacs --daemon
+    autostart.sh &
 
     # Some display managers (like lightdm) will not start the session properly
     # if a single process in xprofile puts a single line in stderr. This is not
