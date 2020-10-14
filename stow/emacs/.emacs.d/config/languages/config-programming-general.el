@@ -195,29 +195,23 @@
   :commands lsp
   :ensure t
   :config
+  ;; --- bindings ---
+  (define-key lsp-mode-map (kbd "M-R") 'lsp-rename)
+
+  ;; --- Fight against very insane defaults ---
   (remove-hook 'lsp-eldoc-hook 'lsp-document-highlight)
-  (setq lsp-enable-indentation nil)
-  ;; i only use this to make lsp use flycheck instead of flymake
-  (use-package lsp-ui
-    :ensure t
-    :config
-    (require 'lsp-ui-flycheck)
-    (setq lsp-ui-doc-include-signature t
-          lsp-ui-doc-enable nil
-          lsp-enable-symbol-highlighting t
+  (setq lsp-enable-indentation nil
+        lsp-modeline-code-actions-enable nil
+        lsp-modeline-diagnostics-enable nil)
+
+  ;; I only want lsp-ui for `lsp-ui-doc-*'
+  (use-package lsp-ui :ensure t :config
+    (setq lsp-ui-doc-enable nil
           lsp-ui-peek-enable nil
-          lsp-ui-flycheck-enable t
-          lsp-prefer-flymake nil
-          lsp-ui-imenu-enable t
-          lsp-ui-sideline-enable nil
-          read-process-output-max 1048576
-          lsp-prefer-capf t
-          lsp-eldoc-render-all nil)
-    ;; The lsp-prefer-capf variable did not work anymore and probably another company backend
-    ;; was the source of the weird flycheck/make errors which arised with any lsp-backend for c++
-    ;; This fixes the issue by changing the company backend to the one recommended by the lsp team
-    (add-hook 'lsp-managed-mode-hook (lambda () (setq-local company-backends '(company-capf))))
-    (set-face-background 'lsp-ui-doc-background nil)))
+          lsp-ui-sideline-enable nil))
+
+  ;; This was recommended on the internet.
+  (add-hook 'lsp-managed-mode-hook (lambda () (setq-local company-backends '(company-capf)))))
 
 
 ;; --------------------------------------------------------------------------------
