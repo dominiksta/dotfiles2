@@ -161,7 +161,19 @@ some faces fixed-with (for tables, source code, etc.)"
       org-ellipsis nil
       org-tags-column -75)
 
-;; --- modeline ---
+;; --------------------------------------------------------------------------------
+;; clocking
+;; --------------------------------------------------------------------------------
+
+(use-package org-pomodoro :ensure t :config
+  (setq org-pomodoro-format "P:%s"
+        org-pomodoro-time-format "%.2m"
+        org-pomodoro-play-sounds nil)
+  (add-hook 'org-pomodoro-finished-hook
+            (lambda () (generic-notification-notify "Pomodoro finished" "Take a break!" 10)))
+  (add-hook 'org-pomodoro-break-finished-hook
+            (lambda () (generic-notification-notify "Break is over" "Start a new pomodoro?" 10))))
+
 (with-eval-after-load "org-clock"
   (defun fp/org-clock-format-clock-string (oldfun)
     (propertize (concat " " (car (split-string (substring-no-properties (funcall oldfun)))))
