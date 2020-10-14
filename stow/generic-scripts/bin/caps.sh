@@ -4,7 +4,7 @@
 
 setxkbmap -option ""
 xkbset repeatkeys
-xmodmap ~/git/dotfiles/scripts/keys/xmodmaprc
+xmodmap ~/git/dotfiles/other/xmodmaprc
 
 pgrep -x xcape && pkill -9 xcape
 xcape -e Control_L=Escape

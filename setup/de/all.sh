@@ -3,11 +3,15 @@
 # --- terminal ---
 apt-get install -y xterm tmux
 
+# --- gpg ---
+apt-get install -y gnupg2 gnupg-agent scdaemon pcscd
+
 # --- other ---
 apt-get install -y stow \
         dmenu xosd-bin playerctl \
         redshift xdotool wmctrl xclip imagemagick zbar-tools \
         xkbset xcape sxhkd \
+        kdeconnect \
         keepassxc xournal thunderbird birdtray
 
 # --- cosmetic ---
