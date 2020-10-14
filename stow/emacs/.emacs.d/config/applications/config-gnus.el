@@ -356,8 +356,8 @@ that fails, it will return the current year. Useful to use for a
   "R" 'gnus-summary-rescan-group
 
   ;; writing mail
-  (kbd "M-r") 'gnus-summary-reply
-  (kbd "M-R") 'gnus-summary-reply-with-original
+  (kbd "M-r") 'gnus-summary-wide-reply
+  (kbd "M-R") 'gnus-summary-wide-reply-with-original
   (kbd "M-f") 'gnus-summary-mail-forward
   (kbd "M-m") 'gnus-summary-mail-other-window
 
