@@ -41,9 +41,9 @@ appearance. Optional args set padding on lines/columns."
     "Show the current eyebrowse window config if eyebrowse is
 available."
     (if (featurep 'eyebrowse)
-        (concat "[" (number-to-string
+        (concat " [" (number-to-string
                      (eyebrowse--get 'current-slot))
-                "] ") ""))
+                "]") ""))
 
   (telephone-line-defsegment fp/telephone-line-dired-rsync-segment ()
     "Show the current status of dired-rsync if available."

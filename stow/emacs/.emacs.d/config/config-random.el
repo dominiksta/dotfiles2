@@ -22,6 +22,9 @@
 (evil-define-key 'motion Man-mode-map (kbd "<escape>") 'evil-force-normal-state)
 (evil-define-key 'visual Man-mode-map (kbd "<escape>") 'evil-force-normal-state)
 
+;; --- only use encrypted authinfo ---
+(setq auth-sources '("~/sync/emacs/.authinfo.gpg" "~/.authinfo.gpg"))
+
 
 ;; --- no more yes ---
 (defalias 'yes-or-no-p 'y-or-n-p)
