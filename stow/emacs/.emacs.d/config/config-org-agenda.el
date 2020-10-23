@@ -39,22 +39,6 @@
          ((org-agenda-files '("~/sync/general/org/meinleben/stundenplan.org"))))))
 
 ;; --------------------------------------------------------------------------------
-;; webcal
-;; --------------------------------------------------------------------------------
-(config-add-external-dependency 'gawk 'config-org-agenda "convert ics to org"
-                                (lambda () (executable-find "gawk"))
-                                "apt-get install -y gawk" "cyg-get awk")
-
-(when (config-external-check-list '(gawk))
-  (defun fp/webcal-to-org ()
-    (interactive)
-    (with-current-buffer (get-buffer-create "*webcal-to-org*")
-      (cd (concat sync-directory "general/org/scripts")) (erase-buffer)
-      (start-process-shell-command "webcal-to-org" "*webcal-to-org*"
-                                   (concat "sh " default-directory "allwebcal.sh"))))
-  (run-with-timer (* 20 60) (* 60 60) 'fp/webcal-to-org))
-
-;; --------------------------------------------------------------------------------
 ;; bindings
 ;; --------------------------------------------------------------------------------
 (evil-set-initial-state 'org-agenda-mode 'normal)
