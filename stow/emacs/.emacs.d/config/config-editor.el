@@ -5,11 +5,12 @@
 (use-package evil
   :ensure t
   :demand t
+  :init
+  (setq evil-respect-visual-line-mode t)
   :config
   (evil-mode 1)
   (setq evil-insert-state-message nil
-        evil-insert-state-modes nil
-        evil-respect-visual-line-mode t))
+        evil-insert-state-modes nil))
 
 (use-package evil-leader
   :ensure t
