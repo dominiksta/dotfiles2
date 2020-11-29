@@ -177,7 +177,11 @@
 
 
 ;; theme
-(evil-leader/set-key "T" 'fp/theme-toggle)
+(evil-leader/set-key
+  "T" 'fp/theme-toggle
+  ;; A lot of themes do not work correctly in a terminal session. The default
+  ;; theme (aka no theme) handles terminal colors quite well though.
+  (kbd "C-t") (lambda () (interactive) (mapc #'disable-theme custom-enabled-themes)))
 
 (defhydra fp/font-size-hydra ()
   "searching"
