@@ -16,6 +16,7 @@ sxhkd &
 
 # --- tray applications - need to start after the panels ---
 (sleep 5 && (nextcloud & \
+             syncthing-gtk & \
              nm-applet & \
              keepassxc &  \
              birdtray & \
