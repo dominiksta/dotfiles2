@@ -81,7 +81,12 @@
 ;; --------------------------------------------------------------------------------
 (use-package dumb-jump :ensure t
   :init (dumb-jump-mode 1)
-  :config (setq dumb-jump-selector 'helm))
+  :config
+  (setq dumb-jump-selector 'helm)
+  (defun fp/evil-dumb-jump-go ()
+    (interactive)
+    (evil-set-jump)
+    (call-interactively 'dumb-jump-go)))
 
 ;; --------------------------------------------------------------------------------
 ;; debugging
