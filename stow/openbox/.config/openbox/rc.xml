@@ -196,12 +196,12 @@
     </keybind>
     <keybind key="A-S-e">
       <action name="Execute">
-        <command>run-or-raise.sh pcmanfm pcmanfm</command>
+        <command>run-or-raise.sh thunar thunar</command>
       </action>
     </keybind>
     <keybind key="W-e">
       <action name="Execute">
-        <command>pcmanfm</command>
+        <command>thunar</command>
       </action>
     </keybind>
     <keybind key="C-6">

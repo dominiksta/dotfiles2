@@ -16,7 +16,7 @@ alt + shift + k
     run-or-raise.sh keepassxc keepassxc
 
 alt + shift + e
-    run-or-raise.sh pcmanfm pcmanfm
+    run-or-raise.sh thunar thunar
 
 alt + F1
     (wmctrl -l | grep "Application Finder") && wmctrl -c "Application Finder" || xfce4-appfinder
@@ -37,7 +37,7 @@ super + shift + t
     change-theme.sh
 
 super + e
-    pcmanfm $HOME
+    thunar $HOME
 
 # The '@' is for listening to key release
 super + @F12
