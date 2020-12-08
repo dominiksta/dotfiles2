@@ -52,6 +52,7 @@
   "F"         'org-agenda-follow-mode
   "f"         'org-agenda-later
   "b"         'org-agenda-earlier
+  "gd"        'org-agenda-goto-date
 
   (kbd "RET") 'org-agenda-goto
   "o"         'org-agenda-switch-to
