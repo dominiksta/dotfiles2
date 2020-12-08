@@ -3,6 +3,7 @@
 alias emn='emacsclient -nw --alternate-editor=emacs'
 alias t='tmux'
 alias o='xdg-open'
+alias lsblk='lsblk -o NAME,LABEL,SIZE,RO,TYPE,MOUNTPOINT'
 
 alias gd='gdbtui -q'
 
