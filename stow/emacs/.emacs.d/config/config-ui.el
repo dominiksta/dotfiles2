@@ -23,7 +23,7 @@
 ;; themes and fonts
 ;; --------------------------------------------------------------------------------
 
-(setq fp/theme-font-family "Iosevka Fixed SS12"
+(setq fp/theme-font-family "Dejavu Sans Mono"
       fp/theme-font-family-size "13"
       fp/theme-font-family-fallback "Dejavu Sans Mono"
       fp/theme-font-family-fallback-size "12"
@@ -56,11 +56,11 @@
 ;;   (setq fp/theme-light-theme 'kaolin-light
 ;;         fp/theme-dark-theme 'kaolin-dark))
 
-;; (use-package gruvbox-theme
-;;   :ensure t
-;;   :config
-;;   (setq fp/theme-light-theme 'gruvbox-light-hard
-;;         fp/theme-dark-theme 'gruvbox-dark-hard))
+(use-package gruvbox-theme
+  :ensure t
+  :config
+  (setq fp/theme-light-theme 'gruvbox-light-soft
+        fp/theme-dark-theme 'gruvbox-dark-soft))
 
 ;; (use-package tangotango-theme
 ;;   :ensure t
@@ -72,7 +72,7 @@
 ;;   :ensure t
 ;;   :config
 ;;   (setq fp/theme-light-theme 'sanityinc-tomorrow-day
-;;         fp/theme-dark-theme 'sanityinc-tomorrow-night))
+;;         fp/theme-dark-theme 'sanityinc-tomorrow-bright))
 
 ;; (use-package modus-operandi-theme :ensure t
 ;;   :config
@@ -82,14 +82,14 @@
 ;;   :config
 ;;   (setq fp/theme-dark-theme 'modus-vivendi))
 
-(use-package doom-themes
-  :ensure t
-  :config
-  (doom-themes-org-config)
-  (custom-set-faces
-   '(highlight ((t (:underline t :background nil :foreground nil :distant-foreground nil)))))
-  (setq fp/theme-light-theme 'doom-one-light
-        fp/theme-dark-theme 'doom-one))
+;; (use-package doom-themes
+;;   :ensure t
+;;   :config
+;;   (doom-themes-org-config)
+;;   (custom-set-faces
+;;    '(highlight ((t (:underline t :background nil :foreground nil :distant-foreground nil)))))
+;;   (setq fp/theme-light-theme 'doom-one-light
+;;         fp/theme-dark-theme 'doom-one))
 
 ;; (use-package "spacemacs-theme"
 ;;   :ensure t
