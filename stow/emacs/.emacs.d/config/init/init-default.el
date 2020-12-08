@@ -64,6 +64,7 @@
 ;; applications
 ;; --------------------------------------------------------------------------------
 (config-require '(config-pdf-tools) :regexp "\\.pdf?\\'"  :auto-mode pdf-view-mode)
+(config-require '(config-nov)       :regexp "\\.epub?\\'" :auto-mode nov-mode)
 (autoload 'image-dired-my-window-config "config-images.el")
 (autoload 'image-dired-no-window-config "config-images.el")
 (config-require '(config-images)  :feature image-mode)
