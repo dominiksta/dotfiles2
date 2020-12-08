@@ -1,6 +1,7 @@
 (require 'org)
 (require-and-log 'config-language-natural)
 (require-and-log 'config-programming-general)
+(require-and-log 'config-language-latex)
 (require-and-log 'config-org-agenda)
 
 ;; --------------------------------------------------------------------------------
@@ -63,6 +64,10 @@
 ;; appearance
 ;; --------------------------------------------------------------------------------
 
+(use-package org-bullets
+  :ensure t
+  :after org
+  :init (add-hook 'org-mode-hook 'org-bullets-mode))
 
 (custom-set-faces
  ;; fix for emacs27's new :extend keyword and org babel
@@ -80,13 +85,13 @@
  )
 
 ;; --- different font for org mode ---
-(setq fp/org-font-family "Dejavu Sans Mono"
-      fp/org-font-size 110)
+;; (setq fp/org-font-family "Dejavu Sans Mono"
+;;       fp/org-font-size 110)
 
-(defun fp/org-font-apply ()
-  (face-remap-add-relative
-   'default
-   (list :family  fp/org-font-family :height fp/org-font-size :weight 'normal)))
+;; (defun fp/org-font-apply ()
+;;   (face-remap-add-relative
+;;    'default
+;;    (list :family  fp/org-font-family :height fp/org-font-size :weight 'normal)))
 
 ;; (add-hook 'org-mode-hook 'fp/org-font-apply)
 
@@ -190,15 +195,20 @@ some faces fixed-with (for tables, source code, etc.)"
 ;; latex
 ;; ----------------------------------------------------------------------
 
-;; ---------------------------------- exporting ----------------------------------
-
-(use-package ox-gfm :ensure t) ;; github flavoured markdown
+;; ---------------------------------- references ---------------------------------
 
 (use-package org-ref :ensure t :config
+  (setq
+   ;; Set the default bibliography file. Can be overwritten with
+   ;; 'bibliograph:/path/to/somefile' in any org-file
+   org-ref-default-bibliography (list reftex-default-bibliography)
+   ;; Open up pdfs from the file-attribute in the bib-file
+   org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename-helm-bibtex)
+
   (evil-leader/set-key-for-mode 'org-mode
-    "mc" 'org-ref-helm-insert-cite-link
-    "mr" 'org-ref-helm-insert-ref-link)
-  (setq bibtex-dialect 'biblatex))
+    "mr" 'org-ref-helm-insert-ref-link))
+
+;; ---------------------------------- exporting ----------------------------------
 
 (with-eval-after-load "ox"
   ;; include the ability to ignore headlines while still including their body
@@ -274,12 +284,6 @@ some faces fixed-with (for tables, source code, etc.)"
   "mL" 'fp/org-rebuild-latex-previews
   "ml" 'org-toggle-latex-fragment)
 
-;; --- bullets ---
-(use-package org-bullets
-  :ensure t
-  :after org
-  :init (add-hook 'org-mode-hook 'org-bullets-mode))
-
 ;; --------------------------------------------------------------------------------
 ;; bindings
 ;; --------------------------------------------------------------------------------
@@ -336,7 +340,9 @@ some faces fixed-with (for tables, source code, etc.)"
 ;; --------------------------------------------------------------------------------
 ;; exporting
 ;; --------------------------------------------------------------------------------
+
 (with-eval-after-load "ox"
+  (use-package ox-gfm :ensure t) ;; github flavoured markdown
   (use-package htmlize :ensure t)
   (setq org-export-default-language "de"
         org-html-validation-link nil)
