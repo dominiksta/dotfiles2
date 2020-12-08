@@ -231,8 +231,9 @@
     (evil-set-initial-state 'pdf-outline-buffer-mode 'normal)
     (evil-define-key 'normal pdf-outline-buffer-mode-map
       ;; open
-      (kbd "RET") 'pdf-outline-follow-link-and-quit
-      (kbd "S-RET") 'pdf-outline-follow-link
+      (kbd "<tab>") 'outline-toggle-children
+      (kbd "RET") 'pdf-outline-follow-link
+      (kbd "S-RET") 'pdf-outline-follow-link-and-quit
       (kbd "M-RET") 'pdf-outline-display-link
       "go" 'pdf-outline-follow-link
       "." 'pdf-outline-move-to-current-page
