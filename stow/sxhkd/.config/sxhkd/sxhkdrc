@@ -7,7 +7,7 @@ alt + space
     run-or-raise.sh emacs em
 
 alt + shift + p
-    run-or-raise.sh plexamp plexamp
+    run-or-raise.sh plexmediaplayer "notify-send start plex plz"
 
 alt + shift + w
     run-or-raise.sh waterfox waterfox
