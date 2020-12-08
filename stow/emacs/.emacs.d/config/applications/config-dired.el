@@ -74,19 +74,14 @@
 ;; --------------------------------------------------------------------------------
 ;; file-sizes
 ;; --------------------------------------------------------------------------------
-(use-package dired-du
-  :defer t
-  :ensure t
-  :init (evil-leader/set-key-for-mode 'dired-mode (kbd "mS")
-          (lambda () (interactive) (dired-du-mode 'toggle)))
-  :config
-  (setq dired-du-size-format t
-        dired-du--user-warned nil)
-  (defun fp/disable-du-in-new-dired-buffers ()
-    (interactive)
-    (if (bound-and-true-p dired-du-mode)
-        (dired-du-mode 0)))
-  (add-hook 'dired-before-readin-hook 'fp/disable-du-in-new-dired-buffers))
+(defun fp/dired-file-size-under-point ()
+  (interactive)
+  (shell-command (format "du -h %s | tail -1" (dired-file-name-at-point))))
+
+(evil-leader/set-key-for-mode 'dired-mode "mS" 'fp/dired-file-size-under-point)
+
+;; This is supposed to mimic how i use gui file managers
+(define-key dired-mode-map (kbd "M-RET") 'fp/dired-file-size-under-point)
 
 
 ;; --------------------------------------------------------------------------------
@@ -128,7 +123,7 @@
 (defun fp/dired-open-directory-with-system-default ()
   (interactive)
   (if (eq system-type 'windows-nt) (shell-command "start .")
-    (start-process-shell-command "pcmanfm" nil "pcmanfm .")))
+    (start-process-shell-command "thunar" nil "thunar .")))
 
 ;; --------------------------------------------------------------------------------
 ;; appearance
