@@ -15,14 +15,16 @@ desktop_environment=""
 # - position 4: terminal theme (ls ~/.local/share/terminal_colors/ or _emacs)
 declare -A themesets
 themesets=(
-    ["light"]="Adwaita;Adwaita;kaolin-light;_emacs;Materia-light"
-    ["dark"]="Adwaita-dark;Adwaita;kaolin-dark;_emacs;Materia-dark"
+    ["light"]="Adwaita;Adwaita;gruvbox-light-soft;_emacs;Materia-light"
+    ["dark"]="Adwaita-dark;Adwaita;gruvbox-dark-soft;_emacs;Materia-dark"
+    # ["light"]="Adwaita;Adwaita;solarized-light;_emacs;Materia-light"
+    # ["dark"]="Adwaita-dark;Adwaita;solarized-dark;_emacs;Materia-dark"
     # ["light"]="Adwaita;Adwaita;modus-operandi;_emacs;Materia-light"
     # ["dark"]="Adwaita-dark;Adwaita;modus-vivendi;_emacs;Materia-dark"
     # ["light"]="Materia-light-compact;Adwaita;modus-operandi;_emacs;Materia-light"
     # ["dark"]="Materia-dark-compact;Adwaita;modus-vivendi;_emacs;Materia-dark"
-    # ["light"]="Mint-Y-Teal;Mint-Y-Teal;modus-operandi;_emacs;Mint-Y-Teal"
-    # ["dark"]="Mint-Y-Dark-Teal;Mint-Y-Dark-Teal;modus-vivendi;_emacs;Mint-Y-Dark-Teal"
+    # ["light"]="Mint-Y-Aqua;Mint-Y-Aqua;modus-operandi;_emacs;Mint-Y-Teal"
+    # ["dark"]="Mint-Y-Dark-Aqua;Mint-Y-Dark-Aqua;modus-vivendi;_emacs;Mint-Y-Dark-Teal"
 )
 
 # Switch to a themeset specified in global `themesets`. Calls all the
