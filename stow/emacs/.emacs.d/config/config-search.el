@@ -43,6 +43,10 @@
                                   (lambda () (executable-find "pdfgrep"))
                                   "apt-get install -y pdfgrep" "None")
 
+  ;; Conform to emacs's internal `exec-path' rather than the environment
+  ;; variable.
+  (setq pdfgrep-program (executable-find "pdfgrep"))
+
   (setq pdfgrep-context-length nil)
 
   (defun pdfgrep-default-command ()

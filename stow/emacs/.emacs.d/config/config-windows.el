@@ -8,7 +8,9 @@
   (setq w32-pipe-read-delay 0)
 
   (setq find-program "c:/tools/cygwin/bin/find.exe")
+
   (add-to-list 'exec-path (file-name-directory (expand-file-name (car command-line-args))))
+  (add-to-list 'exec-path (expand-file-name (concat sync-directory "emacs/bin")) t)
 
   (with-eval-after-load "config-eshell"
     (setq eshell-aliases-file
@@ -22,14 +24,5 @@
   (interactive)
   (setq buffer-display-table (make-display-table))
   (aset buffer-display-table ?\^M []))
-
-;; --------------------------------------------------------------------------------
-;; Notes
-;; --------------------------------------------------------------------------------
-;; shortcut to emacsclientw.exe
-;; (target  . X:\path\to\emacs\emacsclientw.exe -na "X:\path\to\emacs\emacsclientw.exe" -c -n)
-;; (open in . "%HOME%")
-;; (name    . emacs)
-
 
 (provide 'config-windows)

@@ -2,6 +2,7 @@
 ;; load this all the time
 ;; --------------------------------------------------------------------------------
 (require-and-log 'config-helpers)
+(if (eq system-type 'windows-nt) (require 'config-windows))
 (require-and-log 'config-ui)
 (require-and-log 'config-modeline)
 (require-and-log 'config-editor)
@@ -95,6 +96,5 @@
 ;; finishing
 ;; --------------------------------------------------------------------------------
 (require-and-log 'config-session)
-(if (eq system-type 'windows-nt) (require 'config-windows))
 (message (concat "Startup in: " (emacs-init-time)))
 (provide 'init-default)
