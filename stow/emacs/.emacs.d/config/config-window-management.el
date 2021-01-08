@@ -11,9 +11,10 @@
 (setq fp/workspace-defaults
       '((lambda ()
           (when (not (member t (mapcar
-                                (lambda (w) (eq (with-current-buffer
-                                               (window-buffer w) major-mode)
-                                           'org-agenda-mode))
+                                (lambda (w)
+                                  (let ((mode (with-current-buffer
+                                                  (window-buffer w) major-mode)))
+                                    (or (eq mode 'org-agenda-mode) (eq mode 'org-mode))))
                                 (window-list))))
             (delete-other-windows)
             (split-window-right) (other-window 1)
