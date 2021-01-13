@@ -12,9 +12,13 @@
       '((lambda ()
           (when (not (member t (mapcar
                                 (lambda (w)
-                                  (let ((mode (with-current-buffer
-                                                  (window-buffer w) major-mode)))
-                                    (or (eq mode 'org-agenda-mode) (eq mode 'org-mode))))
+                                  (let ((mode (with-current-buffer (window-buffer w)
+                                                major-mode))
+                                        (name (with-current-buffer (window-buffer w)
+                                                (buffer-name))))
+                                    (or (eq mode 'org-agenda-mode)
+                                       (and (not (string-equal name "*scratch*"))
+                                          (eq mode 'org-mode)))))
                                 (window-list))))
             (delete-other-windows)
             (split-window-right) (other-window 1)
