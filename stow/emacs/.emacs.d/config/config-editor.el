@@ -56,7 +56,6 @@
     (kbd "C-k") (lambda () (interactive) (evil-scroll-up nil))
     "-" 'evil-search-forward))
 
-(evil-leader/set-key "uu" 'undo-tree-visualize)
 (evil-leader/set-key
   "ii" 'fp/indent-all
   "ia" 'align
@@ -155,6 +154,18 @@
 (define-key key-translation-map (kbd "C-M-9") (kbd "]"))
 (define-key key-translation-map (kbd "C-M-0") (kbd "}"))
 
+;; --------------------------------------------------------------------------------
+;; undo-tree
+;; --------------------------------------------------------------------------------
+
+;; I have no idea why it did, but this worked ootb until now. So i guess i have
+;; to configure it explicitly now. Kind of annoying when your editor all of the
+;; sudden tells you that you can't redo anything anymore. EDIT: An evil update
+;; made undo-tree an optional dependency, so thats why.
+(use-package undo-tree :ensure t :demand t :config
+  (evil-set-undo-system 'undo-tree)
+  (global-undo-tree-mode)
+  (evil-leader/set-key "uu" 'undo-tree-visualize))
 
 ;; --------------------------------------------------------------------------------
 ;; query replace
