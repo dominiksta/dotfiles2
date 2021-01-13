@@ -16,9 +16,9 @@
 ;; --- files ---
 (setq org-agenda-files (list (concat sync-directory "general/org/meinleben/privat.org")
                              (concat sync-directory "general/org/meinleben/studium.org")
-                             (concat sync-directory "general/org/meinleben/arbeit.org")
+                             (concat sync-directory "general/org/meinleben/recom.org")
                              (concat sync-directory "general/org/meinleben/capture.org")
-                             (concat sync-directory "general/org/meinleben/webcal.org"))
+                             (concat sync-directory "general/org/meinleben/tricat.org"))
       org-icalendar-combined-agenda-file (concat sync-directory "org/ics/combine.ics"))
 
 
