@@ -1,0 +1,11 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\NetworkProvider]
+"RestoreConnection"=dword:00000000
+"RestoreTimeout"=dword:00000004
+"DeferConnection"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\LanmanWorkstation\Parameters]
+"SessTimeout"=dword:0000000a
+"ExtendedSessTimeout"=dword:00000000
+"ReconnectTimeout"=dword:00000004
