@@ -17,11 +17,11 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; ContextMenu   = AppsKey
 ; I bind the left Windows-Key to the "AppsKey" in the registry, but remap it again in any
 ; other application than emacs:
-#IfWinActive fp@emacs
-    AppsKey::AppsKey
-return
-#IfWinActive
-AppsKey::Rwin
+; #IfWinActive fp@emacs
+;     AppsKey::AppsKey
+; return
+; #IfWinActive
+; AppsKey::Rwin
 
 ;------------------------------------------------------------
 ; Audio Control
@@ -122,7 +122,11 @@ bringtoforegroundbytitle(title, except){
         return
 }
 
-!+w::bringtoforegroundbyclass("MozillaWindowClass", "waterfox")
+!+w::bringtoforegroundbyclass("WaterfoxWindowClass", "waterfox")
+!+e::bringtoforegroundbyclass("DClass", "C:\Program Files\Double Commander\doublecmd.exe")
+!+p::bringtoforegroundbytitle("Plex", "C:\Program Files\Plex\Plex\Plex.exe")
+!+k::bringtoforegroundbyexe("KeePassXC.exe", "C:\Program Files\KeePassXC\KeePassXC.exe")
+!+t::bringtoforegroundbyclass("PROCEXPL", "procexp")
 !Space::bringtoforegroundbyclass("Emacs", "runemacs.exe")
 !,::bringtoforegroundbytitle("Cmder", "cmder")
 ; !^t::backgroundelisp("(fp/terminal-here nil)")
