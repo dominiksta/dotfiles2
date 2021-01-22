@@ -4,8 +4,9 @@
 (setq gc-cons-threshold 100000000)           ; garbage collection
 (setq read-process-output-max (* 1024 1024)) ; reading from processes
 
+
 ;; --------------------------------------------------------------------------------
-;; set up package-management and use-package
+;; set up package-management
 ;; --------------------------------------------------------------------------------
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -13,10 +14,33 @@
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
+;; use-package bootstrap
 (unless (package-installed-p 'use-package) (package-refresh-contents) (package-install 'use-package))
 (eval-when-compile (require 'use-package))
 (use-package try :ensure t :defer t)
 
+;; straight.el bootstrap
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+
+;; TODO If I end up liking straight.el, then I should get rid of package.el as
+;; recommended in the straight.el docs. For now, I do not want to refactor my
+;; entire config though.
+
+;; ----------------------------------------------------------------------
+;; load-path and deps
+;; ----------------------------------------------------------------------
 (add-to-list 'load-path config-directory)
 (add-to-list 'load-path (concat config-directory "/init/"))
 (add-to-list 'load-path (concat config-directory "/languages/"))
