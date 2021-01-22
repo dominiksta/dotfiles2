@@ -27,16 +27,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; Audio Control
 ;------------------------------------------------------------
 
-^!PgDn::
-	Run, nircmd.exe setdefaultsounddevice Saffire
-	Run, nircmd.exe setdefaultsounddevice Saffire 2
-return
-
-^!PgUp::
-	Run, nircmd.exe setdefaultsounddevice Realtek
-	Run, nircmd.exe setdefaultsounddevice Realtek 2
-return
-
 !+Down::Send  {Volume_Down}
 !+Up::Send    {Volume_Up}
 !+Right::Send {Media_Next}
@@ -171,18 +161,12 @@ bringtoforegroundbytitle(title, except){
 	return
 }
 
+;------------------------------------------------------------
+; Switch primary monitor
+;------------------------------------------------------------
 
-;------------------------------------------------------------
-; Hide taskbar on <C-F12>
-;------------------------------------------------------------
-!^F9::
- WinShow,ahk_class Shell_TrayWnd
- WinShow,Start ahk_class Button
-Return
-!^F10::
- WinHide,ahk_class Shell_TrayWnd
- WinHide,Start ahk_class Button
-Return
+!+^F12::Run nircmd.exe setprimarydisplay 1
+!+^F11::Run nircmd.exe setprimarydisplay 2
 
 ;------------------------------------------------------------
 ; Remap Capslock to both Control and Escape
