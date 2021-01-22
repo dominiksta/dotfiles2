@@ -174,8 +174,8 @@
   (setq projectile-dynamic-mode-line nil
         projectile-mode-line-prefix " proj"
         projectile-mode-line " proj"
-        ;; on windows it's native which is way to slow for me
-        projectile-indexing-method 'alien)
+        projectile-indexing-method (if (eq system-type 'windows-nt)
+                                       'native 'alien))
   (use-package helm-projectile
     :ensure t
     :after helm projectile))
