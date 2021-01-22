@@ -9,6 +9,9 @@
       delete-by-moving-to-trash t
       bookmark-default-file (concat sync-directory "emacs/random/bookmarks"))
 
+(when (file-exists-p (concat sync-directory "emacs/project-settings.el"))
+  (load-file (concat sync-directory "emacs/project-settings.el")))
+
 (when (file-exists-p (concat sync-directory "emacs/lisp/"))
   (let ((default-directory (concat sync-directory "emacs/lisp/")))
     (normal-top-level-add-subdirs-to-load-path)))
@@ -19,7 +22,6 @@
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "waterfox")
 
-;; (setq-default buffer-file-coding-system 'utf-8-unix)
 (set-language-environment "UTF-8")
 
 (defun return-nil (&rest rest) (interactive) nil)
