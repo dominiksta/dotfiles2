@@ -16,7 +16,6 @@
 (use-package helm
   :ensure t
   :config
-  (helm-mode 1)
 
   (setq helm-completing-read-handlers-alist
         '((tmm-menubar . nil)
@@ -29,7 +28,10 @@
           (dired-do-relsymlink . nil)
           (dired-do-hardlink . nil)
           (dired-create-directory . nil)
-          (dired-rsync . nil)))
+          (dired-rsync . nil))
+        helm-mode-handle-completion-in-region nil)
+
+  (helm-mode 1)
 
   (setq helm-split-window-inside-p nil)
 
