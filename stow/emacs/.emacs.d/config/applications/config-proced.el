@@ -13,33 +13,6 @@
 
 (setq proced-auto-update-interval 2)
 
-
-;; --------------------------------------------------------------------------------
-;; formatting
-;; --------------------------------------------------------------------------------
-;; (when (not (eq system-type 'windows-nt))
-;;   (setq proced-format-alist
-;;         '((short pid tree pcpu pmem humanmem
-;;                  comm)
-;;           (medium user pid tree pcpu pmem vsize humanmem ttname state start time
-;;                   (args comm))
-;;           (long user euid group pid tree pri nice pcpu pmem humanmem
-;;                 ttname state start time
-;;                 (args comm))
-;;           (verbose user euid group egid pid ppid
-;;                    tree pgrp sess pri nice pcpu pmem state thcount
-;;                    vsize rss ttname tpgid minflt majflt cminflt cmajflt
-;;                    start time utime stime ctime cutime cstime etime
-;;                    (args comm))))
-;;   (setq proced-custom-attributes
-;;         '((lambda (attributes)
-;;             (cons 'humanmem (/ (cdr (assoc 'rss attributes)) 1000)))))
-;;   (add-to-list 'proced-grammar-alist
-;;                '(humanmem "Mem" "%d" right proced-< t
-;;                           (humanmem pid)
-;;                           (nil nil nil))))
-
-
 ;; --------------------------------------------------------------------------------
 ;; bindings
 ;; --------------------------------------------------------------------------------
