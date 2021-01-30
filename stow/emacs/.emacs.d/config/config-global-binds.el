@@ -124,6 +124,11 @@
   "sd" 'pdfgrep
   "sD" 'fp/pdfgrep-todos)
 
+(evil-leader/set-key "se" (defhydra project-todo-hydra ()
+                            ("j" next-error "search")
+                            ("k" previous-error "search")
+                            ("q" nil "quit" :color blue)))
+
 ;; --------------------------------------------------------------------------------
 ;; other
 ;; --------------------------------------------------------------------------------
@@ -273,7 +278,7 @@
   "-a" 'async-shell-command
   ;; insert shell-command into current buffer
   "-i" (lambda () (interactive) (let ((current-prefix-arg 4))
-                             (call-interactively 'shell-command)))
+                                  (call-interactively 'shell-command)))
   "-t" 'fp/terminal-here
   "-d" 'fp/open-directory-with-system-default
 

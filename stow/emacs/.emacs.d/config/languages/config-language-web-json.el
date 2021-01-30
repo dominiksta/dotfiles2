@@ -4,8 +4,7 @@
                                 (lambda () (executable-find "jsonlint"))
                                 "npm install -g jsonlint" "npm install -g jsonlint")
 
-(use-package json-mode
-  :ensure t
-  :config (add-hook 'json-mode-hook 'flycheck-mode))
+(straight-use-package 'json-mode) (require 'json-mode)
+(add-hook 'json-mode-hook 'flycheck-mode)
 
 (provide 'config-language-web-json)

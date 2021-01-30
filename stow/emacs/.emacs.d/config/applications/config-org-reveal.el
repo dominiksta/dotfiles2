@@ -1,6 +1,6 @@
 (require-and-log 'config-org)
 
-(use-package ox-reveal :ensure t :demand t)
+(straight-use-package 'ox-reveal)
 
 (setq org-reveal-title-slide
       "<h1 class=\"title\">%t</h1> <div class=\"author\">%a</div>"

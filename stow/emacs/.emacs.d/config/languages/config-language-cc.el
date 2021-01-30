@@ -77,7 +77,8 @@
 ;; ----------------------------------------------------------------------
 ;; cmake
 ;; ----------------------------------------------------------------------
-(use-package cmake-mode :ensure t
-  :config (add-hook 'cmake-mode-hook 'company-mode))
+(straight-use-package 'cmake-mode)
+(with-eval-after-load "cmake-mode"
+  (add-hook 'cmake-mode-hook 'company-mode))
 
 (provide 'config-language-cc)

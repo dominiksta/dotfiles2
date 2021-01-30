@@ -16,33 +16,12 @@ appearance. Optional args set padding on lines/columns."
                    (if (bound-and-true-p
                         column-number-indicator-zero-based) "c" "C"))))))
 
-  ;;   (telephone-line-defsegment fp/telephone-line-vcs-segment ()
-  ;;     "Show current VCS branch and status indicator. Taken from
-  ;; Protesilaos Stavrou's config."
-  ;;     (when (and vc-mode buffer-file-name)
-  ;;       (let* ((backend (vc-backend buffer-file-name))
-  ;;              (state (vc-state buffer-file-name backend)))
-  ;;         (concat
-  ;;          (telephone-line-raw
-  ;;           (format "%s" (substring vc-mode (+ (if (eq backend 'Hg) 2 3) 2))))
-  ;;          (cond ((memq state '(edited added))
-  ;;                 (telephone-line-raw " *"))
-  ;;                ((eq state 'needs-merge)
-  ;;                 (telephone-line-raw " ?"))
-  ;;                ((eq state 'needs-update)
-  ;;                 (telephone-line-raw " !"))
-  ;;                ((memq state '(removed conflict unregistered))
-  ;;                 (telephone-line-raw " ×"))
-  ;;                (t
-  ;;                 (telephone-line-raw "")))))))
-
-
   (telephone-line-defsegment fp/telephone-line-eyebrowse-segment ()
     "Show the current eyebrowse window config if eyebrowse is
 available."
     (if (featurep 'eyebrowse)
         (concat " [" (number-to-string
-                     (eyebrowse--get 'current-slot))
+                      (eyebrowse--get 'current-slot))
                 "]") ""))
 
   (telephone-line-defsegment fp/telephone-line-dired-rsync-segment ()
@@ -85,6 +64,22 @@ available."
 
 (custom-set-faces
  '(mode-line-buffer-id ((t (:inherit font-lock-variable-name-face)))))
+
+;; ----------------------------------------------------------------------
+;; toggle
+;; ----------------------------------------------------------------------
+
+(defvar fp/hide-mode-line-mode-backup mode-line-format
+  "A backup of `mode-line-format' before settings it to nil")
+
+(define-minor-mode fp/hide-mode-line-mode
+  "Hide/show the modeline in the current buffer"
+  nil " nm" nil
+  (if fp/hide-mode-line-mode
+      (progn (setq-local fp/hide-mode-line-mode-backup mode-line-format)
+             (setq-local mode-line-format nil))
+    (progn
+      (setq-local mode-line-format fp/hide-mode-line-mode-backup))))
 
 ;; ----------------------------------------------------------------------
 ;; legacy - my own format

@@ -4,7 +4,7 @@
                                 (lambda () (executable-find "pdflatex"))
                                 "apt install texlive-full" "None")
 
-(use-package auctex :ensure t :defer t)
+(straight-use-package 'auctex)
 
 ;; ----------------------------------------------------------------------
 ;; Visuals
@@ -47,7 +47,8 @@
       reftex-default-bibliography (concat sync-directory "Documents/zotero/library.bib"))
 
 ;; I use `zotero` with the `Better BibTeX` plugin for library management.
-(use-package helm-bibtex :ensure t :config
+(straight-use-package 'helm-bibtex)
+(with-eval-after-load "helm-bibtex"
   (setq bibtex-completion-bibliography
         (list reftex-default-bibliography)
         bibtex-completion-pdf-field "file"))

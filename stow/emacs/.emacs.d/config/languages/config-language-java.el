@@ -1,18 +1,16 @@
 (require-and-log 'config-language-cc)
 
-
-(config-add-external-dependency 'java 'config-language-java "java lsp"
-                                (lambda () (executable-find "java"))
-                                "apt install default-jdk" "choco install openjdk")
-
-(use-package lsp-java
-  :ensure t
-  :config
+(straight-use-package 'lsp-java)
+(with-eval-after-load "lsp-java"
+  (config-add-external-dependency 'java 'config-language-java "java lsp"
+                                  (lambda () (executable-find "java"))
+                                  "apt install default-jdk" "choco install openjdk")
   (setq lsp-java-format-enabled nil
-        lsp-java-format-on-type-enabled nil)
-  (evil-leader/set-key-for-mode 'java-mode
-    "mo" 'lsp-java-organize-imports
-    "md" 'lsp-ui-doc-glance))
+        lsp-java-format-on-type-enabled nil))
+
+(evil-leader/set-key-for-mode 'java-mode
+  "mo" 'lsp-java-organize-imports
+  "md" 'lsp-ui-doc-glance)
 
 (defun fp/java-indentation-setup ()
   (setq-local c-default-style "java")

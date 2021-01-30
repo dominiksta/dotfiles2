@@ -1,5 +1,5 @@
 (require-and-log 'config-programming-general)
 
-(use-package powershell :ensure t)
+(straight-use-package 'powershell)
 
 (provide 'config-language-powershell)

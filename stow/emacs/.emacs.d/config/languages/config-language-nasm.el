@@ -1,5 +1,5 @@
 (require-and-log 'config-programming-general)
 
-(use-package nasm-mode :ensure t)
+(straight-use-package 'nasm-mode)
 
 (provide 'config-language-nasm)

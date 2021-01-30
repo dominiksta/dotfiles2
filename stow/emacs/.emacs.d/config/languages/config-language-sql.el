@@ -54,7 +54,7 @@ calling (setq sql-connection-alist nil) afterwards."
 ;; ----------------------------------------------------------------------
 ;; indentation and pretty-printing
 ;; ----------------------------------------------------------------------
-(use-package sql-indent :ensure t)
+(straight-use-package 'sql-indent)
 
 (config-add-external-dependency
  'sqlparse 'config-language-sql "sql indentation"
@@ -131,8 +131,8 @@ level. Tested with `php-mode'."
 ;; ----------------------------------------------------------------------
 ;; upcase
 ;; ----------------------------------------------------------------------
-(use-package sqlup-mode :ensure t
-  :init (add-hook 'sql-mode-hook 'sqlup-mode))
+(straight-use-package 'sqlup-mode)
+(add-hook 'sql-mode-hook 'sqlup-mode)
 
 ;; ----------------------------------------------------------------------
 ;; bindings

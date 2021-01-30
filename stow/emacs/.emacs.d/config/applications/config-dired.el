@@ -57,19 +57,17 @@
 ;; --------------------------------------------------------------------------------
 ;; file previews
 ;; --------------------------------------------------------------------------------
-(use-package peep-dired
-  :defer t
-  :ensure t
-  :init (evil-leader/set-key-for-mode 'dired-mode "mp" 'peep-dired)
-  :config
+(straight-use-package 'peep-dired)
+
+(evil-leader/set-key-for-mode 'dired-mode "mp" 'peep-dired)
+
+(with-eval-after-load "peep-dired"
+  (add-hook 'peep-dired-hook (lambda () (evil-emacs-state) (evil-normal-state)))
   (evil-define-key 'normal peep-dired-mode-map
     "j" 'peep-dired-next-file
     "k" 'peep-dired-prev-file
     "J" 'peep-dired-scroll-page-down
-    "K" 'peep-dired-scroll-page-up)
-  ;; fix the evil bug by just forcing a state switch
-  (add-hook 'peep-dired-hook (lambda () (evil-emacs-state) (evil-normal-state))))
-
+    "K" 'peep-dired-scroll-page-up))
 
 ;; --------------------------------------------------------------------------------
 ;; file-sizes
@@ -88,20 +86,17 @@
 ;; subtrees
 ;; --------------------------------------------------------------------------------
 ;; TODO light face
-(use-package dired-subtree
-  :ensure t
-  :defer t
-  :init
-  (define-key dired-mode-map (kbd "C-x n s") 'dired-subtree-narrow)
-  (evil-define-key 'normal dired-mode-map
-    (kbd "TAB") 'dired-subtree-toggle
-    (kbd "M-j") 'dired-subtree-next-sibling
-    (kbd "M-k") 'dired-subtree-previous-sibling
-    "gj" 'dired-subtree-next-sibling
-    "gk" 'dired-subtree-previous-sibling
-    "gh" 'dired-subtree-up
-    "i" 'dired-subtree-insert
-    "I" 'dired-subtree-remove))
+(straight-use-package 'dired-subtree)
+(define-key dired-mode-map (kbd "C-x n s") 'dired-subtree-narrow)
+(evil-define-key 'normal dired-mode-map
+  (kbd "TAB") 'dired-subtree-toggle
+  (kbd "M-j") 'dired-subtree-next-sibling
+  (kbd "M-k") 'dired-subtree-previous-sibling
+  "gj" 'dired-subtree-next-sibling
+  "gk" 'dired-subtree-previous-sibling
+  "gh" 'dired-subtree-up
+  "i" 'dired-subtree-insert
+  "I" 'dired-subtree-remove)
 
 ;; --------------------------------------------------------------------------------
 ;; open with default application
@@ -152,24 +147,6 @@
 (setq dired-omit-verbose nil)
 (add-hook 'dired-after-readin-hook 'dired-omit-mode)
 
-;; --- different colors for files ---
-(use-package dired-rainbow :ensure t
-  :config
-  (dired-rainbow-define-chmod executable-unix (:inherit success) "-.*x.*")
-  (dired-rainbow-define compressed (:inherit font-lock-string-face)
-                        ("7z" "zip" "bz2" "tgz" "txz" "gz" "xz" "z" "Z"
-                         "jar" "war" "ear" "rar" "sar" "xpi" "apk" "xz" "tar"))
-  (dired-rainbow-define document (:inherit font-lock-doc-face)
-                        ("docm" "doc" "docx" "odb" "odt" "pdb" "pdf" "ps" "rtf"
-                         "djvu" "epub" "odp" "ppt" "pptx" "xoj" "xopp"))
-  ;; (dired-rainbow-define code (:inherit Info-quoted)
-  ;;                       ("py" "ipynb" "rb" "pl" "t" "msql" "mysql" "pgsql" "sql"
-  ;;                        "r" "clj" "cljs" "scala" "js" "asm" "cl" "lisp" "el"
-  ;;                        "c" "h" "c++" "h++" "hpp" "hxx" "m" "cc" "cs" "cp"
-  ;;                        "cpp" "go" "f" "for" "ftn" "f90" "f95" "f03" "f08" "s"
-  ;;                        "rs" "hi" "hs" "pyc" ".java"))
-  )
-
 ;; --------------------------------------------------------------------------------
 ;; async
 ;; --------------------------------------------------------------------------------
@@ -185,11 +162,11 @@
 ;; For this package to work fully as intended, an ssh-agent (such as the
 ;; gpg-agent that i use) and an ssh config is necessary specifying what user to
 ;; log in to on the remote machine.
-(use-package dired-rsync :ensure t :config
-  (evil-define-key 'normal dired-mode-map
-    "R" 'dired-rsync
-    "bR" (lambda () (interactive) (let ((dired-dwim-target t))
-                                    (call-interactively 'dired-rsync)))))
+(straight-use-package 'dired-rsync)
+(evil-define-key 'normal dired-mode-map
+  "R" 'dired-rsync
+  "bR" (lambda () (interactive) (let ((dired-dwim-target t))
+                             (call-interactively 'dired-rsync))))
 
 ;; --------------------------------------------------------------------------------
 ;; bindings
@@ -309,14 +286,13 @@
   "R" 'archive-rename-entry)
 
 ;; --------------------------------------------------------------------------------
-;; music filenames
+;; filename normalization
 ;; --------------------------------------------------------------------------------
-(use-package unidecode
-  :ensure t
-  :defer t
-  :commands fp/dired-sanitize-marked-filenames
-  :init (evil-leader/set-key-for-mode 'dired-mode "ms" 'fp/dired-sanitize-marked-filenames)
-  :config
+(straight-use-package 'unidecode)
+(evil-leader/set-key-for-mode 'dired-mode "ms" 'fp/dired-sanitize-marked-filenames)
+
+(autoload 'fp/dired-sanitize-marked-filenames "unidecode")
+(with-eval-after-load "unidecode"
   (defun fp/dired-sanitize-marked-filenames ()
     (interactive)
     (let ((files (dired-get-marked-files nil current-prefix-arg)))
@@ -339,6 +315,5 @@
                                (file-name-nondirectory newfile)))
                              nil))
         (revert-buffer)))))
-
 
 (provide 'config-dired)

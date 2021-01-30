@@ -1,6 +1,6 @@
 (require-and-log 'config-programming-general)
 
-(use-package go-mode :ensure t :demand t)
+(straight-use-package 'go-mode)
 
 (add-hook 'go-mode-hook
           (lambda () (add-hook 'before-save-hook 'gofmt-before-save nil t)))

@@ -5,11 +5,11 @@
                                 "sudo pip install yamllint"
                                 "pip install yamllint")
 
-(use-package yaml-mode :ensure t :config
-  (use-package flycheck-yamllint :ensure t :demand t)
-  (defun fp/yaml-mode-hook ()
-    (flycheck-mode 1))
-  (add-hook 'yaml-mode-hook 'fp/yaml-mode-hook))
+(straight-use-package 'yaml-mode) (require 'yaml-mode)
+(straight-use-package 'flycheck-yamllint) (require 'flycheck-yamllint)
+(defun fp/yaml-mode-hook ()
+  (flycheck-mode 1))
+(add-hook 'yaml-mode-hook 'fp/yaml-mode-hook)
 
 
 (provide 'config-language-yaml)

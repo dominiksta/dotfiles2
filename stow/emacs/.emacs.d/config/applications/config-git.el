@@ -1,31 +1,30 @@
 ;; --- magit ---
 (require-and-log 'config-editor)
 
-(use-package magit
-  :ensure t
-  :defer t
-  :config
+(straight-use-package 'magit)
+(straight-use-package 'evil-magit)
+
+(with-eval-after-load "magit"
+  (require 'evil-magit)
+
+  (add-hook 'magit-process-find-password-functions
+            'magit-process-password-auth-source)
+
   (define-key magit-status-mode-map (kbd "M-1") nil)
   (define-key magit-status-mode-map (kbd "M-2") nil)
   (define-key magit-status-mode-map (kbd "M-3") nil)
   (define-key magit-status-mode-map (kbd "M-4") nil)
 
-  (add-hook 'magit-process-find-password-functions
-            'magit-process-password-auth-source)
-
-  (use-package evil-magit
-    :ensure t
-    :config
-    (evil-define-key 'normal magit-log-mode-map
-      (kbd "M-j") 'magit-section-forward
-      (kbd "M-k") 'magit-section-backward
-      (kbd "C-j") nil
-      (kbd "C-k") nil)
-    (evil-define-key 'normal magit-status-mode-map
-      (kbd "M-j") 'magit-section-forward
-      (kbd "M-k") 'magit-section-backward
-      (kbd "C-j") nil
-      (kbd "C-k") nil)))
+  (evil-define-key 'normal magit-log-mode-map
+    (kbd "M-j") 'magit-section-forward
+    (kbd "M-k") 'magit-section-backward
+    (kbd "C-j") nil
+    (kbd "C-k") nil)
+  (evil-define-key 'normal magit-status-mode-map
+    (kbd "M-j") 'magit-section-forward
+    (kbd "M-k") 'magit-section-backward
+    (kbd "C-j") nil
+    (kbd "C-k") nil))
 
 
 ;; --- ediff ---

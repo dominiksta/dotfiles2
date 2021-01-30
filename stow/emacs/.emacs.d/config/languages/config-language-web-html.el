@@ -10,11 +10,8 @@
 
 ;; (add-hook 'sgml-mode-hook 'highlight-indent-guides-mode)
 
-(use-package emmet-mode
-  :ensure t
-  :init
-  (add-hook 'web-mode-hook 'emmet-mode)
-  :config
-  (evil-define-key 'insert emmet-mode-keymap (kbd "C-,") 'emmet-expand-yas))
+(straight-use-package 'emmet-mode)
+(add-hook 'web-mode-hook 'emmet-mode)
+(evil-define-key 'insert emmet-mode-keymap (kbd "C-,") 'emmet-expand-yas)
 
 (provide 'config-language-web-html)

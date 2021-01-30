@@ -18,8 +18,8 @@
 (config-add-external-dependency 'hunspell-de-de 'config-natural-language
                                 "spellchecking base"
                                 (lambda () (string-match-p
-                                            fp/hunspell-de-dict (shell-command-to-string
-                                                                 "hunspell -D")))
+                                       fp/hunspell-de-dict (shell-command-to-string
+                                                            "hunspell -D")))
                                 "apt install hunspell-de-de"
                                 "None" ;; install from libreoffice extensions
                                 )
@@ -27,8 +27,8 @@
 (config-add-external-dependency 'hunspell-en-us 'config-natural-language
                                 "spellchecking base"
                                 (lambda () (string-match-p
-                                            "en_US" (shell-command-to-string
-                                                     "hunspell -D")))
+                                       "en_US" (shell-command-to-string
+                                                "hunspell -D")))
                                 "apt install hunspell-en-us"
                                 "None" ;; install from libreoffice extensions
                                 )
@@ -61,18 +61,15 @@
         (flyspell-mode 1)
         (flyspell-buffer))))
 
-  (use-package helm-flyspell
-    :ensure t
-    :config (evil-define-key 'normal global-map "zg" 'helm-flyspell-correct)))
+  (straight-use-package 'helm-flyspell)
+  (evil-define-key 'normal global-map "zg" 'helm-flyspell-correct))
 
 ;; ----------------------------------------------------------------------
 ;; translations with dict.cc
 ;; ----------------------------------------------------------------------
 
-(use-package dictcc :ensure t
-  :defer t
-  :init
-  (setq dictcc-completion-backend 'helm))
+(straight-use-package 'dictcc)
+(setq dictcc-completion-backend 'helm)
 
 (provide 'config-language-natural)
 

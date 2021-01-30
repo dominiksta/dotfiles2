@@ -52,22 +52,21 @@
 ;; --------------------------------------------------------------------------------
 ;; web-mode
 ;; --------------------------------------------------------------------------------
-(use-package web-mode
-  :ensure t
-  :config
-  (setq web-mode-code-indent-offset 4
-        web-mode-enable-auto-pairing nil
-        web-mode-enable-auto-quoting nil
-        web-mode-enable-current-element-highlight t
-        web-mode-smart-quotes '("&bdquo;" . "&ldquo;"))
-  (custom-set-faces
-   '(web-mode-current-element-highlight-face ((t (:inherit highlight))))
-   '(web-mode-html-tag-face ((t nil))))
-  (evil-leader/set-key-for-mode 'web-mode
-    "ed" 'fp/refresh-browser
-    "mf" 'web-mode-fold-or-unfold)
-  (evil-define-key 'normal web-mode-map "gt" 'web-mode-tag-match)
-  (define-key web-mode-map (kbd "M-R") 'web-mode-element-rename))
+(straight-use-package 'web-mode) (require 'web-mode)
+
+(setq web-mode-code-indent-offset 4
+      web-mode-enable-auto-pairing nil
+      web-mode-enable-auto-quoting nil
+      web-mode-enable-current-element-highlight t
+      web-mode-smart-quotes '("&bdquo;" . "&ldquo;"))
+(custom-set-faces
+ '(web-mode-current-element-highlight-face ((t (:inherit highlight))))
+ '(web-mode-html-tag-face ((t nil))))
+(evil-leader/set-key-for-mode 'web-mode
+  "ed" 'fp/refresh-browser
+  "mf" 'web-mode-fold-or-unfold)
+(evil-define-key 'normal web-mode-map "gt" 'web-mode-tag-match)
+(define-key web-mode-map (kbd "M-R") 'web-mode-element-rename)
 
 
 (use-package apache-mode :ensure t :defer t)

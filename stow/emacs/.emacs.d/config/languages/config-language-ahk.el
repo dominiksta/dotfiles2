@@ -1,6 +1,8 @@
+(require-and-log 'config-programming-general)
 
-(use-package ahk-mode :ensure t :defer t
-  :config
+(straight-use-package 'ahk-mode)
+
+(with-eval-after-load "ahk-mode"
   (defun fp/reload-ahk ()
     (interactive)
     (shell-command "tskill AutoHotkey")

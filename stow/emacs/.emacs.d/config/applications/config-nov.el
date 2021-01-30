@@ -1,6 +1,7 @@
 (require-and-log 'config-ui)
 
-(use-package nov :ensure t :config
+(straight-use-package 'nov)
+(with-eval-after-load "nov"
   ;; ----------------------------------------------------------------------
   ;; Visuals
   ;; ----------------------------------------------------------------------

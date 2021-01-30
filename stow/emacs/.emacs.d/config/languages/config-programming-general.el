@@ -11,20 +11,16 @@
   (interactive)
   (indent-region (point-min) (point-max)))
 
-(use-package highlight-indent-guides
-  :init (setq highlight-indent-guides-method 'character)
-  :ensure t :defer t)
+(straight-use-package 'highlight-indent-guides)
+(setq highlight-indent-guides-method 'character)
 
 ;; --- parens ---
 (setq show-paren-delay 0) (show-paren-mode 1)
 (add-hook 'prog-mode-hook 'electric-pair-mode)
 
 ;; --- todos ---
-(use-package hl-todo
-  :demand t
-  :ensure t
-  :config
-  (add-hook 'prog-mode-hook 'hl-todo-mode))
+(straight-use-package 'hl-todo)
+(add-hook 'prog-mode-hook 'hl-todo-mode)
 
 (defun fp/project-search (regexp)
   (let ((default-directory (projectile-project-root)))
@@ -48,54 +44,42 @@
   "hi" 'helm-imenu
   "hI" 'helm-imenu-in-all-buffers)
 
-(use-package imenu-anywhere :ensure t :init
-  (evil-leader/set-key "pi" 'helm-imenu-anywhere))
+(straight-use-package 'imenu-anywhere)
+(evil-leader/set-key "pi" 'helm-imenu-anywhere)
 
-(use-package editorconfig :ensure t :demand t
-  :config (editorconfig-mode 1))
+(straight-use-package 'editorconfig)
+(editorconfig-mode 1)
 
 ;; --------------------------------------------------------------------------------
 ;; company
 ;; --------------------------------------------------------------------------------
-(use-package company
-  :ensure t
-  :config
-  (setq company-idle-delay 0
-        company-minimum-prefix-length 3)
-  ;; (use-package company-quickhelp
-  ;;   :ensure t
-  ;;   :config
-  ;;   (setq company-quickhelp-max-lines 10
-  ;;         company-quickhelp-use-propertized-text t))
-  ;; (company-quickhelp-mode 1)
-  :bind (:map company-active-map
-              ("C-j" . company-select-next)
-              ("C-k" . company-select-previous)
-              ("M-j" . company-select-next)
-              ("M-k" . company-select-previous)
-              ("M-l" . company-complete-common)
-              ("C-SPC" . company-abort)))
+(straight-use-package 'company) (require 'company)
+(setq company-idle-delay 0
+      company-minimum-prefix-length 3)
+(define-key company-mode-map (kbd "C-j") 'company-select-next)
+(define-key company-mode-map (kbd "C-k") 'company-select-previous)
+(define-key company-mode-map (kbd "M-j") 'company-select-next)
+(define-key company-mode-map (kbd "M-k") 'company-select-previous)
+(define-key company-mode-map (kbd "M-l") 'company-complete-common)
+
 
 ;; --------------------------------------------------------------------------------
 ;; dumb-jump - jump to definition
 ;; --------------------------------------------------------------------------------
-(use-package dumb-jump :ensure t
-  :init (dumb-jump-mode 1)
-  :config
-  (setq dumb-jump-selector 'helm)
-  (defun fp/evil-dumb-jump-go ()
-    (interactive)
-    (evil-set-jump)
-    (call-interactively 'dumb-jump-go)))
+(straight-use-package 'dumb-jump)
+(with-eval-after-load "dumb-jump"
+  (setq dumb-jump-selector 'helm))
+(defun fp/evil-dumb-jump-go ()
+  (interactive)
+  (evil-set-jump)
+  (call-interactively 'dumb-jump-go))
+
 
 ;; --------------------------------------------------------------------------------
 ;; debugging
 ;; --------------------------------------------------------------------------------
-
-(use-package realgud
-  :ensure t
-  :defer t
-  :config
+(straight-use-package 'realgud)
+(with-eval-after-load "realgud"
   (evil-define-key 'normal realgud:shortkey-mode-map
     "n" 'realgud:cmd-next
     "s" 'realgud:cmd-step
@@ -115,21 +99,18 @@
     "8" 'realgud:goto-loc-hist-8
     "9" 'realgud:goto-loc-hist-9))
 
+
 ;; --------------------------------------------------------------------------------
 ;; flycheck
 ;; --------------------------------------------------------------------------------
-(use-package flycheck
-  :defer 5
-  :ensure t
-  :config
-  ;; (custom-set-faces '(flycheck-error ((t (:background nil :underline "red")))))
-  (setq flycheck-highlighting-mode 'symbols
-        ;; flycheck-indication-mode nil
-        ;; only check when saving or loading file
-        ;; flycheck-check-syntax-automatically '(save mode-enabled)
-        )
-  (define-key prog-mode-map (kbd "C-M-n") 'flycheck-next-error)
-  (define-key prog-mode-map (kbd "C-M-p") 'flycheck-previous-error))
+(straight-use-package 'flycheck)
+(setq flycheck-highlighting-mode 'symbols
+      ;; flycheck-indication-mode nil
+      ;; only check when saving or loading file
+      ;; flycheck-check-syntax-automatically '(save mode-enabled)
+      )
+(define-key prog-mode-map (kbd "C-M-n") 'flycheck-next-error)
+(define-key prog-mode-map (kbd "C-M-p") 'flycheck-previous-error)
 
 ;; --------------------------------------------------------------------------------
 ;; compilation
@@ -156,75 +137,66 @@
     "p" 'previous-error
     "q" 'delete-window
     "r" 'recompile)
-  (define-key compilation-mode-map (kbd "g") nil)
-  (evil-leader/set-key "se" (defhydra project-todo-hydra ()
-                              ("j" next-error "search")
-                              ("k" previous-error "search")
-                              ("q" nil "quit" :color blue))))
+  (define-key compilation-mode-map (kbd "g") nil))
 
 
 ;; --------------------------------------------------------------------------------
 ;; project management
 ;; --------------------------------------------------------------------------------
-(use-package projectile
-  :ensure t
-  :init (projectile-mode 1)
-  :config
+(straight-use-package 'projectile) (require 'projectile)
+(straight-use-package 'helm-projectile) (require 'helm-projectile)
+
+(projectile-mode 1)
+(with-eval-after-load "projectile"
   ;; dont display anything in modeline, since this can slow down tramp
   (setq projectile-dynamic-mode-line nil
         projectile-mode-line-prefix " proj"
         projectile-mode-line " proj"
         projectile-indexing-method (if (eq system-type 'windows-nt)
-                                       'native 'alien))
-  (use-package helm-projectile
-    :ensure t
-    :after helm projectile))
-
+                                       'native 'alien)))
 
 ;; --------------------------------------------------------------------------------
 ;; snippets
 ;; --------------------------------------------------------------------------------
-(use-package yasnippet
-  :ensure t
-  :config
-  (yas-global-mode 1)
-  (global-set-key (kbd "C-.") 'yas-expand)
-  (use-package yasnippet-snippets :ensure t))
+(straight-use-package 'yasnippet)
+(straight-use-package 'yasnippet-snippets)
 
+(yas-global-mode 1)
+(global-set-key (kbd "C-.") 'yas-expand)
 
 ;; --------------------------------------------------------------------------------
 ;; lsp
 ;; --------------------------------------------------------------------------------
-(use-package lsp-mode
-  :defer t
-  :commands lsp
-  :ensure t
-  :config
+(straight-use-package 'lsp-mode)
+(with-eval-after-load "lsp-mode"
   ;; --- bindings ---
   (define-key lsp-mode-map (kbd "M-R") 'lsp-rename)
+  (evil-define-key 'normal lsp-mode-map "gd" 'lsp-find-definition)
 
   ;; --- Fight against very insane defaults ---
   (remove-hook 'lsp-eldoc-hook 'lsp-document-highlight)
   (setq lsp-enable-indentation nil
+        lsp-enable-snippet nil
         lsp-modeline-code-actions-enable nil
+        lsp-headerline-breadcrumb-enable nil
         lsp-modeline-diagnostics-enable nil)
-
-  ;; I only want lsp-ui for `lsp-ui-doc-*'
-  (use-package lsp-ui :ensure t :config
-    (setq lsp-ui-doc-enable nil
-          lsp-ui-peek-enable nil
-          lsp-ui-sideline-enable nil))
 
   ;; This was recommended on the internet.
   (add-hook 'lsp-managed-mode-hook (lambda () (setq-local company-backends '(company-capf)))))
+
+;; I only want lsp-ui for `lsp-ui-doc-*'
+(straight-use-package 'lsp-ui)
+(setq lsp-ui-doc-enable nil
+      lsp-ui-peek-enable nil
+      lsp-ui-sideline-enable nil)
 
 
 ;; --------------------------------------------------------------------------------
 ;; regexps
 ;; --------------------------------------------------------------------------------
-(use-package pcre2el
-  :ensure t
-  :config
+(straight-use-package 'pcre2el)
+(with-eval-after-load "re-builder"
+  (require 'pcre2el)
   (setq reb-re-syntax 'pcre)
   (setq reb-auto-match-limit 500))
 

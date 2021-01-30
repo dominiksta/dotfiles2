@@ -18,10 +18,10 @@
 ;; ----------------------------------------------------------------------
 ;; completion
 ;; ----------------------------------------------------------------------
-(use-package company-jedi
-  :ensure t
-  :config
+(straight-use-package 'company-jedi)
+(with-eval-after-load "company-jedi"
   (add-to-list 'company-backends 'company-jedi)
+
   (defun fp/python-jedi-hook ()
     (jedi:setup)
     (company-mode))
@@ -31,7 +31,9 @@
   (config-add-external-dependency 'jedi 'config-python "autocomplete"
                                   (lambda () (file-exists-p (car jedi:server-command)))
                                   "M-x jedi:install-server" "M-x jedi:install-server")
-  (when (config-external-check-list '(jedi)) (add-hook 'python-mode-hook 'fp/python-jedi-hook)))
+  (when (config-external-check-list '(jedi))
+    (add-hook 'python-mode-hook 'fp/python-jedi-hook)))
+
 
 
 ;; --------------------------------------------------------------------------------
@@ -44,7 +46,7 @@
 
 (ignore-errors (mkdir "~/.python_venvs/"))
 (setenv "WORKON_HOME" (concat (expand-file-name "~") "/.python_venvs/"))
-(use-package pyvenv :ensure t)
+(straight-use-package 'pyvenv)
 
 ;; --------------------------------------------------------------------------------
 ;; appearance
