@@ -225,10 +225,10 @@ some faces fixed-with (for tables, source code, etc.)"
                  "\\documentclass[11pt, DIV=13, parskip=half, headings]{scrreprt}"
                  ("\\chapter{%s}" . "\\chapter*{%s}")
                  ("\\section{%s}" . "\\section*{%s}")
-                 ("\\subsection*{%s}" . "\\subsection*{%s}")
-                 ("\\subsubsection*{%s}" . "\\subsubsection*{%s}")
-                 ("\\paragraph*{%s}" . "\\paragraph*{%s}")
-                 ("\\subparagraph*{%s}" . "\\subparagraph*{%s}")))
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
   ;; Includes the `minted` package in `org-latex-default-packages-alist' and
   ;; sets up some other stuff for minted. We need this for syntax highlighting
