@@ -16,6 +16,7 @@
 (require-and-log 'config-dired)
 (require-and-log 'config-git)
 (require-and-log 'config-programming-general)
+(require-and-log 'config-mvtn)
 
 
 ;; --------------------------------------------------------------------------------

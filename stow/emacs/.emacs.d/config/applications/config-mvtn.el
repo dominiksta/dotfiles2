@@ -1,9 +1,20 @@
+(require-and-log 'config-search)
 
 (straight-use-package '(el-patch :type git :host github :repo "f1rstperson/mvtn.el"))
-(require 'mvtn)
 
-(setq mvtn-note-directory "~/sync/Documents/mvtn"
-      mvtn-default-file-extension "org")
+(with-eval-after-load "mvtn"
+  (setq mvtn-note-directory "~/sync/Documents/mvtn"
+        mvtn-default-file-extension "org"
+        mvtn-search-function 'mvtn-search-full-text-ag)
+
+  (defun fp/mvtn-enable-olivetti ()
+    (condition-case nil
+        (when (string-match-p (expand-file-name mvtn-note-directory)
+                              (buffer-file-name (current-buffer)))
+          (olivetti-mode 1))
+      (error nil)))
+
+  (add-hook 'text-mode-hook 'fp/mvtn-enable-olivetti))
 
 (evil-leader/set-key
   "nj" 'mvtn-jump-current-year-directory
