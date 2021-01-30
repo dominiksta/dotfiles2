@@ -25,8 +25,6 @@
 
 (setq fp/theme-font-family "Dejavu Sans Mono"
       fp/theme-font-family-size "13"
-      fp/theme-font-family-fallback "Dejavu Sans Mono"
-      fp/theme-font-family-fallback-size "12"
       fp/theme-font-family-variable-pitch "DejaVu Serif"
       ;; these are used to set `fp/theme-font-family' in `fp/theme-switch'
       fp/theme-light-font-bold nil)
@@ -38,6 +36,8 @@
             '(fullscreen . maximized)))
 (set-fontset-font "fontset-default" 'unicode-bmp
                   (font-spec :family fp/theme-font-family))
+
+(set-face-font 'fixed-pitch fp/theme-font-family)
 
 ;; --- defaults, to be changed further down ---
 (setq fp/theme-light-theme 'tsdh-light
