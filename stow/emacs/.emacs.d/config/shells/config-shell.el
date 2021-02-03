@@ -26,16 +26,6 @@
   "gj" 'comint-next-prompt
   "gk" 'comint-previous-prompt)
 
-(use-package shell-pop
-  :ensure t
-  :defer t
-  :config
-  ;; (setq shell-pop-shell-type (quote ("terminal" "*terminal*<pop>" 'multi-term)))
-  (setq shell-pop-shell-type (quote ("eshell" "*eshell*<pop>" 'eshell)))
-  (setq shell-pop-restore-window-configuration nil)
-  ;; need to do this manually or not picked up by `shell-pop'
-  (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type))
-
 (defun fp/terminal-here (arg)
   (interactive "P")
   "If running on windows, then with a prefix arg, start terminal as admin"
