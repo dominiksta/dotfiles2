@@ -14,11 +14,11 @@
 (advice-add 'org-agenda :around 'fp/org-agenda-wm-advice)
 
 ;; --- files ---
-(setq org-agenda-files (list (concat sync-directory "general/org/meinleben/privat.org")
-                             (concat sync-directory "general/org/meinleben/studium.org")
-                             (concat sync-directory "general/org/meinleben/recom.org")
-                             (concat sync-directory "general/org/meinleben/capture.org")
-                             (concat sync-directory "general/org/meinleben/tricat.org"))
+(setq org-agenda-files (list (concat sync-directory "Documents/org/meinleben/privat.org")
+                             (concat sync-directory "Documents/org/meinleben/studium.org")
+                             (concat sync-directory "Documents/org/meinleben/recom.org")
+                             (concat sync-directory "Documents/org/meinleben/capture.org")
+                             (concat sync-directory "Documents/org/meinleben/tricat.org"))
       org-icalendar-combined-agenda-file (concat sync-directory "org/ics/combine.ics"))
 
 

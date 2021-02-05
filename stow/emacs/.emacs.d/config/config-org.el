@@ -391,7 +391,7 @@ some faces fixed-with (for tables, source code, etc.)"
 
 
 ;; --- archiving ---
-(setq org-archive-location (concat sync-directory "general/org/meinleben/archive.org::datetree/"))
+(setq org-archive-location (concat sync-directory "Documents/org/meinleben/archive.org::datetree/"))
 
 ;; --- download ---
 (use-package org-download
