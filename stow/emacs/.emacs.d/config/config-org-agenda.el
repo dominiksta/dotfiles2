@@ -14,11 +14,11 @@
 (advice-add 'org-agenda :around 'fp/org-agenda-wm-advice)
 
 ;; --- files ---
-(setq org-agenda-files (list (concat sync-directory "Documents/org/meinleben/privat.org")
-                             (concat sync-directory "Documents/org/meinleben/studium.org")
-                             (concat sync-directory "Documents/org/meinleben/recom.org")
-                             (concat sync-directory "Documents/org/meinleben/capture.org")
-                             (concat sync-directory "Documents/org/meinleben/tricat.org"))
+(setq org-agenda-files (list (concat sync-directory "documents/notes/org-todo/privat.org")
+                             (concat sync-directory "documents/notes/org-todo/studium.org")
+                             (concat sync-directory "documents/notes/org-todo/recom.org")
+                             (concat sync-directory "documents/notes/org-todo/capture.org")
+                             (concat sync-directory "documents/notes/org-todo/tricat.org"))
       org-icalendar-combined-agenda-file (concat sync-directory "org/ics/combine.ics"))
 
 
@@ -36,7 +36,7 @@
 
         ("s" "stundenplan"
          ((agenda ""))
-         ((org-agenda-files '("~/sync/general/org/meinleben/stundenplan.org"))))))
+         ((org-agenda-files '("~/sync/documents/notes/org-todo/stundenplan.org"))))))
 
 ;; --------------------------------------------------------------------------------
 ;; bindings

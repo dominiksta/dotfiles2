@@ -43,8 +43,8 @@
 ;; ----------------------------------------------------------------------
 
 (setq bibtex-dialect 'biblatex
-      bibtex-completion-library-path (concat sync-directory "Documents/academic/")
-      reftex-default-bibliography (concat sync-directory "Documents/zotero/library.bib"))
+      bibtex-completion-library-path (concat sync-directory "documents/studium/00-academic/")
+      reftex-default-bibliography (concat sync-directory "documents/zotero/library.bib"))
 
 ;; I use `zotero` with the `Better BibTeX` plugin for library management.
 (straight-use-package 'helm-bibtex)

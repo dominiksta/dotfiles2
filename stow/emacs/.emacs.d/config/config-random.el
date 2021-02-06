@@ -23,7 +23,7 @@
 (evil-define-key 'visual Man-mode-map (kbd "<escape>") 'evil-force-normal-state)
 
 ;; --- only use encrypted authinfo ---
-(setq auth-sources '("~/sync/emacs/.authinfo.gpg" "~/.authinfo.gpg"))
+(setq auth-sources '("~/sync/documents/code/emacs/.authinfo.gpg" "~/.authinfo.gpg"))
 
 
 ;; --- no more yes ---

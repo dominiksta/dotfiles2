@@ -7,13 +7,13 @@
       trash-directory (if (eq system-type 'windows-nt)
                           (expand-file-name "~/.trash") nil)
       delete-by-moving-to-trash t
-      bookmark-default-file (concat sync-directory "emacs/random/bookmarks"))
+      bookmark-default-file (concat sync-directory "documents/code/emacs/random/bookmarks"))
 
-(when (file-exists-p (concat sync-directory "emacs/project-settings.el"))
-  (load-file (concat sync-directory "emacs/project-settings.el")))
+(when (file-exists-p (concat sync-directory "documents/code/emacs/project-settings.el"))
+  (load-file (concat sync-directory "documents/code/emacs/project-settings.el")))
 
-(when (file-exists-p (concat sync-directory "emacs/lisp/"))
-  (let ((default-directory (concat sync-directory "emacs/lisp/")))
+(when (file-exists-p (concat sync-directory "documents/code/emacs/lisp/"))
+  (let ((default-directory (concat sync-directory "documents/code/emacs/lisp/")))
     (normal-top-level-add-subdirs-to-load-path)))
 
 
@@ -89,7 +89,7 @@
         (run-with-timer (* timeout 1000) nil (lambda () (w32-notification-close temp-notification))))
     (notifications-notify :title title :body body :timeout (* timeout 1000)))
   ;; play a sound asynchronously
-  (let ((sound-file (concat sync-directory "emacs/random/notify.wav")))
+  (let ((sound-file (concat sync-directory "documents/code/emacs/random/notify.wav")))
     (when (and (file-exists-p sound-file) (not no-sound))
       (start-process-shell-command
        "" nil (concat "mpv " sync-directory "/emacs/random/notify.wav")))))

@@ -37,7 +37,7 @@
           (js . t)))
 
   (setq org-plantuml-jar-path
-        (expand-file-name (concat sync-directory "emacs/bin/plantuml.jar")))
+        (expand-file-name (concat sync-directory "documents/code/emacs/bin/plantuml.jar")))
   ;; bindings
   (define-key org-src-mode-map (kbd "C-c C-c") 'org-edit-src-exit)
 
@@ -371,7 +371,7 @@ some faces fixed-with (for tables, source code, etc.)"
   (setq org-html-htmlize-font-prefix "org-") ; default: "org-"
   (add-hook 'org-export-before-processing-hook 'my-org-inline-css-hook))
 
-(setq org-ditaa-jar-path (concat sync-directory "emacs/bin/ditaa.jar"))
+(setq org-ditaa-jar-path (concat sync-directory "documents/code/emacs/bin/ditaa.jar"))
 
 ;; --------------------------------------------------------------------------------
 ;; files
@@ -391,7 +391,7 @@ some faces fixed-with (for tables, source code, etc.)"
 
 
 ;; --- archiving ---
-(setq org-archive-location (concat sync-directory "Documents/org/meinleben/archive.org::datetree/"))
+(setq org-archive-location (concat sync-directory "documents/notes/org-todo/archive.org::datetree/"))
 
 ;; --- download ---
 (use-package org-download

@@ -2,7 +2,7 @@
 (require 'eshell)
 (require 'em-prompt)
 
-(setq eshell-aliases-file (concat sync-directory "emacs/random/eshell-aliases-linux"))
+(setq eshell-aliases-file (concat sync-directory "documents/code/emacs/random/eshell-aliases-linux"))
 (defalias 'vis 'eshell-exec-visual)
 
 ;; --- open these in a terminal emulator ---

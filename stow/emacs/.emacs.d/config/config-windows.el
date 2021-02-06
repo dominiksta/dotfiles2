@@ -10,7 +10,7 @@
   (setq find-program "c:/tools/cygwin/bin/find.exe")
 
   (add-to-list 'exec-path (file-name-directory (expand-file-name (car command-line-args))))
-  (add-to-list 'exec-path (expand-file-name (concat sync-directory "emacs/bin")) t)
+  (add-to-list 'exec-path (expand-file-name (concat sync-directory "documents/code/emacs/bin")) t)
 
   (with-eval-after-load "config-eshell"
     (setq eshell-aliases-file

@@ -9,9 +9,9 @@
 
 ;; For obvious privacy reasons, I do not want to have my e-mail accounts
 ;; specified in my public dotfiles.
-(if (file-exists-p "~/sync/emacs/mail/gnus-accounts.el")
-    (load "~/sync/emacs/mail/gnus-accounts.el")
-  (warn (concat "No gnus-accounts file found in ~/sync/emacs/mail/gnus-accounts.el. "
+(if (file-exists-p "~/sync/documents/code/emacs/mail/gnus-accounts.el")
+    (load "~/sync/documents/code/emacs/mail/gnus-accounts.el")
+  (warn (concat "No gnus-accounts file found in ~/sync/documents/code/emacs/mail/gnus-accounts.el. "
                 "Accounts will not be available")))
 
 ;; ----------------------------------------------------------------------
@@ -190,7 +190,7 @@ that fails, it will return the current year. Useful to use for a
 
 ;; --- scoring ---
 (defun fp/gnus-score-file (group)
-  (concat "~/sync/emacs/mail/" group ".SCORE"))
+  (concat "~/sync/documents/code/emacs/mail/" group ".SCORE"))
 (setq gnus-home-score-file 'fp/gnus-score-file)
 
 ;; --- open feed2imap url ---

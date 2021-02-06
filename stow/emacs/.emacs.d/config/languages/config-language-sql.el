@@ -10,7 +10,7 @@
     "Equivalent to `sql-connection-alist', but sql-password is a
   file-path to a password-file. Used in `fp/sql-connect'")
 
-  (let ((sql-connections-file (concat sync-directory "emacs/random/sql-connections.el")))
+  (let ((sql-connections-file (concat sync-directory "documents/code/emacs/random/sql-connections.el")))
     (when (file-exists-p sql-connections-file)
       (load sql-connections-file)))
 
