@@ -23,7 +23,7 @@
                                 (window-list))))
             (delete-other-windows)
             (split-window-right) (other-window 1)
-            (find-file (concat sync-directory  "general/org/meinleben/"))
+            (find-file (concat sync-directory  "documents/notes/org-todo/"))
             (other-window 1)
             (org-agenda nil "a"))) ; 0
         (lambda () nil) ; 1

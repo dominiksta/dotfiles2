@@ -68,10 +68,10 @@
   (interactive)
   (let ((process-environment
          (cons (concat "PYTHONSTARTUP="
-                       sync-directory "emacs/python-calculator/pythonstartup.py")
+                       sync-directory "documents/code/emacs/python-calculator/pythonstartup.py")
                process-environment))
         (buf (find-file-noselect (concat sync-directory
-                                         "emacs/python-calculator/python-calculator-worksheet.py"))))
+                                         "documents/code/emacs/python-calculator/python-calculator-worksheet.py"))))
     (eyebrowse-switch-to-window-config-8)
     (delete-other-windows)
     (switch-to-buffer buf)
