@@ -22,6 +22,7 @@
   "nN" 'mvtn-new-note
   "nr" 'mvtn-rename-current-file
   "ns" 'mvtn-search-full-text
+  "nb" 'mvtn-search-backlinks
   "nl" 'mvtn-insert-link
   "no" 'mvtn-follow-link-at-point)
 
