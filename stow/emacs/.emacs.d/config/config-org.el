@@ -460,41 +460,6 @@ some faces fixed-with (for tables, source code, etc.)"
                     'font-lock-face 'font-lock-keyword-face)))
 
 ;; --------------------------------------------------------------------------------
-;; notifications
-;; --------------------------------------------------------------------------------
-
-(require 'notifications)
-(require 'appt)
-(appt-activate t)
-
-(setq appt-message-warning-time 30) ; Show notification 30 minutes before event
-(setq appt-display-interval 10)     ; Show notification every 5 minutes
-(setq appt-display-mode-line t)     ; Show notification in mode-line
-
-(defun fp/org-agenda-to-appt ()
-  (interactive)
-  (setq appt-time-msg-list nil)
-  (org-agenda-to-appt))
-
-;; Update alarms every hour
-(setq fp/org-appt-timer
-      (run-with-timer
-       2 (* 30 60) (lambda ()
-                     (let ((inhibit-message t))
-                       (fp/org-agenda-to-appt)))))
-
-;; Display appointments as a dbus-message
-(setq appt-disp-window-function 'fp/appt-display)
-
-(defun fp/appt-display (min-to-app new-time appt-msg)
-  "See `appt-disp-window'"
-  (let ((min-to-app (format "%s minutes left" min-to-app)))
-    (if (executable-find "espeak")
-        (start-process-shell-command
-         "" nil (format "espeak -a 200 \"%s\"" min-to-app)))
-    (generic-notification-notify min-to-app appt-msg t)))
-
-;; --------------------------------------------------------------------------------
 ;; attachments
 ;; --------------------------------------------------------------------------------
 
