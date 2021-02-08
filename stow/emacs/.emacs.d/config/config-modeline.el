@@ -2,59 +2,60 @@
 ;; telephone line
 ;; ----------------------------------------------------------------------
 
-(use-package telephone-line :ensure t :demand t :config
+(straight-use-package 'telephone-line)
+(require 'telephone-line)
 
-  (telephone-line-defsegment fp/telephone-line-airline-position-segment ()
-    "Position segment imitating vim-airline's
+(telephone-line-defsegment fp/telephone-line-airline-position-segment ()
+  "Position segment imitating vim-airline's
 appearance. Optional args set padding on lines/columns."
-    (let* ((l (number-to-string 4))
-           (c (number-to-string 3)))
-      (if (eq major-mode 'pdf-view-mode)
-          (telephone-line-raw mode-line-position t)
-        `((-3 "%p")
-          ,(concat " %" l "l" ":%" c
-                   (if (bound-and-true-p
-                        column-number-indicator-zero-based) "c" "C"))))))
+  (let* ((l (number-to-string 4))
+         (c (number-to-string 3)))
+    (if (eq major-mode 'pdf-view-mode)
+        (telephone-line-raw mode-line-position t)
+      `((-3 "%p")
+        ,(concat " %" l "l" ":%" c
+                 (if (bound-and-true-p
+                      column-number-indicator-zero-based) "c" "C"))))))
 
-  (telephone-line-defsegment fp/telephone-line-eyebrowse-segment ()
-    "Show the current eyebrowse window config if eyebrowse is
+(telephone-line-defsegment fp/telephone-line-eyebrowse-segment ()
+  "Show the current eyebrowse window config if eyebrowse is
 available."
-    (if (featurep 'eyebrowse)
-        (concat " [" (number-to-string
-                      (eyebrowse--get 'current-slot))
-                "]") ""))
+  (if (featurep 'eyebrowse)
+      (concat " [" (number-to-string
+                    (eyebrowse--get 'current-slot))
+              "]") ""))
 
-  (telephone-line-defsegment fp/telephone-line-dired-rsync-segment ()
-    "Show the current status of dired-rsync if available."
-    (propertize (or (and (featurep 'dired-rsync) dired-rsync-modeline-status) "")
-                'face 'warning))
+(telephone-line-defsegment fp/telephone-line-dired-rsync-segment ()
+  "Show the current status of dired-rsync if available."
+  (propertize (or (and (featurep 'dired-rsync) dired-rsync-modeline-status) "")
+              'face 'warning))
 
-  ;; --- make evil tag more minimal ---
-  (set-face-attribute
-   'telephone-line-evil-normal nil
-   :foreground nil :background nil :inherit 'mode-line)
-  (set-face-attribute
-   'telephone-line-evil-insert nil
-   :foreground nil :background nil :inherit 'mode-line)
-  (setq telephone-line-evil-use-short-tag t)
+;; --- make evil tag more minimal ---
+(set-face-attribute
+ 'telephone-line-evil-normal nil
+ :foreground nil :background nil :inherit 'mode-line)
+(set-face-attribute
+ 'telephone-line-evil-insert nil
+ :foreground nil :background nil :inherit 'mode-line)
+(setq telephone-line-evil-use-short-tag t)
 
-  ;; --- Position of segments ---
-  (setq telephone-line-lhs
-        '((nil telephone-line-evil-tag-segment)
-          (accent telephone-line-process-segment)
-          (nil telephone-line-buffer-segment)
-          (nil fp/telephone-line-airline-position-segment))
-        telephone-line-rhs
-        '((nil telephone-line-flycheck-segment)
-          (nil fp/telephone-line-eyebrowse-segment)
-          (nil telephone-line-misc-info-segment
-               fp/telephone-line-dired-rsync-segment)))
+;; --- Position of segments ---
+(setq telephone-line-lhs
+      '((nil telephone-line-evil-tag-segment)
+        (accent telephone-line-process-segment)
+        (nil telephone-line-buffer-segment)
+        (nil fp/telephone-line-airline-position-segment))
+      telephone-line-rhs
+      '((nil telephone-line-flycheck-segment)
+        (nil fp/telephone-line-eyebrowse-segment)
+        (nil telephone-line-misc-info-segment
+             fp/telephone-line-dired-rsync-segment)))
 
-  ;; --- Disable sperators ---
-  (setq telephone-line-primary-left-separator telephone-line-nil
-        telephone-line-primary-right-separator telephone-line-nil
-        telephone-line-secondary-left-separator telephone-line-nil
-        telephone-line-secondary-right-separator telephone-line-nil))
+;; --- Disable sperators ---
+(setq telephone-line-primary-left-separator telephone-line-nil
+      telephone-line-primary-right-separator telephone-line-nil
+      telephone-line-secondary-left-separator telephone-line-nil
+      telephone-line-secondary-right-separator telephone-line-nil)
 
 (telephone-line-mode 1)
 

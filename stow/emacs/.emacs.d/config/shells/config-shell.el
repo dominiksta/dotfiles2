@@ -50,14 +50,12 @@
                                   "apt install fish" "None")
   ;; only works in eshell for me
   (when (executable-find "fish")
-    (use-package fish-completion
-      :ensure t
-      :demand t
-      :config (global-fish-completion-mode)))
+    (straight-use-package 'fish-completion)
+    (require 'fish-completion)
+    (global-fish-completion-mode))
 
   ;; only works in shell for me
-  (use-package bash-completion
-    :ensure t
-    :init (bash-completion-setup)))
+  (straight-use-package 'bash-completion)
+  (bash-completion-setup))
 
 (provide 'config-shell)

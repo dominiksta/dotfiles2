@@ -2,7 +2,8 @@
 ;; workspaces
 ;; ----------------------------------------------------------------------
 
-(use-package eyebrowse :ensure t :demand t)
+(straight-use-package 'eyebrowse)
+(require 'eyebrowse)
 (eyebrowse-mode 1)
 
 (setq eyebrowse-mode-line-style nil
@@ -79,11 +80,10 @@
              (force-mode-line-update)))))
 
 ;; ----------------------------------------------------------------------
-;; make some windows play a little nicer
+;; custom config for some windows
 ;; ----------------------------------------------------------------------
 
-(use-package shackle :ensure t :demand t
-  :config (shackle-mode 1))
-
+(straight-use-package 'shackle)
+(shackle-mode 1)
 
 (provide 'config-window-management)

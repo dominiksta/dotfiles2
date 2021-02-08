@@ -2,12 +2,8 @@
 
 (setq term-prompt-regexp "^\\[.*\\]\\$ ") ;; this is specific to my bashrc
 
-(use-package multi-term
-  :ensure t
-  :demand t
-  :config
-  (setq multi-term-program "/bin/bash"))
-
+(straight-use-package 'multi-term)
+(setq multi-term-program "/bin/bash")
 
 ;; --------------------------------------------------------------------------------
 ;; bindings

@@ -69,6 +69,6 @@
 (define-key web-mode-map (kbd "M-R") 'web-mode-element-rename)
 
 
-(use-package apache-mode :ensure t :defer t)
+(straight-use-package 'apache-mode)
 
 (provide 'config-language-web-general)
