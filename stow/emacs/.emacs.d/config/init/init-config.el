@@ -8,16 +8,15 @@
 ;; --------------------------------------------------------------------------------
 ;; set up package-management
 ;; --------------------------------------------------------------------------------
-(require 'package)
-(setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-(package-initialize)
+;; (require 'package)
+;; (setq package-enable-at-startup nil)
+;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+;; (package-initialize)
 
-;; use-package bootstrap
-(unless (package-installed-p 'use-package) (package-refresh-contents) (package-install 'use-package))
-(eval-when-compile (require 'use-package))
-(use-package try :ensure t :defer t)
+;; ;; use-package bootstrap
+;; (unless (package-installed-p 'use-package) (package-refresh-contents) (package-install 'use-package))
+;; (eval-when-compile (require 'use-package))
 
 ;; straight.el bootstrap
 (defvar bootstrap-version)
@@ -48,7 +47,6 @@
 (add-to-list 'load-path (concat config-directory "/applications/"))
 
 (require 'seq)
-(require 'bind-key)
 (require 'cl-macs)
 
 ;; --------------------------------------------------------------------------------

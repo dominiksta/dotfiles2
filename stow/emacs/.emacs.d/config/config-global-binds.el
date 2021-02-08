@@ -1,7 +1,5 @@
 (require-and-log 'config-editor)
 
-(use-package hydra :ensure t :demand t)
-
 (global-set-key (kbd "C-x C-c") 'save-buffers-kill-emacs)
 
 ;; --------------------------------------------------------------------------------
@@ -14,13 +12,13 @@
 (bind-key* (kbd "M-I") (lambda () (interactive) (enlarge-window resize-window-amount)))
 (bind-key* (kbd "M-O") (lambda () (interactive) (enlarge-window-horizontally resize-window-amount)))
 
-(use-package buffer-move :ensure t
-  :demand t
-  :config
-  (bind-key* (kbd "M-C-z") 'buf-move-left)
-  (bind-key* (kbd "M-C-u") 'buf-move-down)
-  (bind-key* (kbd "M-C-i") 'buf-move-up)
-  (bind-key* (kbd "M-C-o") 'buf-move-right))
+(straight-use-package 'buffer-move)
+(require 'buffer-move)
+
+(bind-key* (kbd "M-C-z") 'buf-move-left)
+(bind-key* (kbd "M-C-u") 'buf-move-down)
+(bind-key* (kbd "M-C-i") 'buf-move-up)
+(bind-key* (kbd "M-C-o") 'buf-move-right)
 
 (bind-key* "M-v" (lambda () (interactive) (split-window-right) (windmove-right)))
 (bind-key* "M-c" (lambda () (interactive) (split-window-below) (windmove-down)))
@@ -295,8 +293,11 @@
 
 (bind-key* (kbd "C-'") 'ss/dispatch-bash-here)
 (bind-key* (kbd "C-#") 'ss/dispatch-bash)
+
 ;; --------------------------------------------------------------------------------
 ;; finishing
 ;; --------------------------------------------------------------------------------
-(use-package which-key :ensure t :config (which-key-mode 1))
+(straight-use-package 'which-key)
+(which-key-mode 1)
+
 (provide 'config-global-binds)

@@ -11,9 +11,7 @@
 (server-start)
 
 ;; --- restart ---
-(use-package restart-emacs
-  :ensure t
-  :commands restart-emacs)
+(straight-use-package 'restart-emacs)
 
 ;; --- kill ---
 (setq confirm-kill-emacs 'y-or-n-p)

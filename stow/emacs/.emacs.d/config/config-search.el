@@ -37,8 +37,9 @@
 ;; --------------------------------------------------------------------------------
 ;; pdfgrep
 ;; --------------------------------------------------------------------------------
-(use-package pdfgrep :ensure t
-  :config
+(straight-use-package 'pdfgrep)
+
+(with-eval-after-load "pdfgrep"
   (config-add-external-dependency 'pdfgrep 'config-search "grep through pdfs"
                                   (lambda () (executable-find "pdfgrep"))
                                   "apt-get install -y pdfgrep" "None")
@@ -52,11 +53,11 @@
   (defun pdfgrep-default-command ()
     "REDEFINED: Compute the default pdfgrep command for `pdfgrep'."
     (let ((cmd (concat pdfgrep-program " -H -n -r "
-		       (when pdfgrep-ignore-case "-i ")
-		       (when pdfgrep-context-length
-		         (format "-C %d " pdfgrep-context-length)))))
+		               (when pdfgrep-ignore-case "-i ")
+		               (when pdfgrep-context-length
+		                 (format "-C %d " pdfgrep-context-length)))))
       (if pdfgrep-ignore-errors
-	  (cons (concat cmd " 2>/dev/null") (1+ (length cmd))) cmd)))
+	      (cons (concat cmd " 2>/dev/null") (1+ (length cmd))) cmd)))
 
   (defun fp/pdfgrep-todos ()
     "Searches for every keyword in `hl-todo-keyword-faces'
@@ -71,10 +72,10 @@ recursively from the current directory using `pdfgrep'."
 ;; --------------------------------------------------------------------------------
 ;; silver searcher
 ;; --------------------------------------------------------------------------------
-(use-package helm-ag :defer t :ensure t)
-(use-package ag :defer t :ensure t
-  :config
-  (use-package wgrep-ag :ensure t)
+(straight-use-package 'helm-ag)
+(straight-use-package 'ag)
+(straight-use-package 'wgrep-ag)
+(with-eval-after-load "ag"
   (evil-define-key 'normal ag-mode-map
     "q" 'quit-window
     "e" 'wgrep-change-to-wgrep-mode

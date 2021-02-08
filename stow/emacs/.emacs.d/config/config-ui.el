@@ -44,97 +44,71 @@
       fp/theme-dark-theme 'wombat
       custom-safe-themes t)
 
-;; (use-package flucui-themes
-;;   :ensure t
-;;   :config
-;;   (setq fp/theme-light-theme 'flucui-light
-;;         fp/theme-dark-theme 'flucui-dark))
+;; (straight-use-package 'flucui-themes)
+;; (setq fp/theme-light-theme 'flucui-light
+;;       fp/theme-dark-theme 'flucui-dark)
 
-;; (use-package kaolin-themes
-;;   :ensure t
-;;   :config
-;;   (setq fp/theme-light-theme 'kaolin-light
-;;         fp/theme-dark-theme 'kaolin-dark))
+;; (straight-use-package 'kaolin-themes)
+;; (setq fp/theme-light-theme 'kaolin-light
+;;       fp/theme-dark-theme 'kaolin-dark)
 
-(use-package gruvbox-theme
-  :ensure t
-  :config
-  (setq fp/theme-light-theme 'gruvbox-light-soft
-        fp/theme-dark-theme 'gruvbox-dark-soft))
+(straight-use-package 'gruvbox-theme)
+(setq fp/theme-light-theme 'gruvbox-light-soft
+      fp/theme-dark-theme 'gruvbox-dark-soft)
 
-;; (use-package tangotango-theme
-;;   :ensure t
-;;   :config
-;;   (setq fp/theme-light-theme 'tango
-;;         fp/theme-dark-theme 'tangotango))
+;; (straight-use-package 'tangotango-theme)
+;; (setq fp/theme-light-theme 'tango
+;;       fp/theme-dark-theme 'tangotango)
 
-;; (use-package color-theme-sanityinc-tomorrow
-;;   :ensure t
-;;   :config
-;;   (setq fp/theme-light-theme 'sanityinc-tomorrow-day
-;;         fp/theme-dark-theme 'sanityinc-tomorrow-bright))
+;; (straight-use-package 'color-theme-sanityinc-tomorrow)
+;; (setq fp/theme-light-theme 'sanityinc-tomorrow-day
+;;       fp/theme-dark-theme 'sanityinc-tomorrow-bright)
 
-;; (use-package modus-operandi-theme :ensure t
-;;   :config
-;;   (setq fp/theme-light-theme 'modus-operandi))
+;; (straight-use-package 'modus-operandi-theme)
+;; (straight-use-package 'modus-vivendi-theme)
+;; (setq fp/theme-light-theme 'modus-operandi
+;;       fp/theme-dark-theme 'modus-vivendi)
 
-;; (use-package modus-vivendi-theme :ensure t
-;;   :config
-;;   (setq fp/theme-dark-theme 'modus-vivendi))
+;; (straight-use-package 'doom-themes)
+;; (doom-themes-org-config)
+;; (custom-set-faces
+;;  '(highlight ((t (:underline t :background nil :foreground nil :distant-foreground nil)))))
+;; (setq fp/theme-light-theme 'doom-one-light
+;;       fp/theme-dark-theme 'doom-one)
 
-;; (use-package doom-themes
-;;   :ensure t
-;;   :config
-;;   (doom-themes-org-config)
-;;   (custom-set-faces
-;;    '(highlight ((t (:underline t :background nil :foreground nil :distant-foreground nil)))))
-;;   (setq fp/theme-light-theme 'doom-one-light
-;;         fp/theme-dark-theme 'doom-one))
+;; (straight-use-package 'spacemacs-theme)
+;; (setq fp/theme-light-theme 'spacemacs-light
+;;       fp/theme-dark-theme 'spacemacs-dark
+;;       spacemacs-theme-comment-bg nil
+;;       spacemacs-theme-org-height t)
 
-;; (use-package "spacemacs-theme"
-;;   :ensure t
-;;   :no-require t
-;;   :config (setq fp/theme-light-theme 'spacemacs-light
-;;                 fp/theme-dark-theme 'spacemacs-dark
-;;                 spacemacs-theme-comment-bg nil
-;;                 spacemacs-theme-org-height t))
+;; (straight-use-package 'ujelly-theme)
+;; (setq fp/theme-light-theme 'tsdh-light
+;;       fp/theme-dark-theme 'ujelly)
 
-;; (use-package ujelly-theme
-;;   :ensure t
-;;   :config (setq fp/theme-light-theme 'tsdh-light
-;;                 fp/theme-dark-theme 'ujelly))
+;; (straight-use-package 'grandshell-theme)
+;; (setq fp/theme-light-theme 'tsdh-light
+;;       fp/theme-dark-theme 'grandshell)
 
-;; (use-package grandshell-theme
-;;   :ensure t
-;;   :config (setq fp/theme-light-theme 'tsdh-light
-;;                 fp/theme-dark-theme 'grandshell))
+;; (straight-use-package 'alect-themes)
+;; (setq fp/theme-light-theme 'alect-light
+;;       fp/theme-dark-theme 'alect-black)
+;; (alect-set-color 'light 'bg-1 "#fafafa")
+;; (alect-set-color 'light 'bg-0\.5 "#e7e7e7")
 
-;; (use-package alect-themes
-;;   :ensure t
-;;   :config
-;;   (setq fp/theme-light-theme 'alect-light
-;;         fp/theme-dark-theme 'alect-black)
-;;   (alect-set-color 'light 'bg-1 "#fafafa")
-;;   (alect-set-color 'light 'bg-0\.5 "#e7e7e7"))
+;; (straight-use-package 'material-theme)
+;; (setq fp/theme-light-theme 'material-light
+;;       fp/theme-dark-theme 'material)
 
-;; (use-package material-theme
-;;   :ensure t
-;;   :config (setq fp/theme-light-theme 'material-light
-;;                 fp/theme-dark-theme 'material))
+;; (straight-use-package 'zenburn-theme)
+;; (setq fp/theme-light-theme 'tango
+;;       fp/theme-dark-theme 'zenburn)
 
-;; (use-package zenburn-theme :ensure t :demand t :config
-;;   ;; (use-package doneburn-theme :ensure t :demand t :config
-
-;;   ;;   )
-;;   (setq fp/theme-light-theme 'tango
-;;         fp/theme-dark-theme 'zenburn))
-
-;; (use-package solarized-theme
-;;   :ensure t
-;;   :config (setq fp/theme-light-theme 'solarized-light
-;;                 fp/theme-dark-theme 'solarized-dark
-;;                 solarized-use-variable-pitch nil
-;;                 solarized-scale-org-headlines nil))
+;; (straight-use-package 'solarized-theme)
+;; (setq fp/theme-light-theme 'solarized-light
+;;       fp/theme-dark-theme 'solarized-dark
+;;       solarized-use-variable-pitch nil
+;;       solarized-scale-org-headlines nil)
 
 ;; load a theme and disable all others
 (defun load-reset-theme ()
@@ -257,12 +231,12 @@
 ;; --------------------------------------------------------------------------------
 
 (setq frame-title-format "f1p@emacs")
-(use-package rainbow-mode :ensure t :defer t)
 
-(use-package olivetti
-  :ensure t
-  :defer t
-  :config
+(straight-use-package 'rainbow-mode)
+
+(straight-use-package 'olivetti)
+
+(with-eval-after-load "olivetti"
   (setq-default olivetti-body-width 103)
   (evil-define-key 'normal olivetti-mode-map
     "j" 'evil-next-visual-line
@@ -271,10 +245,9 @@
     "j" 'evil-next-visual-line
     "k" 'evil-previous-visual-line)
 
-  ;; wtf
+  ;; evil bug
   (add-hook 'olivetti-mode-hook
-            (lambda () (interactive)
-              (evil-emacs-state)
-              (evil-normal-state))))
+            (lambda () (interactive) (evil-emacs-state) (evil-normal-state))))
+
 
 (provide 'config-ui)

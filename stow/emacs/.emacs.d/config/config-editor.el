@@ -1,54 +1,58 @@
+;; ----------------------------------------------------------------------
+;; binds in general
+;; ----------------------------------------------------------------------
+
+(straight-use-package 'bind-key) (require 'bind-key)
+(straight-use-package 'hydra)(require 'hydra)
+
 ;; --------------------------------------------------------------------------------
-;; get evil
+;; evil
 ;; --------------------------------------------------------------------------------
 
-(use-package evil
-  :ensure t
-  :demand t
-  :init
-  (setq evil-respect-visual-line-mode t)
-  :config
-  (evil-mode 1)
-  (setq evil-insert-state-message nil
-        evil-insert-state-modes nil))
+(straight-use-package 'evil)
+(require 'evil)
 
-(use-package evil-leader
-  :ensure t
-  :demand t
-  :after evil
-  :config 
-  (setq evil-leader/in-all-states 1)
-  (evil-leader/set-leader "SPC")
-  (evil-mode 0)
-  (global-evil-leader-mode 1)
-  (evil-mode 1))
+(setq evil-respect-visual-line-mode t)
+(evil-mode 1)
+(setq evil-insert-state-message nil
+      evil-insert-state-modes nil)
+
+(straight-use-package 'evil-leader)
+(require 'evil-leader)
+
+(setq evil-leader/in-all-states 1)
+(evil-leader/set-leader "SPC")
+(evil-mode 0)
+(global-evil-leader-mode 1)
+(evil-mode 1)
 
 ;; --------------------------------------------------------------------------------
 ;; global bindings
 ;; --------------------------------------------------------------------------------
 ;; --- folding ---
-(use-package yafolding
-  :init (add-hook 'prog-mode-hook 'yafolding-mode)
-  :ensure t
-  :config
+(straight-use-package 'yafolding)
+(require 'yafolding)
+
+(add-hook 'prog-mode-hook 'yafolding-mode)
+(with-eval-after-load "yafolding"
   (define-key yafolding-mode-map (kbd "<C-S-return>") nil)
   (define-key yafolding-mode-map (kbd "<C-M-return>") nil)
-  (define-key yafolding-mode-map (kbd "<C-return>") nil)
-  ;; I don't use the normal folding commands at all, so i just overwrite them.
-  (evil-define-key 'normal global-map
-    "za" 'yafolding-toggle-element
-    "zA" 'yafolding-hide-all
-    (kbd "z M-a") 'yafolding-show-all))
+  (define-key yafolding-mode-map (kbd "<C-return>") nil))
+;; I don't use the normal folding commands at all, so i just overwrite them.
+(evil-define-key 'normal global-map
+  "za" 'yafolding-toggle-element
+  "zA" 'yafolding-hide-all
+  (kbd "z M-a") 'yafolding-show-all)
 
 
 ;; --- avy ---
-(use-package avy :ensure t :config
-  (evil-define-key 'normal global-map
-    "gl" 'evil-avy-goto-line
-    "gw" 'evil-avy-goto-word-1
-    "g-" 'evil-avy-goto-char-2
-    "ö" 'evil-avy-goto-char-2
-    "Ö" 'evil-avy-goto-char))
+(straight-use-package 'avy)
+(evil-define-key 'normal global-map
+  "gl" 'evil-avy-goto-line
+  "gw" 'evil-avy-goto-word-1
+  "g-" 'evil-avy-goto-char-2
+  "ö" 'evil-avy-goto-char-2
+  "Ö" 'evil-avy-goto-char)
 
 (dolist (state (list 'normal 'motion))
   (evil-define-key state global-map
@@ -133,13 +137,11 @@
       yank-pop-change-selection nil)
 
 ;; --- surround ---
-(use-package evil-surround 
-  :ensure t
-  :config (global-evil-surround-mode 1))
+(straight-use-package 'evil-surround) (require 'evil-surround)
+(global-evil-surround-mode 1)
 
-(use-package evil-nerd-commenter
-  :ensure t
-  :config (evil-leader/set-key "kk" 'evilnc-comment-or-uncomment-lines))
+(straight-use-package 'evil-nerd-commenter)
+(evil-leader/set-key "kk" 'evilnc-comment-or-uncomment-lines)
 
 ;; --------------------------------------------------------------------------------
 ;; key translations and remappings
@@ -162,10 +164,10 @@
 ;; to configure it explicitly now. Kind of annoying when your editor all of the
 ;; sudden tells you that you can't redo anything anymore. EDIT: An evil update
 ;; made undo-tree an optional dependency, so thats why.
-(use-package undo-tree :ensure t :demand t :config
-  (evil-set-undo-system 'undo-tree)
-  (global-undo-tree-mode)
-  (evil-leader/set-key "uu" 'undo-tree-visualize))
+(straight-use-package 'undo-tree) (require 'undo-tree)
+(evil-set-undo-system 'undo-tree)
+(global-undo-tree-mode)
+(evil-leader/set-key "uu" 'undo-tree-visualize)
 
 ;; --------------------------------------------------------------------------------
 ;; query replace
@@ -291,6 +293,8 @@
 ;; --------------------------------------------------------------------------------
 
 ;; Install "Edit with Emacs" from AMO and run M-x edit-server-start
-(use-package edit-server :ensure t :defer t :config
+(straight-use-package 'edit-server)
+(with-eval-after-load "edit-server"
   (setq edit-server-default-major-mode 'markdown-mode
         edit-server-new-frame nil))
+
