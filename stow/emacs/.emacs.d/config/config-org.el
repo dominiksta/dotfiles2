@@ -393,7 +393,7 @@ some faces fixed-with (for tables, source code, etc.)"
 ;; --- archiving ---
 (setq org-archive-location (concat sync-directory "documents/notes/org-todo/archive.org::datetree/"))
 
-;; --- download ---
+;; --- download/screenshots ---
 (use-package org-download
   :ensure t
   :defer t
@@ -405,18 +405,18 @@ some faces fixed-with (for tables, source code, etc.)"
     "mdr" 'org-download-rename-at-point)
   :config
   (setq org-download-annotate-function (lambda (link) "")
-        org-download-screenshot-file (expand-file-name "~/.emacs.d/tempscreenshot.png"))
+        org-download-screenshot-file (expand-file-name "~/.emacs.d/screenshot.png"))
+  (setq-default org-download-heading-lvl nil
+                org-download-image-dir "orgimg")
+
   (if (eq system-type 'windows-nt)
-      (progn (config-add-external-dependency 'irfanview 'config-org "org-download"
-                                             (lambda () (executable-find "i_view64"))
-                                             "None" "cinst -y irfanview")
-             (setq org-download-screenshot-method "i_view64 /capture=4 /convert=\"%s\""
-                   org-download-backend "wget \"%s\" -O \"%s\""))
-    (progn (config-add-external-dependency
-            'xfce4-screenshooter 'config-org "org-download"
-            (lambda () (executable-find "xfce4-screenshooter"))
-            "sudo apt-get install -y xfce4-screenshooter" "None")
-           (setq org-download-screenshot-method "xfce4-screenshooter -r -s %s"))))
+      (progn
+        (config-add-external-dependency 'irfanview 'config-org "org-download"
+                                        (lambda () (executable-find "i_view64"))
+                                        "None" "cinst -y irfanview")
+        (setq org-download-screenshot-method "i_view64 /capture=4 /convert=\"%s\""
+              org-download-backend "wget \"%s\" -O \"%s\""))
+    (setq org-download-screenshot-method "import %s")))
 
 ;; --------------------------------------------------------------------------------
 ;; capture
@@ -505,14 +505,6 @@ some faces fixed-with (for tables, source code, etc.)"
 (evil-leader/set-key-for-mode 'org-mode
   "mda" 'org-attach
   "mdi" 'fp/org-attach-insert-link)
-
-(use-package org-attach-screenshot :ensure t)
-
-(defun fp/org-attach-screenshot ()
-  (interactive)
-  (org-attach-dir-get-create)
-  (let ((current-prefix-arg '(8)))
-    (call-interactively 'org-attach-screenshot)))
 
 ;; --------------------------------------------------------------------------------
 ;; spelling
