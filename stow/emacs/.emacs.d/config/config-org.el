@@ -64,10 +64,8 @@
 ;; appearance
 ;; --------------------------------------------------------------------------------
 
-(use-package org-bullets
-  :ensure t
-  :after org
-  :init (add-hook 'org-mode-hook 'org-bullets-mode))
+(straight-use-package 'org-bullets)
+(add-hook 'org-mode-hook 'org-bullets-mode)
 
 (custom-set-faces
  ;; fix for emacs27's new :extend keyword and org babel
@@ -169,15 +167,19 @@ some faces fixed-with (for tables, source code, etc.)"
 ;; --------------------------------------------------------------------------------
 ;; clocking
 ;; --------------------------------------------------------------------------------
+(straight-use-package 'org-pomodoro)
 
-(use-package org-pomodoro :ensure t :config
+(with-eval-after-load "org-pomodoro"
   (setq org-pomodoro-format "P:%s"
         org-pomodoro-time-format "%.2m"
         org-pomodoro-play-sounds nil)
   (add-hook 'org-pomodoro-finished-hook
-            (lambda () (generic-notification-notify "Pomodoro finished" "Take a break!" 10)))
+            (lambda () (generic-notification-notify "Pomodoro finished"
+                                               "Take a break!" 10)))
   (add-hook 'org-pomodoro-break-finished-hook
-            (lambda () (generic-notification-notify "Break is over" "Start a new pomodoro?" 10))))
+            (lambda () (generic-notification-notify "Break is over"
+                                               "Start a new pomodoro?" 10))))
+
 
 (with-eval-after-load "org-clock"
   (defun fp/org-clock-format-clock-string (oldfun)
@@ -196,8 +198,10 @@ some faces fixed-with (for tables, source code, etc.)"
 ;; ----------------------------------------------------------------------
 
 ;; ---------------------------------- references ---------------------------------
+(straight-use-package 'org-ref)
+(require 'org-ref)
 
-(use-package org-ref :ensure t :config
+(with-eval-after-load "org-ref"
   (setq
    ;; Set the default bibliography file. Can be overwritten with
    ;; 'bibliograph:/path/to/somefile' in any org-file
@@ -213,7 +217,7 @@ some faces fixed-with (for tables, source code, etc.)"
 (with-eval-after-load "ox"
   ;; include the ability to ignore headlines while still including their body
   ;; with an :ignore: tag
-  (use-package org-plus-contrib :ensure t :defer t)
+  (straight-use-package 'org-plus-contrib)
   (require 'ox-extra)
   (ox-extras-activate '(ignore-headlines))
 
@@ -287,12 +291,12 @@ some faces fixed-with (for tables, source code, etc.)"
 ;; --------------------------------------------------------------------------------
 ;; bindings
 ;; --------------------------------------------------------------------------------
+(straight-use-package 'evil-org)
 
-(use-package evil-org
-  :ensure t
-  :hook (org-mode . evil-org-mode)
-  :config
-  (evil-org-set-key-theme '(navigation insert textobjects additional calendar)))
+(require 'evil-org)
+(add-hook 'org-mode-hook 'evil-org-mode)
+(evil-org-set-key-theme '(navigation insert textobjects additional calendar))
+
 
 (evil-define-key 'insert org-mode-map (kbd "<backspace>") 'org-delete-backward-char)
 (autoload 'org-tree-slide-enter "config-org-tree-slide.el")
@@ -342,8 +346,8 @@ some faces fixed-with (for tables, source code, etc.)"
 ;; --------------------------------------------------------------------------------
 
 (with-eval-after-load "ox"
-  (use-package ox-gfm :ensure t) ;; github flavoured markdown
-  (use-package htmlize :ensure t)
+  (straight-use-package 'ox-gfm) ;; github flavoured markdown
+  (straight-use-package 'htmlize)
   (setq org-export-default-language "de"
         org-html-validation-link nil)
 
@@ -394,16 +398,18 @@ some faces fixed-with (for tables, source code, etc.)"
 (setq org-archive-location (concat sync-directory "documents/notes/org-todo/archive.org::datetree/"))
 
 ;; --- download/screenshots ---
-(use-package org-download
-  :ensure t
-  :defer t
-  :commands (org-download-screenshot org-download-yank org-download-rename-at-point)
-  :init
-  (evil-leader/set-key-for-mode 'org-mode
-    "mds" 'org-download-screenshot
-    "mdy" 'org-download-yank
-    "mdr" 'org-download-rename-at-point)
-  :config
+(straight-use-package 'org-download)
+
+(autoload 'org-download-screenshot "org-download")
+(autoload 'org-download-yank "org-download")
+(autoload 'org-download-rename-at-point "org-download")
+
+(evil-leader/set-key-for-mode 'org-mode
+  "mds" 'org-download-screenshot
+  "mdy" 'org-download-yank
+  "mdr" 'org-download-rename-at-point)
+
+(with-eval-after-load "org-download"
   (setq org-download-annotate-function (lambda (link) "")
         org-download-screenshot-file (expand-file-name "~/.emacs.d/screenshot.png"))
   (setq-default org-download-heading-lvl nil
