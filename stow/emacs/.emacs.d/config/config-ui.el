@@ -38,6 +38,7 @@
                   (font-spec :family fp/theme-font-family))
 
 (set-face-font 'fixed-pitch fp/theme-font-family)
+(set-face-font 'variable-pitch fp/theme-font-family-variable-pitch)
 
 ;; --- defaults, to be changed further down ---
 (setq fp/theme-light-theme 'tsdh-light

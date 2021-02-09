@@ -94,39 +94,23 @@
 ;; (add-hook 'org-mode-hook 'fp/org-font-apply)
 
 
+;; --- variable pitch ---
 (define-minor-mode fp/org-variable-pitch-mode
   "Enables variable pitch fonts in org-mode for a lot of elements, but keeps
 some faces fixed-with (for tables, source code, etc.)"
   nil
   " ovp"
   nil
-  (fp/theme-font-setup)
-  (let ((extra-fixed-pitch '(org-code
-                             org-level-1
-                             org-level-2
-                             org-level-3
-                             org-level-4
-                             org-level-5
-                             org-level-6
-                             org-level-7
-                             org-level-8
-                             org-link
-                             org-hide
-                             org-block org-table
-                             org-block-begin-line
-                             org-indent
-                             org-block-end-line
-                             org-meta-line
-                             org-document-info-keyword
-                             org-special-keyword
-                             org-verbatim
-                             org-checkbox
-                             font-lock-comment-face
-                             org-date))
+  (let ((extra-fixed-pitch
+         '(org-code org-level-1 org-level-2 org-level-3 org-level-4 org-level-5
+                    org-level-6 org-level-7 org-level-8 org-link org-hide
+                    org-block org-table org-block-begin-line org-indent
+                    org-block-end-line org-meta-line org-document-info-keyword
+                    org-special-keyword org-verbatim org-checkbox
+                    font-lock-comment-face org-date))
         (extra-variable-pitch '(org-quote)))
     (if (bound-and-true-p fp/org-variable-pitch-mode)
         (progn
-          ;; variable pitch mode sets
           (variable-pitch-mode 1)
           (mapcar
            (lambda (face)
@@ -141,6 +125,8 @@ some faces fixed-with (for tables, source code, etc.)"
            extra-variable-pitch))
       (progn
         (variable-pitch-mode 0)))))
+
+(evil-leader/set-key-for-mode 'org-mode "mp" 'fp/org-variable-pitch-mode)
 
 ;; --- fontify bullet-points ---
 (font-lock-add-keywords
