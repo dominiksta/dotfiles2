@@ -8,17 +8,10 @@ iex ((New-Object System.Net.WebClient).DownloadString(
 
 # install packages
 cinst -y `
-  cmdermini `
-  autohotkey `
-  git `
-  altdrag `
-  mpv `
-  ag `
-  python3 `
-  nextcloud `
+  git ag python3 `
+  autohotkey altdrag `
+  xournal sumatrapdf.install `
   keepassxc `
-  xournal `
-  sumatrapdf.install `
   7zip.install
 
 [Environment]::SetEnvironmentVariable("HOME", $Env:Userprofile,
@@ -30,9 +23,9 @@ cinst -y `
 schtasks /create /tn AltDrag `
   /tr C:\Users\user\AppData\Roaming\AltDrag\AltDrag.exe `
   /sc ONLOGON /rl HIGHEST
-schtasks /create /tn AllTheHotkeys `
-  /tr %USERPROFILE%\git\dotfiles\ahk\AllTheHotKeys.ahk `
-  /sc ONLOGON /rl HIGHEST
+schtasks /create /tn ahk `
+  /tr %USERPROFILE%\git\dotfiles\windows\ahk\AllTheHotKeys.ahk `
+  /sc ONLOGON
 
 
 # ----------------------------------------------------------------------
@@ -40,9 +33,13 @@ schtasks /create /tn AllTheHotkeys `
 # ----------------------------------------------------------------------
 
 # --- emacs
-mkdir -Force $env:userprofile\.emacs.d
-cmd /c mklink /d %USERPROFILE%\.emacs.d\config %USERPROFILE%\git\dotfiles\emacs\config
-cmd /c mklink %USERPROFILE%\.emacs.d\init.el %USERPROFILE%\git\dotfiles\emacs\init.el
+mkdir -Force $env:userprofile\.emacs.d\straight\versions
+cmd /c mklink /d %USERPROFILE%\.emacs.d\config `
+  %USERPROFILE%\git\dotfiles\stow\emacs\.emacs.d\config
+cmd /c mklink %USERPROFILE%\.emacs.d\init.el `
+  %USERPROFILE%\git\dotfiles\stow\emacs\.emacs.d\init.el
+cmd /c mklink %USERPROFILE%\.emacs.d\straight\versions\default.el `
+  %USERPROFILE%\git\dotfiles\emacs\.emacs.d\straight\default.el
 
 # ----------------------------------------------------------------------
 # --- addtional packages ---
