@@ -1,8 +1,17 @@
-(require 'org)
 (require-and-log 'config-language-natural)
 (require-and-log 'config-programming-general)
 (require-and-log 'config-language-latex)
 (require-and-log 'config-org-agenda)
+
+(straight-use-package
+ '(org-plus-contrib
+   :repo "https://code.orgmode.org/bzg/org-mode.git"
+   :branch "maint"
+   :local-repo "org"
+   :files (:defaults "contrib/lisp/*.el")
+   :includes (org)))
+
+(require 'org)
 
 ;; --------------------------------------------------------------------------------
 ;; babel
@@ -203,7 +212,6 @@ some faces fixed-with (for tables, source code, etc.)"
 (with-eval-after-load "ox"
   ;; include the ability to ignore headlines while still including their body
   ;; with an :ignore: tag
-  (straight-use-package 'org-plus-contrib)
   (require 'ox-extra)
   (ox-extras-activate '(ignore-headlines))
 
