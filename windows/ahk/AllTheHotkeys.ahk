@@ -116,7 +116,7 @@ bringtoforegroundbytitle(title, except){
 !+e::bringtoforegroundbyclass("DClass", "C:\Program Files\Double Commander\doublecmd.exe")
 !+p::bringtoforegroundbytitle("Plex", "C:\Program Files\Plex\Plex\Plex.exe")
 !+k::bringtoforegroundbyexe("KeePassXC.exe", "C:\Program Files\KeePassXC\KeePassXC.exe")
-!+t::bringtoforegroundbyclass("PROCEXPL", "procexp")
+!+z::bringtoforegroundbyclass("PROCEXPL", "procexp")
 !Space::bringtoforegroundbyclass("Emacs", "runemacs.exe")
 !,::bringtoforegroundbyclass("CASCADIA_HOSTING_WINDOW_CLASS", "wt")
 ; !,::bringtoforegroundbytitle("Cmder", "cmder")
