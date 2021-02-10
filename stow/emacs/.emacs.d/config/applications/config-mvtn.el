@@ -1,6 +1,6 @@
 (require-and-log 'config-search)
 
-(straight-use-package '(el-patch :type git :host github :repo "f1rstperson/mvtn.el"))
+(straight-use-package '(mvtn :type git :host github :repo "f1rstperson/mvtn.el"))
 
 (with-eval-after-load "mvtn"
   (setq mvtn-note-directory "~/sync/documents/notes/mvtn"
