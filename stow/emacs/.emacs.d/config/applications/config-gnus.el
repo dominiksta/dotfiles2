@@ -182,43 +182,44 @@ that fails, it will return the current year. Useful to use for a
 (add-hook 'gnus-summary-prepared-hook (lambda () (end-of-buffer) (previous-line)))
 
 ;; --- viewing threads/referring articles ---
-(setq gnus-refer-thread-use-nnir t  ; search in all groups
-      gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references
-      )
-;; NOTE: I configure `gnus-refer-article-method' in `gnus-group-parameters' to
-;; be something like '(current (nnir "nnimap:<the_group>")).
+(defvar fp/gnus-refer-thread-search-dirs nil
+  "An alist of servers and groups to pass to
+`gnus-group-make-nnir-group'. Example:
+'((\"nnimap:private\" '(\"nnimap+private:INBOX\" \"nnimap+private:Sent\")))")
+
+(defun fp/gnus-refer-thread (&optional subject)
+  "Displays a full thread based on search. Will search for
+SUBJECT using nnir or for the subject of the article at point in
+a summary buffer when SUBJECT is nil. The searched groups are
+defined in `fp/gnus-refer-thread-search-dirs' depending on the
+server."
+  (interactive)
+  (when (not subject) (setq subject (gnus-summary-article-subject)))
+
+  (let ((group-spec (assoc (replace-regexp-in-string
+                            "\\+" ":" (car (split-string gnus-newsgroup-name ":")))
+                           fp/gnus-refer-thread-search-dirs))
+        (query-spec (if (string-match-p "\\(AW\\|Re\\|WG\\): " subject)
+                        (substring subject 4) subject))
+        (msgid (mail-header-id (gnus-summary-article-header)))
+        (gnus-show-threads t))
+    (print (list (list 'nnir-group-spec group-spec)
+                 (list 'nnir-query-spec (cons 'query query-spec))))
+    (gnus-group-make-nnir-group
+     nil
+     (list (list 'nnir-group-spec group-spec)
+           (list 'nnir-query-spec (cons 'query (format "\"%s\"" query-spec)))))
+    (gnus-summary-goto-article msgid)
+    (rename-buffer (format "*thread: %s*" query-spec))))
+
+;; Search in all groups - this does not seem to work for me - see
+;; `fp/gnus-refer-thread' for my workaround
+(setq gnus-refer-thread-use-nnir t)
 
 ;; --- scoring ---
 (defun fp/gnus-score-file (group)
   (concat "~/sync/documents/code/emacs/mail/" group ".SCORE"))
 (setq gnus-home-score-file 'fp/gnus-score-file)
-
-;; --- open feed2imap url ---
-(defun fp/gnus-open-feed2imap-url ()
-  "Open the URL of a feed2imap article from the summary buffer."
-  (interactive)
-  (save-selected-window
-    (save-excursion
-      (gnus-summary-goto-article (gnus-summary-article-number))
-      (gnus-summary-select-article-buffer)
-      (goto-char (point-max))
-      (search-backward-regexp "^<https://.+>$")
-      (forward-char)
-      (browse-url-at-point))))
-
-(defun fp/gnus-open-feed2imap-url-in-mpv ()
-  "Open the URL of a feed2imap article from the summary buffer."
-  (interactive)
-  (save-selected-window
-    (save-excursion
-      (gnus-summary-goto-article (gnus-summary-article-number))
-      (gnus-summary-select-article-buffer)
-      (goto-char (point-max))
-      (search-backward-regexp "^<https://.+>$")
-      (forward-char)
-      (let ((command (format "mpv %s" (thing-at-point-url-at-point))))
-        (message "starting %s" command)
-        (start-process-shell-command "" nil command)))))
 
 ;; --- other ---
 (setq gnus-auto-select-first nil)
@@ -265,7 +266,7 @@ that fails, it will return the current year. Useful to use for a
 (defun fp/message-pre-send-check-attachment ()
   "Check attachment before send mail."
   (when (and (fp/message-says-attachment-p)
-           (not (fp/message-has-attachment-p)))
+             (not (fp/message-has-attachment-p)))
     (unless
         (y-or-n-p "Attachment suggested, but not found. Send anyway?")
       (error "It seems that an attachment is needed, but none was found. Aborting sending."))))
@@ -366,8 +367,6 @@ that fails, it will return the current year. Useful to use for a
   "K" 'gnus-summary-prev-article
   (kbd "RET") 'gnus-summary-scroll-up
   "ga" 'gnus-summary-goto-article
-  "gx" 'fp/gnus-open-feed2imap-url
-  "gm" 'fp/gnus-open-feed2imap-url-in-mpv
   "zz" 'gnus-recenter
 
   "Se" 'gnus-score-edit-current-scores
@@ -399,6 +398,7 @@ that fails, it will return the current year. Useful to use for a
 
   ;; threads
   "tt" 'gnus-summary-toggle-threads
+  "ts" 'fp/gnus-refer-thread
   "tf" 'gnus-summary-refer-thread
   "tp" 'gnus-summary-refer-parent-article
 
@@ -455,6 +455,9 @@ that fails, it will return the current year. Useful to use for a
 
   "x" 'gnus-group-kill-group
   "p" 'gnus-group-yank-group
+  "m" 'gnus-group-mark-group
+  "u" 'gnus-group-unmark-group
+  "U" 'gnus-group-unmark-all-groups
 
   "r" 'gnus-group-get-new-news
   "R" (lambda () (interactive) (gnus-group-get-new-news '(4)))
