@@ -44,7 +44,7 @@
 (advice-add 'gnus :around 'fp/gnus-wm-advice)
 
 ;; ----------------------------------------------------------------------
-;; demon
+;; demon and desktop/mode-line notifications
 ;; ----------------------------------------------------------------------
 
 (gnus-demon-add-handler 'gnus-demon-scan-news 5 10)
@@ -55,10 +55,15 @@
       (lambda (body) (generic-notification-notify "You've Got Mail" body 10)))
 
 (straight-use-package 'gnus-notify) (require 'gnus-notify)
-(gnus-group-add-parameter "nnimap+prv:INBOX" '(modeline-notify t))
-(gnus-group-add-parameter "nnimap+prv:redirect.std.inbox" '(modeline-notify t))
-(gnus-group-add-parameter "nnimap+recom:INBOX" '(modeline-notify t))
-(gnus-group-add-parameter "nnimap+tricat:INBOX" '(modeline-notify t))
+
+(defvar fp/gnus-notify-groups nil
+  "A list of group names to watch using `gnus-notify'.")
+
+(add-hook 'gnus-started-hook 'fp/gnus-started-hook-add-mode-line-notify)
+(defun fp/gnus-started-hook-add-mode-line-notify ()
+  (dolist (group fp/gnus-notify-groups)
+    (gnus-group-add-parameter group '(modeline-notify t)))
+  (gnus-mst-show-groups-with-new-messages))
 
 (defun gnus-mst-notify-update-modeline ()
   "[Overwritten] Update the modeline to show groups containing
