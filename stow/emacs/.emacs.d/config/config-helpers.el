@@ -86,11 +86,11 @@
   (if (eq system-type 'windows-nt)
       (progn
         (setq temp-notification (w32-notification-notify :tip "test" :body body :title title))
-        (run-with-timer (* timeout 1000) nil (lambda () (w32-notification-close temp-notification))))
+        (run-with-timer timeout nil (lambda () (w32-notification-close temp-notification))))
     (notifications-notify :title title :body body :timeout (* timeout 1000)))
   ;; play a sound asynchronously
   (let ((sound-file (concat sync-directory "documents/code/emacs/random/notify.wav")))
-    (when (and (file-exists-p sound-file) (not no-sound))
+    (when (and (file-exists-p sound-file) (bound-and-true-p no-sound))
       (start-process-shell-command
        "" nil (concat "mpv " sync-directory "/emacs/random/notify.wav")))))
 
