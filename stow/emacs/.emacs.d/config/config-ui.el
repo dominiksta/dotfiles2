@@ -25,7 +25,7 @@
 
 (setq fp/theme-font-family "Dejavu Sans Mono"
       fp/theme-font-family-size "13"
-      fp/theme-font-family-variable-pitch "DejaVu Serif"
+      fp/theme-font-family-variable-pitch "DejaVu Serif 13"
       ;; these are used to set `fp/theme-font-family' in `fp/theme-switch'
       fp/theme-light-font-bold nil)
 
