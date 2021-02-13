@@ -1,6 +1,7 @@
 (require-and-log 'config-window-management)
 (require 'eyebrowse)
 (require 'gnus-group)
+(require 'gnus-demon)
 (require 'ol-gnus) ;; required for `org-store-link`
 
 ;; ----------------------------------------------------------------------
@@ -41,6 +42,36 @@
   (apply orig-fun args))
 
 (advice-add 'gnus :around 'fp/gnus-wm-advice)
+
+;; ----------------------------------------------------------------------
+;; demon
+;; ----------------------------------------------------------------------
+
+(gnus-demon-add-handler 'gnus-demon-scan-news 5 10)
+
+(straight-use-package 'gnus-desktop-notify)
+(gnus-desktop-notify-mode 1)
+(setq gnus-desktop-notify-function
+      (lambda (body) (generic-notification-notify "You've Got Mail" body 10)))
+
+(straight-use-package 'gnus-notify) (require 'gnus-notify)
+(gnus-group-add-parameter "nnimap+prv:INBOX" '(modeline-notify t))
+(gnus-group-add-parameter "nnimap+prv:redirect.std.inbox" '(modeline-notify t))
+(gnus-group-add-parameter "nnimap+recom:INBOX" '(modeline-notify t))
+(gnus-group-add-parameter "nnimap+tricat:INBOX" '(modeline-notify t))
+
+(defun gnus-mst-notify-update-modeline ()
+  "[Overwritten] Update the modeline to show groups containing
+new messages"
+  (if gnus-mst-notify-groups
+      (setq gnus-mst-display-new-messages
+            (format " [m: %s]"
+                    (number-to-string
+                     (apply '+ (mapcar (lambda (group) (gnus-group-unread group))
+                                       gnus-mst-notify-groups)))))
+    (setq gnus-mst-display-new-messages "")))
+
+
 
 ;; ----------------------------------------------------------------------
 ;; caching
