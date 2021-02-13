@@ -1,11 +1,15 @@
 ;; --- magit ---
 (require-and-log 'config-editor)
+(require-and-log 'config-programming-general)
 
 (straight-use-package 'magit)
 (straight-use-package 'evil-magit)
 
 (with-eval-after-load "magit"
   (require 'evil-magit)
+
+  (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 
   (add-hook 'magit-process-find-password-functions
             'magit-process-password-auth-source)
