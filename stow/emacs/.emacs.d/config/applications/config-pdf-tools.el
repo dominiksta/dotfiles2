@@ -1,6 +1,10 @@
 (straight-use-package 'pdf-tools)
 (require 'pdf-tools)
 
+(when (eq system-type 'windows-nt)
+  (setq pdf-info-epdfinfo-program
+        "~/sync/documents/code/emacs/bin/pdf-tools/epdfinfo.exe"))
+
 (config-add-external-dependency 'epdfinfo 'config-pdf-tools "view and annotate pdfs"
                                 (lambda () (file-exists-p pdf-info-epdfinfo-program))
                                 "apt-get install -y elpa-pdf-tools-server"

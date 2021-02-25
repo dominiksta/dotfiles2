@@ -438,6 +438,9 @@ server."
   "tf" 'gnus-summary-refer-thread
   "tp" 'gnus-summary-refer-parent-article
 
+  ;; filtering/limiting
+  (kbd "M-s") 'gnus-summary-limit-map
+
   ;; sorting
   "sa" 'gnus-summary-sort-by-author
   "sc" 'gnus-summary-sort-by-chars
