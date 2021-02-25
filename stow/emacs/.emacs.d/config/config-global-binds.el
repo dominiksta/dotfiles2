@@ -255,6 +255,7 @@
   "pR" 'projectile-run-project
   "pT" 'projectile-test-project
   "pC" 'projectile-compile-project
+  "pa" 'fp/project-actions-run
   "pr" 'recompile
   "pc" 'compile
   "pI" 'projectile-discover-projects-in-directory

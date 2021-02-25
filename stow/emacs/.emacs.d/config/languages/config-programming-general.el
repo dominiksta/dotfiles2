@@ -51,6 +51,38 @@
 (editorconfig-mode 1)
 
 ;; --------------------------------------------------------------------------------
+;; project actions
+;; --------------------------------------------------------------------------------
+
+(defvar fp/project-actions
+  '(("compile" compile)
+    ("make" (lambda () (interactive) (compile "make"))))
+  "An alist of commands/actions to execute and their names. See
+`fp/project-actions-run'")
+
+(defvar fp/project-actions-default-directory nil
+  "Set this in .dir-locals.el for `fp/project-actions-run' to set
+its `default-directory'.")
+
+;; Example .dir-locals.el:
+;; ((nil . ((fp/project-actions-default-directory . "~/git/dotfiles")
+;;          (fp/project-actions . (("mycompile" (lambda () (interactive)
+;;                                                (compile "make"))))))))
+
+(defun fp/project-actions-run ()
+  "Prompt for an action defined in `fp/project-actions' and
+execute it, setting `default-directory' to
+`fp/project-actions-default-directory' when non-nil or
+`projectile-project-root'."
+  (interactive)
+  (let ((default-directory (if fp/project-actions-default-directory
+                               fp/project-actions-default-directory
+                             (projectile-project-root)))
+        (selection (completing-read "Run action: "
+                                    (mapcar 'car fp/project-actions))))
+    (call-interactively (cadr (assoc selection fp/project-actions)))))
+
+;; --------------------------------------------------------------------------------
 ;; company
 ;; --------------------------------------------------------------------------------
 (straight-use-package 'company) (require 'company)
