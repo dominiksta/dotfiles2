@@ -345,7 +345,7 @@ some faces fixed-with (for tables, source code, etc.)"
   (setq org-export-default-language "de"
         org-html-validation-link nil)
 
-  (setq org-style-css "~/git/dotfiles/other/org-style.css")
+  (setq org-style-css "~/Source/git/dotfiles/other/org-style.css")
 
   (defun my-org-inline-css-hook (exporter)
     "Insert custom inline css"

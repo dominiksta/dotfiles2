@@ -65,7 +65,7 @@
 its `default-directory'.")
 
 ;; Example .dir-locals.el:
-;; ((nil . ((fp/project-actions-default-directory . "~/git/dotfiles")
+;; ((nil . ((fp/project-actions-default-directory . "~/Source/git/dotfiles")
 ;;          (fp/project-actions . (("mycompile" (lambda () (interactive)
 ;;                                                (compile "make"))))))))
 

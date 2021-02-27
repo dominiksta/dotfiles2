@@ -127,7 +127,7 @@
     <!-- turn off screen -->
     <keybind key="W-C-Down">
       <action name="Execute">
-        <command>~/git/dotfiles/scripts/sys/blackscreen.sh</command>
+        <command>~/Source/git/dotfiles/scripts/sys/blackscreen.sh</command>
       </action>
     </keybind>
     <!-- reload config -->
@@ -139,7 +139,7 @@
     </keybind>
     <keybind key="A-S-k">
       <action name="Execute">
-        <command>~/git/dotfiles/scripts/keys/caps.sh</command>
+        <command>~/Source/git/dotfiles/scripts/keys/caps.sh</command>
       </action>
     </keybind>
     <!-- virtual desktops -->
@@ -226,12 +226,12 @@
     </keybind>
     <keybind key="W-w">
       <action name="Execute">
-        <command> ~/git/dotfiles/other/intuos.sh first </command>
+        <command> ~/Source/git/dotfiles/other/intuos.sh first </command>
       </action>
     </keybind>
     <keybind key="W-S-w">
       <action name="Execute">
-        <command> ~/git/dotfiles/other/intuos.sh second </command>
+        <command> ~/Source/git/dotfiles/other/intuos.sh second </command>
       </action>
     </keybind>
     <keybind key="W-S-T">

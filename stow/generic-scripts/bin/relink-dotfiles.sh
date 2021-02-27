@@ -8,7 +8,7 @@ DEBUG=false
 # copy
 # ----------------------------------------------------------------------
 
-cd ~/git/dotfiles/stow-copy/
+cd ~/Source/git/dotfiles/stow-copy/
 
 for group in */ ; do
     cd $group
@@ -34,7 +34,7 @@ mkdir -p ~/.config/autostart/
 mkdir -p ~/.emacs.d/
 mkdir -p ~/bin/
 
-cd ~/git/dotfiles/stow
+cd ~/Source/git/dotfiles/stow
 stow -v --target=$HOME --restow *
 
 popd > /dev/null
