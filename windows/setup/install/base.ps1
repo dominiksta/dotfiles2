@@ -70,6 +70,10 @@ cmd /c mklink %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\Lo
 cmd /c mklink %USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1 `
   %USERPROFILE%\Source\git\dotfiles\windows\powershell\Microsoft.PowerShell_profile.ps1
 
+# --- doublecmd
+cmd /c mklink /d %APPDATA%\doublecmd `
+  %USERPROFILE%\Source\git\dotfiles\windows\doublecmd
+
 # ----------------------------------------------------------------------
 # --- network drives ---
 # ----------------------------------------------------------------------
