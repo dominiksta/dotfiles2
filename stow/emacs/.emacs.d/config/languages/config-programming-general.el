@@ -200,7 +200,10 @@ execute it, setting `default-directory' to
 (with-eval-after-load "lsp-mode"
   ;; --- bindings ---
   (define-key lsp-mode-map (kbd "M-R") 'lsp-rename)
-  (evil-define-key 'normal lsp-mode-map "gd" 'lsp-find-definition)
+  (evil-define-key 'normal lsp-mode-map
+    "gd" 'lsp-find-definition
+    "gh" 'lsp-ui-doc-glance
+    "gf" 'lsp-find-references)
 
   ;; --- Fight against very insane defaults ---
   (remove-hook 'lsp-eldoc-hook 'lsp-document-highlight)
@@ -218,6 +221,18 @@ execute it, setting `default-directory' to
 (setq lsp-ui-doc-enable nil
       lsp-ui-peek-enable nil
       lsp-ui-sideline-enable nil)
+
+
+;; ----------------------------------------------------------------------
+;; xref (for lsp, tide, maybe others)
+;; ----------------------------------------------------------------------
+(with-eval-after-load "xref"
+  (evil-define-key 'normal xref--xref-buffer-mode-map
+    "q" 'quit-window
+    "r" 'xref-revert-buffer
+    (kbd "RET") 'xref-goto-xref
+    "a" 'xref-show-location-at-point
+    (kbd "C-c C-f") 'next-error-follow-minor-mode))
 
 
 ;; --------------------------------------------------------------------------------
