@@ -182,8 +182,7 @@ execute it, setting `default-directory' to
   (setq projectile-dynamic-mode-line nil
         projectile-mode-line-prefix " proj"
         projectile-mode-line " proj"
-        projectile-indexing-method (if (eq system-type 'windows-nt)
-                                       'native 'alien)))
+        projectile-indexing-method 'hybrid))
 
 ;; --------------------------------------------------------------------------------
 ;; snippets
