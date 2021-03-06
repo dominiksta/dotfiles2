@@ -106,18 +106,16 @@
 
 (global-set-key (kbd "C-s") 'helm-swoop-no-prefix)
 
+(autoload 'fp/rg-project-everything "rg")
 (evil-leader/set-key
   "ss"  'helm-swoop
-  "sr"  'ag
-  "sR"  '(lambda () (interactive) (helm-do-ag default-directory))
-  "sP"  'helm-projectile-ag
-  "sp"  'projectile-ag
+  "sr"  'rg
+  "sh"  'fp/helm-projectile-rg
+  "sp"  'fp/rg-project-everything
+  "sP"  'rg-project
   "sgr" 'rgrep
   "sgp" 'projectile-grep
   "sgP" 'helm-projectile-grep
-  ;; emacs lisp fallbacks
-  "sep" 'projectile-multi-occur
-  "seP" 'helm-multi-swoop-projectile
   ;; pgdfgrep
   "sd" 'pdfgrep
   "sD" 'fp/pdfgrep-todos)
