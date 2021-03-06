@@ -5,6 +5,9 @@
 
 // To view the default settings, hold "alt" while clicking on the "Settings" button.
 // For documentation on these settings, see: https://aka.ms/terminal-documentation
+
+// Put into $env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\
+
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
 
@@ -28,21 +31,21 @@
         "defaults":
         {
             "cursorShape": "filledBox" ,
-            "fontFace": "DejaVu Sans Mono 11"
+            "fontFace": "DejaVu Sans Mono",
+            "fontSize": 12
         },
         "list":
         [
             {
+                "guid": "{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}",
+                "hidden": false,
+                "name": "Ubuntu-18.04",
+                "source": "Windows.Terminal.Wsl"
+            },
+            {
                 "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
                 "hidden": false,
                 "name": "Ubuntu-20.04",
-                "source": "Windows.Terminal.Wsl",
-                "startingDirectory": "//wsl$/Ubuntu-18.04/home/damonchan"
-            },
-            {
-                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-                "hidden": false,
-                "name": "Ubuntu",
                 "source": "Windows.Terminal.Wsl"
             },
             {
@@ -64,12 +67,6 @@
                 "hidden": false,
                 "name": "Azure Cloud Shell",
                 "source": "Windows.Terminal.Azure"
-            },
-            {
-                "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
-                "hidden": false,
-                "name": "Debian",
-                "source": "Windows.Terminal.Wsl"
             }
         ]
     },
@@ -83,19 +80,35 @@
     // To learn more about actions and keybindings, visit https://aka.ms/terminal-keybindings
     "actions":
     [
-        // Copy and paste are bound to Ctrl+Shift+C and Ctrl+Shift+V in your defaults.json.
-        // These two lines additionally bind them to Ctrl+C and Ctrl+V.
-        // To learn more about selection, visit https://aka.ms/terminal-selection
+        // Copy/Paste, see https://aka.ms/terminal-selection
         { "command": {"action": "copy", "singleLine": false }, "keys": "ctrl+c" },
         { "command": "paste", "keys": "ctrl+v" },
 
-        // Press Ctrl+Shift+F to open the search box
+        // Search
         { "command": "find", "keys": "ctrl+shift+f" },
 
-        // Press Alt+Shift+D to open a new pane.
-        // - "split": "auto" makes this pane open in the direction that provides the most surface area.
-        // - "splitMode": "duplicate" makes the new pane use the focused pane's profile.
-        // To learn more about panes, visit https://aka.ms/terminal-panes
-        { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" }
+        // Tabs
+        { "command": "newTab", "keys": "alt+shift+t" },
+        { "command": "nextTab", "keys": "alt+shift+l" },
+        { "command": "prevTab", "keys": "alt+shift+h" },
+
+        // Panes, see visit https://aka.ms/terminal-panes
+        { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" },
+        { "command": { "action": "splitPane", "split": "vertical", "splitMode": "duplicate" }, "keys": "alt+v" },
+        { "command": { "action": "splitPane", "split": "horizontal", "splitMode": "duplicate" }, "keys": "alt+c" },
+        { "command": { "action": "moveFocus", "direction": "left" }, "keys": "alt+z" },
+        { "command": { "action": "moveFocus", "direction": "down" }, "keys": "alt+u" },
+        { "command": { "action": "moveFocus", "direction": "up" }, "keys": "alt+i" },
+        { "command": { "action": "moveFocus", "direction": "right" }, "keys": "alt+o" },
+        { "command": { "action": "resizePane", "direction": "down" }, "keys": "alt+shift+u" },
+        { "command": { "action": "resizePane", "direction": "left" }, "keys": "alt+shift+z" },
+        { "command": { "action": "resizePane", "direction": "right" }, "keys": "alt+shift+o" },
+        { "command": { "action": "resizePane", "direction": "up" }, "keys": "alt+shift+i" },
+        { "command": "togglePaneZoom", "keys": "alt+m" },
+
+        // Font size
+        { "command": { "action": "adjustFontSize", "delta": 2 }, "keys": "ctrl+plus" },
+        { "command": { "action": "adjustFontSize", "delta": -2 }, "keys": "ctrl+-" },
+        { "command": "resetFontSize", "keys": "ctrl+0" }
     ]
 }
