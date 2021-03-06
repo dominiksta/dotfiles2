@@ -30,8 +30,8 @@
   (interactive "P")
   "If running on windows, then with a prefix arg, start terminal as admin"
   (if (eq system-type 'windows-nt)
-      (if arg (start-process-shell-command "external-terminal" nil "nircmd elevate cmd")
-        (start-process-shell-command "external-terminal" nil "start cmd"))
+      (if arg (start-process-shell-command "external-terminal" nil "nircmd elevate wt -d .")
+        (start-process-shell-command "external-terminal" nil "wt -d ."))
     (start-process-shell-command "external-terminal" nil "xterm-tmux-new-window.sh")))
 
 ;; Note: send passwords with M-x `send-invisible'
