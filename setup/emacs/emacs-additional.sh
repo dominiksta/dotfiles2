@@ -13,7 +13,7 @@ apt-get install -y elpa-pdf-tools-server
 apt-get install -y hunspell hunspell-de-de hunspell-en-us
 
 # searching
-apt-get install -y silversearcher-ag
+apt-get install -y ripgrep
 
 # latex in org-mode
 apt-get install -y texlive-full dvipng

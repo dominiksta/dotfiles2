@@ -5,7 +5,7 @@
 (with-eval-after-load "mvtn"
   (setq mvtn-note-directory "~/sync/documents/notes/mvtn"
         mvtn-default-file-extension "org"
-        mvtn-search-function 'mvtn-search-full-text-ag)
+        mvtn-search-function 'mvtn-search-full-text-rg)
 
   (defun fp/mvtn-enable-olivetti ()
     (condition-case nil

@@ -70,34 +70,62 @@ recursively from the current directory using `pdfgrep'."
   (pdfgrep-mode))
 
 ;; --------------------------------------------------------------------------------
-;; silver searcher
+;; ripgrep
 ;; --------------------------------------------------------------------------------
-(straight-use-package 'helm-ag)
-(straight-use-package 'ag)
-(straight-use-package 'wgrep-ag)
-(with-eval-after-load "ag"
-  (evil-define-key 'normal ag-mode-map
+(straight-use-package 'rg)
+(straight-use-package 'wgrep)
+(with-eval-after-load "rg"
+  (setq rg-executable "rg"
+        helm-grep-ag-command (concat "rg"
+                                     " --color=never"
+                                     " --smart-case"
+                                     " --no-heading"
+                                     " --line-number %s %s %s")
+        helm-grep-file-path-style 'relative)
+
+  (defun fp/helm-projectile-rg (arg)
+    "Run `helm-do-grep-ag' in project root according to
+`rg-project-root'."
+    (interactive "P")
+    (let ((default-directory (rg-project-root (buffer-file-name
+                                               (current-buffer)))))
+      (helm-do-grep-ag arg)))
+
+  (defun fp/rg-search-full-command (default-directory command)
+    (let ((default-directory default-directory))
+      (compilation-start command 'rg-mode #'rg-buffer-name)))
+
+  (defun fp/rg-search-multi-directory (base-dir dirs search)
+    (fp/rg-search-full-command base-dir (format "rg --color=always --colors=match:fg:red \
+--colors=path:fg:magenta --colors=line:fg:green --colors=column:none -n \
+--column --heading --no-config -e \"%s\" %s" search (mapconcat 'shell-quote-argument
+                                                               dirs " "))))
+
+  (rg-define-search fp/rg-project-everything
+    :files "everything"
+    :dir project)
+
+  (add-hook 'rg-mode-hook 'wgrep-rg-setup)
+  (evil-define-key 'normal rg-mode-map
     "q" 'quit-window
-    "e" 'wgrep-change-to-wgrep-mode
-    "k" 'evil-previous-line)
-  (setq ag-highlight-search t)
-  (evil-set-initial-state 'ag-mode 'normal))
+    "r" 'recompile
+    "gj" 'rg-next-file
+    "gk" 'rg-prev-file
+    "a" 'compilation-display-error
+    "e" 'wgrep-change-to-wgrep-mode)
+  (evil-set-initial-state 'rg-mode 'normal))
 
 ;; --------------------------------------------------------------------------------
 ;; dependencies
 ;; --------------------------------------------------------------------------------
 (evil-leader/set-key "si" 'fp/search-ddg)
 
-(config-add-external-dependency 'ag 'config-search "searching"
-                                (lambda () (executable-find "ag"))
-                                "apt install silversearcher-ag" "cinst -y ag")
+(config-add-external-dependency 'rg 'config-search "searching"
+                                (lambda () (executable-find "rg"))
+                                "apt install ripgrep" "cinst -y ripgrep")
 
 (config-add-external-dependency 'grep 'config-search "searching"
                                 (lambda () (executable-find "grep"))
                                 "None" "None")
-
-(setq config-ag-available (config-external-check-list '(ag))
-      config-grep-available (config-external-check-list '(grep)))
-
 
 (provide 'config-search)

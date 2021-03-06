@@ -22,17 +22,9 @@
 (straight-use-package 'hl-todo)
 (add-hook 'prog-mode-hook 'hl-todo-mode)
 
-(defun fp/project-search (regexp)
-  (let ((default-directory (projectile-project-root)))
-    (cond
-     (config-ag-available (ag-project-regexp regexp))
-     (config-grep-available (grep (concat "grep --exclude-dir=.git -nHIrE \""
-                                          regexp "\" ." )))
-     (t (message "No program for searching available")))))
-
-(defun fp/project-todo-search-todo () (interactive) (fp/project-search "TODO|FIXME|NEXT"))
-(defun fp/project-todo-search-hack () (interactive) (fp/project-search "HACK"))
-(defun fp/project-todo-search-all  () (interactive) (fp/project-search "TODO|FIXME|NEXT|DONE|HACK"))
+(defun fp/project-todo-search-todo () (interactive) (rg-project "TODO|FIXME|NEXT" "everything"))
+(defun fp/project-todo-search-hack () (interactive) (rg-project "HACK" "everything"))
+(defun fp/project-todo-search-all  () (interactive) (rg-project "TODO|FIXME|NEXT|DONE|HACK" "everything"))
 
 (evil-leader/set-key
   "stt" 'fp/project-todo-search-todo
