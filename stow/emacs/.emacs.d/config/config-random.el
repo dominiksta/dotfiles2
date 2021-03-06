@@ -1,4 +1,5 @@
-(setq vc-follow-symlinks t)
+(setq find-file-visit-truename nil
+      vc-follow-symlinks nil)
 
 ;; --- help mode ---
 (evil-set-initial-state 'help-mode 'normal)
