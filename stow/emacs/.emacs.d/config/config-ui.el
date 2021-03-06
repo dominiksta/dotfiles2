@@ -228,6 +228,26 @@
             #'create-image-with-background-color)
 
 ;; --------------------------------------------------------------------------------
+;; emoji
+;; --------------------------------------------------------------------------------
+
+(set-fontset-font t 'symbol "Segoe UI Emoji") ;; Installed by default on windows
+(set-fontset-font t 'symbol "Noto Color Emoji" nil 'append)
+(set-fontset-font t 'symbol "Symbola" nil 'append)
+
+(straight-use-package 'emojify)
+(setq emojify-display-style 'unicode)
+;; This would add another ~200ms to my init. As a result, I'm leaving it off for
+;; now and if I /really/ want github style emojis, I can always just manually
+;; enable it.
+;; (global-emojify-mode)
+
+;; Test:
+;; - github style: :wink::rocket::shrug:
+;; - unicode: 😉🚀🤷
+;; - ascii: ;) :D :o :*
+
+;; --------------------------------------------------------------------------------
 ;; other
 ;; --------------------------------------------------------------------------------
 
