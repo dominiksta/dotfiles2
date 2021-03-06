@@ -1,4 +1,16 @@
 # ----------------------------------------------------------------------
+# --- helpers ---
+# ----------------------------------------------------------------------
+
+Function Push-Path {
+    param ( [string] $Add, [string] $Target )
+    [Environment]::SetEnvironmentVariable(
+        'Path', [Environment]::GetEnvironmentVariable('Path', $Target) + $Add + ';',
+        $target
+    )
+}
+
+# ----------------------------------------------------------------------
 # --- packages ---
 # ----------------------------------------------------------------------
 # download chocolatey
@@ -8,18 +20,22 @@ iex ((New-Object System.Net.WebClient).DownloadString(
 
 cinst -y `
   waterfox chromium `
-  git emacs dejavufonts ag ripgrep python3 `
-  autohotkey nircmd altdrag `
-  xournal sumatrapdf.install `
-  keepassxc gpg4win `
-  7zip.install procexp zoomit irfanview vlc notepadplusplus audacity filezilla `
-  veracrypt colora `
-  thunderbird birdtray `
+  emacs git dejavufonts ripgrep python3 `
   doublecmd microsoft-windows-terminal `
+  autohotkey altdrag `
+  procexp nircmd shmnview shellmenunew zoomit colora `
+  keepassxc gpg4win veracrypt `
+  xournal sumatrapdf.install `
+  thunderbird birdtray `
+  7zip.install irfanview vlc notepadplusplus audacity filezilla `
   synctrayzor plex
 
-[Environment]::SetEnvironmentVariable('HOME', $Env:Userprofile,
-                                      [EnvironmentVariableTarget]::Machine)
+Push-Path -Add "$env:LocalAppData\SumatraPDF" -Target 'Machine'
+
+# Set 'HOME' for Emacs
+[Environment]::SetEnvironmentVariable(
+    'HOME', $env:Userprofile, [EnvironmentVariableTarget]::Machine
+)
 
 RefreshEnv.cmd
 
@@ -37,16 +53,19 @@ git clone https://github.com/f1rstperson/dotfiles2 dotfiles
 # ----------------------------------------------------------------------
 # --- tasks/services ---
 # ----------------------------------------------------------------------
-schtasks /create /tn AltDrag `
-  /tr %USERPROFILE%\AppData\Roaming\AltDrag\AltDrag.exe `
-  /sc ONLOGON /rl HIGHEST
-schtasks /create /tn ahk `
-  /tr %USERPROFILE%\Source\git\dotfiles\windows\ahk\AllTheHotKeys.ahk `
-  /sc ONLOGON
-schtasks /create /tn birdtray `
-  /tr %ProgramFiles%\Birdtray\birdtray.exe `
-  /sc ONLOGON
+$onlogon = New-ScheduledTaskTrigger -AtLogon
+$realtime = New-ScheduledTaskSettingsSet -Priority 0
 
+$run_ahk = New-ScheduledTaskAction -Execute `
+  "%USERPROFILE%\Source\git\dotfiles\windows\ahk\AllTheHotKeys.ahk"
+$run_altdrag = New-ScheduledTaskAction -Execute `
+  "%USERPROFILE%\AppData\Roaming\AltDrag\AltDrag.exe"
+$run_birdtray = New-ScheduledTaskAction -Execute `
+  "%ProgramFiles%\Birdtray\birdtray.exe"
+
+Register-ScheduledTask -TaskName "ahk" -Action $run_ahk -Settings $realtime -Trigger $onlogon 
+Register-ScheduledTask -TaskName "altdrag" -Trigger $onlogon -Action $run_altdrag
+Register-ScheduledTask -TaskName "birdtray" -Trigger $onlogon -Action $run_birdtray
 
 # ----------------------------------------------------------------------
 # --- symlinks ---
@@ -60,12 +79,12 @@ cmd /c mklink %USERPROFILE%\.emacs.d\init.el `
   %USERPROFILE%\Source\git\dotfiles\stow\emacs\.emacs.d\init.el
 cmd /c mklink %USERPROFILE%\.emacs.d\straight\versions\default.el `
   %USERPROFILE%\Source\git\dotfiles\emacs\.emacs.d\straight\default.el
-  
+
 # --- windows terminal
 rm $env:localappdata\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
 cmd /c mklink %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json `
   %USERPROFILE%\Source\git\dotfiles\windows\windows-terminal\settings.json
-  
+
 # --- powershell
 cmd /c mklink %USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1 `
   %USERPROFILE%\Source\git\dotfiles\windows\powershell\Microsoft.PowerShell_profile.ps1
@@ -75,17 +94,50 @@ cmd /c mklink /d %APPDATA%\doublecmd `
   %USERPROFILE%\Source\git\dotfiles\windows\doublecmd
 
 # ----------------------------------------------------------------------
+# --- file associations ---
+# ----------------------------------------------------------------------
+cmd /c ftype emacsclient=C:\ProgramData\chocolatey\bin\emacsclientw.exe "%1"
+
+cmd /c assoc .bat=emacsclient
+cmd /c assoc .ps1=emacsclient
+cmd /c assoc .sql=emacsclient
+cmd /c assoc .c=emacsclient
+cmd /c assoc .h=emacsclient
+cmd /c assoc .cpp=emacsclient
+cmd /c assoc .hpp=emacsclient
+cmd /c assoc .txt=emacsclient
+cmd /c assoc .js=emacsclient
+cmd /c assoc .ts=emacsclient
+cmd /c assoc .json=emacsclient
+cmd /c assoc .py=emacsclient
+cmd /c assoc .md=emacsclient
+cmd /c assoc .java=emacsclient
+
+# ----------------------------------------------------------------------
+# --- registry tweaks ---
+# ----------------------------------------------------------------------
+reg import ..\networkdrivetimeout.reg
+reg import ..\webdavfilesizelimit.reg
+reg import ..\stop-cursor-blink.reg
+reg import ..\no-alt-shift-for-language-change.reg
+reg import ..\emacs-context-menu.reg
+reg import ..\doublecmd-as-default.reg
+reg import ..\keepasssxc-waterfox.reg
+
+# ----------------------------------------------------------------------
 # --- network drives ---
 # ----------------------------------------------------------------------
 
 net use Z: \\nasenbaer\public /persistent:yes
 net use N: \\icyou.icu@SSL\DavWWWRoot\remote.php\dav\files\dominik.stahmer@posteo.de\ /persistent:yes
+start Z:\dominik # Initializes the drive
+Start-Sleep 5
 
 # ----------------------------------------------------------------------
 # --- gpg ---
 # ----------------------------------------------------------------------
 
-gpg --import N:\external\documents\00-critical\public-yubi.txt
+gpg --import Z:\dominik\documents\00-critical\public-yubi.txt
 Write-Output "reader-port Yubico Yubi" > $env:AppData\gnupg\scdaemon.conf
 gpg --edit-key dominik.stahmer@posteo.de trust # ultimately
 gpg --card-status

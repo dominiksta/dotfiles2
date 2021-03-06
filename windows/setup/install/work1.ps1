@@ -18,3 +18,4 @@ cinst -y microsoft-teams office365proplus
 
 net use H: \\ares\home /persistent:yes
 net use B: \\ares\Filesharing-Baar /persistent:yes
+net use K: \\wotan\filesharing-kassel /persistent:yes

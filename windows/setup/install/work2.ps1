@@ -17,8 +17,12 @@ cinst -y `
   visualstudio2019-workload-managedgame visualstudio2019-workload-manageddesktop `
   visualstudio2019-workload-nativedesktop
 
+choco install -y dependencywalker # CLI: depends.exe, GUI: Start-Menü
+choco install -y dependencies # CLI: Dependencies.exe, GUI: DependenciesGui.exe
 
-cinst -y tortoisesvn
+cinst -y llvm # Completion in Emacs through clangd
+
+cinst -y tortoisesvn sqlitebrowser sqlite.shell
 
 # ----------------------------------------------------------------------
 # --- other ---

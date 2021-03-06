@@ -1,0 +1,7 @@
+Windows Registry Editor Version 5.00
+
+; disable alt+shift and others for input language change
+[HKEY_CURRENT_USER\Keyboard Layout\Toggle]
+"Hotkey"="3"
+"Language Hotkey"="3"
+"Layout Hotkey"="3"
