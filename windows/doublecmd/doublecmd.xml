@@ -143,7 +143,7 @@
     <DateTimeFormat>dd/MM/yyyy hh:nn:ss</DateTimeFormat>
     <CutTextToColumnWidth>True</CutTextToColumnWidth>
     <ExtendCellWidth>False</ExtendCellWidth>
-    <ShowSystemFiles>False</ShowSystemFiles>
+    <ShowSystemFiles>True</ShowSystemFiles>
     <ListFilesInThread>True</ListFilesInThread>
     <LoadIconsSeparately>True</LoadIconsSeparately>
     <DelayLoadingTabs>True</DelayLoadingTabs>
@@ -409,126 +409,7 @@
               <Entry Active="True">
                 <FileSource Type="FileSystem"/>
                 <Paths>
-                  <Path Filename="..">C:\Users\Public\Desktop\</Path>
-                  <Path Filename="Desktop">C:\Users\Public\</Path>
-                  <Path Filename="Public">C:\Users\</Path>
-                  <Path Filename="Users">C:\</Path>
-                  <Path Filename="dominik">C:\Users\</Path>
-                  <Path Filename="Recycle Bin.lnk">C:\Users\dominik\</Path>
-                  <Path Filename="dominik">C:\Users\</Path>
-                  <Path Filename="Windows">C:\</Path>
-                  <Path Filename="WindowsShell.Manifest">C:\Windows\</Path>
-                  <Path Filename="$SysReset">C:\</Path>
-                  <Path Filename="CloudImage">C:\$SysReset\</Path>
-                  <Path Filename="..">C:\$SysReset\CloudImage\</Path>
-                  <Path Filename="Logs">C:\$SysReset\</Path>
-                  <Path Filename="">C:\$SysReset\Logs\</Path>
-                  <Path Filename="..">C:\ProgramData\Microsoft\Windows\Start Menu\Programs\7-Zip\</Path>
-                  <Path Filename="7-Zip">C:\ProgramData\Microsoft\Windows\Start Menu\Programs\</Path>
-                  <Path Filename="Programs">C:\ProgramData\Microsoft\Windows\Start Menu\</Path>
-                  <Path Filename="Start Menu">C:\ProgramData\Microsoft\Windows\</Path>
-                  <Path Filename="Windows">C:\ProgramData\Microsoft\</Path>
-                  <Path Filename="Microsoft">C:\ProgramData\</Path>
-                  <Path Filename="Program Files">C:\</Path>
-                  <Path Filename="Waterfox">C:\Program Files\</Path>
-                  <Path Filename="uninstall">C:\Program Files\Waterfox\</Path>
-                  <Path Filename="helper.exe">C:\Program Files\Waterfox\uninstall\</Path>
-                  <Path Filename="uninstall">C:\Program Files\Waterfox\</Path>
-                  <Path Filename="Windows Defender">C:\Program Files\</Path>
-                  <Path Filename="Word.lnk">C:\ProgramData\Microsoft\Windows\Start Menu\Programs\</Path>
-                  <Path Filename="..">z:\dominik\media\</Path>
-                  <Path Filename="documents">z:\dominik\</Path>
-                  <Path Filename="notes">z:\dominik\documents\</Path>
-                  <Path Filename="mvtn">z:\dominik\documents\notes\</Path>
-                  <Path Filename="static">z:\dominik\documents\notes\mvtn\</Path>
-                  <Path Filename="recom">z:\dominik\documents\notes\mvtn\static\</Path>
-                  <Path Filename="..">z:\dominik\documents\notes\mvtn\static\recom\</Path>
-                  <Path Filename="recom">z:\dominik\documents\notes\mvtn\static\</Path>
-                  <Path Filename="static">z:\dominik\documents\notes\mvtn\</Path>
-                  <Path Filename="mvtn">z:\dominik\documents\notes\</Path>
-                  <Path Filename="notes">z:\dominik\documents\</Path>
-                  <Path Filename="mvtn">z:\dominik\documents\notes\</Path>
-                  <Path Filename="static">z:\dominik\documents\notes\mvtn\</Path>
-                  <Path Filename="recom">z:\dominik\documents\notes\mvtn\static\</Path>
-                  <Path Filename="ENP-Online-Screendesign_Konzept.pdf">z:\dominik\documents\notes\mvtn\static\recom\</Path>
-                  <Path Filename="recom">z:\dominik\documents\notes\mvtn\static\</Path>
-                  <Path Filename="static">z:\dominik\documents\notes\mvtn\</Path>
-                  <Path Filename="org-todo">z:\dominik\documents\notes\</Path>
-                  <Path Filename="recom.org">z:\dominik\documents\notes\org-todo\</Path>
-                  <Path Filename="mvtn">z:\dominik\documents\notes\</Path>
-                  <Path Filename="static">z:\dominik\documents\notes\mvtn\</Path>
-                  <Path Filename="recom">z:\dominik\documents\notes\mvtn\static\</Path>
-                  <Path Filename="ENP-Online-Screendesign_Konzept.pdf">z:\dominik\documents\notes\mvtn\static\recom\</Path>
-                </Paths>
-              </Entry>
-            </History>
-            <ColumnsView>
-              <ColumnsSet>Default</ColumnsSet>
-            </ColumnsView>
-          </FileView>
-        </Tab>
-        <Tab>
-          <FileView Type="columns">
-            <Sortings>
-              <Sorting>
-                <Direction>1</Direction>
-                <Function>12</Function>
-              </Sorting>
-            </Sortings>
-            <History>
-              <Entry Active="True">
-                <FileSource Type="FileSystem"/>
-                <Paths>
-                  <Path Filename="Roaming">C:\Users\dominik\AppData\</Path>
-                  <Path Filename="AppData">C:\Users\dominik\</Path>
-                  <Path Filename="dominik">C:\Users\</Path>
-                  <Path Filename="Program Files">C:\</Path>
-                  <Path Filename="MusicBrainz Picard">C:\Program Files\</Path>
-                  <Path Filename="Program Files (x86)">C:\</Path>
-                  <Path Filename="Mumble">C:\Program Files (x86)\</Path>
-                  <Path Filename="mumble.exe">C:\Program Files (x86)\Mumble\</Path>
-                  <Path Filename="..">z:\dominik\software\games\roms\switch\</Path>
-                  <Path Filename="switch">z:\dominik\software\games\roms\</Path>
-                  <Path Filename="roms">z:\dominik\software\games\</Path>
-                  <Path Filename="games">z:\dominik\software\</Path>
-                  <Path Filename="media">z:\dominik\</Path>
-                  <Path Filename="video">z:\dominik\media\</Path>
-                  <Path Filename="..">z:\dominik\media\video\</Path>
-                  <Path Filename="video-other">z:\dominik\media\</Path>
-                  <Path Filename="bachelor">z:\dominik\media\video-other\</Path>
-                  <Path Filename="..">z:\dominik\media\video-other\bachelor\</Path>
-                  <Path Filename="bachelor">z:\dominik\media\video-other\</Path>
-                  <Path Filename="video-other">z:\dominik\media\</Path>
-                  <Path Filename="OpenVPN">C:\Users\dominik\</Path>
-                  <Path Filename="config">C:\Users\dominik\OpenVPN\</Path>
-                  <Path Filename="fr-par.prod.surfshark.comsurfshark_openvpn_udp.ovpn">C:\Users\dominik\OpenVPN\config\</Path>
-                  <Path Filename="config">C:\Users\dominik\OpenVPN\</Path>
-                  <Path Filename="source">C:\Users\dominik\</Path>
-                  <Path Filename="repos">C:\Users\dominik\source\</Path>
-                  <Path Filename="..">C:\Users\dominik\source\repos\</Path>
-                  <Path Filename="repos">C:\Users\dominik\source\</Path>
-                  <Path Filename="st">C:\Users\dominik\</Path>
-                  <Path Filename="..">C:\Users\dominik\st\</Path>
-                  <Path Filename="Zotero">C:\Users\dominik\</Path>
-                  <Path Filename="..">C:\Users\dominik\Zotero\</Path>
-                  <Path Filename="VirtualBox VMs">C:\Users\dominik\</Path>
-                  <Path Filename="..">C:\Users\dominik\VirtualBox VMs\</Path>
-                  <Path Filename="..">C:\Users\dominik\</Path>
-                  <Path Filename="Public">C:\Users\</Path>
-                  <Path Filename="AccountPictures">C:\Users\Public\</Path>
-                  <Path Filename="..">C:\Users\Public\AccountPictures\</Path>
-                  <Path Filename="Desktop">C:\Users\Public\</Path>
-                  <Path Filename="..">C:\Users\Public\Desktop\</Path>
-                  <Path Filename="Desktop">C:\Users\Public\</Path>
-                  <Path Filename="..">C:\Users\Public\Desktop\</Path>
-                  <Path Filename="Desktop">C:\Users\Public\</Path>
-                  <Path Filename="Public">C:\Users\</Path>
-                  <Path Filename="Users">C:\</Path>
-                  <Path Filename="dominik">C:\Users\</Path>
-                  <Path Filename="Recycle Bin.lnk">C:\Users\dominik\</Path>
-                  <Path Filename="dominik">C:\Users\</Path>
-                  <Path Filename="Windows">C:\</Path>
-                  <Path Filename="">C:\Windows\</Path>
+                  <Path>C:\Users\dominik\</Path>
                 </Paths>
               </Entry>
             </History>
@@ -539,7 +420,7 @@
         </Tab>
       </Left>
       <Right>
-        <ActiveTab>2</ActiveTab>
+        <ActiveTab>0</ActiveTab>
         <Tab>
           <FileView Type="columns">
             <Sortings>
@@ -552,196 +433,7 @@
               <Entry Active="True">
                 <FileSource Type="FileSystem"/>
                 <Paths>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\Comp\</Path>
-                  <Path Filename="Duden">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\Duden\</Path>
-                  <Path Filename="En-Ger">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\En-Ger\</Path>
-                  <Path Filename="Fr-En">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\Fr-En\</Path>
-                  <Path Filename="Fr-Ger">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\Fr-Ger\</Path>
-                  <Path Filename="GNULinux">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\GNULinux\</Path>
-                  <Path Filename="WiktionaryWestern">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\WiktionaryWestern\</Path>
-                  <Path Filename="En-Ger">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\En-Ger\</Path>
-                  <Path Filename="Comp">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\Comp\</Path>
-                  <Path Filename="Duden">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\Duden\</Path>
-                  <Path Filename="WiktionaryWestern">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="wikt-en-Western-2018-05-15.dict.dz">C:\Users\dominik\Desktop\temp\dicts\WiktionaryWestern\</Path>
-                  <Path Filename="En-Ger">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\En-Ger\</Path>
-                  <Path Filename="En-Ger">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\En-Ger\</Path>
-                  <Path Filename="En-Ger">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\En-Ger\</Path>
-                  <Path Filename="Fr-En">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\Fr-En\</Path>
-                  <Path Filename="Fr-Ger">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\Fr-Ger\</Path>
-                  <Path Filename="GNULinux">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\GNULinux\</Path>
-                  <Path Filename="WiktionaryWestern">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\WiktionaryWestern\</Path>
-                  <Path Filename="En-Ger">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\En-Ger\</Path>
-                  <Path Filename="Duden">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\Duden\</Path>
-                  <Path Filename="Comp">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\Comp\</Path>
-                  <Path Filename="Duden">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\Duden\</Path>
-                  <Path Filename="En-Ger">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\En-Ger\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\temp\dicts\</Path>
-                  <Path Filename="Videos">C:\Users\dominik\</Path>
-                  <Path Filename="obs-lowfps-profile">C:\Users\dominik\Videos\</Path>
-                  <Path Filename="">C:\Users\dominik\Videos\obs-lowfps-profile\</Path>
-                  <Path Filename="">C:\Users\dominik\Videos\</Path>
-                </Paths>
-              </Entry>
-            </History>
-            <ColumnsView>
-              <ColumnsSet>Default</ColumnsSet>
-            </ColumnsView>
-          </FileView>
-        </Tab>
-        <Tab>
-          <FileView Type="columns">
-            <Sortings>
-              <Sorting>
-                <Direction>1</Direction>
-                <Function>12</Function>
-              </Sorting>
-            </Sortings>
-            <History>
-              <Entry Active="True">
-                <FileSource Type="FileSystem"/>
-                <Paths>
-                  <Path Filename="MediawallUI.cs">C:\Users\dominik\svn\tricat-spaces\Unity\Shared\Source\CanvasGUI\SessionUI\</Path>
-                  <Path Filename="SessionUI">C:\Users\dominik\svn\tricat-spaces\Unity\Shared\Source\CanvasGUI\</Path>
-                  <Path Filename="..">C:\Users\dominik\svn\tricat-spaces\Unity\Shared\Source\</Path>
-                  <Path Filename="CanvasUI">C:\Users\dominik\svn\tricat-spaces\Unity\Shared\</Path>
-                  <Path Filename="SessionUI">C:\Users\dominik\svn\tricat-spaces\Unity\Shared\CanvasUI\</Path>
-                  <Path Filename="MediaWallCapture">C:\Users\dominik\svn\tricat-spaces\Unity\Shared\CanvasUI\SessionUI\</Path>
-                  <Path Filename="MediaWallCapture.cs">C:\Users\dominik\svn\tricat-spaces\Unity\Shared\CanvasUI\SessionUI\MediaWallCapture\</Path>
-                  <Path Filename="MediaWallCapture">C:\Users\dominik\svn\tricat-spaces\Unity\Shared\CanvasUI\SessionUI\</Path>
-                  <Path Filename="SessionUI">C:\Users\dominik\svn\tricat-spaces\Unity\Shared\CanvasUI\</Path>
-                  <Path Filename="CanvasUI">C:\Users\dominik\svn\tricat-spaces\Unity\Shared\</Path>
-                  <Path Filename="Shared">C:\Users\dominik\svn\tricat-spaces\Unity\</Path>
-                  <Path Filename="..">C:\Users\dominik\svn\tricat-spaces\Unity\Shared\</Path>
-                  <Path Filename="Spaces">C:\Users\dominik\svn\tricat-spaces\Unity\</Path>
-                  <Path Filename="Build">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\</Path>
-                  <Path Filename="PC">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Build\</Path>
-                  <Path Filename="Media">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Build\PC\</Path>
-                  <Path Filename="Offline">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Build\PC\Media\</Path>
-                  <Path Filename="..">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Build\PC\Media\Offline\</Path>
-                  <Path Filename="Offline">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Build\PC\Media\</Path>
-                  <Path Filename="Server">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Build\PC\</Path>
-                  <Path Filename="x64">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Build\PC\Server\</Path>
-                  <Path Filename="Application">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Build\PC\Server\x64\</Path>
-                  <Path Filename="..">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Build\PC\Server\x64\Application\</Path>
-                  <Path Filename="button_start.png">C:\Users\dominik\svn\tricat-spaces\Applications\Starter\Source\res\</Path>
-                  <Path Filename="res">C:\Users\dominik\svn\tricat-spaces\Applications\Starter\Source\</Path>
-                  <Path Filename="Primetals_starter_final.psd">C:\Users\dominik\svn\tricat-spaces\Applications\Starter\Source\res\</Path>
-                  <Path Filename="Server">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Build\PC\</Path>
-                  <Path Filename="ColorUtilities.cs.meta">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Assets\_Shared_\_ThirdParty_\PostProcessing\Runtime\Utils\</Path>
-                  <Path Filename="Utils">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Assets\_Shared_\_ThirdParty_\PostProcessing\Runtime\</Path>
-                  <Path Filename="Runtime">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Assets\_Shared_\_ThirdParty_\PostProcessing\</Path>
-                  <Path Filename="PostProcessing">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Assets\_Shared_\_ThirdParty_\</Path>
-                  <Path Filename="_ThirdParty_">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Assets\_Shared_\</Path>
-                  <Path Filename="Scenes">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Assets\</Path>
-                  <Path Filename="SourceFiles">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\</Path>
-                  <Path Filename="..">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\SourceFiles\</Path>
-                  <Path Filename="SourceFiles">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\</Path>
-                  <Path Filename="Shared">C:\Users\dominik\svn\tricat-spaces\Unity\</Path>
-                  <Path Filename="Source">C:\Users\dominik\svn\tricat-spaces\Unity\Shared\</Path>
-                  <Path Filename="bote de basura.3DS">C:\Users\dominik\svn\tricat-spaces\Unity\Shared\Source\</Path>
-                  <Path Filename="Source">C:\Users\dominik\svn\tricat-spaces\Unity\Shared\</Path>
-                  <Path Filename="Shared">C:\Users\dominik\svn\tricat-spaces\Unity\</Path>
-                  <Path Filename="Unity">C:\Users\dominik\svn\tricat-spaces\</Path>
-                  <Path Filename="Spaces">C:\Users\dominik\svn\tricat-spaces\Unity\</Path>
-                  <Path Filename="Library">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\</Path>
-                  <Path Filename="PackageCache">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Library\</Path>
-                  <Path Filename="..">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Library\PackageCache\</Path>
-                  <Path Filename="PackageCache">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Library\</Path>
-                  <Path Filename="Library">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\</Path>
-                  <Path Filename="ScriptAssemblies">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Library\</Path>
-                  <Path Filename="">C:\Users\dominik\svn\tricat-spaces\Unity\Spaces\Library\ScriptAssemblies\</Path>
-                </Paths>
-              </Entry>
-            </History>
-            <ColumnsView>
-              <ColumnsSet>Default</ColumnsSet>
-            </ColumnsView>
-          </FileView>
-        </Tab>
-        <Tab>
-          <FileView Type="columns">
-            <Sortings>
-              <Sorting>
-                <Direction>1</Direction>
-                <Function>12</Function>
-              </Sorting>
-            </Sortings>
-            <History>
-              <Entry Active="True">
-                <FileSource Type="FileSystem"/>
-                <Paths>
-                  <Path Filename="..">C:\Users\dominik\Videos\Captures\</Path>
-                  <Path Filename="obs-lowfps-profile">C:\Users\dominik\Videos\</Path>
-                  <Path Filename="Documents">C:\Users\dominik\</Path>
-                  <Path Filename="My Web Sites">C:\Users\dominik\Documents\</Path>
-                  <Path Filename="..">C:\Users\dominik\Documents\My Web Sites\</Path>
-                  <Path Filename="My Web Sites">C:\Users\dominik\Documents\</Path>
-                  <Path Filename="WebSite1">C:\Users\dominik\Documents\My Web Sites\</Path>
-                  <Path Filename="msweb-brand.png">C:\Users\dominik\Documents\My Web Sites\WebSite1\</Path>
-                  <Path Filename="WebSite1">C:\Users\dominik\Documents\My Web Sites\</Path>
-                  <Path Filename="Unity Projects">C:\Users\dominik\Documents\</Path>
-                  <Path Filename="..">C:\Users\dominik\Documents\Unity Projects\</Path>
-                  <Path Filename="Default.rdp">C:\Users\dominik\Documents\</Path>
-                  <Path Filename="Downloads">C:\Users\dominik\</Path>
-                  <Path Filename="..">C:\Users\dominik\Downloads\</Path>
-                  <Path Filename="Favorites">C:\Users\dominik\</Path>
-                  <Path Filename="..">C:\Users\dominik\Favorites\</Path>
-                  <Path Filename="git">C:\Users\dominik\</Path>
-                  <Path Filename="..">C:\Users\dominik\git\</Path>
-                  <Path Filename="My Documents">C:\Users\dominik\</Path>
-                  <Path Filename="..">C:\Users\dominik\Documents\</Path>
-                  <Path Filename="OpenVPN">C:\Users\dominik\</Path>
-                  <Path Filename="config">C:\Users\dominik\OpenVPN\</Path>
-                  <Path Filename="fr-par.prod.surfshark.comsurfshark_openvpn_udp.ovpn">C:\Users\dominik\OpenVPN\config\</Path>
-                  <Path Filename="tricat.vc">g:\</Path>
-                  <Path Filename="System Volume Information">a:\</Path>
-                  <Path Filename="WPSettings.dat">a:\System Volume Information\</Path>
-                  <Path Filename="OpenVPN-Config">a:\</Path>
-                  <Path Filename="..">a:\OpenVPN-Config\</Path>
-                  <Path Filename="OpenVPN-Config">a:\</Path>
-                  <Path Filename="libssh2.dll">C:\Program Files\Double Commander\</Path>
-                  <Path Filename="git">C:\Users\dominik\</Path>
-                  <Path Filename="dotfiles">C:\Users\dominik\git\</Path>
-                  <Path Filename="windows">C:\Users\dominik\git\dotfiles\</Path>
-                  <Path Filename="ahk">C:\Users\dominik\git\dotfiles\windows\</Path>
-                  <Path Filename="..">C:\Users\dominik\git\dotfiles\windows\ahk\</Path>
-                  <Path Filename="ahk">C:\Users\dominik\git\dotfiles\windows\</Path>
-                  <Path Filename=".git">C:\Users\dominik\git\dotfiles\</Path>
-                  <Path Filename="objects">C:\Users\dominik\git\dotfiles\.git\</Path>
-                  <Path Filename="00">C:\Users\dominik\git\dotfiles\.git\objects\</Path>
-                  <Path Filename="..">C:\Users\dominik\git\dotfiles\.git\objects\00\</Path>
-                  <Path Filename="00">C:\Users\dominik\git\dotfiles\.git\objects\</Path>
-                  <Path Filename="objects">C:\Users\dominik\git\dotfiles\.git\</Path>
-                  <Path Filename=".git">C:\Users\dominik\git\dotfiles\</Path>
-                  <Path Filename="dotfiles">C:\Users\dominik\git\</Path>
-                  <Path Filename="..">C:\Users\dominik\</Path>
-                  <Path Filename="dominik">C:\Users\</Path>
-                  <Path Filename="emax.7z">C:\Users\dominik\Downloads\</Path>
-                  <Path Filename="1612017186328.webm">C:\Users\dominik\Desktop\Temp\</Path>
-                  <Path Filename="..">C:\Users\dominik\Desktop\</Path>
-                  <Path Filename="Desktop">C:\Users\dominik\</Path>
+                  <Path>C:\Users\dominik\</Path>
                 </Paths>
               </Entry>
             </History>
@@ -823,11 +515,13 @@
     <IgnoreListFile>%DC_CONFIG_PATH%\ignorelist.txt</IgnoreListFile>
   </IgnoreList>
   <DirectoryHotList>
-    <HotDir Name="temp" Path="C:\Users\dominik\Desktop\Temp"/>
-    <HotDir Name="appdata" Path="C:\Users\dominik\AppData\Roaming"/>
+    <HotDir Name="temp" Path="%userprofile%\Desktop\Temp"/>
+    <HotDir Name="appdatalocal" Path="%localappdata%"/>
+    <HotDir Name="appdata" Path="%appdata%"/>
     <HotDir Name="downloads" Path="%userprofile%\Downloads"/>
-    <HotDir Name="07-semester" Path="C:\Users\dominik\st\booxdocs\studium\07-semester"/>
-    <HotDir Name="sync" Path="C:\Users\dominik\sync"/>
+    <HotDir Name="07-semester" Path="%userprofile%\sync\documents\studium\07-semester"/>
+    <HotDir Name="sync" Path="%userprofile%\sync"/>
+    <HotDir Name="mvtn" Path="%userprofile%\sync\documents\notes\mvtn"/>
     <HotDir Name="home" Path="%userprofile%"/>
   </DirectoryHotList>
   <Viewer>
@@ -986,31 +680,8 @@
       <Columns>
         <Column>
           <Title>Name</Title>
-          <FuncString>[DC().GETFILENAMENOEXT{}]</FuncString>
-          <Width>443</Width>
-          <Align>0</Align>
-          <Font>
-            <Name>DejaVu Sans Mono</Name>
-            <Size>10</Size>
-            <Style>0</Style>
-            <Quality>0</Quality>
-          </Font>
-          <TextColor>-2147483640</TextColor>
-          <Background>-2147483643</Background>
-          <Background2>-2147483643</Background2>
-          <MarkColor>255</MarkColor>
-          <CursorColor>-2147483635</CursorColor>
-          <CursorText>-2147483634</CursorText>
-          <InactiveCursorColor>-2147483645</InactiveCursorColor>
-          <InactiveMarkColor>255</InactiveMarkColor>
-          <UseInvertedSelection>False</UseInvertedSelection>
-          <UseInactiveSelColor>False</UseInactiveSelColor>
-          <Overcolor>True</Overcolor>
-        </Column>
-        <Column>
-          <Title>Ext</Title>
-          <FuncString>[DC().GETFILEEXT{}]</FuncString>
-          <Width>68</Width>
+          <FuncString>[DC().GETFILENAME{}]</FuncString>
+          <Width>521</Width>
           <Align>0</Align>
           <Font>
             <Name>DejaVu Sans Mono</Name>
@@ -1057,6 +728,86 @@
           <Title>Date</Title>
           <FuncString>[DC().GETFILETIME{}]</FuncString>
           <Width>178</Width>
+          <Align>1</Align>
+          <Font>
+            <Name>DejaVu Sans Mono</Name>
+            <Size>10</Size>
+            <Style>0</Style>
+            <Quality>0</Quality>
+          </Font>
+          <TextColor>-2147483640</TextColor>
+          <Background>-2147483643</Background>
+          <Background2>-2147483643</Background2>
+          <MarkColor>255</MarkColor>
+          <CursorColor>-2147483635</CursorColor>
+          <CursorText>-2147483634</CursorText>
+          <InactiveCursorColor>-2147483645</InactiveCursorColor>
+          <InactiveMarkColor>255</InactiveMarkColor>
+          <UseInvertedSelection>False</UseInvertedSelection>
+          <UseInactiveSelColor>False</UseInactiveSelColor>
+          <Overcolor>True</Overcolor>
+        </Column>
+      </Columns>
+    </ColumnsSet>
+    <ColumnsSet UseFrameCursor="False">
+      <Name>fullname</Name>
+      <CustomView>False</CustomView>
+      <FileSystem>&lt;General&gt;</FileSystem>
+      <PixelsPerInch>96</PixelsPerInch>
+      <CursorBorder Enabled="False">
+        <Color>-2147483635</Color>
+      </CursorBorder>
+      <Columns>
+        <Column>
+          <Title>Name</Title>
+          <FuncString>[DC().GETFILENAME{}]</FuncString>
+          <Width>416</Width>
+          <Align>0</Align>
+          <Font>
+            <Name>DejaVu Sans Mono</Name>
+            <Size>10</Size>
+            <Style>0</Style>
+            <Quality>0</Quality>
+          </Font>
+          <TextColor>-2147483640</TextColor>
+          <Background>-2147483643</Background>
+          <Background2>-2147483643</Background2>
+          <MarkColor>255</MarkColor>
+          <CursorColor>-2147483635</CursorColor>
+          <CursorText>-2147483634</CursorText>
+          <InactiveCursorColor>-2147483645</InactiveCursorColor>
+          <InactiveMarkColor>255</InactiveMarkColor>
+          <UseInvertedSelection>False</UseInvertedSelection>
+          <UseInactiveSelColor>False</UseInactiveSelColor>
+          <Overcolor>True</Overcolor>
+        </Column>
+        <Column>
+          <Title>Size</Title>
+          <FuncString>[DC().GETFILESIZE{}]</FuncString>
+          <Width>97</Width>
+          <Align>1</Align>
+          <Font>
+            <Name>DejaVu Sans Mono</Name>
+            <Size>10</Size>
+            <Style>0</Style>
+            <Quality>0</Quality>
+          </Font>
+          <TextColor>-2147483640</TextColor>
+          <Background>-2147483643</Background>
+          <Background2>-2147483643</Background2>
+          <MarkColor>255</MarkColor>
+          <CursorColor>-2147483635</CursorColor>
+          <CursorText>-2147483634</CursorText>
+          <InactiveCursorColor>-2147483645</InactiveCursorColor>
+          <InactiveMarkColor>255</InactiveMarkColor>
+          <UseInvertedSelection>False</UseInvertedSelection>
+          <UseInactiveSelColor>False</UseInactiveSelColor>
+          <Overcolor>True</Overcolor>
+        </Column>
+        <Column>
+          <Title>Date</Title>
+          <FuncString>[DC().GETFILETIME{}]</FuncString>
+          <Width>140</Width>
           <Align>1</Align>
           <Font>
             <Name>DejaVu Sans Mono</Name>
