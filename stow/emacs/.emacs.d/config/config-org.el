@@ -184,7 +184,12 @@ some faces fixed-with (for tables, source code, etc.)"
   (set-face-attribute 'org-mode-line-clock nil
                       :foreground nil
                       :background nil
-                      :inherit 'font-lock-variable-name-face))
+                      :inherit 'font-lock-variable-name-face)
+  (defun fp/org-clock-kill-emacs-query-function ()
+    (if (org-clock-is-active)
+        (yes-or-no-p "An Org-mode Clock is currently active. Kill anyway? ")
+      t))
+  (add-to-list 'kill-emacs-query-functions 'fp/org-clock-kill-emacs-query-function))
 
 (setq org-clock-mode-line-total 'today)
 
