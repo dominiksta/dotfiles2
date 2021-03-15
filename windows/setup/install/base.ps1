@@ -30,7 +30,12 @@ cinst -y `
   7zip.install irfanview vlc notepadplusplus audacity filezilla `
   synctrayzor plex
 
+rm "$env:LocalAppData\Microsoft\WindowsApps\python3.exe"
+rm "$env:LocalAppData\Microsoft\WindowsApps\python.exe"
+
 Push-Path -Add "$env:LocalAppData\SumatraPDF" -Target 'Machine'
+Push-Path -Add "$env:ProgramFiles\Waterfox" -Target 'Machine'
+Push-Path -Add "$env:ProgramFiles\IrfanView" -Target 'Machine'
 
 # Set 'HOME' for Emacs
 [Environment]::SetEnvironmentVariable(
