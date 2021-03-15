@@ -27,10 +27,6 @@ choco upgrade -y openssh --params "/SSHAgentFeature"
 # Enable SSH Agent to automatically start
 Get-Service -Name ssh-agent | Set-Service -StartupType Automatic
 
-$url = "http://mirror.internode.on.net/pub/test/10meg.test"
-$output = "$PSScriptRoot\10meg.test"
-$start_time = Get-Date
-
 # --- Install wsl-ssh-agent ---
 
 Invoke-WebRequest -Uri "https://github.com/rupor-github/wsl-ssh-agent/releases/latest/download/wsl-ssh-agent.7z" -OutFile $env:TEMP\wsl-ssh-agent.7z

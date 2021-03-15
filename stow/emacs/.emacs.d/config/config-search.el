@@ -101,6 +101,12 @@ recursively from the current directory using `pdfgrep'."
 --column --heading --no-config -e \"%s\" %s" search (mapconcat 'shell-quote-argument
                                                                dirs " "))))
 
+  (defun fp/rg-search-multi-directory-thing-at-point (base-dir dirs)
+    (let* ((default (word-at-point t))
+           (in (read-string (format "Search (default %s): " default)))
+           (search (if (eq (length in) 0) default in)))
+      (fp/rg-search-multi-directory base-dir dirs search)))
+
   (rg-define-search fp/rg-project-everything
     :files "everything"
     :dir project)
