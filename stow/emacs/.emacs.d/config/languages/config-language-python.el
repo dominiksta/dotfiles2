@@ -8,33 +8,18 @@
 (evil-leader/set-key-for-mode 'python-mode "mD" 'realgud:pdb)
 
 ;; ----------------------------------------------------------------------
-;; flycheck
-;; ----------------------------------------------------------------------
-(config-add-external-dependency 'flake8 'config-python "flycheck backend"
-                                (lambda () (executable-find "flake8"))
-                                "pip install flake8" "pip install flake8")
-(add-hook 'python-mode-hook 'flycheck-mode)
-
-;; ----------------------------------------------------------------------
-;; completion
+;; completion/lsp
 ;; ----------------------------------------------------------------------
 (straight-use-package 'company-jedi)
-(with-eval-after-load "company-jedi"
-  (add-to-list 'company-backends 'company-jedi)
+(config-add-external-dependency
+ 'pyls 'config-python "lsp" (lambda () (executable-find "pyls"))
+ "pip3 install python-language-server[all]" "pip3 install python-language-server[all]")
 
-  (defun fp/python-jedi-hook ()
-    (jedi:setup)
-    (company-mode))
-  (config-add-external-dependency 'virtualenv 'config-python "virtual envs"
-                                  (lambda () (executable-find "virtualenv"))
-                                  "pip3 install virtualenv" "pip3 install virtualenv")
-  (config-add-external-dependency 'jedi 'config-python "autocomplete"
-                                  (lambda () (file-exists-p (car jedi:server-command)))
-                                  "M-x jedi:install-server" "M-x jedi:install-server")
-  (when (config-external-check-list '(jedi))
-    (add-hook 'python-mode-hook 'fp/python-jedi-hook)))
-
-
+(when (config-external-check-list '(pyls))
+  (setq lsp-pyls-plugins-flake8-enabled nil
+        lsp-pyls-plugins-autopep8-enabled nil
+        lsp-pyls-plugins-pycodestyle-enabled nil)
+  (add-hook 'python-mode-hook 'lsp))
 
 ;; --------------------------------------------------------------------------------
 ;; REPL
@@ -71,7 +56,7 @@
                        sync-directory "documents/code/emacs/python-calculator/pythonstartup.py")
                process-environment))
         (buf (find-file-noselect (concat sync-directory
-                                         "documents/code/emacs/python-calculator/python-calculator-worksheet.py"))))
+                                         "documents/code/emacs/python-calculator/worksheet.py"))))
     (eyebrowse-switch-to-window-config-8)
     (delete-other-windows)
     (switch-to-buffer buf)

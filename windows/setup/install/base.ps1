@@ -40,6 +40,8 @@ Push-Path -Add "$env:LocalAppData\SumatraPDF" -Target 'Machine'
 RefreshEnv.cmd
 
 pip3 install youtube-dl
+pip3 uninstall virtualenv flake8 jedi
+pip3 install python-language-server[all]
 
 # ----------------------------------------------------------------------
 # --- git config & dotfiles ---
