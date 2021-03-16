@@ -38,6 +38,7 @@
                   (font-spec :family fp/theme-font-family))
 
 (set-face-font 'fixed-pitch fp/theme-font-family)
+(set-face-attribute 'fixed-pitch nil :height 1.0)
 (set-face-font 'variable-pitch fp/theme-font-family-variable-pitch)
 
 ;; --- defaults, to be changed further down ---

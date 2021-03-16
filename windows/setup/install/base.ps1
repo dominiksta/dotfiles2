@@ -27,7 +27,7 @@ cinst -y `
   keepassxc gpg4win veracrypt `
   xournal sumatrapdf.install `
   thunderbird birdtray `
-  7zip.install irfanview vlc notepadplusplus audacity filezilla `
+  7zip.install irfanview irfanviewplugins vlc notepadplusplus audacity filezilla `
   synctrayzor plex
 
 rm "$env:LocalAppData\Microsoft\WindowsApps\python3.exe"
@@ -126,6 +126,7 @@ cmd /c assoc .java=emacsclient
 reg import ..\networkdrivetimeout.reg
 reg import ..\webdavfilesizelimit.reg
 reg import ..\stop-cursor-blink.reg
+reg import ..\disable-web-search.reg
 reg import ..\no-alt-shift-for-language-change.reg
 reg import ..\emacs-context-menu.reg
 reg import ..\doublecmd-as-default.reg

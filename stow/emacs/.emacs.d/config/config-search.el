@@ -96,7 +96,7 @@ recursively from the current directory using `pdfgrep'."
       (compilation-start command 'rg-mode #'rg-buffer-name)))
 
   (defun fp/rg-search-multi-directory (base-dir dirs search)
-    (fp/rg-search-full-command base-dir (format "rg --color=always --colors=match:fg:red \
+    (fp/rg-search-full-command base-dir (format "rg -S --color=always --colors=match:fg:red \
 --colors=path:fg:magenta --colors=line:fg:green --colors=column:none -n \
 --column --heading --no-config -e \"%s\" %s" search (mapconcat 'shell-quote-argument
                                                                dirs " "))))
