@@ -234,6 +234,12 @@ execute it, setting `default-directory' to
     "a" 'xref-show-location-at-point
     (kbd "C-c C-f") 'next-error-follow-minor-mode))
 
+;; ----------------------------------------------------------------------
+;; diff-mode
+;; ----------------------------------------------------------------------
+(evil-set-initial-state 'diff-mode 'motion)
+(evil-define-key 'motion diff-mode-map
+  "q" 'quit-window)
 
 ;; --------------------------------------------------------------------------------
 ;; regexps

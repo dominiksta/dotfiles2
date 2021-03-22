@@ -204,9 +204,6 @@
 ;; --- mail ---
 (evil-leader/set-key "am" 'gnus)
 
-;; --- magit ----
-(evil-leader/set-key "ag" 'magit-status)
-
 ;; --- sql connections ----
 (evil-leader/set-key "aS" 'fp/sql-connect)
 
@@ -259,6 +256,7 @@
   "pI" 'projectile-discover-projects-in-directory
   "pf" 'helm-projectile-find-file
   "pe" 'projectile-run-eshell
+  "pv" 'projectile-vc
   "pP" 'helm-projectile-switch-project)
 
 ;; --------------------------------------------------------------------------------

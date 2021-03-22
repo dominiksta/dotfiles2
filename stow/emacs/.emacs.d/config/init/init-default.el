@@ -75,6 +75,7 @@
 (config-require '(config-ibuffer) :feature ibuffer)
 (config-require '(config-proced)  :feature proced)
 (config-require '(config-calc)    :feature calc)
+(config-require '(config-vc)      :feature vc)
 (config-require '(config-org)     :feature calendar)
 (config-require '(config-tramp)   :feature tramp)
 (config-require '(config-org-tree-slide) :feature org-tree-slide)
