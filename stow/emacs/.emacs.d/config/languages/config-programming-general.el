@@ -39,8 +39,17 @@
 (straight-use-package 'imenu-anywhere)
 (evil-leader/set-key "pi" 'helm-imenu-anywhere)
 
+;; --- editorconfig ---
 (straight-use-package 'editorconfig)
 (editorconfig-mode 1)
+
+;; --- automatically highlight symbols ---
+(straight-use-package 'symbol-overlay)
+(add-hook 'prog-mode-hook 'symbol-overlay-mode)
+(with-eval-after-load "symbol-overlay"
+  (evil-define-key 'normal symbol-overlay-mode-map
+    "gn" 'symbol-overlay-jump-next
+    "gp" 'symbol-overlay-jump-prev))
 
 ;; --------------------------------------------------------------------------------
 ;; project actions
@@ -209,6 +218,8 @@ execute it, setting `default-directory' to
   (remove-hook 'lsp-eldoc-hook 'lsp-document-highlight)
   (setq lsp-enable-indentation nil
         lsp-enable-snippet nil
+        ;; Not insane, but i want to try symbol-overlay
+        lsp-enable-symbol-highlighting nil
         lsp-modeline-code-actions-enable nil
         lsp-headerline-breadcrumb-enable nil
         lsp-modeline-diagnostics-enable nil)
