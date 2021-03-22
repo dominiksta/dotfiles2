@@ -24,7 +24,16 @@
 (add-hook 'tide-mode-hook 'fp/tide-mode-hook)
 
 (evil-define-key 'normal tide-mode-map
-  "gd" 'fp/tide-jump-to-definition)
+  "gd" 'fp/tide-jump-to-definition
+  "gf" 'tide-references)
+
+(evil-define-key 'normal tide-references-mode-map
+  "q" 'quit-window
+  (kbd "RET") 'tide-goto-line-reference
+  "a" (lambda () (interactive)
+        (tide-goto-line-reference)
+        (pulse-momentary-highlight-one-line (point))
+        (select-window (previous-window))))
 
 (straight-use-package 'js2-mode)
 
