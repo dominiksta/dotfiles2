@@ -35,9 +35,25 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 !+Enter::Send {Volume_Mute}
 
 ;------------------------------------------------------------
-; Words
+; screenshots
 ;------------------------------------------------------------
-+!^F9::Send https://akk.li/pics/anne/jpg
+PrintScreen::
+    EnvGet temp, temp
+    runwait i_view64.exe /capture=4 /convert=%temp%\iviewscrot.png
+    run %temp%\iviewscrot.png
+    return
+
+!PrintScreen::
+    EnvGet temp, temp
+    runwait i_view64.exe /capture=2 /convert=%temp%\iviewscrot.png
+    run %temp%\iviewscrot.png
+    return
+
++PrintScreen::
+    EnvGet temp, temp
+    runwait i_view64.exe /capture=1 /convert=%temp%\iviewscrot.png
+    run %temp%\iviewscrot.png
+    return
 
 ;------------------------------------------------------------
 ; Other Shortcuts
@@ -59,10 +75,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
     WinGetClass, class, A
     MsgBox, Class: %class% `nPath:  %FilePath%
 return
-
-; Screenshots
-+^!PrintScreen::run SnippingTool.exe
-
 
 ;------------------------------------------------------------
 ; Program Bindings
