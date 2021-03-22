@@ -105,7 +105,6 @@ cmd /c mklink /d %APPDATA%\doublecmd `
 # ----------------------------------------------------------------------
 cmd /c ftype emacsclient=C:\ProgramData\chocolatey\bin\emacsclientw.exe "%1"
 
-cmd /c assoc .bat=emacsclient
 cmd /c assoc .ps1=emacsclient
 cmd /c assoc .sql=emacsclient
 cmd /c assoc .c=emacsclient
