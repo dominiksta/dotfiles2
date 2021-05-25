@@ -61,7 +61,6 @@
     "-" 'evil-search-forward))
 
 (evil-leader/set-key
-  "ii" 'fp/indent-all
   "ia" 'align
   "ir" 'align-regexp
   "if" 'fill-paragraph
@@ -142,6 +141,9 @@
 
 (straight-use-package 'evil-nerd-commenter)
 (evil-leader/set-key "kk" 'evilnc-comment-or-uncomment-lines)
+
+;; --- tample sext ---
+(straight-use-package 'lorem-ipsum)
 
 ;; --------------------------------------------------------------------------------
 ;; key translations and remappings

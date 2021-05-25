@@ -260,12 +260,11 @@
 
 (with-eval-after-load "olivetti"
   (setq-default olivetti-body-width 103)
-  (evil-define-key 'normal olivetti-mode-map
+  (evil-define-key '(visual normal) olivetti-mode-map
     "j" 'evil-next-visual-line
-    "k" 'evil-previous-visual-line)
-  (evil-define-key 'visual olivetti-mode-map
-    "j" 'evil-next-visual-line
-    "k" 'evil-previous-visual-line)
+    "k" 'evil-previous-visual-line
+    "$" 'evil-end-of-visual-line
+    "0" 'evil-beginning-of-visual-line)
 
   ;; evil bug
   (add-hook 'olivetti-mode-hook

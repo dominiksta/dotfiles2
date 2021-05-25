@@ -5,6 +5,7 @@
 (with-eval-after-load "mvtn"
   (setq mvtn-note-directory "~/sync/documents/notes/mvtn"
         mvtn-default-file-extension "org"
+        mvtn-excluded-directories '(".git" ".svn" "ltximg" "orgimg")
         mvtn-search-function 'mvtn-search-full-text-rg)
 
   (defun fp/mvtn-enable-olivetti ()

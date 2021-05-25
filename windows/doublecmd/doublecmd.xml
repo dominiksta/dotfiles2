@@ -516,6 +516,8 @@
   </IgnoreList>
   <DirectoryHotList>
     <HotDir Name="temp" Path="%userprofile%\Desktop\Temp"/>
+    <HotDir Name="video" Path="z:\dominik\media\video"/>
+    <HotDir Name="z:\downloads" Path="z:\downloads"/>
     <HotDir Name="appdatalocal" Path="%localappdata%"/>
     <HotDir Name="appdata" Path="%appdata%"/>
     <HotDir Name="downloads" Path="%userprofile%\Downloads"/>

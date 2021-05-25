@@ -85,7 +85,7 @@
 
 ;; --- eyebrowse ---
 (dotimes (i 10)
-  (global-set-key (kbd (format "M-%d" i))
+  (bind-key* (kbd (format "M-%d" i))
                   `(lambda ()
                      (interactive)
                      (fp/eyebrowse-switch-to-window-config-and-run-defaults ,i)))

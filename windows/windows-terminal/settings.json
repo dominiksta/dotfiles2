@@ -32,7 +32,8 @@
         {
             "cursorShape": "filledBox" ,
             "fontFace": "DejaVu Sans Mono",
-            "fontSize": 12
+            "fontSize": 12,
+            "bellStyle": "none"
         },
         "list":
         [
@@ -91,6 +92,9 @@
         { "command": "newTab", "keys": "alt+shift+t" },
         { "command": "nextTab", "keys": "alt+shift+l" },
         { "command": "prevTab", "keys": "alt+shift+h" },
+
+        // Command Palette
+        { "command": "commandPalette", "keys": "ctrl+alt+x" },
 
         // Panes, see visit https://aka.ms/terminal-panes
         { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" },

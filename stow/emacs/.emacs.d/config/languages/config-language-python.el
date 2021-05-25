@@ -34,18 +34,6 @@
 (straight-use-package 'pyvenv)
 
 ;; --------------------------------------------------------------------------------
-;; appearance
-;; --------------------------------------------------------------------------------
-(defun config--python-pretty-symbols ()
-  (mapc (lambda (pair) (push pair prettify-symbols-alist))
-        '(("in" .       #x2208)
-          ("not in" .   #x2209)
-          ("return" .   #x21d2)))
-  (prettify-symbols-mode 1))
-
-(add-hook 'python-mode-hook 'config--python-pretty-symbols)
-
-;; --------------------------------------------------------------------------------
 ;; calculator
 ;; --------------------------------------------------------------------------------
 
