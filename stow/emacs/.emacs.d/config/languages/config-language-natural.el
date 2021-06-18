@@ -2,10 +2,6 @@
 ;; hunspell backend for multiple dictionaries
 ;; ----------------------------------------------------------------------
 
-(setq fp/hunspell-de-dict (if (eq system-type 'windows-nt)
-                              "de_DE_frami" "de_DE"))
-;; (setenv "LANG" fp/hunspell-de-dict)
-
 (config-add-external-dependency 'hunspell 'config-natural-language
                                 "spellchecking base"
                                 (lambda () (executable-find "hunspell"))
@@ -18,10 +14,11 @@
 (config-add-external-dependency 'hunspell-de-de 'config-natural-language
                                 "spellchecking base"
                                 (lambda () (string-match-p
-                                       fp/hunspell-de-dict (shell-command-to-string
+                                       "de_DE" (shell-command-to-string
                                                             "hunspell -D")))
                                 "apt install hunspell-de-de"
-                                "None" ;; install from libreoffice extensions
+                                "wget -O de_DE.aff https://cgit.freedesktop.org/libreoffice/dictionaries/plain/de/de_DE_frami.aff;
+wget -O de_DE.dic https://cgit.freedesktop.org/libreoffice/dictionaries/plain/de/de_DE_frami.dic;" ;; install from libreoffice extensions
                                 )
 
 (config-add-external-dependency 'hunspell-en-us 'config-natural-language
@@ -30,7 +27,8 @@
                                        "en_US" (shell-command-to-string
                                                 "hunspell -D")))
                                 "apt install hunspell-en-us"
-                                "None" ;; install from libreoffice extensions
+                                "wget -O en_US.aff https://cgit.freedesktop.org/libreoffice/dictionaries/plain/en/en_US.aff;
+wget -O en_US.dic https://cgit.freedesktop.org/libreoffice/dictionaries/plain/en/en_US.dic;" ;; install from libreoffice extensions
                                 )
 
 (when (config-external-check-list '(hunspell hunspell-de-de hunspell-en-us))
@@ -40,11 +38,11 @@
   (setq-default ispell-skip-html t)
 
   (setq ispell-program-name "hunspell"
-        ispell-dictionary (concat "en_US," fp/hunspell-de-dict))
+        ispell-dictionary (concat "en_US," "de_DE"))
   ;; ispell-set-spellchecker-params has to be called before
   ;; ispell-hunspell-add-multi-dic will work
   (ispell-set-spellchecker-params)
-  (ispell-hunspell-add-multi-dic (concat "en_US," fp/hunspell-de-dict))
+  (ispell-hunspell-add-multi-dic (concat "en_US," "de_DE"))
 
 
   ;; ----------------------------------------------------------------------
