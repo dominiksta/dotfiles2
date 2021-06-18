@@ -249,8 +249,16 @@ execute it, setting `default-directory' to
 ;; diff-mode
 ;; ----------------------------------------------------------------------
 (evil-set-initial-state 'diff-mode 'motion)
-(evil-define-key 'motion diff-mode-map
-  "q" 'quit-window)
+
+
+(with-eval-after-load "diff-mode"
+ (evil-define-key 'motion diff-mode-map
+  "q" 'quit-window
+  (kbd "RET") 'diff-goto-source)
+ (set-face-attribute 'diff-refine-removed nil :background 'unspecified)
+ (set-face-attribute 'diff-refine-added nil :background 'unspecified)
+ (set-face-attribute 'diff-refine-changed nil :background 'unspecified
+                     :inherit 'highlight))
 
 ;; --------------------------------------------------------------------------------
 ;; regexps
