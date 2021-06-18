@@ -126,7 +126,8 @@ bringtoforegroundbytitle(title, except){
 
 !+w::bringtoforegroundbyclass("WaterfoxWindowClass", "waterfox")
 !+e::bringtoforegroundbyclass("DClass", "C:\Program Files\Double Commander\doublecmd.exe")
-!+p::bringtoforegroundbytitle("Plex", "C:\Program Files\Plex\Plex\Plex.exe")
+; !+p::bringtoforegroundbytitle("Plex", "C:\Program Files\Plex\Plex\Plex.exe")
+!+p::bringtoforegroundbyexe("Spotify.exe", "C:\Users\dominik\AppData\Roaming\Spotify\Spotify.exe")
 !+k::bringtoforegroundbyexe("KeePassXC.exe", "C:\Program Files\KeePassXC\KeePassXC.exe")
 ^+1::bringtoforegroundbyclass("PROCEXPL", "procexp")
 !Space::bringtoforegroundbyclass("Emacs", "runemacs.exe")
