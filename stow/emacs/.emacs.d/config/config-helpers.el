@@ -113,4 +113,8 @@
       fp/double-mouse-forward (if (eq system-type 'windows-nt) [(double-mouse-5)] [(double-mouse-9)])
       fp/triple-mouse-forward (if (eq system-type 'windows-nt) [(triple-mouse-5)] [(triple-mouse-9)]))
 
+(defun shopping-list-run ()
+  (interactive)
+  (load-file (concat sync-directory "documents/notes/shoppinglist/run.el")))
+
 (provide 'config-helpers)

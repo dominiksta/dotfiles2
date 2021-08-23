@@ -12,20 +12,11 @@
 (setq fp/workspace-defaults
       '((lambda ()
           (when (not (member t (mapcar
-                                (lambda (w)
-                                  (let ((mode (with-current-buffer (window-buffer w)
-                                                major-mode))
-                                        (name (with-current-buffer (window-buffer w)
-                                                (buffer-name))))
-                                    (or (eq mode 'org-agenda-mode)
-                                       (and (not (string-equal name "*scratch*"))
-                                          (eq mode 'org-mode)))))
+                                (lambda (w) (eq (with-current-buffer (window-buffer w)
+                                             major-mode)
+                                           'inferior-python-mode))
                                 (window-list))))
-            (delete-other-windows)
-            (split-window-right) (other-window 1)
-            (find-file (concat sync-directory  "documents/notes/org-todo/"))
-            (other-window 1)
-            (org-agenda nil "a"))) ; 0
+            (fp/run-python-calculator))) ; 0
         (lambda () nil) ; 1
         (lambda () nil) ; 2
         (lambda () nil) ; 3
@@ -33,17 +24,8 @@
         (lambda () nil) ; 5
         (lambda () nil) ; 6
         (lambda () nil) ; 7
-        (lambda ()
-          (when (not (member t (mapcar
-                                (lambda (w) (eq (with-current-buffer (window-buffer w)
-                                             major-mode)
-                                           'inferior-python-mode))
-                                (window-list))))
-            (fp/run-python-calculator))) ; 8
-        (lambda ()
-          (if (not (or (string-match "\\`gnus-" (symbol-name major-mode))
-                      (eq major-mode 'message-mode)))
-              (gnus))) ; 9
+        (lambda () nil) ; 8
+        (lambda () nil) ; 9
         ))
 
 (defun fp/eyebrowse-switch-to-window-config-and-run-defaults (i)

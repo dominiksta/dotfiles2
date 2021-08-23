@@ -21,6 +21,7 @@
 ;; --- todos ---
 (straight-use-package 'hl-todo)
 (add-hook 'prog-mode-hook 'hl-todo-mode)
+(add-hook 'text-mode-hook 'hl-todo-mode)
 
 (defun fp/project-todo-search-todo () (interactive) (rg-project "TODO|FIXME|NEXT" "everything"))
 (defun fp/project-todo-search-hack () (interactive) (rg-project "HACK" "everything"))
@@ -106,6 +107,7 @@ execute it, setting `default-directory' to
   (interactive)
   (evil-set-jump)
   (call-interactively 'dumb-jump-go))
+(global-set-key (kbd "C-M-g") 'fp/evil-dumb-jump-go)
 
 
 ;; --------------------------------------------------------------------------------

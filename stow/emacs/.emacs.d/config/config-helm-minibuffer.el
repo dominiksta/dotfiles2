@@ -98,6 +98,7 @@
 
 (setq helm-display-header-line nil)
 (setq helm-mode-line-string "")
+(setq helm-buffer-max-length 100)
 
 (setq helm-display-function 'pop-to-buffer) ; make helm play nice with shackle
 (push '("\\`\\*helm.*?\\*\\'" :regexp t :align t :size 0.3) shackle-rules)

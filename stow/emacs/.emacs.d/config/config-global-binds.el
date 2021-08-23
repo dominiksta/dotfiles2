@@ -64,7 +64,7 @@
   "bi" 'ibuffer
   "bb" (lambda () (interactive) (call-interactively (if (featurep 'helm) 'helm-buffers-list 'switch-to-buffer)))
   "bs" (lambda () (interactive) (switch-to-buffer "*scratch*"))
-  "bN" (lambda () (interactive) (find-file (concat sync-directory "general/notes/notes.org")))
+  "bS" (lambda () (interactive) (find-file (concat sync-directory "documents/notes/mvtn/static/20210623-203826 Scratch.txt")))
   "bn" 'next-buffer
   "bp" 'previous-buffer
   "d" 'kill-this-buffer)
@@ -200,6 +200,9 @@
 ;; --------------------------------------------------------------------------------
 ;; --- bibliography ---
 (evil-leader/set-key "ab" 'helm-bibtex)
+
+;; --- shopping lists ---
+(evil-leader/set-key "as" 'shopping-list-run)
 
 ;; --- mail ---
 (evil-leader/set-key "am" 'gnus)

@@ -45,7 +45,7 @@
                process-environment))
         (buf (find-file-noselect (concat sync-directory
                                          "documents/code/emacs/python-calculator/worksheet.py"))))
-    (eyebrowse-switch-to-window-config-8)
+    (eyebrowse-switch-to-window-config-0)
     (delete-other-windows)
     (switch-to-buffer buf)
     (with-current-buffer buf

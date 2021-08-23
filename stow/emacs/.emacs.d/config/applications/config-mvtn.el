@@ -17,6 +17,12 @@
 
   (add-hook 'text-mode-hook 'fp/mvtn-enable-olivetti))
 
+(evil-define-key 'normal mvtn-tag-file-list-mode-map
+  "o" 'mvtn-tag-file-list-open
+  "a" 'mvtn-tag-file-list-open-keep-focus
+  "r" 'revert-buffer
+  "q" 'quit-window)
+
 (evil-leader/set-key
   "nj" 'mvtn-jump-current-year-directory
   "nn" 'mvtn-open-note
@@ -25,7 +31,8 @@
   "ns" 'mvtn-search-full-text
   "nb" 'mvtn-search-backlinks
   "nl" 'mvtn-insert-link
-  "no" 'mvtn-follow-link-at-point)
+  "no" 'mvtn-follow-link-at-point
+  "nt" 'mvtn-tag-file-list)
 
 
 (provide 'config-mvtn)
