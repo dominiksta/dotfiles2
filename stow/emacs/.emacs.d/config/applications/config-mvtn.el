@@ -3,19 +3,23 @@
 (straight-use-package '(mvtn :type git :host github :repo "f1rstperson/mvtn.el"))
 
 (with-eval-after-load "mvtn"
-  (setq mvtn-note-directory "~/sync/documents/notes/mvtn"
+  (setq mvtn-note-directories
+        '((:dir "~/sync/documents/notes/mvtn" :name "prv" :structure
+                ((:dir "flt" :datetree t) ;; fleeting
+                 (:dir "lit" :datetree t) ;; literature
+                 (:dir "tec" :datetree t) ;; tech (devlog, etc.)
+                 (:dir "stc" :datetree nil))) ;; static
+          (:dir "~/sync/work/notes" :name "wrk" :structure
+                ((:dir "rec" :datetree t)
+                 (:dir "tri" :datetree t)
+                 (:dir "stc" :datetree nil)))) ;; static
         mvtn-default-file-extension "org"
-        mvtn-excluded-directories '(".git" ".svn" "ltximg" "orgimg")
-        mvtn-search-function 'mvtn-search-full-text-rg)
+        mvtn-excluded-directories '(".git" ".svn" "ltximg" "orgimg" "data")
+        mvtn-search-function 'mvtn-search-full-text-rg
+        mvtn-cv-enable t)
 
-  (defun fp/mvtn-enable-olivetti ()
-    (condition-case nil
-        (when (string-match-p (expand-file-name mvtn-note-directory)
-                              (buffer-file-name (current-buffer)))
-          (olivetti-mode 1))
-      (error nil)))
-
-  (add-hook 'text-mode-hook 'fp/mvtn-enable-olivetti))
+  (require 'mvtn-link-buttons)
+  (add-hook 'mvtn-minor-mode-hook 'olivetti-mode))
 
 (evil-define-key 'normal mvtn-tag-file-list-mode-map
   "o" 'mvtn-tag-file-list-open

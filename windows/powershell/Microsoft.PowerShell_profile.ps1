@@ -20,6 +20,10 @@ Function admin { nircmd.exe elevate $args }
 Function admincmd { nircmd.exe elevate cmd /k "cd $pwd && $args" }
 Function adminpsh { nircmd.exe elevate powershell /k $args }
 
+Function time {
+    Measure-Command { "$args" | Out-Default }
+}
+
 Function Load-EnvFromBat {
     param( [string]$BatFile )
     $dir = (Split-Path -Path $BatFile)

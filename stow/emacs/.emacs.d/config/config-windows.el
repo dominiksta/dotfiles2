@@ -7,7 +7,9 @@
   (setq proced-custom-attributes nil)
   (setq w32-pipe-read-delay 0)
 
-  (setq find-program "c:/tools/cygwin/bin/find.exe")
+  (setq find-program "\"c:/Program Files/Git/usr/bin/find.exe\"")
+
+  (setq browse-url-browser-function 'browse-url-default-windows-browser)
 
   (add-to-list 'exec-path (file-name-directory (expand-file-name (car command-line-args))))
   (add-to-list 'exec-path (expand-file-name (concat sync-directory "documents/code/emacs/bin")) t)

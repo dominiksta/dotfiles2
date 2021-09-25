@@ -20,10 +20,20 @@
   "gj" 'markdown-outline-next-same-level
   "gk" 'markdown-outline-previous-same-level)
 
+;; ----------------------------------------------------------------------
+;; manual previews without external dependencies
+;; ----------------------------------------------------------------------
+
 (straight-use-package 'gh-md)
 (evil-leader/set-key-for-mode 'markdown-mode
   "mp" 'gh-md-render-buffer
   "me" 'gh-md-export-buffer)
+
+;; ----------------------------------------------------------------------
+;; live previews
+;; ----------------------------------------------------------------------
+(straight-use-package 'grip-mode) ;; pip install grip
+(evil-leader/set-key-for-mode 'markdown-mode "mg" 'grip-mode)
 
 
 (provide 'config-language-markdown)

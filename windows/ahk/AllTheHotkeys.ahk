@@ -179,8 +179,8 @@ bringtoforegroundbytitle(title, except){
 ; Switch primary monitor
 ;------------------------------------------------------------
 
-!+^F12::Run nircmd.exe setprimarydisplay 1
-!+^F11::Run nircmd.exe setprimarydisplay 2
+!+^F12::Run nircmd.exe setprimarydisplay 3
+!+^F11::Run nircmd.exe setprimarydisplay 1
 
 ;------------------------------------------------------------
 ; Remap Capslock to both Control and Escape
