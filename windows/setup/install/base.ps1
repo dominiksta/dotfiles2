@@ -20,14 +20,14 @@ iex ((New-Object System.Net.WebClient).DownloadString(
 
 cinst -y `
   waterfox chromium `
-  emacs git dejavufonts ripgrep python3 `
+  emacs git dejavufonts ubuntu.font ripgrep python3 `
   doublecmd microsoft-windows-terminal `
   autohotkey altdrag `
   procexp nircmd shmnview shellmenunew zoomit colora `
   keepassxc gpg4win veracrypt `
   xournal sumatrapdf.install `
   thunderbird birdtray `
-  7zip.install irfanview irfanviewplugins vlc notepadplusplus audacity filezilla `
+  7zip.install irfanview irfanviewplugins vlc spotify notepadplusplus audacity filezilla `
   synctrayzor plex
 
 rm "$env:LocalAppData\Microsoft\WindowsApps\python3.exe"
