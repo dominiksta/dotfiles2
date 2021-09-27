@@ -133,6 +133,10 @@
   "SPC" (lambda () (interactive) (call-interactively (if (featurep 'helm) 'helm-M-x
                                                   'execute-extended-command))))
 
+(evil-define-key 'normal global-map
+  "go" 'browse-url-at-point
+  "gx" nil)
+
 ;; --- olivetti ---
 (evil-leader/set-key "Rr" 'olivetti-mode)
 

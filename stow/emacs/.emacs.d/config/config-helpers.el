@@ -22,6 +22,17 @@
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "waterfox")
 
+(with-eval-after-load "browse-url"
+  (defun browse-url-url-at-point ()
+    "Overwritten to allow opening links with different 'procotols',
+such as 'zotero://' links - as long as
+`browse-url-browser-function' can handle them."
+    (let ((tap (thing-at-point 'filename t)))
+      (if (string-match-p "://" tap)
+          tap
+        (concat "http://" tap)))))
+
+
 (set-language-environment "UTF-8")
 
 (defun return-nil (&rest rest) (interactive) nil)
