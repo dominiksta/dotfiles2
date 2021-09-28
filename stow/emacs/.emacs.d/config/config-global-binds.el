@@ -236,7 +236,7 @@
 
 ;; --- agenda ---
 (evil-leader/set-key
-  "aa" (lambda () (interactive) (org-agenda nil "a")))
+  "aa" (lambda () (interactive) (mvtn-org-agenda nil "a")))
 
 ;; --- calc ---
 (autoload 'fp/calc-eval-region "config-calc")

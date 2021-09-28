@@ -14,11 +14,7 @@
 (advice-add 'org-agenda :around 'fp/org-agenda-wm-advice)
 
 ;; --- files ---
-(setq org-agenda-files (list (concat sync-directory "documents/notes/org-todo/privat.org")
-                             (concat sync-directory "documents/notes/org-todo/studium.org")
-                             (concat sync-directory "documents/notes/org-todo/recom.org")
-                             (concat sync-directory "documents/notes/org-todo/capture.org")
-                             (concat sync-directory "documents/notes/org-todo/tricat.org"))
+(setq org-agenda-files '()
       org-icalendar-combined-agenda-file (concat sync-directory "org/ics/combine.ics"))
 
 

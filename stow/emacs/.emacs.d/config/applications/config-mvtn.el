@@ -16,7 +16,8 @@
         mvtn-default-file-extension "org"
         mvtn-excluded-directories '(".git" ".svn" "ltximg" "orgimg" "data")
         mvtn-search-function 'mvtn-search-full-text-rg
-        mvtn-cv-enable t)
+        mvtn-cv-enable t
+        mvtn-org-agenda-tag "projekt")
 
   (require 'mvtn-link-buttons)
   (add-hook 'mvtn-minor-mode-hook 'olivetti-mode))
