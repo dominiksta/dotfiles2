@@ -7,6 +7,7 @@
 
 (with-eval-after-load "magit"
   (require 'evil-magit)
+  (require 'mvtn)
 
   (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
@@ -25,6 +26,7 @@
     (kbd "C-j") nil
     (kbd "C-k") nil)
   (evil-define-key 'normal magit-status-mode-map
+    "Z" 'magit-stash
     (kbd "M-j") 'magit-section-forward
     (kbd "M-k") 'magit-section-backward
     (kbd "C-j") nil

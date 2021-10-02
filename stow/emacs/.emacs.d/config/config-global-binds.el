@@ -254,6 +254,7 @@
 ;; programming
 ;; --------------------------------------------------------------------------------
 (evil-leader/set-key
+  "ps" 'projectile-switch-project
   "pR" 'projectile-run-project
   "pT" 'projectile-test-project
   "pC" 'projectile-compile-project

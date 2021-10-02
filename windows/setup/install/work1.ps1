@@ -4,7 +4,7 @@
 
 .\docker-desktop.ps1
 
-cinst -y dbeaver nodejs composer rdm
+cinst -y dbeaver nodejs composer rdm firefox googlechrome
 
 RefreshEnv.cmd
 

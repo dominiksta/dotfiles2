@@ -29,4 +29,4 @@ cinst -y tortoisesvn sqlitebrowser sqlite.shell
 # ----------------------------------------------------------------------
 
 cinst -y microsoft-teams office365proplus
-cinst -y openvpn
+# manuelle installation: openvpn (https://openvpn.net/community-downloads/)

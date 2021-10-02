@@ -24,7 +24,7 @@ cinst -y `
   doublecmd microsoft-windows-terminal `
   autohotkey altdrag `
   procexp nircmd shmnview shellmenunew zoomit colora `
-  keepassxc gpg4win veracrypt `
+  keepassxc veracrypt `
   xournal sumatrapdf.install `
   thunderbird birdtray `
   7zip.install irfanview irfanviewplugins vlc spotify notepadplusplus audacity filezilla `
