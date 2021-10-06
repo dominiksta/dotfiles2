@@ -1,0 +1,15 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\shell]
+@="openintotalcmd"
+
+[HKEY_CLASSES_ROOT\Directory\shell\openintotalcmd]
+@="Open In Total Commander"
+
+[HKEY_CLASSES_ROOT\Directory\shell\openintotalcmd\command]
+@="\"C:\\Program Files\\totalcmd\\totalcmd.exe\" /O \"%1\""
+
+[HKEY_CLASSES_ROOT\Drive\shell\open]
+
+[HKEY_CLASSES_ROOT\Drive\shell\open\command]
+@="\"C:\\Program Files\\totalcmd\\totalcmd.exe\" /O \"%1\""

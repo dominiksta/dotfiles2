@@ -96,9 +96,9 @@ cmd /c mklink %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\Lo
 cmd /c mklink %USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1 `
   %USERPROFILE%\Source\git\dotfiles\windows\powershell\Microsoft.PowerShell_profile.ps1
 
-# --- doublecmd
-cmd /c mklink /d %APPDATA%\doublecmd `
-  %USERPROFILE%\Source\git\dotfiles\windows\doublecmd
+# --- totalcmd
+cmd /c mklink /d %APPDATA%\GHISLER `
+  %USERPROFILE%\Source\git\dotfiles\windows\totalcmd
 
 # ----------------------------------------------------------------------
 # --- file associations ---
@@ -128,7 +128,7 @@ reg import ..\stop-cursor-blink.reg
 reg import ..\disable-web-search.reg
 reg import ..\no-alt-shift-for-language-change.reg
 reg import ..\emacs-context-menu.reg
-reg import ..\doublecmd-as-default.reg
+reg import ..\totalcmd-as-default.reg
 reg import ..\keepasssxc-waterfox.reg
 
 # ----------------------------------------------------------------------
