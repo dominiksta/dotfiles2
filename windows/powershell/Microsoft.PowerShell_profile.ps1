@@ -45,3 +45,7 @@ Function vcvars2019x64 {
     $env:my__loaded_environment = "vs2019x64 "
     Write-Host "Environment for 'x64 Native Tools Command Prompt for VS 2019'"
 }
+
+function Get-IrfanViewQR { zbarimg $env:temp\iviewscrot.png }
+
+. "~/Source/git/dotfiles/windows/powershell/Background-Apps.ps1"

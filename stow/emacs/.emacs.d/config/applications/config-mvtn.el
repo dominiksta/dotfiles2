@@ -35,16 +35,26 @@
   "r" 'revert-buffer
   "q" 'quit-window)
 
+;; if `evil-org-mode' is not disabled, it will overshadow the binds in the
+;; following section
+(add-hook 'mvtn-backlink-buffer-mode-hook
+          (lambda () (interactive) (evil-org-mode 0)))
+(evil-define-key 'normal mvtn-backlink-buffer-mode-map
+  "gj" 'mvtn-backlink-buffer-next-backlink
+  (kbd "M-j") 'mvtn-backlink-buffer-next-backlink
+  "gk" 'mvtn-backlink-buffer-previous-backlink
+  (kbd "M-k") 'mvtn-backlink-buffer-previous-backlink)
+
 (evil-leader/set-key
   "nd" 'mvtn-jump-current-year-directory
   "nj" 'mvtn-journal-new-entry
   "nJ" 'mvtn-journal-new-quick-entry
-  "nn" 'mvtn-open-note
-  "nN" 'mvtn-new-note
+  "nn" 'mvtn-open-or-create-note
   "nT" 'mvtn-new-note-from-template
   "nr" 'mvtn-rename-current-file
   "ns" 'mvtn-search-full-text
-  "nb" 'mvtn-search-backlinks
+  "nB" 'mvtn-search-backlinks
+  "nb" 'mvtn-backlink-buffer-toggle-side-window
   "nl" 'mvtn-insert-link
   "no" 'mvtn-follow-link-at-point
   "nt" 'mvtn-tag-file-list)

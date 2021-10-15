@@ -199,6 +199,8 @@
 (global-set-key (kbd "C-c C-+") 'fp/font-size-hydra/body)
 (global-set-key (kbd "<f5>") 'window-show-cursor)
 
+(global-set-key (kbd "C-M-ö") (lambda () (interactive) (insert "→")))
+
 ;; --------------------------------------------------------------------------------
 ;; "applications"
 ;; --------------------------------------------------------------------------------
