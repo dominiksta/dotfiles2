@@ -233,6 +233,9 @@
   "aocr" 'org-clock-remove-overlays
   "aocj" 'org-clock-goto)
 
+;; --- org-noter ---
+(evil-leader/set-key "an" 'fp/org-noter-from-zotero)
+
 ;; --- calendar ---
 (evil-leader/set-key "aC" 'calendar)
 

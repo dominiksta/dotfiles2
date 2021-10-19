@@ -160,6 +160,43 @@ some faces fixed-with (for tables, source code, etc.)"
       org-tags-column -75)
 
 ;; --------------------------------------------------------------------------------
+;; org-noter
+;; --------------------------------------------------------------------------------
+
+(straight-use-package 'org-noter)
+
+(with-eval-after-load "org-noter"
+  (setq org-noter-separate-notes-from-heading t
+        org-noter-always-create-frame nil
+        org-noter-kill-frame-at-session-end nil
+        org-noter-insert-selected-text-inside-note t)
+
+  (defun fp/org-noter-from-zotero (arg)
+    "Prompt for a pdf from the zotero/zotfile attachment
+directory and start `org-noter' with ARG."
+    (interactive "P")
+    (when (not (org-entry-get nil "NOTER_DOCUMENT" t))
+      (org-set-property
+       "NOTER_DOCUMENT"
+       (abbreviate-file-name
+        (read-file-name
+         "File: " "~/sync/documents/studium/00-academic/"))))
+    (org-noter arg)
+    ;; org-noter-notes-mode-hook seems to be ignored
+    ;; (run-with-timer 1 nil (lambda () ))
+    (dolist (b (buffer-list))
+      (with-current-buffer b
+        (when (bound-and-true-p org-noter-notes-mode)
+          (olivetti-mode 0)
+          (olivetti-mode 1)))))
+
+  (evil-define-key '(normal visual) pdf-view-mode-map
+    "ii" 'org-noter-insert-note
+    "ip" 'org-noter-insert-precise-note))
+
+(autoload 'fp/org-noter-from-zotero "org-noter.el")
+
+;; --------------------------------------------------------------------------------
 ;; clocking
 ;; --------------------------------------------------------------------------------
 (straight-use-package 'org-pomodoro)

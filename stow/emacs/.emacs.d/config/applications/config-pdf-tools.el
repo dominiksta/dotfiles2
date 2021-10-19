@@ -206,6 +206,9 @@
     "sm" 'pdf-view-set-slice-using-mouse
     "sr" 'pdf-view-reset-slice
 
+    "aa" 'pdf-annot-add-highlight-markup-annotation
+    "at" 'pdf-annot-add-text-annotation
+
     ;; goto
     "gl" 'pdf-view-goto-label
 
@@ -222,7 +225,6 @@
 
     "zd" 'pdf-view-dark-minor-mode
     "zm" 'pdf-view-midnight-minor-mode
-    "i"  'pdf-view-midnight-minor-mode
     "zp" 'pdf-view-printer-minor-mode
 
     "o" 'pdf-outline
