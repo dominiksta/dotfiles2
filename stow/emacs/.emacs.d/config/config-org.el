@@ -311,6 +311,23 @@ directory and start `org-noter' with ARG."
 (setq org-highlight-latex-and-related '(latex))
 (plist-put org-format-latex-options :scale 1.5)
 
+(defun fp/switch-org-latex-dir-for-theme ()
+  "Set `org-preview-latex-image-directory' for the background
+color of the current theme and regenerate all latex previews in
+all open org-mode buffers. When called after a theme change, this
+will adapt the latex previews to the theme. This makes me really
+happy."
+  (setq org-preview-latex-image-directory
+        (format "ltximg/%s/"
+                (substring (alist-get 'background-color (frame-parameters)) 1)))
+  (dolist (buf (buffer-list))
+    (with-current-buffer buf
+      (when (eq major-mode 'org-mode)
+        (org-toggle-latex-fragment '(64))
+        (org-toggle-latex-fragment '(16))))))
+
+(add-hook 'after-load-theme-hook 'fp/switch-org-latex-dir-for-theme)
+
 (defun fp/org-rebuild-latex-previews ()
   "Delete ltximg folder of the current org file and rebuild all images."
   (interactive)
