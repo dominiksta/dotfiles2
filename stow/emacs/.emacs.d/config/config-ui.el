@@ -23,14 +23,14 @@
 ;; themes and fonts
 ;; --------------------------------------------------------------------------------
 
-(setq fp/theme-font-family "Dejavu Sans Mono"
+(setq fp/theme-font-family "Iosevka Fixed Medium Extended"
       fp/theme-font-family-size "13"
       fp/theme-font-family-variable-pitch "DejaVu Serif 13"
       ;; these are used to set `fp/theme-font-family' in `fp/theme-switch'
       fp/theme-light-font-bold nil)
 
 (setq default-frame-alist
-      (list (cons 'font (concat fp/theme-font-family " " fp/theme-font-family-size))
+      (list (cons 'font (concat fp/theme-font-family "-" fp/theme-font-family-size))
             '(vertical-scroll-bars . nil)
             '(horizontal-scroll-bars . nil)
             '(fullscreen . maximized)))
