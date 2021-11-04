@@ -45,7 +45,7 @@
 (config-require '(config-language-web-json)     :regexp "\\.json?\\'"     :auto-mode json-mode)
 (config-require '(config-language-web-html)     :regexp '("html?" "xml")  :auto-mode web-mode)
 (config-require '(config-language-web-php
-                  config-language-sql)          :regexp "\\.php\\'"       :auto-mode php-mode)
+                  config-language-sql)          :regexp "\\.php\\'"       :auto-mode web-mode)
 (config-require '(config-language-web-php
                   config-language-sql)          :regexp "\\.sql\\'"       :auto-mode sql-mode)
 (config-require '(config-web-rest)              :regexp "\\.http\\'"      :auto-mode restclient-mode)
