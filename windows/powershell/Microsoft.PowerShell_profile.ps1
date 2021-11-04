@@ -48,4 +48,17 @@ Function vcvars2019x64 {
 
 function Get-IrfanViewQR { zbarimg $env:temp\iviewscrot.png }
 
+function Switch-YubiKey {
+    $email = "dominik.stahmer@posteo.de"
+
+    $keygrips = gpg --with-keygrip --list-secret-keys $email | select-string -pattern "Keygrip"
+
+    foreach ($match in $keygrips) {
+        $keygrip = $match.Line.Split('=')[1].Substring(1)
+        rm -Force "$env:UserProfile\.gnupg\private-keys-v1.d\$keygrip.key"
+    }
+
+    gpg --card-status
+}
+
 . "~/Source/git/dotfiles/windows/powershell/Background-Apps.ps1"
