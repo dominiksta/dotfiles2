@@ -22,7 +22,7 @@
         mvtn-excluded-directories '(".git" ".svn" "ltximg" "orgimg" "data")
         mvtn-search-function 'mvtn-search-full-text-rg
         mvtn-cv-enable t
-        mvtn-org-agenda-tag "projekt"
+        mvtn-org-agenda-tag "agenda"
         mvtn-journal-dir "prv/flt"
         mvtn-journal-new-daily-title "Logbuch am %Y-%m-%d")
 
@@ -34,15 +34,50 @@
   (mvtn-journal-autojournal-set-feature 'org-clock t)
 
   ;; ----------------------------------------------------------------------
+  ;; org-archive
+  ;; ----------------------------------------------------------------------
+
+  ;; This /could/ make it into mvtn as a package if I end up finding it useful
+  ;; enough.
+
+  (defmacro mvtn-journal-with-org-archive-location-as-daily (&rest body)
+    "Let `org-archive-location' be the current daily note."
+    `(let ((org-archive-location
+            (format-time-string
+             (format "%s::%sOrg Archive"
+                     (with-current-buffer
+                         (mvtn-journal-daily-for-time (current-time))
+                       (buffer-file-name))
+                     (mvtn-template-for-extension
+                      mvtn-journal-default-file-extension
+                      mvtn-journal-entry-file-extension-templates)))))
+       ,@body))
+
+  (defun mvtn-journal-org-archive-subtree-default ()
+    "Archive the current org subtree to the current daily note."
+    (interactive)
+    (mvtn-journal-with-org-archive-location-as-daily
+     (org-archive-subtree-default)))
+
+  (defun mvtn-journal-org-archive-all-done ()
+    "Archive the current org subtree to the current daily note."
+    (interactive)
+    (mvtn-journal-with-org-archive-location-as-daily
+     (org-archive-all-done)))
+
+  ;; ----------------------------------------------------------------------
   ;; citing webpages
   ;; ----------------------------------------------------------------------
 
   (defun fp/mvtn-store-webpage-from-clipboard-markdown (encrypt)
     (interactive "P")
-    "This uses the 'Copy Selection as Markdown'
-Addon (https://github.com/0x6b/copy-selection-as-markdown).
-Integration of the kill-ring with the system clipboard has to be
-enabled (it is by default)."
+    "Create a note for a section of a webpage in the clipboard.
+This uses the 'Copy Selection as Markdown'
+addon (https://github.com/0x6b/copy-selection-as-markdown).  In
+the addon settings, prepending quotes has to be disabled and
+including the link enabled for this to work.  Integration of the
+kill-ring with the system clipboard has to be enabled (it is by
+default)."
     (let* ((clip (current-kill 0))
            (first-line (car (split-string clip "\n")))
            (the-rest (mapconcat 'identity (cddr (split-string clip "\n")) "\n")))
@@ -83,7 +118,8 @@ Quelle: %s
     "gj" 'mvtn-backlink-buffer-next-backlink
     (kbd "M-j") 'mvtn-backlink-buffer-next-backlink
     "gk" 'mvtn-backlink-buffer-previous-backlink
-    (kbd "M-k") 'mvtn-backlink-buffer-previous-backlink))
+    (kbd "M-k") 'mvtn-backlink-buffer-previous-backlink
+    "q" 'mvtn-backlink-buffer-toggle-side-window))
 
 
 ;; This of course does not not /really/ come from mvtn.el but autoloading like
@@ -104,6 +140,7 @@ Quelle: %s
   "nl" 'mvtn-insert-link
   "no" 'mvtn-follow-link-at-point
   "nt" 'mvtn-tag-file-list
+  "na" 'mvtn-org-agenda
   "nw" 'fp/mvtn-store-webpage-from-clipboard-markdown)
 
 

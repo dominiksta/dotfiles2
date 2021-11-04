@@ -25,7 +25,10 @@
         (lambda () nil) ; 6
         (lambda () nil) ; 7
         (lambda () nil) ; 8
-        (lambda () nil) ; 9
+        (lambda ()
+          (if (not (or (string-match "\\`gnus-" (symbol-name major-mode))
+                       (eq major-mode 'message-mode)))
+              (gnus))) ; 9
         ))
 
 (defun fp/eyebrowse-switch-to-window-config-and-run-defaults (i)

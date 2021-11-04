@@ -225,10 +225,6 @@
 (define-key dired-mode-map [(double-mouse-2)] 'fp/dired-mouse-find-alternate-file)
 (define-key dired-mode-map [(triple-mouse-2)] 'fp/dired-mouse-find-alternate-file)
 
-(define-key dired-mode-map fp/mouse-back 'dired-find-alternate-up)
-(define-key dired-mode-map fp/double-mouse-back 'dired-find-alternate-up)
-(define-key dired-mode-map fp/triple-mouse-back 'dired-find-alternate-up)
-
 (define-key dired-mode-map [mouse-3] 'fp/dired-mouse-open-with-system-default)
 (define-key dired-mode-map [(double-mouse-3)] 'fp/dired-mouse-open-with-system-default)
 (define-key dired-mode-map [(triple-mouse-3)] 'fp/dired-mouse-open-with-system-default)

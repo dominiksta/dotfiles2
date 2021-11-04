@@ -69,6 +69,9 @@
   "bp" 'previous-buffer
   "d" 'kill-this-buffer)
 
+(global-set-key fp/mouse-back 'previous-buffer)
+(global-set-key fp/mouse-forward 'next-buffer)
+
 
 ;; -- evaluating ---
 (evil-leader/set-key

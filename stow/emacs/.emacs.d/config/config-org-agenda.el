@@ -6,14 +6,15 @@
 ;; -- window setup
 (setq org-agenda-window-setup 'current-window)
 
-;; --- Always start org-agenda on eyebrowse workspace 0 ---
+;; --- Always start org-agenda on eyebrowse workspace 8 ---
 (defun fp/org-agenda-wm-advice (orig-fun &rest args)
-  (eyebrowse-switch-to-window-config-0)
+  (eyebrowse-switch-to-window-config-8)
   (apply orig-fun args))
 
 (advice-add 'org-agenda :around 'fp/org-agenda-wm-advice)
 
 ;; --- files ---
+(custom-set-variables '(org-agenda-files '()))
 (setq org-agenda-files '()
       org-icalendar-combined-agenda-file (concat sync-directory "org/ics/combine.ics"))
 
@@ -22,17 +23,20 @@
 ;; custom commands
 ;; --------------------------------------------------------------------------------
 (setq org-agenda-custom-commands
-      '(("a" "Default - Today"
-         ((agenda "" ((org-agenda-span 1))) (todo "NEXT") (todo "TODO") (todo "WAIT") (todo "TASK"))
+      '(("a" "All"
+         ((agenda "" ((org-agenda-span 1)))
+          (todo "NEXT") (todo "TODO") (todo "WAIT"))
+         ((org-agenda-start-with-log-mode t)
+          (org-agenda-tag-filter-preset '("-prv"))))
+        ("p" "Without Private"
+         ((agenda "" ((org-agenda-span 1)))
+          (todo "NEXT") (todo "TODO") (todo "WAIT"))
          ((org-agenda-start-with-log-mode t)))
-
-        ("w" "Week all"
-         ((agenda ""))
-         ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))))
-
-        ("s" "stundenplan"
-         ((agenda ""))
-         ((org-agenda-files '("~/sync/documents/notes/org-todo/stundenplan.org"))))))
+        ("w" "Work Only"
+         ((agenda "" ((org-agenda-span 1)))
+          (todo "NEXT") (todo "TODO") (todo "WAIT"))
+         ((org-agenda-start-with-log-mode t)
+          (org-agenda-tag-filter-preset '("+wrk"))))))
 
 ;; --------------------------------------------------------------------------------
 ;; bindings
@@ -52,13 +56,18 @@
 
   (kbd "RET") 'org-agenda-goto
   "o"         'org-agenda-switch-to
-  "s"         'org-agenda-show
+  "a"         'org-agenda-show
 
   "q"         'quit-window
+  "u"         'org-agenda-undo
   "r"         'org-agenda-redo
-  "a"         'org-agenda
+  "R"         'org-agenda
 
-  (kbd "C-s") 'org-agenda-filter
+  "A"         'org-agenda-archive
+  "gw"        'org-agenda-week-view
+  "gd"        'org-agenda-day-view
+
+  "s"         'org-agenda-filter
 
   "t"         'org-agenda-todo
   "S"         'org-agenda-schedule

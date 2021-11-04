@@ -13,6 +13,11 @@
 (require 'evil)
 
 (setq evil-respect-visual-line-mode t)
+(evil-define-key '(normal visual motion) visual-line-mode-map
+  "j" 'evil-next-visual-line
+  "k" 'evil-previous-visual-line
+  "$" 'evil-end-of-visual-line
+  "0" 'evil-beginning-of-visual-line)
 (evil-mode 1)
 (setq evil-insert-state-message nil
       evil-insert-state-modes nil)

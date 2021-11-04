@@ -75,6 +75,8 @@
 
 (straight-use-package 'org-bullets)
 (add-hook 'org-mode-hook 'org-bullets-mode)
+;; (setq org-bullets-bullet-list '("◉" "○" "✸" "✿"))
+(setq org-bullets-bullet-list '("▸"))
 
 (custom-set-faces
  ;; fix for emacs27's new :extend keyword and org babel
@@ -89,7 +91,9 @@
 
  ;; title size
  '(org-document-title ((t (:height 1.4))))
- )
+
+ ;; drawers
+ '(org-drawer ((t (:inherit 'font-lock-comment-face)))))
 
 ;; --- different font for org mode ---
 ;; (setq fp/org-font-family "Dejavu Sans Mono"
@@ -111,12 +115,13 @@ some faces fixed-with (for tables, source code, etc.)"
   " ovp"
   nil
   (let ((extra-fixed-pitch
-         '(org-code org-level-1 org-level-2 org-level-3 org-level-4 org-level-5
-                    org-level-6 org-level-7 org-level-8 org-link org-hide
-                    org-block org-table org-block-begin-line org-indent
-                    org-block-end-line org-meta-line org-document-info-keyword
-                    org-special-keyword org-verbatim org-checkbox
-                    font-lock-comment-face org-date))
+         '(org-code org-link org-hide org-block org-table org-block-begin-line
+                    org-indent org-block-end-line org-meta-line
+                    org-document-info-keyword org-special-keyword org-verbatim
+                    org-checkbox font-lock-comment-face org-date))
+        (extra-fixed-pitch-heading
+         '(org-level-1 org-level-2 org-level-3 org-level-4 org-level-5
+                       org-level-6 org-level-7 org-level-8 ))
         (extra-variable-pitch '(org-quote)))
     (if (bound-and-true-p fp/org-variable-pitch-mode)
         (progn
@@ -127,6 +132,11 @@ some faces fixed-with (for tables, source code, etc.)"
                                  :family (face-attribute 'fixed-pitch :family)
                                  :height (face-attribute 'default :height)))
            extra-fixed-pitch)
+          (mapcar
+           (lambda (face)
+             (set-face-attribute face nil
+                                 :family (face-attribute 'fixed-pitch :family)))
+           extra-fixed-pitch-heading)
           (mapcar
            (lambda (face)
              (set-face-attribute face nil :family
@@ -156,7 +166,7 @@ some faces fixed-with (for tables, source code, etc.)"
       org-fontify-done-headline nil
       org-fontify-quote-and-verse-blocks t
       org-hide-emphasis-markers nil
-      org-ellipsis nil
+      org-ellipsis " ▾"
       org-tags-column -75)
 
 ;; --------------------------------------------------------------------------------
@@ -326,6 +336,7 @@ happy."
         (org-toggle-latex-fragment '(64))
         (org-toggle-latex-fragment '(16))))))
 
+(fp/switch-org-latex-dir-for-theme) ;; set on startup
 (add-hook 'after-load-theme-hook 'fp/switch-org-latex-dir-for-theme)
 
 (defun fp/org-rebuild-latex-previews ()
@@ -375,9 +386,6 @@ happy."
 (define-key org-mode-map [mouse-3]
   (lambda (event) (interactive "e") (fp/point-to-mouse event) (org-cycle)))
 
-(define-key org-mode-map fp/mouse-back
-  (lambda (event) (interactive "e") (fp/point-to-mouse event) (org-ctrl-c-ctrl-c)))
-
 (setq org-imenu-depth 10)
 
 (add-hook 'org-mode-hook 'visual-line-mode)
@@ -386,9 +394,7 @@ happy."
 ;; agenda and todos
 ;; --------------------------------------------------------------------------------
 ;; --- todo states ---
-(setq org-todo-keywords '((sequence "TODO(t)" "WAIT(w)"
-                                    "TASK(a)" "NEXT(n)"
-                                    "ASK(?)"
+(setq org-todo-keywords '((sequence "TODO(t)" "WAIT(w)" "TASK(a)" "NEXT(n)"
                                     "|" "DONE(d)" "FAIL(f)"))
       org-log-done t
       org-log-into-drawer t)
@@ -446,9 +452,8 @@ happy."
 (setcdr (assoc "\\.png\\'" org-file-apps) (if (eq system-type 'windows-nt)
                                               "mspaint.exe %s" "kolourpaint %s"))
 
-
-;; --- archiving ---
-(setq org-archive-location (concat sync-directory "documents/notes/org-todo/archive.org::datetree/"))
+;; archiving: also see `config-mvtn'
+(setq org-archive-location "::* Erledigt")
 
 ;; --- download/screenshots ---
 (straight-use-package 'org-download)
@@ -516,15 +521,18 @@ happy."
 ;; attachments
 ;; --------------------------------------------------------------------------------
 
-(require 'org-attach)
+(with-eval-after-load "org-attach"
+  (setq org-attach-use-inheritance t)
 
-(defun fp/org-attach-insert-link ()
-  "Insert a link to an attachment at point."
-  (interactive)
-  (insert
-   (format "[[attachment:%s]]"
-           (completing-read "Insert link to attachment: "
-                            (org-attach-file-list (org-attach-dir))))))
+  (defun fp/org-attach-insert-link ()
+    "Insert a link to an attachment at point."
+    (interactive)
+    (insert
+     (format "[[attachment:%s]]"
+             (completing-read "Insert link to attachment: "
+                              (org-attach-file-list (org-attach-dir)))))))
+
+(autoload 'fp/org-attach-insert-link "org-attach.el")
 
 (evil-leader/set-key-for-mode 'org-mode
   "mda" 'org-attach
