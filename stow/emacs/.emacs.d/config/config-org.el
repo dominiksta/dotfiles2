@@ -319,7 +319,20 @@ directory and start `org-noter' with ARG."
                                 "sudo apt-get install -y dvipng" "None")
 
 (setq org-highlight-latex-and-related '(latex))
-(plist-put org-format-latex-options :scale 1.5)
+
+;; --- size ---
+
+(defun org--get-display-dpi ()
+  "Overwrite the original `org--get-display-dpi'.
+This will simply return the number 82, as that is what the
+original `org--get-display-dpi' returned for my main
+monitor.  Returning a constant number makes the display of latex
+previews consistent for laptop and docked usage."
+  82)
+
+(plist-put org-format-latex-options :scale 2)
+
+;; --- color ---
 
 (defun fp/switch-org-latex-dir-for-theme ()
   "Set `org-preview-latex-image-directory' for the background
@@ -339,18 +352,7 @@ happy."
 (fp/switch-org-latex-dir-for-theme) ;; set on startup
 (add-hook 'after-load-theme-hook 'fp/switch-org-latex-dir-for-theme)
 
-(defun fp/org-rebuild-latex-previews ()
-  "Delete ltximg folder of the current org file and rebuild all images."
-  (interactive)
-  (let ((ltxdir (concat default-directory "ltximg/"))
-        (current-prefix-arg '(16)))
-    (when (file-exists-p ltxdir) (delete-directory ltxdir t nil))
-    (org-remove-latex-fragment-image-overlays)
-    (call-interactively 'org-toggle-latex-fragment)))
-
-(evil-leader/set-key-for-mode 'org-mode
-  "mL" 'fp/org-rebuild-latex-previews
-  "ml" 'org-toggle-latex-fragment)
+(evil-leader/set-key-for-mode 'org-mode "ml" 'org-toggle-latex-fragment)
 
 ;; --------------------------------------------------------------------------------
 ;; bindings
