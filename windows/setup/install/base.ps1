@@ -21,13 +21,13 @@ iex ((New-Object System.Net.WebClient).DownloadString(
 cinst -y `
   waterfox chromium `
   emacs git dejavufonts ubuntu.font ripgrep python3 `
-  doublecmd microsoft-windows-terminal `
+  totalcmd frhed microsoft-windows-terminal `
   autohotkey altdrag `
   procexp nircmd shmnview shellmenunew zoomit colora `
   keepassxc veracrypt `
-  xournal sumatrapdf.install `
+  xournal sumatrapdf.install naps2 `
   thunderbird birdtray `
-  7zip.install irfanview irfanviewplugins vlc spotify notepadplusplus audacity filezilla `
+  7zip.install nomacs greenshot vlc spotify notepadplusplus audacity filezilla `
   synctrayzor plex
 
 rm "$env:LocalAppData\Microsoft\WindowsApps\python3.exe"
@@ -36,6 +36,9 @@ rm "$env:LocalAppData\Microsoft\WindowsApps\python.exe"
 Push-Path -Add "$env:LocalAppData\SumatraPDF" -Target 'Machine'
 Push-Path -Add "$env:ProgramFiles\Waterfox" -Target 'Machine'
 Push-Path -Add "$env:ProgramFiles\IrfanView" -Target 'Machine'
+# Git for windows also comes with an installation of gpg, which is sufficient
+# for me right now
+Push-Path -Add "$env:ProgramFiles\Git\usr\bin" -Target 'Machine'
 
 # Set 'HOME' for Emacs
 [Environment]::SetEnvironmentVariable(

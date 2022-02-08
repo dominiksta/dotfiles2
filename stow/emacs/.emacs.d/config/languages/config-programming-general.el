@@ -90,6 +90,7 @@ execute it, setting `default-directory' to
 (straight-use-package 'company) (require 'company)
 (setq company-idle-delay 0
       company-minimum-prefix-length 3)
+(global-set-key (kbd "C-:") 'company-complete)
 (define-key company-mode-map (kbd "C-j") 'company-select-next)
 (define-key company-mode-map (kbd "C-k") 'company-select-previous)
 (define-key company-mode-map (kbd "M-j") 'company-select-next)
@@ -193,7 +194,8 @@ execute it, setting `default-directory' to
   (setq projectile-dynamic-mode-line nil
         projectile-mode-line-prefix " proj"
         projectile-mode-line " proj"
-        projectile-indexing-method 'hybrid))
+        projectile-indexing-method 'hybrid
+        projectile-switch-project-action (lambda () (dired default-directory))))
 
 ;; --------------------------------------------------------------------------------
 ;; snippets

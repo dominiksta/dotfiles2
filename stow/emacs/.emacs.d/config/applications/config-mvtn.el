@@ -110,6 +110,8 @@ Quelle: %s
     "r" 'revert-buffer
     "q" 'quit-window)
 
+  (evil-define-key 'normal mvtn-link-map "gx" 'mvtn-follow-link-at-point)
+
   ;; If `evil-org-mode' is not disabled, it will overshadow the binds in the
   ;; following section
   (add-hook 'mvtn-backlink-buffer-mode-hook

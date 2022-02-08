@@ -10,15 +10,18 @@
 ;; ----------------------------------------------------------------------
 ;; completion/lsp
 ;; ----------------------------------------------------------------------
-(straight-use-package 'company-jedi)
+;; (straight-use-package 'company-jedi)
 (config-add-external-dependency
- 'pyls 'config-python "lsp" (lambda () (executable-find "pyls"))
- "pip3 install python-language-server[all]" "pip3 install python-language-server[all]")
+ 'pylsp 'config-python "lsp" (lambda () (executable-find "pylsp"))
+ "pip3 install python-lsp-server[all]" "pip3 install python-lsp-server[all]")
 
-(when (config-external-check-list '(pyls))
-  (setq lsp-pyls-plugins-flake8-enabled nil
-        lsp-pyls-plugins-autopep8-enabled nil
-        lsp-pyls-plugins-pycodestyle-enabled nil)
+;; npm install -g pyright
+(when (config-external-check-list '(pylsp))
+  (setq lsp-pylsp-plugins-flake8-enabled nil
+        lsp-pylsp-plugins-pylint-enabled nil
+        lsp-pylsp-plugins-pyflakes-enabled t
+        lsp-pylsp-plugins-autopep8-enabled nil
+        lsp-pylsp-plugins-pydocstyle-enabled nil)
   (add-hook 'python-mode-hook 'lsp))
 
 ;; --------------------------------------------------------------------------------

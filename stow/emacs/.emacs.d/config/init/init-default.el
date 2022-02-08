@@ -36,20 +36,20 @@
 (config-require '(config-language-csharp)       :regexp "\\.cs\\'"        :auto-mode csharp-mode)
 (config-require '(config-language-go)           :regexp "\\.go\\'"        :auto-mode go-mode)
 (config-require '(config-language-java)         :regexp "\\.java\\'"      :auto-mode java-mode)
+(config-require '(config-language-scala)         :regexp "\\.scala\\'"    :auto-mode scala-mode)
 (config-require '(config-language-clojure)      :regexp "\\.clj\\'"       :auto-mode clojure-mode)
 (config-require '(config-language-ahk)          :regexp "\\.ahk\\'"       :auto-mode ahk-mode)
 (config-require '(config-language-markdown)     :regexp "\\.md\\'"        :auto-mode markdown-mode)
 (config-require '(config-language-shell-script) :regexp "\\.sh\\'"        :auto-mode sh-mode)
 (config-require '(config-language-powershell)   :regexp "\\.ps1\\'"       :auto-mode powershell-mode)
-(config-require '(config-language-web-js)       :regexp "\\.jsm?\\'"      :auto-mode js2-mode)
-(config-require '(config-language-web-json)     :regexp "\\.json?\\'"     :auto-mode json-mode)
+(config-require '(config-language-web-json)     :regexp '("json?" "cplan") :auto-mode json-mode)
 (config-require '(config-language-web-html)     :regexp '("html?" "xml")  :auto-mode web-mode)
 (config-require '(config-language-web-php
                   config-language-sql)          :regexp "\\.php\\'"       :auto-mode web-mode)
 (config-require '(config-language-web-php
                   config-language-sql)          :regexp "\\.sql\\'"       :auto-mode sql-mode)
 (config-require '(config-web-rest)              :regexp "\\.http\\'"      :auto-mode restclient-mode)
-(config-require '(config-language-web-ts)       :regexp "\\.ts\\'"        :auto-mode typescript-mode)
+(config-require '(config-language-web-tide)       :regexp '("tsx?" "jsx?")        :auto-mode web-tide-mode)
 (config-require '(config-language-web-css)      :regexp "\\.css\\'"       :auto-mode css-mode)
 (config-require '(config-language-web-css)      :regexp "\\.scss\\'"      :auto-mode scss-mode)
 (config-require '(config-language-octave) :regexp "\\.m\\'" :auto-mode octave-mode

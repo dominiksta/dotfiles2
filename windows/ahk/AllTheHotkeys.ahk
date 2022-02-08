@@ -37,23 +37,23 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;------------------------------------------------------------
 ; screenshots
 ;------------------------------------------------------------
-PrintScreen::
-    EnvGet temp, temp
-    runwait i_view64.exe /capture=4 /convert=%temp%\iviewscrot.png
-    run %temp%\iviewscrot.png
-    return
+; PrintScreen::
+;     EnvGet temp, temp
+;     runwait i_view64.exe /capture=4 /convert=%temp%\iviewscrot.png
+;     run %temp%\iviewscrot.png
+;     return
 
-!PrintScreen::
-    EnvGet temp, temp
-    runwait i_view64.exe /capture=2 /convert=%temp%\iviewscrot.png
-    run %temp%\iviewscrot.png
-    return
+; !PrintScreen::
+;     EnvGet temp, temp
+;     runwait i_view64.exe /capture=2 /convert=%temp%\iviewscrot.png
+;     run %temp%\iviewscrot.png
+;     return
 
-+PrintScreen::
-    EnvGet temp, temp
-    runwait i_view64.exe /capture=1 /convert=%temp%\iviewscrot.png
-    run %temp%\iviewscrot.png
-    return
+; +PrintScreen::
+;     EnvGet temp, temp
+;     runwait i_view64.exe /capture=1 /convert=%temp%\iviewscrot.png
+;     run %temp%\iviewscrot.png
+;     return
 
 ;------------------------------------------------------------
 ; Other Shortcuts
@@ -124,7 +124,8 @@ bringtoforegroundbytitle(title, except){
         return
 }
 
-!+w::bringtoforegroundbyclass("WaterfoxWindowClass", "waterfox")
+!+w::bringtoforegroundbyclass("MozillaWindowClass", "waterfox")
+; !+w::Send, {LAlt Up}{LShift Up}{LWin Down}1{LWin Up}
 !+e::bringtoforegroundbyclass("TTOTAL_CMD", "C:\Program Files\totalcmd\totalcmd64.exe")
 ; !+p::bringtoforegroundbytitle("Plex", "C:\Program Files\Plex\Plex\Plex.exe")
 !+p::bringtoforegroundbyexe("Spotify.exe", "C:\Users\dominik\AppData\Roaming\Spotify\Spotify.exe")
@@ -179,7 +180,7 @@ bringtoforegroundbytitle(title, except){
 ; Switch primary monitor
 ;------------------------------------------------------------
 
-!+^F12::Run nircmd.exe setprimarydisplay 3
+!+^F12::Run nircmd.exe setprimarydisplay 2
 !+^F11::Run nircmd.exe setprimarydisplay 1
 
 ;------------------------------------------------------------

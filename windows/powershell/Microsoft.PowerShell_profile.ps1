@@ -13,6 +13,8 @@ function prompt {
 
 Function la { Get-ChildItem -Hidden $args }
 
+Set-Alias -Name sysjava -Value "$env:JAVA_HOME\bin\java.exe"
+
 Set-Alias -Name em -Value emacsclientw.exe
 Set-Alias -Name gfind -Value "C:\Program Files\Git\usr\bin\find.exe"
 
@@ -59,6 +61,25 @@ function Switch-YubiKey {
     }
 
     gpg --card-status
+}
+
+Function Restart-ScheduledTask {
+    Param ([parameter(Position=0)][String]$task)
+
+    Stop-ScheduledTask $task
+    Start-ScheduledTask $task
+}
+
+function Get-YoutubePlaylistAsPodcast {
+
+    Param ([parameter(Position=0)][String]$url)
+
+    yt-dlp.exe `
+      --yes-playlist `
+      -x --audio-format=mp3 `
+      -o "%(upload_date)s_%(playlist_index)s - %(title)s.%(ext)s" `
+      --sponsorblock-remove sponsor `
+      $url
 }
 
 . "~/Source/git/dotfiles/windows/powershell/Background-Apps.ps1"

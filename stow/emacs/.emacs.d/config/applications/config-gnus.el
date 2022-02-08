@@ -49,32 +49,32 @@
 
 (gnus-demon-add-handler 'gnus-demon-scan-news 5 10)
 
-(straight-use-package 'gnus-desktop-notify)
-(gnus-desktop-notify-mode 1)
-(setq gnus-desktop-notify-function
-      (lambda (body) (generic-notification-notify "You've Got Mail" body 10)))
+;; (straight-use-package 'gnus-desktop-notify)
+;; (gnus-desktop-notify-mode 1)
+;; (setq gnus-desktop-notify-function
+;;       (lambda (body) (generic-notification-notify "You've Got Mail" body 10)))
 
-(straight-use-package 'gnus-notify) (require 'gnus-notify)
+;; (straight-use-package 'gnus-notify) (require 'gnus-notify)
 
-(defvar fp/gnus-notify-groups nil
-  "A list of group names to watch using `gnus-notify'.")
+;; (defvar fp/gnus-notify-groups nil
+;;   "A list of group names to watch using `gnus-notify'.")
 
-(add-hook 'gnus-started-hook 'fp/gnus-started-hook-add-mode-line-notify)
-(defun fp/gnus-started-hook-add-mode-line-notify ()
-  (dolist (group fp/gnus-notify-groups)
-    (gnus-group-add-parameter group '(modeline-notify t)))
-  (gnus-mst-show-groups-with-new-messages))
+;; (add-hook 'gnus-started-hook 'fp/gnus-started-hook-add-mode-line-notify)
+;; (defun fp/gnus-started-hook-add-mode-line-notify ()
+;;   (dolist (group fp/gnus-notify-groups)
+;;     (gnus-group-add-parameter group '(modeline-notify t)))
+;;   (gnus-mst-show-groups-with-new-messages))
 
-(defun gnus-mst-notify-update-modeline ()
-  "[Overwritten] Update the modeline to show groups containing
-new messages"
-  (if gnus-mst-notify-groups
-      (setq gnus-mst-display-new-messages
-            (format " [m: %s]"
-                    (number-to-string
-                     (apply '+ (mapcar (lambda (group) (gnus-group-unread group))
-                                       gnus-mst-notify-groups)))))
-    (setq gnus-mst-display-new-messages "")))
+;; (defun gnus-mst-notify-update-modeline ()
+;;   "[Overwritten] Update the modeline to show groups containing
+;; new messages"
+;;   (if gnus-mst-notify-groups
+;;       (setq gnus-mst-display-new-messages
+;;             (format " [m: %s]"
+;;                     (number-to-string
+;;                      (apply '+ (mapcar (lambda (group) (gnus-group-unread group))
+;;                                        gnus-mst-notify-groups)))))
+;;     (setq gnus-mst-display-new-messages "")))
 
 
 
@@ -415,6 +415,7 @@ server."
   "U" 'gnus-summary-unmark-all-processable
   "x" 'gnus-summary-universal-argument
 
+  "!" 'gnus-summary-put-mark-as-ticked-next
   "o" 'gnus-summary-put-mark-as-read-next
   "O" 'gnus-summary-put-mark-as-unread-next
   "e" 'gnus-summary-put-mark-as-expirable
