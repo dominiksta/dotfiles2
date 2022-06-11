@@ -20,7 +20,7 @@
 ;; We can run ln -sf /usr/bin/waterfox /etc/alternatives/x-www-browser to set
 ;; waterfox as system default.
 (setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "waterfox")
+      browse-url-generic-program "firefox")
 
 (with-eval-after-load "browse-url"
   (defun browse-url-url-at-point ()

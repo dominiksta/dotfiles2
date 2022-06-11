@@ -26,6 +26,7 @@
 (require 'evil-leader)
 
 (setq evil-leader/in-all-states 1)
+(evil-define-key '(normal visual) prog-mode-map (kbd "<tab>") 'indent-for-tab-command)
 (evil-leader/set-leader "SPC")
 (evil-mode 0)
 (global-evil-leader-mode 1)

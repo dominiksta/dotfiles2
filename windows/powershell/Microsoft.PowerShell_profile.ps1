@@ -57,7 +57,9 @@ function Switch-YubiKey {
 
     foreach ($match in $keygrips) {
         $keygrip = $match.Line.Split('=')[1].Substring(1)
-        rm -Force "$env:UserProfile\.gnupg\private-keys-v1.d\$keygrip.key"
+        # $keydir = "$env:UserProfile\.gnupg\private-keys-v1.d" # git for windows
+        $keydir = "$env:AppData\gnupg\private-keys-v1.d"
+        rm -Force "$keydir\$keygrip.key"
     }
 
     gpg --card-status

@@ -33,10 +33,6 @@
   (load bootstrap-file nil 'nomessage))
 
 
-;; TODO If I end up liking straight.el, then I should get rid of package.el as
-;; recommended in the straight.el docs. For now, I do not want to refactor my
-;; entire config though.
-
 ;; ----------------------------------------------------------------------
 ;; load-path and deps
 ;; ----------------------------------------------------------------------

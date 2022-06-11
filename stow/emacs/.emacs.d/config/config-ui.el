@@ -58,6 +58,14 @@
 (setq fp/theme-light-theme 'gruvbox-light-soft
       fp/theme-dark-theme 'gruvbox-dark-soft)
 
+;; (straight-use-package '(shanty-theme :type git :host github
+;;                                      :repo "qhga/shanty-theme"))
+(straight-use-package 'shanty-themes)
+(custom-set-faces
+ '(font-lock-function-name-face ((t (:box nil)))))
+(setq fp/theme-light-theme 'shanty-themes-light
+      fp/theme-dark-theme 'shanty-themes-dark)
+
 ;; (straight-use-package 'tangotango-theme)
 ;; (setq fp/theme-light-theme 'tango
 ;;       fp/theme-dark-theme 'tangotango)

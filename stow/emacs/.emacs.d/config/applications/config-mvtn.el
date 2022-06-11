@@ -15,7 +15,7 @@
                  (:dir "stc" :datetree nil))) ;; static
           (:dir "~/sync/work/notes" :name "wrk" :structure
                 ((:dir "rec" :datetree t)
-                 (:dir "tri" :datetree t)
+                 (:dir "ltw" :datetree t)
                  (:dir "stc" :datetree nil)))) ;; static
         mvtn-template-locations '("~/sync/documents/notes/mvtn/templates")
         mvtn-default-file-extension "org"

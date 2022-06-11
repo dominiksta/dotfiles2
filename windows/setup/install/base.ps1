@@ -19,13 +19,13 @@ iex ((New-Object System.Net.WebClient).DownloadString(
          'https://chocolatey.org/install.ps1'))
 
 cinst -y `
-  waterfox chromium `
+  firefox chromium `
   emacs git dejavufonts ubuntu.font ripgrep python3 `
   totalcmd frhed microsoft-windows-terminal `
-  autohotkey altdrag `
+  autohotkey altdrag open-shell `
   procexp nircmd shmnview shellmenunew zoomit colora `
-  keepassxc veracrypt `
-  xournal sumatrapdf.install naps2 `
+  keepassxc veracrypt gpg4win `
+  xournal pinta sumatrapdf.install naps2 `
   thunderbird birdtray `
   7zip.install nomacs greenshot vlc spotify notepadplusplus audacity filezilla `
   synctrayzor plex
@@ -36,8 +36,6 @@ rm "$env:LocalAppData\Microsoft\WindowsApps\python.exe"
 Push-Path -Add "$env:LocalAppData\SumatraPDF" -Target 'Machine'
 Push-Path -Add "$env:ProgramFiles\Waterfox" -Target 'Machine'
 Push-Path -Add "$env:ProgramFiles\IrfanView" -Target 'Machine'
-# Git for windows also comes with an installation of gpg, which is sufficient
-# for me right now
 Push-Path -Add "$env:ProgramFiles\Git\usr\bin" -Target 'Machine'
 
 # Set 'HOME' for Emacs
@@ -88,7 +86,7 @@ cmd /c mklink /d %USERPROFILE%\.emacs.d\config `
 cmd /c mklink %USERPROFILE%\.emacs.d\init.el `
   %USERPROFILE%\Source\git\dotfiles\stow\emacs\.emacs.d\init.el
 cmd /c mklink %USERPROFILE%\.emacs.d\straight\versions\default.el `
-  %USERPROFILE%\Source\git\dotfiles\emacs\.emacs.d\straight\default.el
+  %USERPROFILE%\Source\git\dotfiles\stow\emacs\.emacs.d\straight\versions\default.el
 
 # --- windows terminal
 rm $env:localappdata\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
@@ -147,7 +145,10 @@ Start-Sleep 5
 # --- gpg ---
 # ----------------------------------------------------------------------
 
-gpg --import Z:\dominik\documents\00-critical\public-yubi.txt
-Write-Output "reader-port Yubico Yubi" > $env:AppData\gnupg\scdaemon.conf
-gpg --edit-key dominik.stahmer@posteo.de trust # ultimately
-gpg --card-status
+$gpg_program = "C:/Program Files (x86)/GnuPG/bin/gpg.exe"
+
+git config --global gpg.program $gpg_program
+
+&$gpg_program --import Z:\dominik\documents\00-critical\public-yubi.txt
+&$gpg_program --edit-key dominik.stahmer@posteo.de trust # ultimately
+&$gpg_program --card-status

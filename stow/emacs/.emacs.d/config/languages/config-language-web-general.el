@@ -59,6 +59,21 @@
       web-mode-enable-auto-quoting nil
       web-mode-enable-current-element-highlight t
       web-mode-smart-quotes '("&bdquo;" . "&ldquo;"))
+
+(straight-use-package 'emmet-mode)
+(add-hook 'web-mode-hook 'emmet-mode)
+(evil-define-key 'insert emmet-mode-keymap (kbd "C-,") 'emmet-expand-yas)
+
+(setq-default web-mode-comment-formats
+              '(("java" . "//")
+                ("javascript" . "//")
+                ("typescript" . "//")
+                ("php" . "//")
+                ("css" . "//")))
+
+;; (setq-default web-mode-comment-style 2)
+;; (setq-default web-mode-comment-prefixing nil)
+
 (custom-set-faces
  '(web-mode-current-element-highlight-face ((t (:inherit highlight))))
  '(web-mode-html-tag-face ((t nil))))
@@ -70,5 +85,6 @@
 
 
 (straight-use-package 'apache-mode)
+(straight-use-package 'nginx-mode)
 
 (provide 'config-language-web-general)

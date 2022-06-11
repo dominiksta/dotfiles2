@@ -27,7 +27,7 @@
 (add-hook 'tide-mode-hook 'fp/tide-mode-hook)
 
 (evil-define-key 'normal tide-mode-map
-  "gd" 'fp/tide-jump-to-definition
+  "gd" 'fp/tide-jump-to-definition ;; TODO evil-add-command-properties
   "gf" 'tide-references)
 
 (evil-define-key 'normal tide-references-mode-map
@@ -55,6 +55,42 @@
 ;;   "md" 'tide-documentation-at-point)
 ;; (define-key typescript-mode-map (kbd "M-R") 'tide-rename-symbol)
 
+;; (define-derived-mode typescript-tsx-mode typescript-mode "TSX"
+;;   "Major mode for editing TSX files.")
+
+;; (tree-sitter-require 'tsx)
+;; (add-to-list 'tree-sitter-major-mode-language-alist '(typescript-tsx-mode . tsx))
+
+;; (setq typescript-indent-offset 2)
+
+;; (straight-use-package '(tsi :type git :host github :repo "orzechowskid/tsi.el"))
+
+;; ----------------------------------------------------------------------
+;; experimental tsx-mode
+;; ----------------------------------------------------------------------
+;; (straight-use-package '(tsi :type git :host github :repo "orzechowskid/tsi.el"))
+;; (straight-use-package '(tsx-mode :type git :host github :repo "orzechowskid/tsx-mode.el"))
+
+;; ----------------------------------------------------------------------
+;; jsx-mode
+;; ----------------------------------------------------------------------
+
+(require 'js)
+(add-to-list 'tree-sitter-major-mode-language-alist '(js-jsx-mode . tsx))
+
+(defun fp/js-jsx-mode-setup ()
+  (tide-setup)
+  (tree-sitter-mode 1)
+  (tree-sitter-hl-mode 1))
+
+(add-hook 'js-jsx-mode-hook 'fp/js-jsx-mode-setup)
+
+(define-key js-jsx-mode-map (kbd "M-R") 'tide-rename-symbol)
+
+(evil-leader/set-key-for-mode 'js-jsx-mode
+  "mo" 'tide-organize-imports
+  "md" 'tide-documentation-at-point)
+
 ;; ----------------------------------------------------------------------
 ;; web-tide-mode
 ;; ----------------------------------------------------------------------
@@ -71,16 +107,39 @@
 
 (define-derived-mode web-tide-mode web-mode "WebTide"
   "Web mode with tide"
+  ;; (setq-local indent-line-function (lambda () (tide-format-region
+  ;;                                         (point-at-bol) (point-at-eol))))
   (tide-setup))
+
+(add-to-list 'tree-sitter-major-mode-language-alist '(web-tide-mode . tsx))
 
 (flycheck-add-mode 'javascript-tide 'web-tide-mode)
 
+(define-key web-tide-mode-map (kbd "M-R") 'tide-rename-symbol)
 (evil-define-key '(normal visual) web-tide-mode-map
   "=" 'evil-tide-format)
+
+(evil-leader/set-key-for-mode 'web-tide-mode
+  "mo" 'tide-organize-imports
+  "md" 'tide-documentation-at-point)
 
 ;; This has to be set again here despite already being configured in
 ;; init-default.el because tide requires typescript-mode, which inserts itself
 ;; at the top of auto-mode alist.
-(add-to-list 'auto-mode-alist '("\\.\\(tsx?\\)\\|\\(jsx?\\)\\'" . web-tide-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(tsx?\\)\\'" . web-tide-mode))
+
+;; ----------------------------------------------------------------------
+;; prettier
+;; ----------------------------------------------------------------------
+
+;; requires 'diff' and 'prettier' to be installed (npm i -g prettier)
+(straight-use-package 'prettier-js)
+
+(setq-default web-tide-mode-enable-prettier-js nil)
+(defun web-tide-mode-maybe-enable-prettier-js ()
+  (run-at-time 1 nil (lambda () (when web-tide-mode-enable-prettier-js
+                             (prettier-js-mode 1)))))
+(add-hook 'web-tide-mode-hook 'web-tide-mode-maybe-enable-prettier-js)
+
 
 (provide 'config-language-web-tide)

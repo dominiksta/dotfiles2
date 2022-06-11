@@ -20,11 +20,13 @@
   (define-key magit-status-mode-map (kbd "M-3") nil)
   (define-key magit-status-mode-map (kbd "M-4") nil)
 
-  (evil-define-key 'normal magit-log-mode-map
-    (kbd "M-j") 'magit-section-forward
-    (kbd "M-k") 'magit-section-backward
-    (kbd "C-j") nil
-    (kbd "C-k") nil)
+  (dolist (mode (list magit-log-mode-map magit-diff-mode-map))
+    (evil-define-key 'normal mode
+      (kbd "M-j") 'magit-section-forward
+      (kbd "M-k") 'magit-section-backward
+      (kbd "C-j") nil
+      (kbd "C-k") nil))
+  
   (evil-define-key 'normal magit-status-mode-map
     "Z" 'magit-stash
     (kbd "M-j") 'magit-section-forward

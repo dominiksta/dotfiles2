@@ -5,8 +5,4 @@
 
 ;; (add-hook 'sgml-mode-hook 'highlight-indent-guides-mode)
 
-(straight-use-package 'emmet-mode)
-(add-hook 'web-mode-hook 'emmet-mode)
-(evil-define-key 'insert emmet-mode-keymap (kbd "C-,") 'emmet-expand-yas)
-
 (provide 'config-language-web-html)

@@ -124,7 +124,7 @@ bringtoforegroundbytitle(title, except){
         return
 }
 
-!+w::bringtoforegroundbyclass("MozillaWindowClass", "waterfox")
+!+w::bringtoforegroundbyclass("MozillaWindowClass", "firefox")
 ; !+w::Send, {LAlt Up}{LShift Up}{LWin Down}1{LWin Up}
 !+e::bringtoforegroundbyclass("TTOTAL_CMD", "C:\Program Files\totalcmd\totalcmd64.exe")
 ; !+p::bringtoforegroundbytitle("Plex", "C:\Program Files\Plex\Plex\Plex.exe")

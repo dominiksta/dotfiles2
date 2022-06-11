@@ -37,6 +37,8 @@
   "hi" 'helm-imenu
   "hI" 'helm-imenu-in-all-buffers)
 
+(evil-add-command-properties #'helm-imenu :jump t)
+
 (straight-use-package 'imenu-anywhere)
 (evil-leader/set-key "pi" 'helm-imenu-anywhere)
 
@@ -205,6 +207,16 @@ execute it, setting `default-directory' to
 
 (yas-global-mode 1)
 (global-set-key (kbd "C-.") 'yas-expand)
+
+;; --------------------------------------------------------------------------------
+;; tree-sitter
+;; --------------------------------------------------------------------------------
+(straight-use-package 'tree-sitter)
+(straight-use-package 'tree-sitter-langs)
+(require 'tree-sitter)
+(require 'tree-sitter-langs)
+
+(global-tree-sitter-mode)
 
 ;; --------------------------------------------------------------------------------
 ;; lsp

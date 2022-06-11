@@ -40,6 +40,7 @@
 (config-require '(config-language-clojure)      :regexp "\\.clj\\'"       :auto-mode clojure-mode)
 (config-require '(config-language-ahk)          :regexp "\\.ahk\\'"       :auto-mode ahk-mode)
 (config-require '(config-language-markdown)     :regexp "\\.md\\'"        :auto-mode markdown-mode)
+(config-require '(config-language-csv)          :regexp "\\.csv\\'"       :auto-mode csv-mode)
 (config-require '(config-language-shell-script) :regexp "\\.sh\\'"        :auto-mode sh-mode)
 (config-require '(config-language-powershell)   :regexp "\\.ps1\\'"       :auto-mode powershell-mode)
 (config-require '(config-language-web-json)     :regexp '("json?" "cplan") :auto-mode json-mode)
@@ -49,9 +50,11 @@
 (config-require '(config-language-web-php
                   config-language-sql)          :regexp "\\.sql\\'"       :auto-mode sql-mode)
 (config-require '(config-web-rest)              :regexp "\\.http\\'"      :auto-mode restclient-mode)
-(config-require '(config-language-web-tide)       :regexp '("tsx?" "jsx?")        :auto-mode web-tide-mode)
+(config-require '(config-language-web-tide)     :regexp '("tsx?")         :auto-mode web-tide-mode)
+(config-require '(config-language-web-tide)     :regexp '("jsx?")         :auto-mode js-jsx-mode)
 (config-require '(config-language-web-css)      :regexp "\\.css\\'"       :auto-mode css-mode)
 (config-require '(config-language-web-css)      :regexp "\\.scss\\'"      :auto-mode scss-mode)
+(config-require '(config-language-web-stylus)   :regexp "\\.styl\\'"      :auto-mode stylus-mode)
 (config-require '(config-language-octave) :regexp "\\.m\\'" :auto-mode octave-mode
                 :feature octave)
 (config-require '(config-language-latex)        :feature tex)
@@ -59,9 +62,14 @@
                 :regexp "Dockerfile\\(?:\\..*\\)?\\'"
                 :auto-mode dockerfile-mode)
 
-(setq auto-mode-alist (append auto-mode-alist '(("\\.target\\'" . conf-mode)
-                                                ("\\.timer\\'" . conf-mode)
-                                                ("\\.service\\'" . conf-mode))))
+;; systemd
+(add-to-list 'auto-mode-alist '("\\.target\\'" . conf-mode))
+(add-to-list 'auto-mode-alist '("\\.timer\\'" . conf-mode))
+(add-to-list 'auto-mode-alist '("\\.service\\'" . conf-mode))
+;; mysql
+(add-to-list 'auto-mode-alist '("\\.cnf\\'" . conf-mode))
+;; gettext
+(add-to-list 'auto-mode-alist '("\\.pot?\\'" . conf-mode))
 
 
 ;; --------------------------------------------------------------------------------
