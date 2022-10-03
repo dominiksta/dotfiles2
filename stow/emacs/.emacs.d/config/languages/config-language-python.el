@@ -1,6 +1,8 @@
 (require-and-log 'config-programming-general)
 (require 'python)
 
+(add-hook 'python-mode-hook 'tree-sitter-hl-mode)
+
 ;; ----------------------------------------------------------------------
 ;; debugging
 ;; ----------------------------------------------------------------------

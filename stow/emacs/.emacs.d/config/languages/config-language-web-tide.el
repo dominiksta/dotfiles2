@@ -44,8 +44,9 @@
 ;; (old) typescript-mode
 ;; ----------------------------------------------------------------------
 
-;; (straight-use-package 'typescript-mode)
+(straight-use-package 'typescript-mode)
 
+(add-hook 'typescript-mode-hook 'tree-sitter-hl-mode)
 ;; (add-hook 'typescript-mode-hook 'tide-setup)
 ;; (add-hook 'typescript-mode-hook 'fp/toggle-show-too-long-lines)
 
@@ -80,6 +81,7 @@
 
 (defun fp/js-jsx-mode-setup ()
   (tide-setup)
+  (emmet-mode)
   (tree-sitter-mode 1)
   (tree-sitter-hl-mode 1))
 
@@ -135,11 +137,12 @@
 ;; requires 'diff' and 'prettier' to be installed (npm i -g prettier)
 (straight-use-package 'prettier-js)
 
-(setq-default web-tide-mode-enable-prettier-js nil)
-(defun web-tide-mode-maybe-enable-prettier-js ()
-  (run-at-time 1 nil (lambda () (when web-tide-mode-enable-prettier-js
+(setq-default fp/enable-prettier-js nil)
+(defun fp/maybe-enable-prettier-js ()
+  (run-at-time 1 nil (lambda () (when fp/enable-prettier-js
                              (prettier-js-mode 1)))))
-(add-hook 'web-tide-mode-hook 'web-tide-mode-maybe-enable-prettier-js)
+(add-hook 'web-tide-mode-hook 'fp/maybe-enable-prettier-js)
+(add-hook 'js-jsx-mode-hook 'fp/maybe-enable-prettier-js)
 
 
 (provide 'config-language-web-tide)

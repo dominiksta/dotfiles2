@@ -36,7 +36,7 @@
 (config-require '(config-language-csharp)       :regexp "\\.cs\\'"        :auto-mode csharp-mode)
 (config-require '(config-language-go)           :regexp "\\.go\\'"        :auto-mode go-mode)
 (config-require '(config-language-java)         :regexp "\\.java\\'"      :auto-mode java-mode)
-(config-require '(config-language-scala)         :regexp "\\.scala\\'"    :auto-mode scala-mode)
+(config-require '(config-language-scala)        :regexp "\\.scala\\'"    :auto-mode scala-mode)
 (config-require '(config-language-clojure)      :regexp "\\.clj\\'"       :auto-mode clojure-mode)
 (config-require '(config-language-ahk)          :regexp "\\.ahk\\'"       :auto-mode ahk-mode)
 (config-require '(config-language-markdown)     :regexp "\\.md\\'"        :auto-mode markdown-mode)

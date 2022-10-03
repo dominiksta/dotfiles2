@@ -18,6 +18,12 @@ Set-Alias -Name sysjava -Value "$env:JAVA_HOME\bin\java.exe"
 Set-Alias -Name em -Value emacsclientw.exe
 Set-Alias -Name gfind -Value "C:\Program Files\Git\usr\bin\find.exe"
 
+Set-Alias -Name firefox-dev -Value "C:\Program Files\Firefox Developer Edition\firefox.exe"
+Function firefox-debug {
+    &"C:\Program Files\Firefox Developer Edition\firefox.exe" `
+      -start-debugger-server $args
+} 
+
 Function admin { nircmd.exe elevate $args }
 Function admincmd { nircmd.exe elevate cmd /k "cd $pwd && $args" }
 Function adminpsh { nircmd.exe elevate powershell /k $args }

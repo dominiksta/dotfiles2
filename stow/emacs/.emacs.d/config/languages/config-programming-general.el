@@ -145,6 +145,54 @@ execute it, setting `default-directory' to
 (global-diff-hl-mode 1)
 
 ;; --------------------------------------------------------------------------------
+;; git-gutter (highlighting git/svn/vc changes in fringe)
+;; --------------------------------------------------------------------------------
+;; (straight-use-package 'git-gutter)
+;; (straight-use-package 'git-gutter-fringe)
+;; (require 'git-gutter-fringe)
+;; ;; 0 means only update on save, otherwise set to 0.02
+;; ;; otherwise cursor stutters (e.g. at 2 or 8)
+;; (setq git-gutter:update-interval 0)
+
+;; (setq git-gutter:handled-backends '(git))
+
+;; ;; Indicator style
+;; (fringe-helper-define 'git-gutter-fr:added 'center
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX..")
+
+;; (fringe-helper-define 'git-gutter-fr:modified 'center
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX..")
+
+;; (fringe-helper-define 'git-gutter-fr:deleted 'center
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX.."
+;;   "..XXX..")
+
+;; (remove-hook 'prog-mode-hook #'git-gutter-mode)
+
+;; --------------------------------------------------------------------------------
 ;; flycheck
 ;; --------------------------------------------------------------------------------
 (straight-use-package 'flycheck)
@@ -249,6 +297,15 @@ execute it, setting `default-directory' to
       lsp-ui-peek-enable nil
       lsp-ui-sideline-enable nil)
 
+;; ----------------------------------------------------------------------
+;; dap
+;; ----------------------------------------------------------------------
+(straight-use-package 'dap-mode)
+
+(with-eval-after-load "dap-mode"
+  (add-hook 'dap-stopped-hook (lambda (arg) (call-interactively #'dap-hydra))))
+
+
 
 ;; ----------------------------------------------------------------------
 ;; xref (for lsp, tide, maybe others)
@@ -268,13 +325,17 @@ execute it, setting `default-directory' to
 
 
 (with-eval-after-load "diff-mode"
- (evil-define-key 'motion diff-mode-map
-  "q" 'quit-window
-  (kbd "RET") 'diff-goto-source)
- (set-face-attribute 'diff-refine-removed nil :background 'unspecified)
- (set-face-attribute 'diff-refine-added nil :background 'unspecified)
- (set-face-attribute 'diff-refine-changed nil :background 'unspecified
-                     :inherit 'highlight))
+  ;; (setq diff-refine 'font-lock)
+  (evil-define-key 'motion diff-mode-map
+    "q" 'quit-window
+    (kbd "RET") 'diff-goto-source)
+  ;; (set-face-attribute 'diff-refine-removed nil :background 'unspecified
+  ;;                     :inherit 'highlight)
+  ;; (set-face-attribute 'diff-refine-added nil :background 'unspecified
+  ;;                     :inherit 'highlight)
+  ;; (set-face-attribute 'diff-refine-changed nil :background 'unspecified
+  ;;                     :inherit 'highlight)
+  )
 
 ;; --------------------------------------------------------------------------------
 ;; regexps

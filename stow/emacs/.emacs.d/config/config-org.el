@@ -289,6 +289,7 @@ directory and start `org-noter' with ARG."
    "sudo pip3 install Pygments" "pip3 install Pygments")
   (setq org-latex-listings 'minted)
   (add-to-list 'org-latex-packages-alist '("" "minted"))
+  (setq org-latex-packages-alist nil)
 
   ;; --- beamer ---
   (evil-leader/set-key-for-mode 'org-mode "mb" 'org-beamer-select-environment)

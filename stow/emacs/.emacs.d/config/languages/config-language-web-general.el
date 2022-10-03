@@ -48,6 +48,12 @@
           (when (not fp/refresh-browser-activate)
             (call-process-shell-command "xdotool search \"fp@emacs\" windowactivate")))))))
 
+;; --------------------------------------------------------------------------------
+;; dap (debugging)
+;; --------------------------------------------------------------------------------
+(with-eval-after-load "dap-mode"
+  (require 'dap-firefox))
+
 
 ;; --------------------------------------------------------------------------------
 ;; web-mode

@@ -1,4 +1,4 @@
 Windows Registry Editor Version 5.00
 
 [HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\DWM]
-"AccentColorInactive"=dword:00#32302F
+"AccentColorInactive"=dword:2372B3

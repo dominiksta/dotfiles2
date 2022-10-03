@@ -19,6 +19,9 @@
                0.1 nil (lambda (fg) (set-face-foreground 'mode-line fg))
                orig-fg))))
 
+;; (setq display-line-numbers-type 'relative)
+;; (remove-hook 'prog-mode-hook 'display-line-numbers-mode)
+
 ;; --------------------------------------------------------------------------------
 ;; themes and fonts
 ;; --------------------------------------------------------------------------------

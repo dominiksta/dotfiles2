@@ -4,8 +4,7 @@
       download-directory (expand-file-name "~/Downloads")
       video-directory (expand-file-name "~/Video")
       picture-directory (expand-file-name "~/bilder")
-      trash-directory (if (eq system-type 'windows-nt)
-                          (expand-file-name "~/.trash") nil)
+      trash-directory (expand-file-name "~/.emacs.d/trash")
       delete-by-moving-to-trash t
       bookmark-default-file (concat sync-directory "documents/code/emacs/random/bookmarks"))
 
