@@ -304,8 +304,8 @@
 
 (define-key comint-mode-map (kbd "C-l") 'comint-clear-buffer)
 
-(bind-key* (kbd "C-'") 'ss/dispatch-bash-here)
-(bind-key* (kbd "C-#") 'ss/dispatch-bash)
+(bind-key* (kbd "C-'") 'multi-term)
+(bind-key* (kbd "C-#") 'fp/term-switch)
 
 ;; --------------------------------------------------------------------------------
 ;; finishing

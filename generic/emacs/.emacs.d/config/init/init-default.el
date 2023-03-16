@@ -17,6 +17,7 @@
 (require-and-log 'config-git)
 (require-and-log 'config-programming-general)
 (require-and-log 'config-mvtn)
+(require-and-log 'config-term)
 
 
 ;; --------------------------------------------------------------------------------
