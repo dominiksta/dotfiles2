@@ -131,7 +131,8 @@ bringtoforegroundbytitle(title, except){
 !+p::bringtoforegroundbyexe("Spotify.exe", "C:\Users\dominik\AppData\Roaming\Spotify\Spotify.exe")
 !+k::bringtoforegroundbyexe("KeePassXC.exe", "C:\Program Files\KeePassXC\KeePassXC.exe")
 ^+1::bringtoforegroundbyclass("PROCEXPL", "procexp")
-!Space::bringtoforegroundbyclass("Emacs", "runemacs.exe")
+; !+n::bringtoforegroundbyclass("Emacs", "runemacs.exe")
+!Space::bringtoforegroundbytitle("emacs@wsl", "C:\Users\dominik\Source\git\dotfiles\windows\wsl\start-emacs.bat")
 !,::bringtoforegroundbyclass("CASCADIA_HOSTING_WINDOW_CLASS", "wt")
 ; !,::bringtoforegroundbytitle("Cmder", "cmder")
 ; !^t::backgroundelisp("(fp/terminal-here nil)")
@@ -151,11 +152,11 @@ bringtoforegroundbytitle(title, except){
 ;------------------------------------------------------------
 
 ; Minimize
-!+m::
-{
-        WinMinimize,A
-	return
-}
+; !+m::
+; {
+;   WinMinimize,A
+;   return
+; }
 
 ; Maximize/Restore
 !+f::

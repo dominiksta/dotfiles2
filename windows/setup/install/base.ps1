@@ -23,7 +23,7 @@ cinst -y `
   emacs git dejavufonts ubuntu.font ripgrep python3 `
   totalcmd frhed microsoft-windows-terminal `
   autohotkey altdrag open-shell `
-  procexp nircmd shmnview shellmenunew zoomit colora `
+  procexp gsudo nircmd shmnview shellmenunew zoomit colora `
   keepassxc veracrypt gpg4win `
   xournal pinta sumatrapdf.install naps2 `
   thunderbird birdtray `
@@ -35,7 +35,6 @@ rm "$env:LocalAppData\Microsoft\WindowsApps\python.exe"
 
 Push-Path -Add "$env:LocalAppData\SumatraPDF" -Target 'Machine'
 Push-Path -Add "$env:ProgramFiles\Waterfox" -Target 'Machine'
-Push-Path -Add "$env:ProgramFiles\IrfanView" -Target 'Machine'
 Push-Path -Add "$env:ProgramFiles\Git\usr\bin" -Target 'Machine'
 
 # Set 'HOME' for Emacs
@@ -45,9 +44,7 @@ Push-Path -Add "$env:ProgramFiles\Git\usr\bin" -Target 'Machine'
 
 RefreshEnv.cmd
 
-pip3 install youtube-dl
-pip3 uninstall virtualenv flake8 jedi
-pip3 install python-language-server[all]
+pip3 install yt-dlp
 
 # ----------------------------------------------------------------------
 # --- git config & dotfiles ---
