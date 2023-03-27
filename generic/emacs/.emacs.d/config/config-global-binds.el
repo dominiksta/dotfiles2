@@ -304,8 +304,10 @@
 
 (define-key comint-mode-map (kbd "C-l") 'comint-clear-buffer)
 
-(bind-key* (kbd "C-'") 'multi-term)
-(bind-key* (kbd "C-#") 'fp/term-switch)
+;; (bind-key* (kbd "C-'") 'fp/term-new)
+;; (bind-key* (kbd "C-#") 'fp/term-switch)
+(bind-key* (kbd "M-,") 'fp/term-switch)
+(bind-key* (kbd "M-;") 'fp/term-new)
 
 ;; --------------------------------------------------------------------------------
 ;; finishing

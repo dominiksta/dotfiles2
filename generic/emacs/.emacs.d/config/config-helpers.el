@@ -16,10 +16,8 @@
     (normal-top-level-add-subdirs-to-load-path)))
 
 
-;; We can run ln -sf /usr/bin/waterfox /etc/alternatives/x-www-browser to set
-;; waterfox as system default.
 (setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "firefox")
+      browse-url-generic-program "wslview")
 
 (with-eval-after-load "browse-url"
   (defun browse-url-url-at-point ()

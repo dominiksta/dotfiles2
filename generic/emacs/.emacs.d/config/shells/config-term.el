@@ -1,11 +1,13 @@
 (require-and-log 'config-editor)
 (require 'term)
 (require 'seq)
+(require 'tramp)
 
 ;; dir %
 (setq term-prompt-regexp "^.*\\% ") ;; this is specific to my bashrc
 
 (straight-use-package 'multi-term)
+(straight-use-package 'tramp-term)
 (setq multi-term-program "/bin/bash")
 
 ;; --------------------------------------------------------------------------------
@@ -99,6 +101,11 @@
 (evil-define-key 'normal term-mode-map
   "p" 'term-paste
   )
+
+(defun fp/term-new ()
+  (interactive)
+  (if (tramp-tramp-file-p default-directory)
+      (tramp-term) (multi-term)))
 
 (defun fp/term-switch ()
   (interactive)

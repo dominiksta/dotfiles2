@@ -6,6 +6,7 @@
   ;; ----------------------------------------------------------------------
   ;; general
   ;; ----------------------------------------------------------------------
+  (setq epg-pinentry-mode 'loopback) ;; use minibuffer for passphrase input
 
   (setq mvtn-note-directories
         '((:dir "~/mvtn/prv" :name "prv" :structure

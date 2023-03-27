@@ -101,7 +101,7 @@ cmd /c mklink /d %APPDATA%\GHISLER `
 # ----------------------------------------------------------------------
 # --- file associations ---
 # ----------------------------------------------------------------------
-cmd /c ftype emacsclient=C:\ProgramData\chocolatey\bin\emacsclientw.exe "%1"
+cmd /c ftype emacsclient=C:\Users\dominik\Source\git\dotfiles\windows\wsl\emacsclient.bat "%1"
 
 cmd /c assoc .ps1=emacsclient
 cmd /c assoc .sql=emacsclient
