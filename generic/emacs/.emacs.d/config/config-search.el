@@ -28,6 +28,26 @@
    start end "https://duckduckgo.com/?q="))
 
 ;; --------------------------------------------------------------------------------
+;; occur
+;; --------------------------------------------------------------------------------
+(evil-set-initial-state 'occur-mode 'normal)
+(evil-define-key 'normal occur-mode-map
+  "q" 'quit-window
+  "r" 'recompile
+  "gj" 'occur-next
+  "gk" 'occur-next
+  "a" 'compilation-display-error
+  "e" 'occur-edit-mode)
+
+;; (defun fp/isearch-occur (regexp &optional nlines)
+;;   (call-interactively 'isearch-occur)
+;;   ;; (isearch-occur regexp nlines)
+;;   ;; (pop-to-buffer "*Occur*")
+;;   )
+
+;; (define-key isearch-mode-map (kbd "C-s") 'fp/isearch-occur)
+
+;; --------------------------------------------------------------------------------
 ;; grep
 ;; --------------------------------------------------------------------------------
 
@@ -109,6 +129,7 @@ recursively from the current directory using `pdfgrep'."
 
   (rg-define-search fp/rg-project-everything
     :files "everything"
+    :flags '("--sort=path" "--hidden")
     :dir project)
 
   (add-hook 'rg-mode-hook 'wgrep-rg-setup)

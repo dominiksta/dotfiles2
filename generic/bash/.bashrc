@@ -129,7 +129,8 @@ fi
 # TODO detect if wsl
 # ----------------------------------------------------------------------
 
-export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+# export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+export DISPLAY=:0.0
 
 # export PATH=$PATH:/mnt/c/Windows/system32:/mnt/c/Windows/System32/WindowsPowerShell/v1.0
 alias cmd.exe=/mnt/c/Windows/system32/cmd.exe
@@ -151,4 +152,39 @@ source $HOME/.keychain/$(hostname)-sh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# nvm use default
+
+# ssh keys
+# ----------------------------------------------------------------------
+
+[ -h "$HOME/.local/bin/sk" ] && source ~/.local/bin/sk
+
+# emacs interop
+# ----------------------------------------------------------------------
+
+function man() { 
+    if [ "$TERM" == "eterm-color" ]; then
+        emacsclient -e "(man \"$1\")";
+    else
+        command man "$@";
+    fi
+}
+
+function less() { 
+    if [ "$TERM" == "eterm-color" ]; then
+        t=$(mktemp -p /tmp emacs-pager.XXXXX) || exit 1
+        cat - >> $t
+        echo 'Reading into emacs...'
+        emacsclient "$t"
+        rm -f -- $t
+    else
+        command less "$@";
+    fi
+}
+
+# pnpm
+export PNPM_HOME="/home/dominik/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

@@ -19,9 +19,9 @@
                  (:dir "ltw" :datetree t)
                  (:dir "stc" :datetree nil)))
           ) ;; static
-        mvtn-template-locations '("~/sync/documents/notes/mvtn/templates")
+        mvtn-template-locations '("~/mvtn/templates")
         mvtn-default-file-extension "org"
-        mvtn-excluded-directories '(".git" ".svn" "ltximg" "orgimg" "data")
+        mvtn-excluded-directories '(".git" ".svn" "ltximg" "orgimg" "wournal" "data")
         mvtn-search-function 'mvtn-search-full-text-rg
         mvtn-cv-enable t
         mvtn-org-agenda-tag "agenda"
@@ -29,7 +29,15 @@
         mvtn-journal-new-daily-title "Logbuch am %Y-%m-%d")
 
   (require 'mvtn-link-buttons)
-  (add-hook 'mvtn-minor-mode-hook 'olivetti-mode)
+
+  (defun fp/mvtn-minor-mode-hook ()
+    (olivetti-mode 1)
+    (let ((mvtn-timestamp (substring (file-name-base (buffer-file-name)) 0 15)))
+      (setq-local org-download-image-dir (concat "orgimg/" mvtn-timestamp))
+      (setq-local wournal-file-format (concat "wournal/" mvtn-timestamp
+                                              "/%Y-%m-%d_%H-%M-%S.svg"))))
+
+  (add-hook 'mvtn-minor-mode-hook 'fp/mvtn-minor-mode-hook)
 
   (mvtn-journal-autojournal-set-feature 'git-commit t)
   (mvtn-journal-autojournal-set-feature 'note-changed t)

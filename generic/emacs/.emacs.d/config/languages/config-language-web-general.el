@@ -60,7 +60,9 @@
 ;; --------------------------------------------------------------------------------
 (straight-use-package 'web-mode) (require 'web-mode)
 
-(setq web-mode-code-indent-offset 4
+;; (defun fp/web-mode-hook ())
+
+(setq web-mode-code-indent-offset 2
       web-mode-enable-auto-pairing nil
       web-mode-enable-auto-quoting nil
       web-mode-enable-current-element-highlight t

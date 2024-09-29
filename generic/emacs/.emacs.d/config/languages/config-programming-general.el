@@ -1,6 +1,10 @@
 (require-and-log 'config-search)
 (require-and-log 'config-helm-minibuffer)
 
+(global-eldoc-mode 0)
+
+(evil-define-key 'normal prog-mode-map "gf" 'xref-find-references)
+
 ;; --------------------------------------------------------------------------------
 ;; random
 ;; --------------------------------------------------------------------------------
@@ -22,14 +26,37 @@
 (setq show-paren-delay 0) (show-paren-mode 1)
 (add-hook 'prog-mode-hook 'electric-pair-mode)
 
+;; --- bug references ---
+(add-hook 'prog-mode-hook 'bug-reference-prog-mode)
+
+(defvar-local fp/bug-reference-trackers '())
+
+(defun fp/bug-reference-dispatch (&optional pos)
+  (interactive
+   (list (if (integerp last-command-event) (point) last-command-event)))
+  (dolist (o (overlays-at pos))
+    (when (overlay-get o 'bug-reference-url)
+      (let* ((text (buffer-substring-no-properties
+                    (overlay-start o) (overlay-end o)))
+             (num (substring text (string-match-p "[[:digit:]]" text)))
+             (tracker (completing-read "Tracker: " (mapcar 'car fp/bug-reference-trackers)))
+             (tracker-url (cdar (seq-filter (lambda (el) (string-equal (car el) tracker))
+                                           fp/bug-reference-trackers))))
+        (browse-url (format tracker-url num)))
+      )))
+(evil-define-key 'normal prog-mode-map "gb" 'fp/bug-reference-dispatch)
+
 ;; --- todos ---
 (straight-use-package 'hl-todo)
 (add-hook 'prog-mode-hook 'hl-todo-mode)
 (add-hook 'text-mode-hook 'hl-todo-mode)
 
-(defun fp/project-todo-search-todo () (interactive) (rg-project "TODO|FIXME|NEXT" "everything"))
-(defun fp/project-todo-search-hack () (interactive) (rg-project "HACK" "everything"))
-(defun fp/project-todo-search-all  () (interactive) (rg-project "TODO|FIXME|NEXT|DONE|HACK" "everything"))
+(defun fp/project-todo-search-todo () (interactive)
+       (fp/rg-project-everything "TODO|FIXME|NEXT"))
+(defun fp/project-todo-search-hack () (interactive)
+       (fp/rg-project-everything "HACK"))
+(defun fp/project-todo-search-all  () (interactive)
+       (fp/rg-project-everything "TODO|FIXME|NEXT|DONE|HACK"))
 
 (evil-leader/set-key
   "stt" 'fp/project-todo-search-todo
@@ -54,6 +81,7 @@
 (straight-use-package 'symbol-overlay)
 (add-hook 'prog-mode-hook 'symbol-overlay-mode)
 (with-eval-after-load "symbol-overlay"
+  (global-set-key (kbd "M-R") 'symbol-overlay-rename)
   (evil-define-key 'normal symbol-overlay-mode-map
     "gn" 'symbol-overlay-jump-next
     "gp" 'symbol-overlay-jump-prev))
@@ -108,14 +136,12 @@ execute it, setting `default-directory' to
 ;; dumb-jump - jump to definition
 ;; --------------------------------------------------------------------------------
 (straight-use-package 'dumb-jump)
-(with-eval-after-load "dumb-jump"
-  (setq dumb-jump-selector 'helm))
-(defun fp/evil-dumb-jump-go ()
-  (interactive)
-  (evil-set-jump)
-  (call-interactively 'dumb-jump-go))
-(global-set-key (kbd "C-M-g") 'fp/evil-dumb-jump-go)
 
+(defun fp/maybe-activate-dump-jump ()
+  (unless (bound-and-true-p lsp-mode)
+    (add-hook 'xref-backend-functions #'dumb-jump-xref-activate nil t)))
+
+(add-hook 'prog-mode-hook 'fp/maybe-activate-dump-jump)
 
 ;; --------------------------------------------------------------------------------
 ;; debugging
@@ -231,7 +257,7 @@ execute it, setting `default-directory' to
     "f" 'next-error-follow-minor-mode
     "n" 'next-error
     "p" 'previous-error
-    "q" 'delete-window
+    "q" 'quit-window
     "r" 'recompile)
   (define-key compilation-mode-map (kbd "g") nil))
 
@@ -289,7 +315,7 @@ execute it, setting `default-directory' to
 
         lsp-signature-render-documentation nil
         lsp-eldoc-enable-hover nil
-        lsp-eldoc-render-all t
+        lsp-eldoc-render-all nil
 
         ;; Not insane, but i want to try symbol-overlay
         lsp-enable-symbol-highlighting nil
@@ -308,6 +334,23 @@ execute it, setting `default-directory' to
       lsp-ui-peek-enable nil
       lsp-ui-sideline-enable nil)
 
+(defvar-local fp/evil-lsp-format-enable nil)
+
+(evil-define-operator evil-lsp-format (beg end)
+  "Format text with lsp. See `evil-indent' for reference."
+  :move-point nil
+  :type line
+  (if fp/evil-lsp-format-enable
+      (progn
+        ;; these two movements mimic the behaviour of `evil-indent`. not sure if they
+        ;; are useful, but consistency is always nice
+        (goto-char beg)
+        (evil-first-non-blank)
+        (lsp-format-region beg end))
+    (evil-indent beg end)))
+
+(evil-define-key '(normal visual) lsp-mode-map "=" 'evil-lsp-format)
+
 ;; ----------------------------------------------------------------------
 ;; dap
 ;; ----------------------------------------------------------------------
@@ -322,6 +365,7 @@ execute it, setting `default-directory' to
 ;; xref (for lsp, tide, maybe others)
 ;; ----------------------------------------------------------------------
 (with-eval-after-load "xref"
+  (setq xref-show-definitions-function #'xref-show-definitions-completing-read)
   (evil-define-key 'normal xref--xref-buffer-mode-map
     "q" 'quit-window
     "r" 'xref-revert-buffer

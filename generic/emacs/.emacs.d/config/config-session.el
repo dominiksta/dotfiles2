@@ -3,6 +3,16 @@
        (string-match-p "microsoft" (get-string-from-file "/proc/version")))
   "Wether we are running on WSL (Windows Subsystem for Linux) or not")
 
+(defvar fp/powershell-executable
+  (concat (if fp/running-on-wsl-p "/mnt/c/" "c:/")
+          "Windows/System32/WindowsPowerShell/v1.0/powershell.exe"))
+
+(defun fp/powershell-command (cmd)
+  (let ((run (concat fp/powershell-executable " -Command "
+                     (shell-quote-argument cmd))))
+    (message run)
+    (shell-command run)))
+
 (setq frame-title-format (if fp/running-on-wsl-p "emacs@wsl" "emacs@native"))
 
 

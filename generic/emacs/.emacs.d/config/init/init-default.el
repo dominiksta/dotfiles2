@@ -17,6 +17,7 @@
 (require-and-log 'config-git)
 (require-and-log 'config-programming-general)
 (require-and-log 'config-mvtn)
+(require-and-log 'config-scratchy)
 (require-and-log 'config-term)
 
 
@@ -25,8 +26,10 @@
 ;; --------------------------------------------------------------------------------
 (config-require '(config-language-elisp)  :feature elisp-mode)
 (autoload 'fp/run-python-calculator "config-language-python.el")
+
 (config-require '(config-language-python) :feature python)
 (config-require '(config-language-python) :feature pyvenv)
+(config-require '(config-language-pickle) :regexp "\\.pickle\\'" :auto-mode pickle-preview-mode)
 
 (config-require '(config-language-yaml)         :regexp '("yml" "yaml" "prefab" "meta")   :auto-mode yaml-mode)
 (config-require '(config-language-lua)          :regexp "\\.lua\\'"       :auto-mode lua-mode)
@@ -52,9 +55,7 @@
 (config-require '(config-language-web-php
                   config-language-sql)          :regexp "\\.sql\\'"       :auto-mode sql-mode)
 (config-require '(config-web-rest)              :regexp "\\.http\\'"      :auto-mode restclient-mode)
-(config-require '(config-language-web-tide)     :regexp '("tsx")          :auto-mode web-tide-mode)
-(config-require '(config-language-web-tide)     :regexp '("ts")           :auto-mode typescript-mode)
-(config-require '(config-language-web-tide)     :regexp '("jsx?" "mjs")   :auto-mode js-jsx-mode)
+(config-require '(config-language-web-tide)     :regexp '("js" "mjs" "jsx" "ts" "tsx") :auto-mode typescript-mode)
 (config-require '(config-language-web-svelte)   :regexp '("svelte")       :auto-mode web-svelte-mode)
 (config-require '(config-language-web-css)      :regexp "\\.css\\'"       :auto-mode css-mode)
 (config-require '(config-language-web-css)      :regexp "\\.scss\\'"      :auto-mode scss-mode)

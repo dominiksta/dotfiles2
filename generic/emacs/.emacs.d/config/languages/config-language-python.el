@@ -37,7 +37,16 @@
 
 (straight-use-package 'lsp-pyright)
 (require 'lsp-pyright)
-(setq lsp-disabled-clients '(pylsp mspyls))
+(setq lsp-disabled-clients '(pylsp mspyls)
+      lsp-pyright-use-library-code-for-types t
+      lsp-pyright-stub-path (expand-file-name "~/Source/other/python-type-stubs/"))
+
+(if (not (file-exists-p lsp-pyright-stub-path))
+    (display-warning
+     'config-language-python
+     ;; git clone https://github.com/microsoft/python-type-stubs
+     (format "Could not find lsp-pyright-stub-path: %s"
+             lsp-pyright-stub-path)))
 
 (defun my/lsp-pyright-locate-python-w32 (orig-fun &rest args)
   "By default, lsp-pyright-locate-python looks for python in the
@@ -55,7 +64,7 @@ python in the /Scripts subdirectory, which is used on windows."
 ;; --------------------------------------------------------------------------------
 ;; REPL
 ;; --------------------------------------------------------------------------------
-(add-hook 'inferior-python-mode-hook 'company-mode)
+;; (add-hook 'inferior-python-mode-hook 'company-mode)
 
 (setq python-shell-interpreter "python3"
       python-shell-completion-native-enable nil)

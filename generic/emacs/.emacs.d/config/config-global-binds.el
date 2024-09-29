@@ -103,15 +103,19 @@
        (interactive)
        (eyebrowse-switch-to-window-config ,i))))
 
+(bind-key* "M-H" 'eyebrowse-prev-window-config)
+(bind-key* "M-L" 'eyebrowse-next-window-config)
+
 ;; --------------------------------------------------------------------------------
 ;; searching
 ;; --------------------------------------------------------------------------------
 
-(global-set-key (kbd "C-s") 'helm-swoop-no-prefix)
+(global-set-key (kbd "C-s") 'helm-occur)
+(global-set-key (kbd "C-S-s") 'occur)
 
 (autoload 'fp/rg-project-everything "rg")
 (evil-leader/set-key
-  "ss"  'helm-swoop
+  "ss"  'helm-occur
   "sr"  'rg
   "sh"  'fp/helm-projectile-rg
   "sp"  'fp/rg-project-everything
@@ -267,8 +271,8 @@
   "pT" 'projectile-test-project
   "pC" 'projectile-compile-project
   "pa" 'fp/project-actions-run
-  "pr" 'recompile
-  "pc" 'compile
+  "pr" (lambda () (interactive) (let ((compilation-scroll-output t)) (recompile)))
+  "pc" (lambda () (interactive) (let ((compilation-scroll-output t)) (compile)))
   "pI" 'projectile-discover-projects-in-directory
   "pf" 'helm-projectile-find-file
   "pe" 'projectile-run-eshell

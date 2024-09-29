@@ -2,6 +2,7 @@
 (require-and-log 'config-programming-general)
 (require-and-log 'config-language-latex)
 (require-and-log 'config-org-agenda)
+(require-and-log 'config-session)
 
 ;; (straight-use-package
 ;;  '(org-plus-contrib
@@ -14,6 +15,40 @@
 (straight-use-package 'org-contrib)
 
 (require 'org)
+
+;; --------------------------------------------------------------------------------
+;; wournal
+;; --------------------------------------------------------------------------------
+
+(defvar wournal-executable
+  "/mnt/c/Users/dominik/AppData/Local/Programs/Wournal-Verions/dev/Wournal.exe")
+
+(defvar wournal-file-format "./img/%Y-%m-%d_%H-%M-%S.svg")
+
+(defun fp/org-wournal-new (size)
+  (interactive ((lambda nil (list (completing-read
+                              "Size:" '("800x500" "600x300"))))))
+  (let* ((split (split-string size "x"))
+         (width (car split))
+         (height (cadr split))
+         (file (format-time-string wournal-file-format)))
+    (mkdir (file-name-directory wournal-file-format) t)
+    (start-process "wournal" nil wournal-executable
+                   (format "--page-height=%s" height)
+                   (format "--page-width=%s" width)
+                   (format "--page-color=%s" "white")
+                   (format "--page-style=%s" "graph")
+                   (if fp/running-on-wsl-p
+                       (shell-command-to-string (format "wslpath -aw \"%s\"" file))
+                     file))
+    file))
+
+(defun fp/org-wournal-new-at-point ()
+  (interactive)
+  (let ((file (call-interactively 'fp/org-wournal-new)))
+    (insert (format "[[file:%s]]" file))))
+
+(evil-leader/set-key-for-mode 'org-mode "mw" 'fp/org-wournal-new-at-point)
 
 ;; --------------------------------------------------------------------------------
 ;; babel
@@ -448,16 +483,20 @@ happy."
 ;; --------------------------------------------------------------------------------
 ;; --- associations ---
 (setq org-file-apps
-      '((auto-mode . emacs)
-        ("\\.mm\\'" . default)
-        ("\\.x?html?\\'" . default)
-        ("\\.png\\'" . default)
-        ("\\.xoj\\'" . "xournal %s")))
+      (list '(auto-mode . emacs)
+            '("\\.mm\\'" . default)
+            '("\\.x?html?\\'" . default)
+            '("\\.png\\'" . default)
+            (cons "\\.woj\\'" "wslview %s")
+            (cons "\\.svg\\'" "wslview %s")
+            '("\\.xoj\\'" . "xournal %s")))
 
 ;; manually set applications platform independent
 ;; these have to be set in org-file-apps to a value before
-(setcdr (assoc "\\.png\\'" org-file-apps) (if (eq system-type 'windows-nt)
-                                              "mspaint.exe %s" "kolourpaint %s"))
+(setcdr (assoc "\\.png\\'" org-file-apps)
+        (cond ((eq system-type 'windows-nt) "mspaint.exe %s")
+              (fp/running-on-wsl-p "wslview %s")
+              ((eq system-type 'windows-nt) "mspaint.exe %s")))
 
 ;; archiving: also see `config-mvtn'
 (setq org-archive-location "::* Erledigt")
@@ -480,13 +519,12 @@ happy."
   (setq-default org-download-heading-lvl nil
                 org-download-image-dir "orgimg")
 
-  (if (eq system-type 'windows-nt)
-      (progn
-        (config-add-external-dependency 'irfanview 'config-org "org-download"
-                                        (lambda () (executable-find "i_view64"))
-                                        "None" "cinst -y irfanview")
-        (setq org-download-screenshot-method "i_view64 /capture=4 /convert=\"%s\""
-              org-download-backend "wget \"%s\" -O \"%s\""))
+  (if fp/running-on-wsl-p
+      (setq org-download-screenshot-method
+            (lambda (filename)
+              (let ((default-directory "~/.emacs.d/"))
+                (fp/powershell-command
+                 "(Get-Clipboard -Format image).save(\"screenshot.png\")"))))
     (setq org-download-screenshot-method "import %s")))
 
 ;; --------------------------------------------------------------------------------

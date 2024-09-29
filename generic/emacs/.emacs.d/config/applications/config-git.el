@@ -29,6 +29,7 @@
   
   (evil-define-key 'normal magit-status-mode-map
     "Z" 'magit-stash
+    "gP" 'magit-process-buffer
     (kbd "M-j") 'magit-section-forward
     (kbd "M-k") 'magit-section-backward
     (kbd "C-j") nil

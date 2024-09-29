@@ -1,3 +1,5 @@
+(require 'seq)
+
 ;; ----------------------------------------------------------------------
 ;; binds in general
 ;; ----------------------------------------------------------------------
@@ -137,6 +139,10 @@
 ;; (add-hook 'text-mode-hook 'auto-fill-mode)
 (require 'elec-pair)
 (add-to-list 'electric-pair-pairs '(?' . ?'))
+(add-hook 'emacs-lisp-mode-hook
+          (lambda () (setq-local electric-pair-pairs
+                            (seq-filter (lambda (el) (not (eq (car el) ?')))
+                                        electric-pair-pairs))))
 (add-hook 'text-mode-hook 'electric-pair-mode)
 
 ;; --- kill ring ---
@@ -177,6 +183,23 @@
 (straight-use-package 'undo-tree) (require 'undo-tree)
 (evil-set-undo-system 'undo-tree)
 (global-undo-tree-mode)
+(defun fp/maybe-disable-undo-tree-mode-advice
+    (orig-fun filename &optional nowarn rawfile wildcards)
+  (let ((ret (funcall orig-fun filename nowarn rawfile wildcards))
+        (size (/ (or (file-attribute-size
+                      (file-attributes filename))
+                     0)
+                 1024)))
+    (when (> size 1000)
+      (message (format "File size %sK too big for undo-tree-mode" size))
+      (with-current-buffer ret
+        (undo-tree-mode 0)
+        (setq-local evil-undo-function 'undo-only
+                    evil-redo-function 'undo-redo)))
+    ret))
+(advice-add 'find-file-noselect :around 'fp/maybe-disable-undo-tree-mode-advice)
+
+
 (evil-leader/set-key "uu" 'undo-tree-visualize)
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 

@@ -72,7 +72,7 @@ REASON is non-nil, append it to the log output."
 (defun config-create-extension-regexp (exts)
   "Returns a regular expression matching any filename with one of
 EXTs elements as its extension."
-  (concat "\\." (mapconcat (lambda (ext) (concat "\\(" ext "\\)")) exts "\\|") "\\'"))
+  (concat "\\.\\(" (mapconcat (lambda (ext) ext) exts "\\|") "\\)\\'"))
 
 (cl-defmacro config-require (config-units
                              &key feature regexp auto-mode)

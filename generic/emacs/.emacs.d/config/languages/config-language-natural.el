@@ -32,7 +32,7 @@ wget -O en_US.dic https://cgit.freedesktop.org/libreoffice/dictionaries/plain/en
                                 )
 
 (when (config-external-check-list '(hunspell hunspell-de-de hunspell-en-us))
-
+  (require 'ispell)
 
   ;; Sets ispell up to ignore html markup.
   (setq-default ispell-skip-html t)

@@ -3,8 +3,10 @@
 (require 'seq)
 (require 'tramp)
 
-;; dir %
-(setq term-prompt-regexp "^.*\\% ") ;; this is specific to my bashrc
+(setq
+ ;; dir %
+ term-prompt-regexp "^.*\\% "  ;; this is specific to my bashrc
+ term-scroll-snap-to-bottom t)
 
 (straight-use-package 'multi-term)
 (straight-use-package 'tramp-term)
@@ -18,14 +20,14 @@
 
 (defun fp/term-enter-emacs-state ()
   (interactive)
-  (message "enter emacs state")
+  ;; (message "enter emacs state")
   (term-char-mode)
   (evil-emacs-state)
   (end-of-buffer))
 
 (defun fp/term-enter-normal-state ()
   (interactive)
-  (message "enter normal state")
+  ;; (message "enter normal state")
   (term-line-mode)
   (evil-normal-state))
 
@@ -64,7 +66,9 @@
   "gk" 'term-previous-prompt
   (kbd "M-j") 'term-next-prompt
   (kbd "M-k") 'term-previous-prompt
-  (kbd "C-l") (lambda () (interactive) (term-send-raw-string "clear"))
+  ;; (kbd "C-l") (lambda () (interactive) (recenter 0))
+  (kbd "C-l") 'term-send-raw
+  ;; (kbd "C-l") (lambda () (interactive) (term-send-raw-string "clear"))
   )
 
 ;; HACK: This really should not be global but i cant seem to get it 
@@ -78,6 +82,8 @@
   (kbd "C-n") 'term-send-raw
   (kbd "C-p") 'term-send-raw
   (kbd "C-r") 'term-send-reverse-search-history
+  ;; (kbd "C-l") (lambda () (interactive) (recenter 0))
+  (kbd "C-l") 'term-send-raw
   (kbd "<C-left>") 'term-send-backward-word
   (kbd "<C-right>") 'term-send-forward-word
   (kbd "<M-DEL>") 'term-send-backward-kill-word
@@ -85,6 +91,7 @@
   (kbd "C-S-v") 'term-paste
   (kbd "C-S-c") 'copy-region-as-kill
   (kbd "C-c C-j") 'term-send-esc
+  (kbd "C-c C-c") 'term-interrupt-subjob
   (kbd "<escape>") 'fp/term-enter-normal-state
 
   ;; (kbd "<f1>") 'term-send-raw

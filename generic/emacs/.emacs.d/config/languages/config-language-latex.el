@@ -11,6 +11,7 @@
 ;; ----------------------------------------------------------------------
 (add-hook 'TeX-mode-hook 'olivetti-mode)
 (add-hook 'TeX-mode-hook 'hl-todo-mode)
+(add-hook 'TeX-mode-hook 'symbol-overlay-mode)
 
 ;; ----------------------------------------------------------------------
 ;; Random
@@ -50,7 +51,7 @@
 (straight-use-package 'helm-bibtex)
 (with-eval-after-load "helm-bibtex"
   (setq bibtex-completion-bibliography (list reftex-default-bibliography)
-        helm-bibtex-pdf-open-function 'helm-open-file-with-default-tool
+        bibtex-completion-pdf-open-function 'find-file
         bibtex-completion-pdf-field "file"))
 
 ;; If i need to edit bibtex entries manually, this has proven useful.

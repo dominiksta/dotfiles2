@@ -82,15 +82,23 @@
 (define-key helm-read-file-map (kbd "M-l") 'helm-execute-persistent-action)
 
 ;; --------------------------------------------------------------------------------
-;; swoop
+;; occur
 ;; --------------------------------------------------------------------------------
-(straight-use-package 'helm-swoop)
+(defun fp/maybe-buffer-substring-no-properties (start end)
+  (if (> (count-lines (point-min) (point-max)) 10000)
+      (buffer-substring-no-properties start end)
+    (buffer-substring start end)))
 
-(setq helm-swoop-speed-or-color t)
-(defun helm-swoop-no-prefix ()
+(setq helm-occur-buffer-substring-default-mode 'fp/maybe-buffer-substring-no-properties)
+
+(defvar fp/occur-from-helm-occur-last "")
+(defun fp/occur-from-helm-occur ()
   (interactive)
-  (let ((helm-swoop-pre-input-function 'return-nil))
-    (helm-swoop)))
+  (setq fp/occur-from-helm-occur-last (minibuffer-contents-no-properties))
+  (helm-exit-and-execute-action
+   (lambda (_candidate) (occur fp/occur-from-helm-occur-last))))
+
+(define-key helm-occur-map (kbd "C-s") 'fp/occur-from-helm-occur)
 
 ;; --------------------------------------------------------------------------------
 ;; appearance

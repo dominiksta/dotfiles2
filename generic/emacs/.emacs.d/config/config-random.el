@@ -13,7 +13,8 @@
 
 (setq create-lockfiles nil)
 (setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
+      `((".*" . ,temporary-file-directory))
+      backup-by-copying t)
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 

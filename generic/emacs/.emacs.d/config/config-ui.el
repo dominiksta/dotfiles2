@@ -26,9 +26,9 @@
 ;; themes and fonts
 ;; --------------------------------------------------------------------------------
 
-(setq fp/theme-font-family "DejaVu Sans Mono"
-      fp/theme-font-family-size "13"
-      fp/theme-font-family-variable-pitch "DejaVu Serif 13"
+(setq fp/theme-font-family "Iosevka Fixed"
+      fp/theme-font-family-size "15"
+      fp/theme-font-family-variable-pitch "DejaVu Serif 14"
       ;; these are used to set `fp/theme-font-family' in `fp/theme-switch'
       fp/theme-light-font-bold nil)
 
@@ -40,8 +40,8 @@
 (set-fontset-font "fontset-default" 'unicode-bmp
                   (font-spec :family fp/theme-font-family))
 
-(set-face-font 'fixed-pitch fp/theme-font-family)
 (set-face-attribute 'fixed-pitch nil :height 1.0)
+(set-face-attribute 'fixed-pitch nil :font fp/theme-font-family)
 (set-face-font 'variable-pitch fp/theme-font-family-variable-pitch)
 
 ;; --- defaults, to be changed further down ---
@@ -120,7 +120,7 @@
 ;;       fp/theme-dark-theme 'zenburn)
 
 (straight-use-package 'solarized-theme)
-(setq fp/theme-light-theme 'solarized-selenized-white
+(setq fp/theme-light-theme 'solarized-selenized-light
       fp/theme-dark-theme 'solarized-selenized-black
       solarized-use-variable-pitch nil
       solarized-scale-org-headlines nil)
