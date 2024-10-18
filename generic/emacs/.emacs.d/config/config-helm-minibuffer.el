@@ -28,6 +28,7 @@
         (dired-do-hardlink . nil)
         (dired-create-directory . nil)
         (dired-rsync . nil))
+      helm-move-to-line-cycle-in-source nil
       helm-mode-handle-completion-in-region nil)
 
 (helm-mode 1)

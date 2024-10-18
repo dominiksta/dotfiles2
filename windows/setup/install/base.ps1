@@ -62,7 +62,7 @@ $onlogon = New-ScheduledTaskTrigger -AtLogon
 $realtime = New-ScheduledTaskSettingsSet -Priority 0
 
 $run_ahk = New-ScheduledTaskAction -Execute `
-  "%USERPROFILE%\Source\git\dotfiles\windows\ahk\AllTheHotKeys.ahk"
+  "%USERPROFILE%\Source\private\dotfiles\windows\ahk\AllTheHotKeys.ahk"
 $run_altdrag = New-ScheduledTaskAction -Execute `
   "%USERPROFILE%\AppData\Roaming\AltDrag\AltDrag.exe"
 $run_birdtray = New-ScheduledTaskAction -Execute `
@@ -79,29 +79,31 @@ Register-ScheduledTask -TaskName "birdtray" -Trigger $onlogon -Action $run_birdt
 # --- emacs
 mkdir -Force $env:userprofile\.emacs.d\straight\versions
 cmd /c mklink /d %USERPROFILE%\.emacs.d\config `
-  %USERPROFILE%\Source\git\dotfiles\stow\emacs\.emacs.d\config
+  %USERPROFILE%\Source\private\dotfiles\generic\emacs\.emacs.d\config
 cmd /c mklink %USERPROFILE%\.emacs.d\init.el `
-  %USERPROFILE%\Source\git\dotfiles\stow\emacs\.emacs.d\init.el
+  %USERPROFILE%\Source\private\dotfiles\generic\emacs\.emacs.d\init.el
 cmd /c mklink %USERPROFILE%\.emacs.d\straight\versions\default.el `
-  %USERPROFILE%\Source\git\dotfiles\stow\emacs\.emacs.d\straight\versions\default.el
+  %USERPROFILE%\Source\private\dotfiles\generic\emacs\.emacs.d\straight\versions\default.el
+
+New-Alias -Name em -Value emacsclientw.exe
 
 # --- windows terminal
 rm $env:localappdata\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
-cmd /c mklink %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json `
-  %USERPROFILE%\Source\git\dotfiles\windows\windows-terminal\settings.json
+cmd /c mklink C:\Users\dstahmer\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json `
+  C:\Users\dstahmer\Source\private\dotfiles\windows\windows-terminal\settings.json
 
 # --- powershell
 cmd /c mklink %USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1 `
-  %USERPROFILE%\Source\git\dotfiles\windows\powershell\Microsoft.PowerShell_profile.ps1
+  %USERPROFILE%\Source\private\dotfiles\windows\powershell\Microsoft.PowerShell_profile.ps1
 
 # --- totalcmd
 cmd /c mklink /d %APPDATA%\GHISLER `
-  %USERPROFILE%\Source\git\dotfiles\windows\totalcmd
+  %USERPROFILE%\Source\private\dotfiles\windows\totalcmd
 
 # ----------------------------------------------------------------------
 # --- file associations ---
 # ----------------------------------------------------------------------
-cmd /c ftype emacsclient=C:\Users\dominik\Source\git\dotfiles\windows\wsl\emacsclient.bat "%1"
+cmd /c ftype emacsclient=C:\ProgramData\chocolatey\bin\emacsclientw.exe "%1"
 
 cmd /c assoc .ps1=emacsclient
 cmd /c assoc .sql=emacsclient
@@ -134,7 +136,7 @@ reg import ..\keepasssxc-waterfox.reg
 # ----------------------------------------------------------------------
 
 net use Z: \\nasenbaer\public /persistent:yes
-net use N: \\icyou.icu@SSL\DavWWWRoot\remote.php\dav\files\dominik.stahmer@posteo.de\ /persistent:yes
+net use N: \\icyou.icu@SSL\DavWWWRoot\remote.php\dav\files\dominiksta\ /persistent:yes
 start Z:\dominik # Initializes the drive
 Start-Sleep 5
 

@@ -1,9 +1,9 @@
 (require-and-log 'config-programming-general)
 
-(straight-use-package 'csharp-mode)
+;; (straight-use-package 'csharp-mode)
 
 (defun fp/csharp-mode-hook ()
-  (setq-local company-idle-delay 0.5)
+  ;; (setq-local company-idle-delay 0.5)
   (lsp))
 
 (add-hook 'csharp-mode-hook 'fp/csharp-mode-hook)

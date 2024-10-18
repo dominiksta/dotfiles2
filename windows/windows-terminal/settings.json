@@ -13,10 +13,25 @@
         {
             "command": 
             {
+                "action": "newTab"
+            },
+            "keys": "alt+shift+t"
+        },
+        {
+            "command": "resetFontSize",
+            "keys": "ctrl+0"
+        },
+        {
+            "command": 
+            {
                 "action": "moveFocus",
                 "direction": "down"
             },
             "keys": "alt+u"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
         },
         {
             "command": 
@@ -25,10 +40,6 @@
                 "direction": "left"
             },
             "keys": "alt+shift+z"
-        },
-        {
-            "command": "resetFontSize",
-            "keys": "ctrl+0"
         },
         {
             "command": 
@@ -52,9 +63,10 @@
         {
             "command": 
             {
-                "action": "newTab"
+                "action": "adjustFontSize",
+                "delta": -2.0
             },
-            "keys": "alt+shift+t"
+            "keys": "ctrl+minus"
         },
         {
             "command": 
@@ -62,10 +74,6 @@
                 "action": "nextTab"
             },
             "keys": "alt+shift+l"
-        },
-        {
-            "command": "find",
-            "keys": "ctrl+shift+f"
         },
         {
             "command": 
@@ -111,14 +119,6 @@
         {
             "command": 
             {
-                "action": "adjustFontSize",
-                "delta": -2
-            },
-            "keys": "ctrl+minus"
-        },
-        {
-            "command": 
-            {
                 "action": "splitPane",
                 "split": "right",
                 "splitMode": "duplicate"
@@ -158,14 +158,20 @@
             "command": 
             {
                 "action": "adjustFontSize",
-                "delta": 2
+                "delta": 2.0
             },
             "keys": "ctrl+plus"
         }
     ],
     "copyFormatting": "none",
     "copyOnSelect": false,
-    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    "defaultProfile": "{71160544-14d8-4194-af25-d05feeac7233}",
+    "newTabMenu": 
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
     "profiles": 
     {
         "defaults": 
@@ -175,8 +181,8 @@
             "cursorShape": "filledBox",
             "font": 
             {
-                "face": "DejaVu Sans Mono",
-                "size": 12
+                "face": "Iosevka Fixed",
+                "size": 13.0
             }
         },
         "list": 
@@ -193,52 +199,23 @@
                 "name": "Command Prompt"
             },
             {
-                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
-                "hidden": false,
-                "name": "Azure Cloud Shell",
-                "source": "Windows.Terminal.Azure"
-            },
-            {
-                "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
-                "hidden": false,
-                "name": "Ubuntu-20.04",
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "hidden": true,
+                "name": "Ubuntu",
                 "source": "Windows.Terminal.Wsl"
             },
             {
-                "guid": "{7463c33e-c228-50f1-82a1-f96412f88c13}",
+                "commandline": "C:/tools/msys64/msys2_shell.cmd -defterm -here -no-start -msys -use-full-path",
+                "guid": "{71160544-14d8-4194-af25-d05feeac7233}",
+                "icon": "C:/tools/msys64/msys2.ico",
+                "name": "MSYS2",
+                "startingDirectory": "%USERPROFILE%"
+            },
+            {
+                "guid": "{51855cb2-8cce-5362-8f54-464b92b32386}",
                 "hidden": false,
-                "name": "Developer Command Prompt for VS 2019 (2)",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{2dff2562-cc82-5315-ba98-7561d86a6acc}",
-                "hidden": false,
-                "name": "Developer PowerShell for VS 2019 (2)",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{210d0357-b26a-52ee-abce-6f425acb4081}",
-                "hidden": true,
-                "name": "Developer Command Prompt for VS 2019",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{c7e60bc6-10a5-5211-96ed-ef144b76b504}",
-                "hidden": true,
-                "name": "Developer PowerShell for VS 2019",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{17bf3de4-5353-5709-bcf9-835bd952a95e}",
-                "hidden": true,
-                "name": "Ubuntu-22.04",
-                "source": "Windows.Terminal.Wsl"
-            },
-            {
-                "guid": "{f9ceaf27-504c-58d7-927c-d1d6a7ac7d3c}",
-                "hidden": false,
-                "name": "Ubuntu 22.04.1 LTS",
-                "source": "CanonicalGroupLimited.Ubuntu22.04LTS_79rhkp1fndgsc"
+                "name": "Ubuntu",
+                "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc"
             }
         ]
     },
@@ -475,6 +452,29 @@
             "yellow": "#A2734C"
         },
         {
+            "background": "#300A24",
+            "black": "#171421",
+            "blue": "#0037DA",
+            "brightBlack": "#767676",
+            "brightBlue": "#08458F",
+            "brightCyan": "#2C9FB3",
+            "brightGreen": "#26A269",
+            "brightPurple": "#A347BA",
+            "brightRed": "#C01C28",
+            "brightWhite": "#F2F2F2",
+            "brightYellow": "#A2734C",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#3A96DD",
+            "foreground": "#FFFFFF",
+            "green": "#26A269",
+            "name": "Ubuntu-ColorScheme",
+            "purple": "#881798",
+            "red": "#C21A23",
+            "selectionBackground": "#FFFFFF",
+            "white": "#CCCCCC",
+            "yellow": "#A2734C"
+        },
+        {
             "background": "#000000",
             "black": "#000000",
             "blue": "#000080",
@@ -500,5 +500,6 @@
     ],
     "showTerminalTitleInTitlebar": false,
     "theme": "dark",
+    "themes": [],
     "windowingBehavior": "useAnyExisting"
 }

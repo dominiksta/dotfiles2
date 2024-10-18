@@ -41,5 +41,14 @@
 (straight-use-package 'grip-mode) ;; pip install grip
 (evil-leader/set-key-for-mode 'markdown-mode "mg" 'grip-mode)
 
+;; ----------------------------------------------------------------------
+;; mermaid graphs
+;; ----------------------------------------------------------------------
+(straight-use-package 'mermaid-mode)
+(config-add-external-dependency
+ 'mermaid-cli 'config-language-markdown "compile/preview mermaid graphs"
+ (lambda () (executable-find "mmdc"))
+ "npm i -g @mermaid-js/mermaid-cli" "npm i -g @mermaid-js/mermaid-cli")
+
 
 (provide 'config-language-markdown)

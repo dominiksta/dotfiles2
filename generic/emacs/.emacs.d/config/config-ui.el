@@ -40,9 +40,9 @@
 (set-fontset-font "fontset-default" 'unicode-bmp
                   (font-spec :family fp/theme-font-family))
 
-(set-face-attribute 'fixed-pitch nil :height 1.0)
-(set-face-attribute 'fixed-pitch nil :font fp/theme-font-family)
-(set-face-font 'variable-pitch fp/theme-font-family-variable-pitch)
+(custom-set-faces
+ `(variable-pitch ((t (:font ,fp/theme-font-family-variable-pitch))))
+ `(fixed-pitch ((t (:font ,fp/theme-font-family :height 1.0)))))
 
 ;; --- defaults, to be changed further down ---
 (setq fp/theme-light-theme 'tsdh-light
@@ -60,8 +60,8 @@
 ;;  '(highlight ((t (:underline t :background nil :foreground nil :distant-foreground nil)))))
 
 ;; (straight-use-package 'gruvbox-theme)
-;; (setq fp/theme-light-theme 'gruvbox-light-soft
-;;       fp/theme-dark-theme 'gruvbox-dark-soft)
+;; (setq fp/theme-light-theme 'gruvbox-light-hard
+;;       fp/theme-dark-theme 'gruvbox-dark-hard)
 
 ;; (straight-use-package '(shanty-theme :type git :host github
 ;;                                      :repo "qhga/shanty-theme"))
@@ -119,8 +119,14 @@
 ;; (setq fp/theme-light-theme 'tango
 ;;       fp/theme-dark-theme 'zenburn)
 
+;; (straight-use-package 'autothemer)
+;; (straight-use-package '(github-emacs-theme :type git :host github :repo "ladroid/github-emacs-theme"))
+;; (setq fp/theme-light-theme 'github-light
+;;       fp/theme-dark-theme 'github-dark)
+
+
 (straight-use-package 'solarized-theme)
-(setq fp/theme-light-theme 'solarized-selenized-light
+(setq fp/theme-light-theme 'solarized-selenized-white
       fp/theme-dark-theme 'solarized-selenized-black
       solarized-use-variable-pitch nil
       solarized-scale-org-headlines nil)

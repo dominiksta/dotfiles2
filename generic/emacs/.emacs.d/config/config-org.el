@@ -21,7 +21,7 @@
 ;; --------------------------------------------------------------------------------
 
 (defvar wournal-executable
-  "/mnt/c/Users/dominik/AppData/Local/Programs/Wournal-Verions/dev/Wournal.exe")
+  "~/AppData/Local/Programs/Wournal/Wournal.exe")
 
 (defvar wournal-file-format "./img/%Y-%m-%d_%H-%M-%S.svg")
 
@@ -38,9 +38,7 @@
                    (format "--page-width=%s" width)
                    (format "--page-color=%s" "white")
                    (format "--page-style=%s" "graph")
-                   (if fp/running-on-wsl-p
-                       (shell-command-to-string (format "wslpath -aw \"%s\"" file))
-                     file))
+                   (expand-file-name file))
     file))
 
 (defun fp/org-wournal-new-at-point ()
@@ -518,14 +516,14 @@ happy."
         org-download-screenshot-file (expand-file-name "~/.emacs.d/screenshot.png"))
   (setq-default org-download-heading-lvl nil
                 org-download-image-dir "orgimg")
-
-  (if fp/running-on-wsl-p
-      (setq org-download-screenshot-method
-            (lambda (filename)
-              (let ((default-directory "~/.emacs.d/"))
-                (fp/powershell-command
-                 "(Get-Clipboard -Format image).save(\"screenshot.png\")"))))
-    (setq org-download-screenshot-method "import %s")))
+  (setq org-download-screenshot-method
+        (cond
+         ((or fp/running-on-wsl-p (eq system-type 'windows-nt))
+          (lambda (filename)
+            (let ((default-directory "~/.emacs.d/"))
+              (fp/powershell-command
+               "(Get-Clipboard -Format image).save(\"screenshot.png\")"))))
+         (t "import %s"))))
 
 ;; --------------------------------------------------------------------------------
 ;; capture
@@ -598,6 +596,14 @@ happy."
   (push '("^#\\+BEGIN_SRC" . "^#\\+END_SRC") ispell-skip-region-alist))
 
 (add-hook 'org-mode-hook 'fp/ispell-setup-org)
+
+;; ----------------------------------------------------------------------
+;; ticket/bug links
+;; ----------------------------------------------------------------------
+
+(defun fp/insert-redmine-org-url (ticketnr)
+  (interactive "nTicket Nr: ")
+  (insert (format "[[https://redmine.recom.eu/issues/%s][#%s]]" ticketnr ticketnr)))
 
 ;; ================================================================================
 (provide 'config-org)

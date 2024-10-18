@@ -90,6 +90,7 @@
 
 (defun fp/toggle-show-too-long-lines ()
   (interactive)
+  (editorconfig-apply)
   (if (member 'lines-tail whitespace-style)
       (progn (setq-local whitespace-style (delq 'lines-tail whitespace-style))
              (message "not highlighting long lines"))

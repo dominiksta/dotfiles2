@@ -173,6 +173,7 @@ execute it, setting `default-directory' to
 ;; --------------------------------------------------------------------------------
 (straight-use-package 'diff-hl)
 (global-diff-hl-mode 1)
+(run-with-idle-timer 2 10 'diff-hl-update)
 
 ;; --------------------------------------------------------------------------------
 ;; git-gutter (highlighting git/svn/vc changes in fringe)
@@ -383,6 +384,11 @@ execute it, setting `default-directory' to
   ;; (setq diff-refine 'font-lock)
   (evil-define-key 'motion diff-mode-map
     "q" 'quit-window
+    "gj" 'diff-file-next
+    "gk" 'diff-file-prev
+    (kbd "M-j") 'diff-hunk-next
+    (kbd "M-k") 'diff-hunk-prev
+    "gx" 'diff-hunk-kill
     (kbd "RET") 'diff-goto-source)
   ;; (set-face-attribute 'diff-refine-removed nil :background 'unspecified
   ;;                     :inherit 'highlight)
