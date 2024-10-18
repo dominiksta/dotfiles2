@@ -9,17 +9,17 @@
   (setq epg-pinentry-mode 'loopback) ;; use minibuffer for passphrase input
 
   (setq mvtn-note-directories
-        '((:dir "~/mvtn/prv" :name "prv" :structure
+        '((:dir "~/sync/documents/notes/mvtn/prv" :name "prv" :structure
                 ((:dir "flt" :datetree t) ;; fleeting
                  (:dir "lit" :datetree t) ;; literature
                  (:dir "tec" :datetree t) ;; tech (devlog, etc.)
                  (:dir "stc" :datetree nil))) ;; static
-          (:dir "~/mvtn/wrk" :name "wrk" :structure
+          (:dir "~/sync/documents/notes/mvtn/wrk" :name "wrk" :structure
                 ((:dir "rec" :datetree t)
                  (:dir "ltw" :datetree t)
                  (:dir "stc" :datetree nil)))
           ) ;; static
-        mvtn-template-locations '("~/mvtn/templates")
+        mvtn-template-locations '("~/sync/documents/notes/mvtn/templates")
         mvtn-default-file-extension "org"
         mvtn-excluded-directories '(".git" ".svn" "ltximg" "orgimg" "wournal" "data")
         mvtn-search-function 'mvtn-search-full-text-rg

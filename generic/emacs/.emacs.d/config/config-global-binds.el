@@ -276,7 +276,7 @@
   "pI" 'projectile-discover-projects-in-directory
   "pf" 'helm-projectile-find-file
   "pe" 'projectile-run-eshell
-  "pv" 'projectile-vc
+  "pv" (lambda () (interactive) (vc-dir (projectile-project-root)))
   "pP" 'helm-projectile-switch-project)
 
 ;; --------------------------------------------------------------------------------
