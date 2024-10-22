@@ -187,18 +187,32 @@
       (fp/theme-switch 'dark))))
 
 (defun fp/theme-switch (type)
-  (if (eq type 'light)
-      (progn
-        (setq fp/current-theme 'light)
-        (disable-theme fp/theme-dark-theme)
-        (when fp/theme-light-font-bold (set-face-attribute 'default nil :bold t))
-        ;; without this if you could not select the default theme
-        (if fp/theme-light-theme (load-theme fp/theme-light-theme)))
-    (progn
-      (setq fp/current-theme 'dark)
-      (disable-theme fp/theme-light-theme)
-      (set-face-attribute 'default nil :bold nil)
-      (if fp/theme-dark-theme (load-theme fp/theme-dark-theme)))))
+  (unless (eq fp/current-theme type)
+   (if (eq type 'light)
+       (progn
+         (setq fp/current-theme 'light)
+         (disable-theme fp/theme-dark-theme)
+         (when fp/theme-light-font-bold (set-face-attribute 'default nil :bold t))
+         ;; without this if you could not select the default theme
+         (if fp/theme-light-theme (load-theme fp/theme-light-theme)))
+     (progn
+       (setq fp/current-theme 'dark)
+       (disable-theme fp/theme-light-theme)
+       (set-face-attribute 'default nil :bold nil)
+       (if fp/theme-dark-theme (load-theme fp/theme-dark-theme))))))
+
+
+(defun fp/set-theme-windows-app-theme ()
+  (interactive)
+  (if (eq system-type 'windows-nt)
+      (let ((theme (w32-read-registry
+                    'HKCU
+                    "SOFTWARE/Microsoft/Windows/CurrentVersion/Themes/Personalize"
+                    "AppsUseLightTheme")))
+        (fp/theme-switch (if (eq theme 1) 'light 'dark)))))
+
+(if (eq system-type 'windows-nt)
+    (run-with-idle-timer 3 3 'fp/set-theme-windows-app-theme))
 
 (defun fp/theme-toggle ()
   (interactive)

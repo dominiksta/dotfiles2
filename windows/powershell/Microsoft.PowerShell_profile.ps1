@@ -5,6 +5,44 @@
 # If I hand only known this was possible earlier.
 Set-PSReadLineOption -EditMode Emacs
 
+# color settings
+# ----------------------------------------------------------------------
+
+
+if ($env:WT_SESSION) {
+    function Get-WindowsAppTheme() {
+        return (
+            Get-ItemProperty -Path `
+              "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize"
+        ).AppsUseLightTheme;
+    }
+
+    function Set-WTTheme($isLight) {
+        $bg = if ($isLight) {'White'} else {'Black'};
+        $fg = if ($isLight) {'Black'} else {'White'};
+
+        Set-PSReadLineOption -Colors @{
+            Command            = $fg
+            Number             = $fg
+            Member             = $fg
+            Operator           = $fg
+            Type               = $fg
+            Variable           = $fg
+            Parameter          = $fg
+            ContinuationPrompt = $fg
+            Default            = $fg
+        }
+    }
+
+    Set-WTTheme(Get-WindowsAppTheme);
+
+    Set-PSReadLineKeyHandler -Chord Ctrl+Shift+I -ScriptBlock {
+        Set-WTTheme(Get-WindowsAppTheme);
+    }
+}
+
+# prompt
+# ----------------------------------------------------------------------
 
 function prompt {
     $p = Split-Path -Leaf -Path (Get-Location)
