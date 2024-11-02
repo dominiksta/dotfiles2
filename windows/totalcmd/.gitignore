@@ -1,4 +1,5 @@
-default.br2
+default.br*
+wincmd.key
 history.ini
 sizepos.ini
 vertical.br2
