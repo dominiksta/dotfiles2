@@ -5,7 +5,6 @@ ShowGui() {
     Gui ideswtchgui:Font, s12, Consolas
     Gui ideswtchgui:Color, 181818
 
-
     Gui ideswtchgui:Add, Text, cWhite x32 y16 w80 h23, &A
     Gui ideswtchgui:Add, Text, cWhite x32 y48 w80 h23, &S
     Gui ideswtchgui:Add, Text, cWhite x32 y80 w80 h23, &D
@@ -38,7 +37,7 @@ ActivateAndExit(hWnd) {
 	WinGetTitle, Title, ahk_id %hWnd%
     LogFile("Activating " Title " (" hWnd ")")
     WinActivate, ahk_id %hWnd%
-    Gui ideswtchgui:Hide
+    Gui ideswtchgui:Destroy
     return
 }
 
