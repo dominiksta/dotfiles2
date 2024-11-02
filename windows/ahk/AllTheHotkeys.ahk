@@ -10,6 +10,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #Include %A_ScriptDir%\ProcessInfo.ahk
 
+Run, %A_ScriptDir%\ide_switcher\main.ahk
+
 ; Control       = ^
 ; Meta          = !
 ; Shift         = +
@@ -22,6 +24,21 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; return
 ; #IfWinActive
 ; AppsKey::Rwin
+
+;------------------------------------------------------------
+; Suspend All Hotkeys
+;------------------------------------------------------------
+
+!Esc::
+   Suspend, Permit
+   SusToggle := !SusToggle
+   If (SusToggle)
+   {   Suspend, On
+   }
+   Else
+   {   Suspend Off
+   }
+return
 
 ;------------------------------------------------------------
 ; Audio Control
@@ -74,6 +91,61 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
     WinGetClass, class, A
     MsgBox, Class: %class% `nPath:  %FilePath%
+return
+
+;------------------------------------------------------------
+; RAlt -> Umlaut (For QWERTY)
+;------------------------------------------------------------
+; Made by Jakub Mańczak in 2020
+; manczak.net
+
+>!a::
+if GetKeyState("CapsLock", "T") = 0
+	send, {U+00E4}
+else if GetKeyState("CapsLock", "T") = 1
+	send, {U+00C4}
+return
+
+>!+a::
+if GetKeyState("CapsLock", "T") = 0
+	send, {U+00C4}
+else if GetKeyState("CapsLock", "T") = 1
+	send, {U+00E4}
+return
+
+>!o::
+if GetKeyState("CapsLock", "T") = 0
+	send, {U+00F6}
+else if GetKeyState("CapsLock", "T") = 1
+	send, {U+00D6}
+return
+
+>!+o::
+if GetKeyState("CapsLock", "T") = 0
+	send, {U+00D6}
+else if GetKeyState("CapsLock", "T") = 1
+	send, {U+00F6}
+return
+
+>!u::
+if GetKeyState("CapsLock", "T") = 0
+	send, {U+00FC}
+else if GetKeyState("CapsLock", "T") = 1
+	send, {U+00DC}
+return
+
+>!+u::
+if GetKeyState("CapsLock", "T") = 0
+	send, {U+00DC}
+else if GetKeyState("CapsLock", "T") = 1
+	send, {U+00FC}
+return
+
+>!s::
+if GetKeyState("CapsLock", "T") = 0
+	send, {U+00DF}
+else if GetKeyState("CapsLock", "T") = 1
+	send, {U+1E9E}
 return
 
 ;------------------------------------------------------------
@@ -132,7 +204,8 @@ bringtoforegroundbytitle(title, except){
 !+k::bringtoforegroundbyexe("KeePassXC.exe", "C:\Program Files\KeePassXC\KeePassXC.exe")
 ; ^+1::bringtoforegroundbyclass("PROCEXPL", "procexp")
 !+g::bringtoforegroundbytitle("Fork", "")
-!Space::bringtoforegroundbyclass("Emacs", "runemacs.exe")
+; !Space::Run %A_ScriptDir%\ide_switcher\main.ahk
+; !Space::bringtoforegroundbyclass("Emacs", "runemacs.exe")
 ; !Space::bringtoforegroundbytitle("emacs@wsl", "C:\Users\dominik\Source\git\dotfiles\windows\wsl\start-emacs.bat")
 !,::bringtoforegroundbyclass("CASCADIA_HOSTING_WINDOW_CLASS", "wt")
 ; !,::bringtoforegroundbytitle("Cmder", "cmder")
