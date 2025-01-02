@@ -2,14 +2,17 @@
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
 (tool-bar-mode 0)
-(toggle-frame-maximized)
 (blink-cursor-mode -1)
 (tooltip-mode 0)
 (setq use-dialog-box nil)
 
-;; Do not send size hints to the window manager. The default value makes it
-;; impossible to properly tile emacs.
-(setq frame-resize-pixelwise t)
+(global-display-line-numbers-mode 0)
+(setq-default display-line-numbers nil)
+(defun fp/enable-line-numbers ()
+  (setq-local display-line-numbers 'relative))
+(add-hook 'text-mode-hook 'fp/enable-line-numbers)
+(add-hook 'prog-mode-hook 'fp/enable-line-numbers)
+
 
 ;; A visual bell
 (setq ring-bell-function
@@ -35,8 +38,7 @@
 (setq default-frame-alist
       (list (cons 'font (concat fp/theme-font-family "-" fp/theme-font-family-size))
             '(vertical-scroll-bars . nil)
-            '(horizontal-scroll-bars . nil)
-            '(fullscreen . maximized)))
+            '(horizontal-scroll-bars . nil)))
 (set-fontset-font "fontset-default" 'unicode-bmp
                   (font-spec :family fp/theme-font-family))
 
@@ -180,14 +182,14 @@
     and sets a time to switch to the dark theme when necessary"
   (let ((time (string-to-number (format-time-string "%H"))))
     (if (and (< time fp/theme-switch-hour-end) (> time fp/theme-switch-hour-start))
-        (progn (fp/theme-switch 'light)
+        (progn (fp/theme-switch 'light t)
                (run-at-time (concat (number-to-string fp/theme-switch-hour-end)
                                     ":00")
                             nil (lambda () (fp/theme-switch 'dark))))
-      (fp/theme-switch 'dark))))
+      (fp/theme-switch 'dark t))))
 
-(defun fp/theme-switch (type)
-  (unless (eq fp/current-theme type)
+(defun fp/theme-switch (type &optional force)
+  (unless (and (not force) (eq fp/current-theme type))
    (if (eq type 'light)
        (progn
          (setq fp/current-theme 'light)

@@ -39,12 +39,10 @@
 ;; created seperately for "shared" code (code in a different projectile
 ;; directory).
 
-(config-add-external-dependency
- 'clangd 'config-language-cc "lsp" (lambda () (executable-find "clangd"))
- "apt-get install -y clangd" "choco install -y llvm")
+;; (config-add-external-dependency
+;;  'clangd 'config-language-cc "lsp" (lambda () (executable-find "clangd"))
+;;  "apt-get install -y clangd" "choco install -y llvm")
 
-(add-hook 'c-mode-hook 'lsp)
-(add-hook 'c++-mode-hook 'lsp)
 
 ;; ----------------------------------------------------------------------
 ;; documentation
@@ -63,6 +61,18 @@
   "mt" (lambda () (interactive) (ff-find-other-file nil 1))
   "msm" 'fp/search-msdn
   "msl" 'fp/search-cppreference)
+
+(defun fp/cc-mode-hook ()
+  (lsp)
+  (flycheck-mode 0)
+  (evil-local-set-key 'normal "gf" 'project-find-regexp)
+  (evil-local-set-key 'normal "gf" 'project-find-regexp)
+  (evil-local-set-key 'normal "gF" 'ff-find-other-file)
+  )
+
+(add-hook 'c-mode-hook 'fp/cc-mode-hook)
+(add-hook 'c++-mode-hook 'fp/cc-mode-hook)
+
 
 ;; ----------------------------------------------------------------------
 ;; syntax

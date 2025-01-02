@@ -13,8 +13,16 @@
     (message run)
     (shell-command run)))
 
-(setq frame-title-format (if fp/running-on-wsl-p "emacs@wsl" "emacs@native"))
+(require 'project)
 
+(setq frame-title-format
+    '(""
+      (:eval
+       (let ((prj (project-current)))
+         (if prj
+             (format "%s" (project-name prj))
+           "<no project>")))
+      " - %b"))
 
 (save-place-mode 1)
 

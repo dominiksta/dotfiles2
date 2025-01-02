@@ -143,6 +143,9 @@ execute it, setting `default-directory' to
 
 (add-hook 'prog-mode-hook 'fp/maybe-activate-dump-jump)
 
+(defvar fp/project-find-regexp-files nil)
+;; (evil-define-key 'normal "gf" (lambda () (interactive) (project-find-regexp )))
+
 ;; --------------------------------------------------------------------------------
 ;; debugging
 ;; --------------------------------------------------------------------------------

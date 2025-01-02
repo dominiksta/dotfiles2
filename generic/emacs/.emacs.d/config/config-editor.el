@@ -52,16 +52,6 @@
   "zA" 'yafolding-hide-all
   (kbd "z M-a") 'yafolding-show-all)
 
-
-;; --- avy ---
-(straight-use-package 'avy)
-(evil-define-key 'normal global-map
-  "gl" 'evil-avy-goto-line
-  "gw" 'evil-avy-goto-word-1
-  "g-" 'evil-avy-goto-char-2
-  "ö" 'evil-avy-goto-char-2
-  "Ö" 'evil-avy-goto-char)
-
 (dolist (state (list 'normal 'motion))
   (evil-define-key state global-map
     (kbd "C-j") (lambda () (interactive) (evil-scroll-down nil))

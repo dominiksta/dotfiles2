@@ -18,3 +18,4 @@
 ;; load personal config
 (add-to-list 'load-path (concat config-directory "/init/"))
 (require 'init-config)
+(put 'list-timers 'disabled nil)

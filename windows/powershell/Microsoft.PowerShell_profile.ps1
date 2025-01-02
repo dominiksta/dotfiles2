@@ -44,9 +44,27 @@ if ($env:WT_SESSION) {
 # prompt
 # ----------------------------------------------------------------------
 
-function prompt {
-    $p = Split-Path -Leaf -Path (Get-Location)
-    "PS $env:my__loaded_environment$p> "
+if ($env:WT_SESSION) {
+    function Prompt {
+        $p = Split-Path -Leaf -Path (Get-Location)
+        $host.UI.RawUI.WindowTitle = $p
+
+        # see https://superuser.com/a/1259916
+        $fgGreen = "$([char]27)[32m"
+        $fgCyan = "$([char]27)[36m"
+        $fgMagenta = "$([char]27)[35m"
+        $fgDefault = "$([char]27)[0m"
+
+        $fgGreen + "$env:my__loaded_environment" + `
+          $fgCyan + "$p" + `
+          $fgMagenta + " % " + `
+          $fgDefault
+    }
+} else {
+    function Prompt {
+        $p = Split-Path -Leaf -Path (Get-Location)
+        "PS $env:my__loaded_environment$p> "
+    }
 }
 
 Function la { Get-ChildItem -Hidden $args }

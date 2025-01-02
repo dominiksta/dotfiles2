@@ -5,6 +5,16 @@
 (straight-use-package 'magit)
 (straight-use-package 'evil-magit)
 
+(defun fp/run-fork (directory)
+  (start-process
+   "git-fork" nil
+   (format "c:/Users/%s/AppData/Local/Fork/Fork.exe" user-login-name)
+   directory))
+
+(defun fp/run-fork-projectile ()
+  (interactive)
+  (fp/run-fork (projectile-project-root)))
+
 (with-eval-after-load "magit"
   (require 'evil-magit)
   (require 'mvtn)

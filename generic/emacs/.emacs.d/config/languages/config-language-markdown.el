@@ -15,7 +15,8 @@
 
 (defun fp/markdown-mode-hook ()
   (interactive)
-  (outline-minor-mode 1))
+  (outline-minor-mode 1)
+  (markdown-display-inline-images))
 (add-hook 'markdown-mode-hook 'fp/markdown-mode-hook)
 
 (evil-define-key 'normal markdown-mode-map
@@ -24,7 +25,9 @@
   "gk" 'markdown-outline-previous-same-level)
 
 (evil-leader/set-key-for-mode 'markdown-mode
-  "mo" 'markdown-edit-code-block)
+  "mo" 'markdown-edit-code-block
+  "mi" 'markdown-toggle-inline-images
+  "mI" 'markdown-display-inline-images)
 
 ;; ----------------------------------------------------------------------
 ;; manual previews without external dependencies

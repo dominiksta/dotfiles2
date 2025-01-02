@@ -28,7 +28,7 @@
 (bind-key* "M-q" 'delete-window)
 (bind-key* "M-d" 'kill-this-buffer)
 (bind-key* "M-s" 'switch-to-buffer)
-(bind-key* "M-z" 'windmove-left)
+(bind-key* "M-y" 'windmove-left)
 (bind-key* "M-u" 'windmove-down)
 (bind-key* "M-i" 'windmove-up)
 (bind-key* "M-o" 'windmove-right)
