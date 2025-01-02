@@ -96,6 +96,9 @@ cmd /c mklink C:\Users\dstahmer\AppData\Local\Packages\Microsoft.WindowsTerminal
 cmd /c mklink %USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1 `
   %USERPROFILE%\Source\private\dotfiles\windows\powershell\Microsoft.PowerShell_profile.ps1
 
+cmd /c mklink %USERPROFILE%\Documents\PowerShell\Profile.ps1 `
+  %USERPROFILE%\Source\private\dotfiles\windows\powershell\Profile.ps1
+
 # --- totalcmd
 cmd /c mklink /d %APPDATA%\GHISLER `
   %USERPROFILE%\Source\private\dotfiles\windows\totalcmd
