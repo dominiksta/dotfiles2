@@ -1,4 +1,0 @@
-[Desktop Entry]
-Name=Autostart
-Exec=bash /home/f1p/Source/git/dotfiles/stow/autostart/bin/autostart.sh
-Type=Application

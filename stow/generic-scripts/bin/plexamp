@@ -1,3 +1,0 @@
-#!/bin/sh
-
-$HOME/sync/Software/AppImage/Plexamp-3.2.0.AppImage --no-sandbox &

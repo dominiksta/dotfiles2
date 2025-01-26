@@ -1,0 +1,1 @@
+scoop install autohotkey1.1

@@ -23,14 +23,14 @@ if ($env:WT_SESSION) {
         ListPrediction          = "`e[33m"
         ListPredictionSelected  = "`e[48;5;238m"
         ListPredictionTooltip   = "`e[97;2;3m"
-        Member                  = "`e[37m"
-        Number                  = "`e[97m"
-        Operator                = "`e[90m"
-        Parameter               = "`e[90m"
+        Member                  = $PSStyle.Foreground.BrightBlack
+        Number                  = $PSStyle.Foreground.BrightBlack
+        Operator                = $PSStyle.Foreground.BrightBlack
+        Parameter               = $PSStyle.Foreground.BrightBlack
         Selection               = "`e[30;47m"
-        String                  = "`e[36m"
-        Type                    = "`e[37m"
-        Variable                = "`e[92m"
+        String                  = $PSStyle.Foreground.Cyan
+        Type                    = $PSStyle.Foreground.Magenta
+        Variable                = $PSStyle.Foreground.BrightGreen
         Default                 = $fgDefault
     }
 

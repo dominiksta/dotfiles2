@@ -1,0 +1,80 @@
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'preservim/nerdtree'
+
+" kinda buggy
+" set which-key
+
+" in absence of a kill ring, i'd rather use the "+" register
+" set clipboard+=unnamed
+set ic
+set visualbell
+set nomore
+set noerrorbells
+set relativenumber
+set number 
+
+map <C-J> <C-D>
+map <C-K> <C-U>
+
+let mapleader ="\<Space>"
+
+nmap <leader>fs :w<CR>
+nmap <leader>fa :wa<CR>
+
+nmap gh <Action>(ShowHoverInfo)
+nmap gs <Action>(GotoSuperMethod)
+nmap gi <Action>(GotoImplementation)
+nmap gf <Action>(FindUsages)
+nmap gn <Action>(FindWordAtCaret)<Esc>h
+nmap gp <Action>(FindPrevWordAtCaret)<Esc>h
+
+nmap zO zR
+nmap zC zM
+
+nmap <leader>wv :vsplit<CR>
+nmap <leader>wb :split<CR>
+nmap <leader>wd :<CR>
+
+nmap <leader>wh <C-W>h
+nmap <leader>wl <C-W>l
+nmap <leader>wj <C-W>j
+nmap <leader>wk <C-W>k
+
+nmap <leader>rr <Action>(Replace)
+vmap <leader>rr <Action>(Replace)
+
+nmap <leader>ss <Action>(Find)
+
+nmap <leader>pf <Action>(GotoFile)
+nmap <leader>pC <Action>(ChooseRunConfiguration)
+nmap <leader>sp <Action>(FindInPath)
+
+nmap <leader>fj <Action>(ActivateProjectToolWindow) <Action>(SelectInProjectView)
+nmap <leader>tt <Action>(ActivateProjectToolWindow) <Action>(SelectInProjectView)
+
+function! MapBoth(keys, rhs)
+    execute 'nmap' a:keys a:rhs
+    execute 'imap' a:keys '<Esc>' . a:rhs
+endfunction
+
+call MapBoth('<A-Y>', '<C-W>h')
+call MapBoth('<A-U>', '<C-W>j')
+call MapBoth('<A-I>', '<C-W>k')
+call MapBoth('<A-O>', '<C-W>l')
+call MapBoth('<A-S-R>', '<Action>(RenameElement)')
+
+call MapBoth('<C-S-C>', '<Action>(EditorCopy)')
+call MapBoth('<C-S-V>', '<Action>(EditorPaste)')
+
+" call MapBoth('<A-V>', '<C-W>v')
+" call MapBoth('<A-C>', '<C-W>s')
+" call MapBoth('<A-Q>', '<Action>(CloseAllEditors)')
+" call MapBoth('<A-D>', '<Action>(CloseContent)')
+
+nmap <leader>wb :split<CR>
+map <Leader>bb <Action>(RecentFiles)
+map <Leader>d <Action>(CloseContent)
+map <Leader>q <Action>(CloseAllEditors)
+map <Leader>bn :bn<CR>
+map <Leader>bp :bp<CR>

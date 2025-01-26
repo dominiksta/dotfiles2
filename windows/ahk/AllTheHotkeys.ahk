@@ -99,6 +99,8 @@ return
 ; Made by Jakub Mańczak in 2020
 ; manczak.net
 
+>!e::send, {U+20AC} ; €
+
 >!a::
 if GetKeyState("CapsLock", "T") = 0
 	send, {U+00E4}
