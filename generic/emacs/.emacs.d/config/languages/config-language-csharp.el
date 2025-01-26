@@ -4,7 +4,7 @@
 
 (defun fp/csharp-mode-hook ()
   ;; (setq-local company-idle-delay 0.5)
-  (lsp))
+  )
 
 (add-hook 'csharp-mode-hook 'fp/csharp-mode-hook)
 

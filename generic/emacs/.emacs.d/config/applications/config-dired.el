@@ -27,21 +27,6 @@
   (if (eq fp/dired-hide-details-globally nil) (dired-next-line 3) (dired-next-line 2)))
 
 ;; --------------------------------------------------------------------------------
-;; tail
-;; --------------------------------------------------------------------------------
-(defun dired-tail ()
-  (interactive)
-  (let ((file (dired-get-filename))
-        (name (dired-get-filename t)))
-    (switch-to-buffer (process-buffer
-                       (start-process-shell-command
-                        "tail" (concat "*tail " name "*")
-                        (concat "tail -f " file))))
-    (run-with-timer 0.2 nil (lambda () (beginning-of-buffer)))))
-
-(evil-leader/set-key-for-mode 'dired-mode "mt" 'dired-tail)
-
-;; --------------------------------------------------------------------------------
 ;; diffs
 ;; --------------------------------------------------------------------------------
 (defun dired-ediff-marked ()
@@ -53,50 +38,6 @@
      ((= len 3) (ediff3 (car files) (nth 1 files) (nth 2 files)))
      ((= len 2) (ediff (car files) (cadr files)))
      ((< len 2) (message "Not enough files marked")))))
-
-;; --------------------------------------------------------------------------------
-;; file previews
-;; --------------------------------------------------------------------------------
-(straight-use-package 'peep-dired)
-
-(evil-leader/set-key-for-mode 'dired-mode "mp" 'peep-dired)
-
-(with-eval-after-load "peep-dired"
-  (add-hook 'peep-dired-hook (lambda () (evil-emacs-state) (evil-normal-state)))
-  (evil-define-key 'normal peep-dired-mode-map
-    "j" 'peep-dired-next-file
-    "k" 'peep-dired-prev-file
-    "J" 'peep-dired-scroll-page-down
-    "K" 'peep-dired-scroll-page-up))
-
-;; --------------------------------------------------------------------------------
-;; file-sizes
-;; --------------------------------------------------------------------------------
-(defun fp/dired-file-size-under-point ()
-  (interactive)
-  (shell-command (format "du -h %s | tail -1" (dired-file-name-at-point))))
-
-(evil-leader/set-key-for-mode 'dired-mode "mS" 'fp/dired-file-size-under-point)
-
-;; This is supposed to mimic how i use gui file managers
-(define-key dired-mode-map (kbd "M-RET") 'fp/dired-file-size-under-point)
-
-
-;; --------------------------------------------------------------------------------
-;; subtrees
-;; --------------------------------------------------------------------------------
-;; TODO light face
-(straight-use-package 'dired-subtree)
-(define-key dired-mode-map (kbd "C-x n s") 'dired-subtree-narrow)
-(evil-define-key 'normal dired-mode-map
-  (kbd "TAB") 'dired-subtree-toggle
-  (kbd "M-j") 'dired-subtree-next-sibling
-  (kbd "M-k") 'dired-subtree-previous-sibling
-  "gj" 'dired-subtree-next-sibling
-  "gk" 'dired-subtree-previous-sibling
-  "gh" 'dired-subtree-up
-  "i" 'dired-subtree-insert
-  "I" 'dired-subtree-remove)
 
 ;; --------------------------------------------------------------------------------
 ;; open with default application
@@ -163,18 +104,6 @@
 (define-key dired-mode-map (kbd "A") 'dired-async-mode)
 
 ;; --------------------------------------------------------------------------------
-;; rsync - this might just make me get rid of async
-;; --------------------------------------------------------------------------------
-;; For this package to work fully as intended, an ssh-agent (such as the
-;; gpg-agent that i use) and an ssh config is necessary specifying what user to
-;; log in to on the remote machine.
-(straight-use-package 'dired-rsync)
-(evil-define-key 'normal dired-mode-map
-  "R" 'dired-rsync
-  "bR" (lambda () (interactive) (let ((dired-dwim-target t))
-                             (call-interactively 'dired-rsync))))
-
-;; --------------------------------------------------------------------------------
 ;; bindings
 ;; --------------------------------------------------------------------------------
 (evil-leader/set-key-for-mode 'dired-mode
@@ -234,36 +163,6 @@
 (define-key dired-mode-map [mouse-3] 'fp/dired-mouse-open-with-system-default)
 (define-key dired-mode-map [(double-mouse-3)] 'fp/dired-mouse-open-with-system-default)
 (define-key dired-mode-map [(triple-mouse-3)] 'fp/dired-mouse-open-with-system-default)
-
-;; --------------------------------------------------------------------------------
-;; kdeconnect
-;; --------------------------------------------------------------------------------
-
-(defvar fp/kdeconnect-active-device "Pixel 3a"
-  "The device used for kdeconnect. Only one is supported. You can
-  find the names with 'kdeconnect-cli -a --names-only'")
-
-(setq fp/kdeconnect-program "kdeconnect-cli")
-
-(defun fp/kdeconnect-base-command ()
-  (format "%s -n \"%s\"" fp/kdeconnect-program fp/kdeconnect-active-device))
-
-(defun fp/kdeconnect-send-files (files)
-  "Send a list of files to `fp/kdeconnect-active-device'."
-  (when (not (listp files)) (error "invalid type"))
-  (message "Sending files %s to %s" files fp/kdeconnect-active-device)
-  (call-process-shell-command
-   (format "%s %s %s" (fp/kdeconnect-base-command) "--share"
-           (mapconcat 'identity files " "))))
-
-(defun fp/kdeconnect-send-files-dired ()
-  (interactive)
-  (let ((files (dired-get-marked-files)))
-    (when (y-or-n-p (format "Send %s to %s?" files fp/kdeconnect-active-device))
-      (fp/kdeconnect-send-files files))))
-
-(evil-leader/set-key-for-mode
-  'dired-mode "mk" 'fp/kdeconnect-send-files-dired)
 
 ;; --------------------------------------------------------------------------------
 ;; archives

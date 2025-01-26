@@ -63,7 +63,7 @@
   "msl" 'fp/search-cppreference)
 
 (defun fp/cc-mode-hook ()
-  (lsp)
+  ;; (if (project-current) (lsp))
   (flycheck-mode 0)
   (evil-local-set-key 'normal "gf" 'project-find-regexp)
   (evil-local-set-key 'normal "gf" 'project-find-regexp)

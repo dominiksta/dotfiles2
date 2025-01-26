@@ -147,84 +147,11 @@ execute it, setting `default-directory' to
 ;; (evil-define-key 'normal "gf" (lambda () (interactive) (project-find-regexp )))
 
 ;; --------------------------------------------------------------------------------
-;; debugging
-;; --------------------------------------------------------------------------------
-(straight-use-package 'realgud)
-(with-eval-after-load "realgud"
-  (evil-define-key 'normal realgud:shortkey-mode-map
-    "n" 'realgud:cmd-next
-    "s" 'realgud:cmd-step
-    "f" 'realgud:cmd-finish
-    "c" 'realgud:cmd-continue
-    "b" 'realgud:cmd-break
-
-    "r" 'realgud:cmd-restart
-
-    "1" 'realgud-goto-arrow1
-    "2" 'realgud-goto-arrow2
-    "3" 'realgud-goto-arrow3
-    "4" 'realgud:goto-loc-hist-4
-    "5" 'realgud:goto-loc-hist-5
-    "6" 'realgud:goto-loc-hist-6
-    "7" 'realgud:goto-loc-hist-7
-    "8" 'realgud:goto-loc-hist-8
-    "9" 'realgud:goto-loc-hist-9))
-
-
-;; --------------------------------------------------------------------------------
 ;; diff-hl (highlighting git/svn/vc changes in fringe)
 ;; --------------------------------------------------------------------------------
 (straight-use-package 'diff-hl)
 (global-diff-hl-mode 1)
 (run-with-idle-timer 2 10 'diff-hl-update)
-
-;; --------------------------------------------------------------------------------
-;; git-gutter (highlighting git/svn/vc changes in fringe)
-;; --------------------------------------------------------------------------------
-;; (straight-use-package 'git-gutter)
-;; (straight-use-package 'git-gutter-fringe)
-;; (require 'git-gutter-fringe)
-;; ;; 0 means only update on save, otherwise set to 0.02
-;; ;; otherwise cursor stutters (e.g. at 2 or 8)
-;; (setq git-gutter:update-interval 0)
-
-;; (setq git-gutter:handled-backends '(git))
-
-;; ;; Indicator style
-;; (fringe-helper-define 'git-gutter-fr:added 'center
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX..")
-
-;; (fringe-helper-define 'git-gutter-fr:modified 'center
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX..")
-
-;; (fringe-helper-define 'git-gutter-fr:deleted 'center
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX.."
-;;   "..XXX..")
-
-;; (remove-hook 'prog-mode-hook #'git-gutter-mode)
 
 ;; --------------------------------------------------------------------------------
 ;; flycheck
@@ -354,16 +281,6 @@ execute it, setting `default-directory' to
     (evil-indent beg end)))
 
 (evil-define-key '(normal visual) lsp-mode-map "=" 'evil-lsp-format)
-
-;; ----------------------------------------------------------------------
-;; dap
-;; ----------------------------------------------------------------------
-(straight-use-package 'dap-mode)
-
-(with-eval-after-load "dap-mode"
-  (add-hook 'dap-stopped-hook (lambda (arg) (call-interactively #'dap-hydra))))
-
-
 
 ;; ----------------------------------------------------------------------
 ;; xref (for lsp, tide, maybe others)

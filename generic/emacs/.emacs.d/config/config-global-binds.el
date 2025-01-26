@@ -80,11 +80,7 @@
   "ef" 'eval-defun
   "ee" 'eval-last-sexp
   "em" 'emacs-lisp-macroexpand
-  "eE" 'eval-print-last-sexp
-  "ec" (lambda () (interactive) (byte-recompile-directory
-                            (concat user-emacs-directory "config/") 0))
-  "eC" (lambda () (interactive) (byte-recompile-directory
-                            (concat user-emacs-directory "config/") 0 t)))
+  "eE" 'eval-print-last-sexp)
 
 ;; --- eyebrowse ---
 (dotimes (i 10)
@@ -126,11 +122,6 @@
   ;; pgdfgrep
   "sd" 'pdfgrep
   "sD" 'fp/pdfgrep-todos)
-
-(evil-leader/set-key "se" (defhydra project-todo-hydra ()
-                            ("j" next-error "search")
-                            ("k" previous-error "search")
-                            ("q" nil "quit" :color blue)))
 
 ;; --------------------------------------------------------------------------------
 ;; other
@@ -214,23 +205,6 @@
 ;; --- bibliography ---
 (evil-leader/set-key "ab" 'helm-bibtex)
 
-;; --- shopping lists ---
-(evil-leader/set-key "as" 'shopping-list-run)
-
-;; --- mail ---
-(evil-leader/set-key "am" 'gnus)
-
-;; --- sql connections ----
-(evil-leader/set-key "aS" 'fp/sql-connect)
-
-;; --- processes ---
-(autoload 'fp/proced-startup "config-proced.el")
-(evil-leader/set-key
-  "app" 'fp/proced-startup
-  "apd" 'proced
-  "apt" 'helm-timers
-  "ape" 'helm-list-emacs-process)
-
 ;; --- clocking ---
 (evil-leader/set-key
   "aoci" 'org-clock-in
@@ -239,9 +213,6 @@
   "aocd" 'org-clock-display
   "aocr" 'org-clock-remove-overlays
   "aocj" 'org-clock-goto)
-
-;; --- org-noter ---
-(evil-leader/set-key "an" 'fp/org-noter-from-zotero)
 
 ;; --- calendar ---
 (evil-leader/set-key "aC" 'calendar)
@@ -258,9 +229,6 @@
 
 ;; --- colors ---
 (evil-leader/set-key "ahc" 'helm-colors)
-
-;; --- external applications ---
-(evil-leader/set-key  "ahe" 'helm-run-external-command)
 
 ;; --------------------------------------------------------------------------------
 ;; programming
@@ -286,32 +254,13 @@
 (autoload 'fp/open-directory-with-system-default "config-dired.el")
 (evil-leader/set-key
   "-s" 'shell
-  "-b" 'fp/new-bash-here-xterm
-  "-B" 'fp/new-bash-here
   "-r" 'shell-command-on-region
   "-c" 'shell-command
   "-a" 'async-shell-command
-  ;; insert shell-command into current buffer
-  "-i" (lambda () (interactive) (let ((current-prefix-arg 4))
-                                  (call-interactively 'shell-command)))
   "-t" 'fp/terminal-here
-  "-d" 'fp/open-directory-with-system-default
-
-  "-e" 'eshell
-  "-E" 'fp/eshell-other-window
-  "-h" 'fp/eshell-here
-  "-H" 'fp/eshell-here-other-window
-  "<" 'shell-pop)
-
-(autoload-list '(fp/eshell-other-window fp/eshell-here fp/eshell-here-other-window)
-               "config-eshell")
+  "-d" 'fp/open-directory-with-system-default)
 
 (define-key comint-mode-map (kbd "C-l") 'comint-clear-buffer)
-
-;; (bind-key* (kbd "C-'") 'fp/term-new)
-;; (bind-key* (kbd "C-#") 'fp/term-switch)
-(bind-key* (kbd "M-,") 'fp/term-switch)
-(bind-key* (kbd "M-;") 'fp/term-new)
 
 ;; --------------------------------------------------------------------------------
 ;; finishing

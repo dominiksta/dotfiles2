@@ -67,7 +67,8 @@
     "=" 'log-view-diff-changeset
     (kbd "RET") 'log-view-toggle-entry-display)
 
-  (define-key log-edit-mode-map (kbd "C-c C-a") 'vc-git-log-edit-toggle-amend))
+  ;; (define-key log-edit-mode-map (kbd "C-c C-a") 'vc-git-log-edit-toggle-amend)
+  )
 
 
 (defun fp/vc-revert-buffer ()

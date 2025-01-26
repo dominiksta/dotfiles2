@@ -6,12 +6,14 @@ Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 
 scoop bucket add extras
 scoop bucket add versions
+scoop bucket add nerd-fonts
 
 # Install basic apps
 # --------------------------------------------------------------------------------
 
 scoop install `
   vivaldi firefox `
+  IosevkaTerm-NF `
   ripgrep python `
   altsnap `
   systeminformer-nightly gsudo nircmd shmnview shellmenunew powertoys `

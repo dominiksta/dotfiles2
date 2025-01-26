@@ -135,6 +135,7 @@ Function la { Get-ChildItem -Hidden $args }
 Set-Alias -Name sysjava -Value "$env:JAVA_HOME\bin\java.exe"
 
 Set-Alias -Name em -Value emacsclientw.exe
+Set-Alias -Name npp -Value notepad++.exe
 Set-Alias -Name lg -Value lazygit
 
 Set-Alias -Name gfind -Value "C:\tools\msys64\usr\bin\find.exe"

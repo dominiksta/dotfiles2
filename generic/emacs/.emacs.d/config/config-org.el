@@ -132,67 +132,6 @@
  ;; drawers
  '(org-drawer ((t (:inherit 'font-lock-comment-face)))))
 
-;; --- different font for org mode ---
-;; (setq fp/org-font-family "Dejavu Sans Mono"
-;;       fp/org-font-size 110)
-
-;; (defun fp/org-font-apply ()
-;;   (face-remap-add-relative
-;;    'default
-;;    (list :family  fp/org-font-family :height fp/org-font-size :weight 'normal)))
-
-;; (add-hook 'org-mode-hook 'fp/org-font-apply)
-
-
-;; --- variable pitch ---
-(define-minor-mode fp/org-variable-pitch-mode
-  "Enables variable pitch fonts in org-mode for a lot of elements, but keeps
-some faces fixed-with (for tables, source code, etc.)"
-  nil
-  " ovp"
-  nil
-  (let ((extra-fixed-pitch
-         '(org-code org-link org-hide org-block org-table org-block-begin-line
-                    org-indent org-block-end-line org-meta-line
-                    org-document-info-keyword org-special-keyword org-verbatim
-                    org-checkbox font-lock-comment-face org-date))
-        (extra-fixed-pitch-heading
-         '(org-level-1 org-level-2 org-level-3 org-level-4 org-level-5
-                       org-level-6 org-level-7 org-level-8 ))
-        (extra-variable-pitch '(org-quote)))
-    (if (bound-and-true-p fp/org-variable-pitch-mode)
-        (progn
-          (variable-pitch-mode 1)
-          (mapcar
-           (lambda (face)
-             (set-face-attribute face nil
-                                 :family (face-attribute 'fixed-pitch :family)
-                                 :height (face-attribute 'default :height)))
-           extra-fixed-pitch)
-          (mapcar
-           (lambda (face)
-             (set-face-attribute face nil
-                                 :family (face-attribute 'fixed-pitch :family)))
-           extra-fixed-pitch-heading)
-          (mapcar
-           (lambda (face)
-             (set-face-attribute face nil :family
-                                 fp/theme-font-family-variable-pitch))
-           extra-variable-pitch))
-      (progn
-        (variable-pitch-mode 0)))))
-
-(evil-leader/set-key-for-mode 'org-mode "mp" 'fp/org-variable-pitch-mode)
-
-;; --- fontify bullet-points ---
-(font-lock-add-keywords
- 'org-mode
- '(("^ *- " . 'fixed-pitch) ; these two fix bullet lists indentation
-   ("^ * " . 'fixed-pitch)
-   ("^ *\\([-+]\\) " ; change '-' into a unicode bullet
-    (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-
-
 ;; --- other ---
 (add-hook 'org-mode-hook (lambda () (org-indent-mode 1)))
 (add-hook 'org-mode-hook (lambda () (eldoc-mode 0)))
@@ -205,43 +144,6 @@ some faces fixed-with (for tables, source code, etc.)"
       org-hide-emphasis-markers nil
       org-ellipsis " ▾"
       org-tags-column -75)
-
-;; --------------------------------------------------------------------------------
-;; org-noter
-;; --------------------------------------------------------------------------------
-
-(straight-use-package 'org-noter)
-
-(with-eval-after-load "org-noter"
-  (setq org-noter-separate-notes-from-heading t
-        org-noter-always-create-frame nil
-        org-noter-kill-frame-at-session-end nil
-        org-noter-insert-selected-text-inside-note t)
-
-  (defun fp/org-noter-from-zotero (arg)
-    "Prompt for a pdf from the zotero/zotfile attachment
-directory and start `org-noter' with ARG."
-    (interactive "P")
-    (when (not (org-entry-get nil "NOTER_DOCUMENT" t))
-      (org-set-property
-       "NOTER_DOCUMENT"
-       (abbreviate-file-name
-        (read-file-name
-         "File: " "~/sync/documents/studium/00-academic/"))))
-    (org-noter arg)
-    ;; org-noter-notes-mode-hook seems to be ignored
-    ;; (run-with-timer 1 nil (lambda () ))
-    (dolist (b (buffer-list))
-      (with-current-buffer b
-        (when (bound-and-true-p org-noter-notes-mode)
-          (olivetti-mode 0)
-          (olivetti-mode 1)))))
-
-  (evil-define-key '(normal visual) pdf-view-mode-map
-    "ii" 'org-noter-insert-note
-    "ip" 'org-noter-insert-precise-note))
-
-(autoload 'fp/org-noter-from-zotero "org-noter.el")
 
 ;; --------------------------------------------------------------------------------
 ;; clocking

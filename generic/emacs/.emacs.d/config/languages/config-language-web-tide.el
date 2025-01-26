@@ -1,55 +1,12 @@
 (require-and-log 'config-language-web-general)
 
 ;; ----------------------------------------------------------------------
-;; tide
-;; ----------------------------------------------------------------------
-;; lsp currently sucks for js/ts (completions are very slow). tide is
-;; still much better
-
-;; (config-add-external-dependency 'npm 'config-language-web-tide "tide"
-;;                                 (lambda () (executable-find "npm"))
-;;                                 "apt install npm" "None")
-
-;; (straight-use-package 'tide) (require 'tide)
-
-;; (setq tide-save-buffer-after-code-edit nil
-;;       tide-format-options '(:indentSize 2))
-
-;; (defun fp/tide-mode-hook ()
-;;   (setq-local flycheck-check-syntax-automatically
-;;               '(save idle-change new-line mode-enabled))
-
-;;   (defun fp/tide-jump-to-definition ()
-;;     (interactive)
-;;     (evil-set-jump)
-;;     (tide-jump-to-definition))
-
-;;   (company-mode 1)
-;;   (flycheck-mode 1)
-;;   (setq-local company-tooltip-align-annotations t))
-;; (add-hook 'tide-mode-hook 'fp/tide-mode-hook)
-
-;; (evil-define-key 'normal tide-mode-map
-;;   "gd" 'fp/tide-jump-to-definition ;; TODO evil-add-command-properties
-;;   "gf" 'tide-references)
-
-;; (evil-define-key 'normal tide-references-mode-map
-;;   "q" 'quit-window
-;;   (kbd "RET") 'tide-goto-line-reference
-;;   "a" (lambda () (interactive)
-;;         (tide-goto-line-reference)
-;;         (pulse-momentary-highlight-one-line (point))
-;;         (select-window (previous-window))))
-
-;; (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append)
-
-;; ----------------------------------------------------------------------
 ;; (old) typescript-mode
 ;; ----------------------------------------------------------------------
 
 (straight-use-package 'typescript-mode)
 
-(add-hook 'typescript-mode-hook 'tree-sitter-hl-mode)
+;; (add-hook 'typescript-mode-hook 'tree-sitter-hl-mode)
 ;; (add-hook 'typescript-mode-hook 'tide-setup)
 ;; (add-hook 'typescript-mode-hook 'fp/toggle-show-too-long-lines)
 
@@ -58,16 +15,17 @@
 (with-eval-after-load "typescript-mode"
   (setq typescript-indent-level 2))
 
-(add-to-list 'tree-sitter-major-mode-language-alist '(typescript-mode . tsx))
-(alist-get 'typescript-mode tree-sitter-major-mode-language-alist)
+;; (add-to-list 'tree-sitter-major-mode-language-alist '(typescript-mode . tsx))
+;; (alist-get 'typescript-mode tree-sitter-major-mode-language-alist)
 
 (defun fp/typescript-mode-setup ()
   ;; (tide-setup)
-  (lsp)
-  (emmet-mode)
-  (setq-local fp/evil-lsp-format-enable t)
-  (tree-sitter-mode 1)
-  (tree-sitter-hl-mode 1))
+  ;; (lsp)
+  ;; (emmet-mode)
+  ;; (setq-local fp/evil-lsp-format-enable t)
+  ;; (tree-sitter-mode 1)
+  ;; (tree-sitter-hl-mode 1)
+  )
 
 (add-hook 'typescript-mode-hook 'fp/typescript-mode-setup)
 

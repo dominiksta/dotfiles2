@@ -15,6 +15,10 @@
 
 ;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
+;; fix helm
+(defvar browse-url-galeon-program "galeon")
+(defvar browse-url-netscape-program "netscape")
+
 ;; load personal config
 (add-to-list 'load-path (concat config-directory "/init/"))
 (require 'init-config)

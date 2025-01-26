@@ -17,8 +17,8 @@
 (require-and-log 'config-git)
 (require-and-log 'config-programming-general)
 (require-and-log 'config-mvtn)
-(require-and-log 'config-scratchy)
-(require-and-log 'config-term)
+;; (require-and-log 'config-scratchy)
+;; (require-and-log 'config-term)
 
 
 ;; --------------------------------------------------------------------------------
@@ -42,7 +42,6 @@
 (config-require '(config-language-go)           :regexp "\\.go\\'"        :auto-mode go-mode)
 (config-require '(config-language-java)         :regexp "\\.java\\'"      :auto-mode java-mode)
 (config-require '(config-language-scala)        :regexp "\\.scala\\'"    :auto-mode scala-mode)
-(config-require '(config-language-clojure)      :regexp "\\.clj\\'"       :auto-mode clojure-mode)
 (config-require '(config-language-ahk)          :regexp "\\.ahk\\'"       :auto-mode ahk-mode)
 (config-require '(config-language-markdown)     :regexp "\\.md\\'"        :auto-mode markdown-mode)
 (config-require '(config-language-csv)          :regexp "\\.csv\\'"       :auto-mode csv-mode)
@@ -60,8 +59,6 @@
 (config-require '(config-language-web-css)      :regexp "\\.css\\'"       :auto-mode css-mode)
 (config-require '(config-language-web-css)      :regexp "\\.scss\\'"      :auto-mode scss-mode)
 (config-require '(config-language-web-stylus)   :regexp "\\.styl\\'"      :auto-mode stylus-mode)
-(config-require '(config-language-octave) :regexp "\\.m\\'" :auto-mode octave-mode
-                :feature octave)
 (config-require '(config-language-latex)        :feature tex)
 (config-require '(config-language-docker)
                 :regexp "Dockerfile\\(?:\\..*\\)?\\'"
@@ -82,32 +79,19 @@
 ;; --------------------------------------------------------------------------------
 (config-require '(config-pdf-tools) :regexp "\\.pdf?\\'"  :auto-mode pdf-view-mode)
 (config-require '(config-nov)       :regexp "\\.epub?\\'" :auto-mode nov-mode)
-(autoload 'image-dired-my-window-config "config-images.el")
-(autoload 'image-dired-no-window-config "config-images.el")
 (config-require '(config-images)  :feature image-mode)
 (config-require '(config-ibuffer) :feature ibuffer)
-(config-require '(config-proced)  :feature proced)
 (config-require '(config-calc)    :feature calc)
 (config-require '(config-vc)      :feature vc)
 (config-require '(config-org)     :feature calendar)
-(config-require '(config-tramp)   :feature tramp)
-(config-require '(config-org-tree-slide) :feature org-tree-slide)
-;; (config-require '(config-keepassxc-cli)  :feature keepassxc-cli) (require 'keepassxc-cli)
-
-(setq gnus-directory "~/.emacs.d/News") ;; needs to be set before gnus is loaded
-(config-require '(config-gnus) :feature gnus)
-
-
 
 ;; ispell gets loaded with evil no matter what
 (config-require '(config-language-natural) :feature ispell)
 
-
 ;; --- shells ---
-(config-require '(config-term)   :feature term)
-(config-require '(config-eshell) :feature eshell)
-(config-require '(config-shell)  :feature shell)
-
+;; (config-require '(config-term)   :feature term)
+;; (config-require '(config-eshell) :feature eshell)
+;; (config-require '(config-shell)  :feature shell)
 
 ;; --------------------------------------------------------------------------------
 ;; finishing

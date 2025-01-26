@@ -48,9 +48,9 @@
   (define-key yafolding-mode-map (kbd "<C-return>") nil))
 ;; I don't use the normal folding commands at all, so i just overwrite them.
 (evil-define-key 'normal global-map
-  "za" 'yafolding-toggle-element
-  "zA" 'yafolding-hide-all
-  (kbd "z M-a") 'yafolding-show-all)
+  "zo" 'yafolding-toggle-element
+  "zC" 'yafolding-hide-all
+  (kbd "zO") 'yafolding-show-all)
 
 (dolist (state (list 'normal 'motion))
   (evil-define-key state global-map
@@ -71,59 +71,11 @@
   (evil-normal-state)
   (evil-search (buffer-substring-no-properties start end) t t nil))
 
-(define-key evil-visual-state-map (kbd "-") 'fp/evil-search-region)
+(define-key evil-visual-state-map (kbd "/") 'fp/evil-search-region)
 (define-key evil-visual-state-map (kbd "*") 'fp/evil-search-region)
-
-;; --- whitespace ---
-(require 'whitespace)
-(setq whitespace-style '(face))
-
-(defun fp/toggle-show-too-long-lines ()
-  (interactive)
-  (editorconfig-apply)
-  (if (member 'lines-tail whitespace-style)
-      (progn (setq-local whitespace-style (delq 'lines-tail whitespace-style))
-             (message "not highlighting long lines"))
-    (progn (setq-local whitespace-style (append whitespace-style '(lines-tail)))
-           (message "highlighting long lines")))
-  (setq-local whitespace-line-column fill-column)
-  ;; yes you need to do this
-  (whitespace-mode 0) (whitespace-mode 1)
-  (font-lock-mode 0) (font-lock-mode 1))
 
 ;; Don't add a newline on the end of files on saving
 (setq mode-require-final-newline nil)
-
-(defun fp/toggle-show-trailing-whitespace ()
-  (interactive)
-  (setq show-trailing-whitespace (if (eq show-trailing-whitespace t) nil t))
-  (redraw-display))
-
-(evil-leader/set-key
-  "uw" 'whitespace-mode
-  "ud" 'delete-trailing-whitespace
-  "ut" 'fp/toggle-show-trailing-whitespace
-  "ul" 'fp/toggle-show-too-long-lines)
-
-;; --- strings ---
-(defun fp/string-new-line ()
-  (interactive)
-  (insert "\" + \"")
-  (backward-char 2)
-  (newline)
-  (indent-for-tab-command))
-
-(defun fp/string-new-line-auto ()
-  (interactive)
-  (move-to-column (- fill-column 3)) ;; the insert above is 3 characters
-  (evil-find-char-backward 1 (string-to-char " "))
-  (insert "\" + \"")
-  (backward-char 2)
-  (newline)
-  (indent-for-tab-command))
-
-(global-set-key (kbd "C-<down>") 'fp/string-new-line-auto)
-
 
 (setq-default fill-column 80)
 
@@ -146,6 +98,14 @@
 
 (straight-use-package 'evil-nerd-commenter)
 (evil-leader/set-key "kk" 'evilnc-comment-or-uncomment-lines)
+(evil-define-key '(normal motion)
+  prog-mode-map "gcc" 'evilnc-comment-or-uncomment-lines)
+(evil-define-key 'visual
+  prog-mode-map "gc" 'evilnc-comment-or-uncomment-lines)
+(evil-define-key '(normal visual motion)
+  text-mode-map "gcc" 'evilnc-comment-or-uncomment-lines)
+(evil-define-key 'visual
+  text-mode-map "gc" 'evilnc-comment-or-uncomment-lines)
 
 ;; --- tample sext ---
 (straight-use-package 'lorem-ipsum)

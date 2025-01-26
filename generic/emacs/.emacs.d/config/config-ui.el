@@ -29,9 +29,9 @@
 ;; themes and fonts
 ;; --------------------------------------------------------------------------------
 
-(setq fp/theme-font-family "Iosevka Fixed"
+(setq fp/theme-font-family "IosevkaTerm NF"
       fp/theme-font-family-size "15"
-      fp/theme-font-family-variable-pitch "DejaVu Serif 14"
+      fp/theme-font-family-variable-pitch "IosevkaTerm NF 14"
       ;; these are used to set `fp/theme-font-family' in `fp/theme-switch'
       fp/theme-light-font-bold nil)
 
